@@ -2,6 +2,44 @@
     ViewBag.Title = "Home Page";
 }
 
-<div>
-    Application goes here
+<head>
+    <style>
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            height: 50%;
+        }
+    </style>
+</head>
+
+<div style="height: 700px">
+
+    <div>
+        <h2>Table data</h2>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Current module</th>
+                    <th scope="col">Task status</th>
+                    <th scope="col">Flags</th>
+                    <th scope="col">Summary</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(var i = 0; i < 10; i++)
+            {
+                <tr class="table-active">
+                    <th scope="row">Patient @i</th>
+                    <td>7</td>
+                    <td>Delivered</td>
+                    <td>2</td>
+                    <td>Improving</td>
+                </tr>
+        }
+        </table>
+    </div>
+    
 </div>
