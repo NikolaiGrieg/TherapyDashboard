@@ -1,8 +1,14 @@
 ﻿@model TherapyDashboard.Models.Patient
 
+<head>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
 <body>
-    <h2>SinglePatient</h2>
-    <p>@Model.id</p>
+    <h2>Patient @Model.name</h2>
+    <p>ID @Model.id</p>
+
+    <div id="container"></div>
+    <script src="~/Scripts/Custom/LineChart.js"></script>
 </body>
 
 
