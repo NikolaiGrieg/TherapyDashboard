@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TherapyDashboard", "TherapyDashboard\TherapyDashboard.csproj", "{EEB15E7B-5CA2-43C8-B373-5BD94CA6A18E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TherapyDashboard.Tests", "TherapyDashboard.Tests\TherapyDashboard.Tests.csproj", "{66A8EFCE-ACB9-44AC-9499-63D776EE44DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEB15E7B-5CA2-43C8-B373-5BD94CA6A18E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEB15E7B-5CA2-43C8-B373-5BD94CA6A18E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEB15E7B-5CA2-43C8-B373-5BD94CA6A18E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEB15E7B-5CA2-43C8-B373-5BD94CA6A18E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66A8EFCE-ACB9-44AC-9499-63D776EE44DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66A8EFCE-ACB9-44AC-9499-63D776EE44DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66A8EFCE-ACB9-44AC-9499-63D776EE44DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66A8EFCE-ACB9-44AC-9499-63D776EE44DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9DE3449-7BE8-4677-8BA9-9C0948E5519A}
+	EndGlobalSection
+EndGlobal
