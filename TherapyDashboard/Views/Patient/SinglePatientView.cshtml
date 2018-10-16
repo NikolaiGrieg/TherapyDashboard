@@ -2,8 +2,9 @@
 
 <head>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <style>
-        #container {
+        .line {
             min-width: 310px;
             max-width: 800px;
             height: 300px;
@@ -21,6 +22,7 @@
             float: left;
             margin-left: 100px;
         }
+
         .oppgaver {
             width: 200px;
             float: left;
@@ -31,14 +33,36 @@
             overflow: hidden;
             position: relative
         }
+        .spider {
+            width: 50%;
+            height: 250px;
+            margin: 0 auto;
+            float: left;
+        }
+        .polar {
+            width: 50%;
+            height: 250px;
+            margin: 0 auto;
+            float: right;
+        }
     </style>
 </head>
 <body>
     <h2 style="margin-left: 40%">@Model.name</h2>
-    <div id="container"></div>
-    <script src="~/Scripts/Custom/LineChart.js"></script>
+    <div id="linechart" class="line"></div>
 
-    <div style="height: 250px"></div>
+    <div style="width: auto; height: 280px;">
+        <div id="spiderchart" class="spider"></div>
+        <div id="polarchart" class="polar"></div>
+    </div>
+    
+    
+
+    <script src="~/Scripts/Custom/LineChart.js"></script>
+    <script src="~/Scripts/Custom/SpiderChart.js"></script>
+    <script src="~/Scripts/Custom/PolarChart.js"></script>
+
+   
 
     <div class="forms">
         <h4>Other measurements</h4>
@@ -66,14 +90,14 @@
             <tbody>
                 @foreach (var entry in Model.background)
                 {
-                <tr class="table-active">
-                    <td scope="row">
-                        <span>@entry.Key</span>
-                    </td>
-                    <td scope="row">
-                        <span>@entry.Value</span>
-                    </td>
-                </tr>
+                    <tr class="table-active">
+                        <td scope="row">
+                            <span>@entry.Key</span>
+                        </td>
+                        <td scope="row">
+                            <span>@entry.Value</span>
+                        </td>
+                    </tr>
                 }
 
         </table>

@@ -1,5 +1,5 @@
 ﻿
-Highcharts.chart('container', {
+Highcharts.chart('linechart', {
 
     title: {
         text: null
@@ -13,6 +13,10 @@ Highcharts.chart('container', {
         title: {
             text: 'Measurement/Time'
         }
+    },
+
+    legend: {
+        enabled: false
     },
 
     series: [{

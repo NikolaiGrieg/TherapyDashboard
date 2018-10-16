@@ -12,7 +12,9 @@ namespace TherapyDashboard.Models
         public string[] forms { get; set; }
         public Dictionary<string, string> background { get; set; }
         public string[] tasks { get; set; }
-        public DateTime deadline { get; set; }
+        public DateTime previousDelivery { get; set; }
+        public DateTime nextDelivery { get; set; }
+        
 
         public static Random random = null;
 
@@ -36,7 +38,7 @@ namespace TherapyDashboard.Models
                     { "Antall barn", "Ingen" }
                 },
                 tasks = new string[] { "Modul 1: Skjema 1", "Modul 1: Skjema 2", "Modul 2: Skjema 1", "Modul 2: Skjema 2", "Modul 2: Skjema 3", },
-                deadline = DateTime.Now
+                nextDelivery = DateTime.Now
             };
 
             return pat;
