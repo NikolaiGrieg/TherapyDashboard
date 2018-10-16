@@ -8,6 +8,6 @@ namespace TherapyDashboard.ViewModels
 {
     public class MultiPatientViewModel
     {
-        public Patient patients { get; set; }
+        public List<Patient> patients { get; set; }
     }
 }
