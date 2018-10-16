@@ -2,7 +2,7 @@
 Highcharts.chart('container', {
 
     title: {
-        text: 'Summary'
+        text: null
     },
     yAxis: {
         title: {

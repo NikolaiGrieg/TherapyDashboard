@@ -10,7 +10,25 @@ namespace TherapyDashboard.Models
         public int id { get; set; }
         public string name { get; set; }
         public string[] forms { get; set; }
-        public string[] background { get; set; }
+        public Dictionary<string, string> background { get; set; }
+        public string[] oppgaver { get; set; }
 
+        public static Patient createSimulated()
+        {
+            Patient pat = new Patient(){
+                name = "Guy Simulated",
+                id = 0,
+                forms = new string[] { "SPS", "SIAS", "SE - SKALA", "TIC - C", "Bakgrunn" },
+                background = new Dictionary<string, string> {
+                    { "Kjønn", "Mann" },
+                    { "Utdanning","Videregående skole/gymnas" },
+                    { "Sivilstatus", "Enslig" },
+                    { "Antall barn", "Ingen" }
+                },
+                oppgaver = new string[] { "Modul 1: Skjema 1", "Modul 1: Skjema 2", "Modul 2: Skjema 1", "Modul 2: Skjema 2", "Modul 2: Skjema 3", }
+            };
+
+            return pat;
+        }
     }
 }

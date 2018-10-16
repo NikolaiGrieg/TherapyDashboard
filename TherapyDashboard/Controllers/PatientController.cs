@@ -14,13 +14,7 @@ namespace TherapyDashboard.Controllers
         public ActionResult SinglePatientView(int id)
         {
             //return Content("patient " + id);
-            Patient pat = new Patient()
-            {
-                name = "Test Patient 02",
-                id = id,
-                forms = new string[] { "SPS", "SIAS", "SE - SKALA", "TIC - C", "Bakgrunn" },
-                background = new string[] {"Mann", "Videregående skole/gymnas", "Enslig", "Ingen barn" }
-            };
+            Patient pat = Patient.createSimulated();
             return View(pat);
         }
 
