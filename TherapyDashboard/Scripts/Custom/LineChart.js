@@ -1,10 +1,29 @@
 ﻿
 Highcharts.chart('container', {
 
+    title: {
+        text: 'Summary'
+    },
+    yAxis: {
+        title: {
+            text: 'MADRS-S'
+        }
+    },
+    xAxis: {
+        title: {
+            text: 'Measurement/Time'
+        }
+    },
 
     series: [{
-        name: 'Installation',
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-    }]
+        name: 'MADRS Score',
+        data: [42, 30, 32, 25, 20, 24, 20, 15]
+    }],
+
+    credits: {
+        enabled: false
+    },
+
+    
 
 });

@@ -2,13 +2,72 @@
 
 <head>
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        #container {
+            min-width: 310px;
+            max-width: 800px;
+            height: 300px;
+            margin: 0 auto
+        }
+
+        .background {
+            width: 200px;
+            float: right;
+            margin-right: 100px;
+        }
+
+        .forms {
+            width: 200px;
+            float: left;
+            margin-left: 100px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Patient @Model.name</h2>
-    <p>ID @Model.id</p>
-
     <div id="container"></div>
     <script src="~/Scripts/Custom/LineChart.js"></script>
+
+    <div class="forms">
+        <h4>Other measurements</h4>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Form</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var f in Model.forms)
+                {
+                    <tr class="table-active">
+                        <th scope="row">
+                            <a href="@Url.Action("" , "Patient" )" class="elements">
+                                <span>@f</span>
+                            </a>
+                        </th>
+                    </tr>
+                }
+
+        </table>
+    </div>
+
+    <div class="background">
+        <h4>@Model.name</h4>
+
+        <table class="table table-hover">
+            <tbody>
+                @foreach (var entry in Model.background)
+                {
+                    <tr class="table-active">
+                        <th scope="row">
+                            <span>@entry</span>
+                        </th>
+                    </tr>
+                }
+
+        </table>
+    </div>
+
 </body>
 
 

@@ -9,5 +9,8 @@ namespace TherapyDashboard.Models
     {
         public int id { get; set; }
         public string name { get; set; }
+        public string[] forms { get; set; }
+        public string[] background { get; set; }
+
     }
 }

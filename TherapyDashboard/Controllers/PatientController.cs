@@ -16,8 +16,10 @@ namespace TherapyDashboard.Controllers
             //return Content("patient " + id);
             Patient pat = new Patient()
             {
-                name = "Test Patient",
-                id = id
+                name = "Test Patient 02",
+                id = id,
+                forms = new string[] { "SPS", "SIAS", "SE - SKALA", "TIC - C", "Bakgrunn" },
+                background = new string[] {"Mann", "Videregående skole/gymnas", "Enslig", "Ingen barn" }
             };
             return View(pat);
         }
