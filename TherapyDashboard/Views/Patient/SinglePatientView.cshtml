@@ -93,9 +93,9 @@
                 @foreach (var entry in Model.background)
                 {
                     <tr class="table-active">
-                        <td scope="row">
+                        <th scope="row">
                             <span>@entry.Key</span>
-                        </td>
+                        </th>
                         <td scope="row">
                             <span>@entry.Value</span>
                         </td>
@@ -112,13 +112,16 @@
             <tbody>
                 @foreach (var entry in Model.tasks)
                 {
-                    <tr class="table-active">
-                        <td scope="row">
-                            <a href="@Url.Action("" , "Patient" )" class="elements">
-                                <span>@entry</span>
-                            </a>
-                        </td>
-                    </tr>
+                <tr class="table-active">
+                    <td scope="row">
+                        <a href="@Url.Action("" , "Patient" )" class="elements">
+                            <span>@entry</span>
+                        </a>
+                    </td>
+                    <td scope="row">
+                        <span>Opened</span>
+                    </td>
+                </tr>
                 }
 
         </table>

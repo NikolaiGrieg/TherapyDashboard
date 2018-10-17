@@ -1,5 +1,6 @@
 ﻿function spiderChart(data) {
 
+    var prev = [4, 6, 4, 4, 3, 3, 4, 2, 2];
 
     Highcharts.chart('spiderchart', {
 
@@ -23,7 +24,9 @@
         yAxis: {
             gridLineInterpolation: 'polygon',
             lineWidth: 0,
-            max: 6
+            max: 6,
+            minRange: 1,
+            tickInterval: 1
         },
 
         tooltip: {
@@ -38,10 +41,16 @@
             enabled: false
         },
 
+
         series: [{
             type: 'area',
-            name: 'Area',
+            name: 'Patient',
             data: data,
+            pointPlacement: 'on'
+        }, {
+            type: 'area',
+            name: 'Previous',
+            data: prev,
             pointPlacement: 'on'
         }]
 

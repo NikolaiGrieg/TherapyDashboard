@@ -32,6 +32,7 @@ namespace TherapyDashboard.Models
                 id = num,
                 forms = new string[] { "SPS", "SIAS", "SE - SKALA", "TIC - C", "Bakgrunn" },
                 background = new Dictionary<string, string> {
+                    { "Alder", "30" },
                     { "Kjønn", "Mann" },
                     { "Utdanning","Videregående skole/gymnas" },
                     { "Sivilstatus", "Enslig" },

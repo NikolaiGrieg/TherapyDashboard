@@ -15,10 +15,6 @@ Highcharts.chart('linechart', {
         }
     },
 
-    legend: {
-        enabled: false
-    },
-
     series: [{
         name: 'Patient',
         data: [42, 30, 32, 25, 20, 24, 20, 15]
@@ -41,7 +37,7 @@ Highcharts.chart('linechart', {
 
                         let scale = this.y / 52; 
                         for (let i = 0; i < data.length; i++) {
-                            data[i] = Math.round(data[i] + Math.random() * scale % 6) 
+                            data[i] = Math.round((data[i] - Math.random() * scale) % 6) 
                         }
                         spiderChart(data)
                         

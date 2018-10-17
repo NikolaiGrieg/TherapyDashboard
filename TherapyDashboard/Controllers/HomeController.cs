@@ -14,7 +14,7 @@ namespace TherapyDashboard.Controllers
         {
             MultiPatientViewModel model = new MultiPatientViewModel();
             List<Patient> patients = new List<Patient>();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
             {
                 patients.Add(Patient.createSimulated());
             }
