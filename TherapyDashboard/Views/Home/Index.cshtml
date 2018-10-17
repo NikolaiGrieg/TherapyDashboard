@@ -43,9 +43,54 @@
                             @module
                         </td>
 
-                        <td>Delivered</td>
-                        <td>2</td>
-                        <td>Improving</td>
+                        <td>
+                            @{ if (pat.id % 4 == 0)
+                                {
+                                    <span>Delayed 2 days</span>
+                                }
+                                else if (pat.id % 3 == 1)
+                                {
+                                    <span>Due in 2 days</span>
+                                }
+                                else
+                                {
+                                    <span>Delivered</span>
+                                }
+                            }
+                        </td>
+
+                        <td>
+                            @{ if (pat.id % 8 == 0)
+                                {
+                                    <span>Redusert nattesøvn</span>
+                                }
+                                else if (pat.id % 8 == 1)
+                                {
+                                    <span>Svekket appetitt</span>
+                                }
+                                else
+                                {
+                                    <span></span>
+                                }
+                            }
+                        </td>
+
+                        <td>
+                            @{ if (pat.id % 8 == 2 || pat.id % 8 == 3)
+                                {
+                                    <span>Improving</span>
+                                }
+                                else if (pat.id % 8 == 1)
+                                {
+                                    <span>Declining</span>
+                                }
+                                else
+                                {
+                                    <span>Steady</span>
+                                }
+                            }
+                        </td>
+
                     </tr>
                 }
         </table>

@@ -3,6 +3,7 @@
 <head>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    
     <style>
         .line {
             min-width: 310px;
@@ -33,12 +34,15 @@
             overflow: hidden;
             position: relative
         }
+
         .spider {
             width: 50%;
             height: 250px;
             margin: 0 auto;
             float: left;
+            margin-left: 30%;
         }
+
         .polar {
             width: 50%;
             height: 250px;
@@ -52,15 +56,13 @@
     <div id="linechart" class="line"></div>
 
     <div style="width: auto; height: 280px;">
-        <div id="spiderchart" class="spider"></div>
-        <div id="polarchart" class="polar"></div>
+        <div id="spiderchart" class="spider" hidden></div>
     </div>
     
     
 
     <script src="~/Scripts/Custom/LineChart.js"></script>
     <script src="~/Scripts/Custom/SpiderChart.js"></script>
-    <script src="~/Scripts/Custom/PolarChart.js"></script>
 
    
 

@@ -1,50 +1,49 @@
-﻿
+﻿function spiderChart(data) {
 
-Highcharts.chart('spiderchart', {
 
-    chart: {
-        polar: true,
-        type: 'line'
-    },
+    Highcharts.chart('spiderchart', {
 
-    title: {
-        text: null
-    },
+        chart: {
+            polar: true,
+            type: 'line'
+        },
 
-    pane: {
-        size: '80%'
-    },
+        title: {
+            text: null
+        },
 
-    xAxis: {
-        categories: ['Tristhet', 'Indre spenning', 'Redusert nattesøvn', 'Svekket appetitt', 'Konsentrasjonsvansker',
-            'Initiativløshet', 'Svekkede følelsesmessige reaksjoner', 'Depressivt tankeinnhold', 'Suicidaltanker'],
-        tickmarkPlacement: 'on',
-        lineWidth: 0
-    },
 
-    yAxis: {
-        gridLineInterpolation: 'polygon',
-        lineWidth: 0,
-        min: 0
-    },
+        xAxis: {
+            categories: ['Tristhet', 'Indre spenning', 'Redusert nattesøvn', 'Svekket appetitt', 'Konsentrasjonsvansker',
+                'Initiativløshet', 'Svekkede følelsesmessige reaksjoner', 'Depressivt tankeinnhold', 'Suicidaltanker'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0
+        },
 
-    tooltip: {
-        enabled: false
-    },
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            max: 6
+        },
 
-    legend: {
-        enabled: false
-    },
+        tooltip: {
+            enabled: false
+        },
 
-    credits: {
-        enabled: false
-    },
+        legend: {
+            enabled: false
+        },
 
-    series: [{
-        type: 'area',
-        name: 'Area',
-        data: [5, 5, 6, 3, 4, 3, 2, 4, 2],
-        pointPlacement: 'on'
-    }]
+        credits: {
+            enabled: false
+        },
 
-});
+        series: [{
+            type: 'area',
+            name: 'Area',
+            data: data,
+            pointPlacement: 'on'
+        }]
+
+    });
+}
