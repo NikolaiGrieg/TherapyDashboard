@@ -2,6 +2,8 @@
 
     var prev = [4, 6, 4, 4, 3, 3, 4, 2, 2];
 
+    document.getElementById("spiderchart").style.display = "block";
+
     Highcharts.chart('spiderchart', {
 
         chart: {
