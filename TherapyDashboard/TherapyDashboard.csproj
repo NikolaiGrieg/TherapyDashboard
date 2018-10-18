@@ -208,6 +208,7 @@
     <Compile Include="ViewModels\MultiPatientViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -221,7 +222,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Custom\BarChart.js" />
     <Content Include="Scripts\Custom\LineChart.js" />
+    <Content Include="Scripts\Custom\PieChart.js" />
     <Content Include="Scripts\Custom\PolarChart.js" />
     <Content Include="Scripts\Custom\SpiderChart.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

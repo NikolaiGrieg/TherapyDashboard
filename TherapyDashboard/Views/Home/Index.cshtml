@@ -11,17 +11,82 @@
             margin-right: auto;
             height: 50%;
         }
+
+        #piechart {
+            width: 30%;
+            float: left;
+        }
+
+        #barchart {
+            width: 30%;
+            float: left;
+        }
+
+        #selectedPatients {
+            width: 30%;
+            float: left;
+            margin-left: 100px;
+        }
     </style>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
 </head>
 
 <div style="height: 700px">
+    <div style="height: 10px;"></div>
     <div style="height: 300px">
+        <div id="piechart" style="height: 100%;"></div>
+        <div id="barchart" style="height: 100%;"></div>
 
+        <div id="selectedPatients" style="height: 100%;">
+            <h4>Urgent/warning</h4>
+
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (var i = 0; i < 4; i++)
+                    {
+                        <tr class="table-active">
+                            <td scope="row">
+                                <a href="@Url.Action("" , "Patient" )" class="elements">
+                                    <span>@Model.patients[i].name</span>
+                                </a>
+                            </td>
+                            <td>
+                                @{ if (i < 2)
+                                    {
+                                        <span>Suicidal 5-6</span>
+                                    }
+                                    else if (i < 3)
+                                    {
+                                        <span>Tristhet +4</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Depr. tankeinnhold +3</span>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+
+            </table>
+        </div>
     </div>
-    <div>
-        <h2>All patients</h2>
 
-        <table class="table table-hover">
+    <script src="~/Scripts/Custom/PieChart.js"></script>
+    <script src="~/Scripts/Custom/BarChart.js"></script>
+
+    <div>
+        <h2>Your patients</h2>
+
+        <table class="table table-hover table-striped">
             <thead>
                 <tr>
                     <th scope="col">Name</th>

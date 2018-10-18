@@ -15,19 +15,18 @@
         .background {
             width: 250px;
             float: right;
-            margin-right: 100px;
+            margin-right: 10%;
         }
 
         .forms {
             width: 200px;
             float: left;
-            margin-left: 100px;
         }
 
         .oppgaver {
             width: 200px;
             float: left;
-            margin-left: 150px;
+            margin-left: 15%;
         }
 
         body {
@@ -64,6 +63,14 @@
             cursor: pointer;
             border: dashed;
         }
+        #activitychart {
+            height: 80%;
+            width: 60%;
+            float: left;
+            margin-top: 2%;
+        }
+
+
     </style>
 </head>
 <body>
@@ -71,6 +78,7 @@
     <div id="linechart" class="line"></div>
 
     <div style="width: auto; height: 250px;">
+        <div id="activitychart"></div>
         <img src="~/Images/DefaultPerson.png" alt="Person picture" style="width:auto; height: 90%; float: right; margin-right: 10%">
     </div>
     <div id="spiderchart" class="spider" onclick="off()"></div>
@@ -84,13 +92,14 @@
 
     <script src="~/Scripts/Custom/LineChart.js"></script>
     <script src="~/Scripts/Custom/SpiderChart.js"></script>
+    <script src="~/Scripts/Custom/ActivityChart.js"></script>
 
 
 
     <div class="forms">
         <h4>Other measurements</h4>
 
-        <table class="table table-hover">
+        <table class="table table-hover table-striped">
             <tbody>
                 @foreach (var f in Model.forms)
                 {
@@ -109,7 +118,7 @@
     <div class="background">
         <h4>Background</h4>
 
-        <table class="table table-hover">
+        <table class="table table-hover table-striped">
             <tbody>
                 @foreach (var entry in Model.background)
                 {
@@ -129,7 +138,7 @@
     <div class="oppgaver">
         <h4>Received documents</h4>
 
-        <table class="table table-hover">
+        <table class="table table-hover table-striped">
             <tbody>
                 @foreach (var entry in Model.tasks)
                 {
