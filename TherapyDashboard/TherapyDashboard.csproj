@@ -222,6 +222,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Custom\ActivityChart.js" />
     <Content Include="Scripts\Custom\BarChart.js" />
     <Content Include="Scripts\Custom\LineChart.js" />
     <Content Include="Scripts\Custom\PieChart.js" />
