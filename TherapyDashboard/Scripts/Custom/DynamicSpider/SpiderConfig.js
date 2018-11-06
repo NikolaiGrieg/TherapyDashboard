@@ -1,5 +1,5 @@
-﻿var w = 500,
-    h = 500;
+﻿var w = 400,
+    h = 400;
 
 var colorscale = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -31,7 +31,7 @@ var mycfg = {
     h: h,
     maxValue: 0.6,
     levels: 6,
-    ExtraWidthX: 300
+    ExtraWidthX: 150
 }
 
 //Call function to draw the Radar chart

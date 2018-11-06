@@ -19,23 +19,20 @@
             stroke-width: 2px;
         }
 
-        #chart {
-            position: absolute;
-            top: 100px;
-            left: 100px;
-        }
-        #line {
-        	position: absolute;
-        	top: 100px;
-        	left: 800px;
-        }
     </style>
 </head>
 <body>
-    <div id="body">
-        <div id="chart"></div>
-        <div id="line"></div>
-    </div>
+	<div class="container">
+		<div class="row">
+		  <div class="col-sm-6">
+		  	<div id="chart"></div>
+		  </div>
+		  <div class="col-sm-6">
+		  	<div id="line"></div>
+		  </div>
+		</div>
+	</div>
+	
     <script src="~/Scripts/Custom/DynamicSpider/D3Spider.js"></script>
     <script type="text/javascript" src="~/Scripts/Custom/DynamicSpider/SpiderConfig.js"></script>
 

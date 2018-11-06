@@ -1,8 +1,8 @@
 ﻿
 // set the dimensions and margins of the graph
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
-width = 960 - margin.left - margin.right,
-height = 500 - margin.top - margin.bottom;
+width = 700 - margin.left - margin.right,
+height = 400 - margin.top - margin.bottom;
 
 // parse the date / time
 var parseTime = d3.timeParse("%d-%b-%y");
