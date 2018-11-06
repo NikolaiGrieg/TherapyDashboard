@@ -27,7 +27,7 @@ Highcharts.chart('activitychart', {
     },
 
     series: [{
-        name: 'Patient',
+        name: 'Logins',
         data: [3, 0, 1, 2, 0, 4, 1, 1]
     }],
 

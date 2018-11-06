@@ -221,9 +221,13 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\data.csv" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\ActivityChart.js" />
     <Content Include="Scripts\Custom\BarChart.js" />
+    <Content Include="Scripts\Custom\DynamicSpider\D3Spider.js" />
+    <Content Include="Scripts\Custom\DynamicSpider\InteractiveLine.js" />
+    <Content Include="Scripts\Custom\DynamicSpider\SpiderConfig.js" />
     <Content Include="Scripts\Custom\LineChart.js" />
     <Content Include="Scripts\Custom\PieChart.js" />
     <Content Include="Scripts\Custom\PolarChart.js" />
@@ -274,6 +278,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Patient\SinglePatientView.cshtml" />
+    <Content Include="Views\Patient\DynamicSpiderView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

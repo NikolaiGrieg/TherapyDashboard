@@ -19,27 +19,23 @@ namespace TherapyDashboard.Controllers
             return View(pat);
         }
 
-        /*
-        [Route("Patient/Py")]
-        public ActionResult Py()
+        [Route("Spider")]
+        public ActionResult DynamicSpiderView()
         {
-            string url = "http://127.0.0.1:5000/";
-            var client = new RestClient(url);
+            // TODO parse data
+            /*
+            var csv = new List<string[]>(); // or, List<YourClass>
+            var lines = System.IO.File.ReadAllLines(@"~/Data/data.csv");
+            foreach (string line in lines)
+                csv.Add(line.Split(',')); // or, populate YourClass          
+            string json = new
+                System.Web.Script.Serialization.JavaScriptSerializer().Serialize(csv);
 
-            var request = new RestRequest("MADRS", Method.GET);
-            IRestResponse response = client.Execute(request);
-            var content = response.Content;
-
-
-            return Content(content);
+            Patient pat = new Patient();
+            pat.json = json;
+            */
+            return View();
         }
-        */
 
-        /*
-        public ActionResult Single(int id)
-        {
-            return Content("patient " + id);
-        }
-        */
     }
 }

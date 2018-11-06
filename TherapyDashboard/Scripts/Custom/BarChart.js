@@ -33,7 +33,7 @@ Highcharts.chart('barchart', {
     },
     series: [{
         name: 'Patients',
-        data: [2, 30, 27, 24, 17, 18, 15, 14]
+        data: [20, 17, 14, 17, 13, 10, 9, 8]
 
     }]
 });

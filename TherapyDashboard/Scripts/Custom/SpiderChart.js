@@ -1,6 +1,7 @@
 ﻿function spiderChart(data) {
 
-    var prev = [4, 6, 4, 4, 3, 3, 4, 2, 2];
+    let prev = [5, 6, 4, 4, 3, 3, 4, 2, 2];
+    let curr = [4, 5, 4, 3, 3, 2, 4, 2, 1]
 
     document.getElementById("spiderchart").style.display = "block";
 
@@ -12,7 +13,7 @@
         },
 
         title: {
-            text: null
+            text: 'MADRS form for 25th Oct'
         },
 
 
@@ -35,9 +36,7 @@
             enabled: false
         },
 
-        legend: {
-            enabled: false
-        },
+        
 
         credits: {
             enabled: false
@@ -46,11 +45,10 @@
 
         series: [{
             type: 'area',
-            name: 'Patient',
-            data: data,
+            name: 'Selected',
+            data: curr,
             pointPlacement: 'on'
         }, {
-            type: 'area',
             name: 'Previous',
             data: prev,
             pointPlacement: 'on'
