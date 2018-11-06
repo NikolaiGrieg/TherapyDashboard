@@ -1,0 +1,1 @@
+﻿linechart = new LineChart("#line")
