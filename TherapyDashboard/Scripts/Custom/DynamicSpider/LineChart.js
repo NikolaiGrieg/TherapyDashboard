@@ -33,16 +33,25 @@ LineChart.prototype.wrangleData = function(){
   vis.xScale = d3.scaleTime().range([0, vis.width]);
   vis.yScale = d3.scaleLinear().range([vis.height, 0]);
 
-  d3.csv("Data/data.csv", function(error, data) {
+  d3.csv("Data/SampleComposit.csv", function(error, data) {
     if (error) throw error;
 
     // parse the date / time
-    var parseTime = d3.timeParse("%d-%b-%y");
+    var parseTime = d3.timeParse("%Y-%m-%d");//"%d-%b-%y");
 
     // format the data
     data.forEach(function(d) {
           d.date = parseTime(d.date);
-          d.close = +d.close;
+          let sum = 0;
+          for (var key in d) {
+            if (d.hasOwnProperty(key)) {
+                if(key != 'date'){
+                  //console.log(key + " -> " + d[key]);
+                  sum += +d[key]
+                }
+            }
+          }
+          d.close = sum;
     });
 
     data.sort(function(x, y){
@@ -84,9 +93,11 @@ LineChart.prototype.wrangleData = function(){
     focus.append('line')
         .attr('id', 'focusLineX')
         .attr('class', 'focusLine');
+        /*
     focus.append('line')
         .attr('id', 'focusLineY')
         .attr('class', 'focusLine');
+        */
 
     var xAxis = d3.axisBottom(vis.xScale);
     var yAxis = d3.axisLeft(vis.yScale);
@@ -121,9 +132,11 @@ LineChart.prototype.wrangleData = function(){
             focus.select('#focusLineX')
                 .attr('x1', x).attr('y1', vis.yScale(vis.yDomain[0]))
                 .attr('x2', x).attr('y2', vis.yScale(vis.yDomain[1]));
+                /*
             focus.select('#focusLineY')
                 .attr('x1', vis.xScale(vis.xDomain[0])).attr('y1', y)
                 .attr('x2', vis.xScale(vis.xDomain[1])).attr('y2', y);
+                */
             
         });
   });

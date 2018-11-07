@@ -225,6 +225,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\ActivityChart.js" />
     <Content Include="Scripts\Custom\BarChart.js" />
+    <Content Include="Scripts\Custom\DynamicSpider\Controller.js" />
     <Content Include="Scripts\Custom\DynamicSpider\SpiderChart.js" />
     <Content Include="Scripts\Custom\DynamicSpider\LineChart.js" />
     <Content Include="Scripts\Custom\DynamicSpider\SpiderConfig.js" />
