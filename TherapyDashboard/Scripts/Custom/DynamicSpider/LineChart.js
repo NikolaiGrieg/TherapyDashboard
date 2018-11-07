@@ -1,7 +1,9 @@
 ﻿
-LineChart = function(_parentElement){
+LineChart = function(_parentElement, controller){
   this.parentElement = _parentElement;
+  this.controller = controller
   this.initVis();
+
 };
 
 LineChart.prototype.initVis = function(){
@@ -117,7 +119,7 @@ LineChart.prototype.wrangleData = function(){
             var mouseDate = vis.xScale.invert(mouse[0]);
             const dates = vis.data.map(d => d.date)
             var i = bisectDate(vis.data, mouseDate); // returns the index to the current data item
-            var j = d3.bisectLeft(dates, mouseDate)
+            //var j = d3.bisectLeft(dates, mouseDate)
 
             var d0 = vis.data[i - 1]
             var d1 = vis.data[i];
@@ -137,6 +139,9 @@ LineChart.prototype.wrangleData = function(){
                 .attr('x1', vis.xScale(vis.xDomain[0])).attr('y1', y)
                 .attr('x2', vis.xScale(vis.xDomain[1])).attr('y2', y);
                 */
+
+            //send event to controller
+            vis.controller.update(i);
             
         });
   });

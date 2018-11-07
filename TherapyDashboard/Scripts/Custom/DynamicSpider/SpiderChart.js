@@ -6,10 +6,10 @@
 SpiderChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.wrangleData()
+    vis.wrangleData(1)
 }
 
-SpiderChart.prototype.wrangleData = function(){
+SpiderChart.prototype.wrangleData = function(index){
     var vis = this;
     //Data
     d3.csv("Data/SampleComposit.csv", function(error, data) {
@@ -35,11 +35,11 @@ SpiderChart.prototype.wrangleData = function(){
         })
 
         var trace1 = []
-        for (var key in data[0]) {
-            if (data[0].hasOwnProperty(key)) {
+        for (var key in data[index-1]) {
+            if (data[index-1].hasOwnProperty(key)) {
                 if (key != 'date'){
                     axis = {
-                        axis: key, value: +data[0][key]
+                        axis: key, value: +data[index-1][key]
                     }
                     trace1.push(axis)
                 }
@@ -47,11 +47,11 @@ SpiderChart.prototype.wrangleData = function(){
         }
         //TODO refactor
         var trace2 = []
-        for (var key in data[1]) {
-            if (data[1].hasOwnProperty(key)) {
+        for (var key in data[index]) {
+            if (data[index].hasOwnProperty(key)) {
                 if (key != 'date'){
                     axis = {
-                        axis: key, value: +data[1][key]
+                        axis: key, value: +data[index][key]
                     }
                     trace2.push(axis)
                 }
