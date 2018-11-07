@@ -30,58 +30,37 @@ SpiderChart.prototype.wrangleData = function(index){
             }
         });
 
+        //sort on date for bisection later
         data.sort(function(x, y){
               return d3.ascending(x.date, y.date);
         })
 
         var trace1 = []
-        for (var key in data[index-1]) {
-            if (data[index-1].hasOwnProperty(key)) {
-                if (key != 'date'){
-                    axis = {
-                        axis: key, value: +data[index-1][key]
-                    }
-                    trace1.push(axis)
-                }
-            }
-        }
-        //TODO refactor
         var trace2 = []
-        for (var key in data[index]) {
-            if (data[index].hasOwnProperty(key)) {
-                if (key != 'date'){
-                    axis = {
-                        axis: key, value: +data[index][key]
+
+        //convert data to traces
+        for (let i = 0; i < 2; i++){
+            for (var key in data[index-i]) {
+                if (data[index-i].hasOwnProperty(key)) {
+                    if (key != 'date'){
+                        axis = {
+                            axis: key, value: +data[index-i][key]
+                        }
+                        if(i == 0){
+                            trace1.push(axis)
+                        }
+                        else{
+                            trace2.push(axis)
+                        }
                     }
-                    trace2.push(axis)
                 }
             }
         }
 
         vis.data = [trace1, trace2];
-        //console.log(trace1)
 
         vis.updateVis()
     });
-    /*
-    vis.data = [
-        [
-            { axis: "Email", value: 59 },
-            { axis: "Social Networks", value: 56 },
-            { axis: "Internet Banking", value: 42 },
-            { axis: "News Sportsites", value: 34 },
-            { axis: "Search Engine", value: 48 },
-            { axis: "View Shopping sites", value: 14 }
-        ], [
-            { axis: "Email", value: 48 },
-            { axis: "Social Networks", value: 41 },
-            { axis: "Internet Banking", value: 27 },
-            { axis: "News Sportsites", value: 28 },
-            { axis: "Search Engine", value: 46 },
-            { axis: "View Shopping sites", value: 29 }
-        ]
-    ];
-    */
 }
 
 
