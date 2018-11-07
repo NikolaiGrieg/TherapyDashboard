@@ -1,7 +1,9 @@
 ﻿
-LineChart = function(_parentElement, controller){
+LineChart = function(_parentElement, controller, name, elements){
   this.parentElement = _parentElement;
-  this.controller = controller
+  this.controller = controller;
+  this.name = name;
+  this.elements = elements;
   this.initVis();
 
 };
@@ -10,14 +12,14 @@ LineChart.prototype.initVis = function(){
   var vis = this
 
   // set the dimensions and margins of the graph
-  vis.margin = {top: 20, right: 20, bottom: 30, left: 50};
+  vis.margin = {top: 40, right: 20, bottom: 30, left: 50};
   vis.width = 700 - vis.margin.left - vis.margin.right;
-  vis.height = 400 - vis.margin.top - vis.margin.bottom;
+  vis.height = 200 - vis.margin.top - vis.margin.bottom;
 
 
   // appends a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
-  vis.svg = d3.select("#line").append("svg")
+  vis.svg = d3.select(vis.parentElement).append("svg")
       .attr("width", vis.width + vis.margin.left + vis.margin.right)
       .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
     .append("g")
@@ -42,7 +44,8 @@ LineChart.prototype.wrangleData = function(){
     var parseTime = d3.timeParse("%Y-%m-%d");//"%d-%b-%y");
 
     // format the data
-    data.forEach(function(d) {
+    if (vis.elements == 'all'){
+          data.forEach(function(d) {
           d.date = parseTime(d.date);
           let sum = 0;
           for (var key in d) {
@@ -53,8 +56,28 @@ LineChart.prototype.wrangleData = function(){
                 }
             }
           }
-          d.close = sum;
-    });
+          d.close = sum;//todo rename
+      });
+    }
+    else{
+      data.forEach(function(d) {
+        d.date = parseTime(d.date);
+        let sum = 0;
+        for (var key in d) {
+          if (d.hasOwnProperty(key)) {
+              if(key != 'date'){
+                if (key == vis.elements) {
+                  //d[key] = +d[key]
+                  d.close = +d[key];
+                }
+                else{
+                  delete d[key]
+                }
+              }
+          }
+        }
+      })
+    }
 
     data.sort(function(x, y){
           return d3.ascending(x.date, y.date);
@@ -90,7 +113,7 @@ LineChart.prototype.wrangleData = function(){
         .attr("class", "line")
         .attr("d", vis.valueline);
 
-          var focus = g.append('g').style('display', 'none');
+    var focus = g.append('g').style('display', 'none');
 
     focus.append('line')
         .attr('id', 'focusLineX')
@@ -144,7 +167,15 @@ LineChart.prototype.wrangleData = function(){
             vis.controller.update(i);
             
         });
-  });
+
+    //Chart Title
+    vis.svg.append("text")
+      .attr("x", (vis.width / 2))             
+      .attr("y", 0 - (vis.margin.top / 2))
+      .attr("text-anchor", "middle")  
+      .style("font-size", "16px")   
+      .text(vis.name);
+    });
 
 
   vis.updateVis();
@@ -153,7 +184,6 @@ LineChart.prototype.wrangleData = function(){
 LineChart.prototype.updateVis = function(){
   var vis = this;
                 
-
 };
 
 

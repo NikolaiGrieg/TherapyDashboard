@@ -1,5 +1,6 @@
-﻿SpiderChart = function(_parentElement){
+﻿SpiderChart = function(_parentElement, controller){
   this.parentElement = _parentElement;
+  this.controller = controller;
   this.initVis();
 };
 
@@ -132,7 +133,7 @@ SpiderChart.prototype.updateVis = function(){
         for (let j = 0; j < cfg.levels; j++) {
             let levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
             g.selectAll(".levels")
-                .data([1]) //dummy data
+                .data([1]) 
                 .enter()
                 .append("svg:text")
                 .attr("x", function (d) { return levelFactor * (1 - cfg.factor * Math.sin(0)); })
@@ -173,6 +174,10 @@ SpiderChart.prototype.updateVis = function(){
             .attr("x", function (d, i) { return cfg.w / 2 * (1 - cfg.factorLegend * Math.sin(i * cfg.radians / total)) - 60 * Math.sin(i * cfg.radians / total); })
             .attr("y", function (d, i) { return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) - 20 * Math.cos(i * cfg.radians / total); });
 
+        //TODO bisect on axis to find closest point
+        axis.on("click", function(d) {
+            vis.controller.selectAxis(d);
+        });
 
         vis.data.forEach(function (y, x) {
             dataValues = [];
@@ -268,7 +273,7 @@ SpiderChart.prototype.updateVis = function(){
                 .append("svg:title")
                 .text(function (j) { return Math.max(j.value, 0) });
 
-            series++;
+        series++;
         });
         //Tooltip
         tooltip = g.append('text')
@@ -278,8 +283,9 @@ SpiderChart.prototype.updateVis = function(){
         }
     };
 
-    var w = 400,
-        h = 400;
+    //TODO inject this
+    var w = 600,
+        h = 600;
 
     var colorscale = d3.scaleOrdinal(d3.schemeCategory10);
 
