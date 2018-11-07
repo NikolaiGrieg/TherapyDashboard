@@ -3,9 +3,67 @@
   this.initVis();
 };
 
+SpiderChart.prototype.initVis = function(){
+    var vis = this;
+
+    vis.wrangleData()
+}
+
 SpiderChart.prototype.wrangleData = function(){
     var vis = this;
     //Data
+    d3.csv("Data/SampleComposit.csv", function(error, data) {
+        if (error) throw error;
+
+        // parse the date / time
+        var parseTime = d3.timeParse("%Y-%m-%d");//"%d-%b-%y");
+
+        // format the data
+        data.forEach(function(d) {
+            d.date = parseTime(d.date);
+            for (var key in d) {
+                if (d.hasOwnProperty(key)) {
+                    if (key != 'date'){
+                      d[key] = +d[key]
+                    }
+                }
+            }
+        });
+
+        data.sort(function(x, y){
+              return d3.ascending(x.date, y.date);
+        })
+
+        var trace1 = []
+        for (var key in data[0]) {
+            if (data[0].hasOwnProperty(key)) {
+                if (key != 'date'){
+                    axis = {
+                        axis: key, value: +data[0][key]
+                    }
+                    trace1.push(axis)
+                }
+            }
+        }
+        //TODO refactor
+        var trace2 = []
+        for (var key in data[1]) {
+            if (data[1].hasOwnProperty(key)) {
+                if (key != 'date'){
+                    axis = {
+                        axis: key, value: +data[1][key]
+                    }
+                    trace2.push(axis)
+                }
+            }
+        }
+
+        vis.data = [trace1, trace2];
+        //console.log(trace1)
+
+        vis.updateVis()
+    });
+    /*
     vis.data = [
         [
             { axis: "Email", value: 59 },
@@ -23,14 +81,7 @@ SpiderChart.prototype.wrangleData = function(){
             { axis: "View Shopping sites", value: 29 }
         ]
     ];
-
-    vis.updateVis()
-}
-
-SpiderChart.prototype.initVis = function(){
-    var vis = this;
-
-    vis.wrangleData()
+    */
 }
 
 
