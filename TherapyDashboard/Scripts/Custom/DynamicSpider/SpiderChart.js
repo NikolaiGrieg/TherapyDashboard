@@ -3,11 +3,41 @@
   this.initVis();
 };
 
-SpiderChart.prototype.initVis = function(){
-  var vis = this;
+SpiderChart.prototype.wrangleData = function(){
+    var vis = this;
+    //Data
+    vis.data = [
+        [
+            { axis: "Email", value: 59 },
+            { axis: "Social Networks", value: 56 },
+            { axis: "Internet Banking", value: 42 },
+            { axis: "News Sportsites", value: 34 },
+            { axis: "Search Engine", value: 48 },
+            { axis: "View Shopping sites", value: 14 }
+        ], [
+            { axis: "Email", value: 48 },
+            { axis: "Social Networks", value: 41 },
+            { axis: "Internet Banking", value: 27 },
+            { axis: "News Sportsites", value: 28 },
+            { axis: "Search Engine", value: 46 },
+            { axis: "View Shopping sites", value: 29 }
+        ]
+    ];
 
+    vis.updateVis()
+}
+
+SpiderChart.prototype.initVis = function(){
+    var vis = this;
+
+    vis.wrangleData()
+}
+
+
+SpiderChart.prototype.updateVis = function(){
+  var vis = this;
   var RadarChart = {
-    draw: function (id, d, options) {
+    draw: function (id, data, options) {
         var cfg = {
             radius: 5,
             w: 600,
@@ -33,8 +63,8 @@ SpiderChart.prototype.initVis = function(){
                 }
             }
         }
-        cfg.maxValue = Math.max(cfg.maxValue, d3.max(d, function (i) { return d3.max(i.map(function (o) { return o.value; })) }));
-        var allAxis = (d[0].map(function (i, j) { return i.axis }));
+        cfg.maxValue = Math.max(cfg.maxValue, d3.max(vis.data, function (i) { return d3.max(i.map(function (o) { return o.value; })) }));
+        var allAxis = (vis.data[0].map(function (i, j) { return i.axis }));
         var total = allAxis.length;
         var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
         var Format = d3.format('r');
@@ -114,7 +144,7 @@ SpiderChart.prototype.initVis = function(){
             .attr("y", function (d, i) { return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) - 20 * Math.cos(i * cfg.radians / total); });
 
 
-        d.forEach(function (y, x) {
+        vis.data.forEach(function (y, x) {
             dataValues = [];
             g.selectAll(".nodes")
                 .data(y, function (j, i) {
@@ -159,7 +189,7 @@ SpiderChart.prototype.initVis = function(){
         series = 0;
 
 
-        d.forEach(function (y, x) {
+        vis.data.forEach(function (y, x) {
             g.selectAll(".nodes")
                 .data(y).enter()
                 .append("svg:circle")
@@ -226,24 +256,6 @@ SpiderChart.prototype.initVis = function(){
     //Legend titles
     var LegendOptions = ['Smartphone', 'Tablet'];
 
-    //Data
-    var d = [
-        [
-            { axis: "Email", value: 59 },
-            { axis: "Social Networks", value: 56 },
-            { axis: "Internet Banking", value: 42 },
-            { axis: "News Sportsites", value: 34 },
-            { axis: "Search Engine", value: 48 },
-            { axis: "View Shopping sites", value: 14 }
-        ], [
-            { axis: "Email", value: 48 },
-            { axis: "Social Networks", value: 41 },
-            { axis: "Internet Banking", value: 27 },
-            { axis: "News Sportsites", value: 28 },
-            { axis: "Search Engine", value: 46 },
-            { axis: "View Shopping sites", value: 29 }
-        ]
-    ];
 
     //Options for the Radar chart, other than default
     var mycfg = {
@@ -256,11 +268,5 @@ SpiderChart.prototype.initVis = function(){
 
     //Call function to draw the Radar chart
     //Will expect that data is in %'s
-    RadarChart.draw(vis.parentElement, d, mycfg);
-
-    }
-
-SpiderChart.prototype.updateVis = function(){
-  var vis = this;
-  //TODO extract update logic.
+    RadarChart.draw(vis.parentElement, vis.data, mycfg);
 }
