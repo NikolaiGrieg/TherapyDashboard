@@ -1,4 +1,12 @@
-﻿var RadarChart = {
+﻿SpiderChart = function(_parentElement){
+  this.parentElement = _parentElement;
+  this.initVis();
+};
+
+SpiderChart.prototype.initVis = function(){
+  var vis = this;
+
+  var RadarChart = {
     draw: function (id, d, options) {
         var cfg = {
             radius: 5,
@@ -29,7 +37,7 @@
         var allAxis = (d[0].map(function (i, j) { return i.axis }));
         var total = allAxis.length;
         var radius = cfg.factor * Math.min(cfg.w / 2, cfg.h / 2);
-        var Format = d3.format('%');
+        var Format = d3.format('r');
         d3.select(id).select("svg").remove();
 
         var g = d3.select(id)
@@ -207,5 +215,52 @@
             .style('opacity', 0)
             .style('font-family', 'sans-serif')
             .style('font-size', '13px');
+        }
+    };
+
+    var w = 400,
+        h = 400;
+
+    var colorscale = d3.scaleOrdinal(d3.schemeCategory10);
+
+    //Legend titles
+    var LegendOptions = ['Smartphone', 'Tablet'];
+
+    //Data
+    var d = [
+        [
+            { axis: "Email", value: 59 },
+            { axis: "Social Networks", value: 56 },
+            { axis: "Internet Banking", value: 42 },
+            { axis: "News Sportsites", value: 34 },
+            { axis: "Search Engine", value: 48 },
+            { axis: "View Shopping sites", value: 14 }
+        ], [
+            { axis: "Email", value: 48 },
+            { axis: "Social Networks", value: 41 },
+            { axis: "Internet Banking", value: 27 },
+            { axis: "News Sportsites", value: 28 },
+            { axis: "Search Engine", value: 46 },
+            { axis: "View Shopping sites", value: 29 }
+        ]
+    ];
+
+    //Options for the Radar chart, other than default
+    var mycfg = {
+        w: w,
+        h: h,
+        maxValue: 0.6,
+        levels: 6,
+        ExtraWidthX: 150
     }
-};
+
+    //Call function to draw the Radar chart
+    //Will expect that data is in %'s
+    RadarChart.draw(vis.parentElement, d, mycfg);
+
+    }
+
+SpiderChart.prototype.updateVis = function(){
+  var vis = this;
+  //TODO extract update logic.
+}

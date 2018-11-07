@@ -1,1 +1,2 @@
-﻿linechart = new LineChart("#line")
+﻿linechart = new LineChart("#line");
+spiderchart = new SpiderChart("#chart");
