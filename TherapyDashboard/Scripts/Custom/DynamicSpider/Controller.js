@@ -8,7 +8,7 @@ function update(index){
 
 function selectAxis(axis){
 	console.log(axis);
-	var selectedCategoryLine = new LineChart("#selectedCategory", this, axis, axis)
+	var selectedCategoryLine = new LineChart("#selectedCategory", this, axis, axis, height=250)
 
 	//TODO make button actually remove chart
 	//TODO fix positioning in the html, possibly make linecharts less wide

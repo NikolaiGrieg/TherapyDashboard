@@ -1,9 +1,14 @@
 ﻿
-LineChart = function(_parentElement, controller, name, elements){
+LineChart = function(_parentElement, controller, name, elements,
+     height = 200, width = 700){
   this.parentElement = _parentElement;
   this.controller = controller;
   this.name = name;
   this.elements = elements;
+  this.initHeight = height;
+  this.initWidt = width;
+
+  
   this.initVis();
 
 };
@@ -13,8 +18,8 @@ LineChart.prototype.initVis = function(){
 
   // set the dimensions and margins of the graph
   vis.margin = {top: 40, right: 20, bottom: 30, left: 50};
-  vis.width = 700 - vis.margin.left - vis.margin.right; //TODO inject these
-  vis.height = 200 - vis.margin.top - vis.margin.bottom;
+  vis.width = vis.initWidt - vis.margin.left - vis.margin.right; //TODO inject these
+  vis.height = vis.initHeight - vis.margin.top - vis.margin.bottom;
 
 
   // appends a 'group' element to 'svg'
