@@ -231,6 +231,7 @@
     <Content Include="Scripts\Custom\DynamicSpider\LineChart.js" />
     <Content Include="Scripts\Custom\DynamicSpider\SpiderConfig.js" />
     <Content Include="Scripts\Custom\HCLineChart.js" />
+    <Content Include="Scripts\Custom\MasterView\TableSort.js" />
     <Content Include="Scripts\Custom\PieChart.js" />
     <Content Include="Scripts\Custom\PolarChart.js" />
     <Content Include="Scripts\Custom\HCSpiderChart.js" />

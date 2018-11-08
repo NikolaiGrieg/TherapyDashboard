@@ -86,7 +86,7 @@
     <div>
         <h2>Your patients</h2>
 
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped" id="masterTable">
             <thead>
                 <tr>
                     <th scope="col">Name</th>
@@ -102,11 +102,11 @@
                 @foreach (var pat in Model.patients)
                 {
                     <tr class="table-active">
-                        <th scope="row">
+                        <td scope="row">
                             <a href="@Url.Action("" + pat.id, "Patient" )" class="elements">
                                 <span>@pat.name</span>
                             </a>
-                        </th>
+                        </td>
                         <td>
                             @{ var module = pat.id % 8;}
                             @module
@@ -161,7 +161,7 @@
                         </td>
 
                         <td>@pat.id days</td>
-                        <td>@pat.id hours</td>
+                        <td>@pat.id days</td>
 
                     </tr>
                 }
@@ -169,3 +169,4 @@
     </div>
 
 </div>
+<script src="~/Scripts/Custom/MasterView/TableSort.js"></script>
