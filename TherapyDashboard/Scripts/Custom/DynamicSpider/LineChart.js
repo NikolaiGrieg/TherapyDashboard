@@ -13,13 +13,14 @@ LineChart.prototype.initVis = function(){
 
   // set the dimensions and margins of the graph
   vis.margin = {top: 40, right: 20, bottom: 30, left: 50};
-  vis.width = 700 - vis.margin.left - vis.margin.right;
+  vis.width = 700 - vis.margin.left - vis.margin.right; //TODO inject these
   vis.height = 200 - vis.margin.top - vis.margin.bottom;
 
 
   // appends a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
   vis.svg = d3.select(vis.parentElement).append("svg")
+      .attr("id", "lineChart" + vis.name)
       .attr("width", vis.width + vis.margin.left + vis.margin.right)
       .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
     .append("g")

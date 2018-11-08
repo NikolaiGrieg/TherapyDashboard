@@ -284,8 +284,8 @@ SpiderChart.prototype.updateVis = function(){
     };
 
     //TODO inject this
-    var w = 600,
-        h = 600;
+    var w = 500,
+        h = 500;
 
     var colorscale = d3.scaleOrdinal(d3.schemeCategory10);
 

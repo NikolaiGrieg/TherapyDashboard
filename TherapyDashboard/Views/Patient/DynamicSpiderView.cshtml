@@ -13,6 +13,10 @@
             font-family: "Helvetica Neue", Helvetica;
         }
 
+        .container {
+        	width: 90%;
+        }
+
         .line {
             fill: none;
             stroke: steelblue;
@@ -36,9 +40,14 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-8">
+			<div class="col-sm-6">
 				<div id="chart"></div>
 			</div>
+
+			<div class="col-sm-1">
+				<div id="removeButton"></div>
+			</div>
+
 			<div class="col-sm-4">
 				<div id="selectedCategory"></div>
 			</div>
