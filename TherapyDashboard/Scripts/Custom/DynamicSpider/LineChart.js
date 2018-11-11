@@ -170,7 +170,7 @@ LineChart.prototype.wrangleData = function(){
                 */
 
             //send event to controller
-            vis.controller.update(i);
+            vis.controller.update(i-1); //Seems to fix some indexing problems from another place
             
         });
 

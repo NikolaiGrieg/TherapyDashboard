@@ -40,6 +40,27 @@ SpiderChart.prototype.wrangleData = function(index){
         var trace2 = []
 
         //convert data to traces
+        for (var key in data[data.length-1]) {
+            if (data[data.length-1].hasOwnProperty(key)) {
+                if (key != 'date'){
+                    axis = {
+                        axis: key, value: +data[data.length-1][key]
+                    }
+                    trace1.push(axis)
+                }
+            }
+        }
+        for (var key in data[index]) {
+            if (data[index].hasOwnProperty(key)) {
+                if (key != 'date'){
+                    axis = {
+                        axis: key, value: +data[index][key]
+                    }
+                    trace2.push(axis)
+                }
+            }
+        }
+        /*
         for (let i = 0; i < 2; i++){
             for (var key in data[index-i]) {
                 if (data[index-i].hasOwnProperty(key)) {
@@ -57,6 +78,7 @@ SpiderChart.prototype.wrangleData = function(index){
                 }
             }
         }
+        */
 
         vis.data = [trace1, trace2];
 
@@ -297,12 +319,11 @@ SpiderChart.prototype.updateVis = function(){
     var mycfg = {
         w: w,
         h: h,
-        maxValue: 0.6,
+        maxValue: 8,
         levels: 6,
         ExtraWidthX: 150
     }
 
     //Call function to draw the Radar chart
-    //Will expect that data is in %'s
     RadarChart.draw(vis.parentElement, vis.data, mycfg);
 }
