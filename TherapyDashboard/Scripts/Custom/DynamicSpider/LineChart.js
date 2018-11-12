@@ -1,10 +1,11 @@
 ﻿
 LineChart = function(_parentElement, controller, name, elements,
-     height = 200, width = 700){
+     dataPath, height = 200, width = 700){
   this.parentElement = _parentElement;
   this.controller = controller;
   this.name = name;
   this.elements = elements;
+  this.dataPath = dataPath;
   this.initHeight = height;
   this.initWidt = width;
 
@@ -43,7 +44,7 @@ LineChart.prototype.wrangleData = function(){
   vis.xScale = d3.scaleTime().range([0, vis.width]);
   vis.yScale = d3.scaleLinear().range([vis.height, 0]);
 
-  d3.csv("Data/SampleComposit.csv", function(error, data) {
+  d3.csv(vis.dataPath, function(error, data) {
     if (error) throw error;
 
     // parse the date / time

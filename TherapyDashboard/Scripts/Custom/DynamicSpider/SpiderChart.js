@@ -1,6 +1,7 @@
-﻿SpiderChart = function(_parentElement, controller){
+﻿SpiderChart = function(_parentElement, controller, dataPath){
   this.parentElement = _parentElement;
   this.controller = controller;
+  this.dataPath = dataPath;
   this.initVis();
 };
 
@@ -13,7 +14,7 @@ SpiderChart.prototype.initVis = function(){
 SpiderChart.prototype.wrangleData = function(index){
     var vis = this;
     //Data
-    d3.csv("Data/SampleComposit.csv", function(error, data) {
+    d3.csv(vis.dataPath, function(error, data) {
         if (error) throw error;
 
         // parse the date / time

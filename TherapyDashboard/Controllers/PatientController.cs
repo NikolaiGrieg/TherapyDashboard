@@ -16,6 +16,7 @@ namespace TherapyDashboard.Controllers
         {
             //return Content("patient " + id);
             Patient pat = Patient.createSimulated();
+            pat.Measurement1Path = "Data/SampleComposite.csv";
             return View(pat);
         }
 
@@ -34,7 +35,9 @@ namespace TherapyDashboard.Controllers
             Patient pat = new Patient();
             pat.json = json;
             */
-            return View();
+            Patient pat = Patient.createSimulated();
+            pat.Measurement1Path = "Data/SampleComposite.csv";
+            return View(pat);
         }
 
     }

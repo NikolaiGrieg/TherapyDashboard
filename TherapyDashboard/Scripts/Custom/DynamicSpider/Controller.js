@@ -1,5 +1,6 @@
-﻿linechart = new LineChart("#line", this, 'Summary', 'all');
-spiderchart = new SpiderChart("#chart", this);
+﻿//console.log(dataPath);
+linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
+spiderchart = new SpiderChart("#chart", this, dataPath);
 
 
 function update(index){
@@ -9,7 +10,7 @@ function update(index){
 function selectAxis(axis){
 	console.log(axis);
 	var height = 250;
-	var selectedCategoryLine = new LineChart("#selectedCategory", this, axis, axis, height=height)
+	var selectedCategoryLine = new LineChart("#selectedCategory", this, axis, axis, dataPath, height=height)
 
 	//TODO make button actually remove chart
 	//TODO fix positioning in the html, possibly make linecharts less wide

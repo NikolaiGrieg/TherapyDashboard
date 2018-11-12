@@ -14,7 +14,7 @@ namespace TherapyDashboard.Models
         public string[] tasks { get; set; }
         public DateTime previousDelivery { get; set; }
         public DateTime nextDelivery { get; set; }
-        public string json { get; set; }
+        public string Measurement1Path{ get; set; }
 
         public static Random random = null;
 
