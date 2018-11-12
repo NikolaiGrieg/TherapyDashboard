@@ -1,0 +1,42 @@
+﻿body {
+    overflow: hidden;
+    margin: 0;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica;
+}
+
+.container {
+    width: 90%;
+}
+
+.responsive {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+}
+
+@media only screen and (max-width: 1000px) {
+    .normalText {
+        font-size: 1.5vw;
+    }
+}
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+}
+
+.overlay {
+    fill: none;
+    stroke: none;
+    pointer-events: all;
+}
+
+.focusLine {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 0.5px;
+}
+
+

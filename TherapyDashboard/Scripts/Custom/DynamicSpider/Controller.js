@@ -1,5 +1,8 @@
 ﻿//console.log(dataPath);
 linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
+linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
+linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
+linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
 spiderchart = new SpiderChart("#chart", this, dataPath);
 
 

@@ -1,0 +1,114 @@
+﻿@model TherapyDashboard.Models.Patient
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <script src="http://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../Styles/SinglePatient.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-5">
+                <div class="row" >
+                    <h3 style="text-align: center;">TODO NAME</h3> 
+                </div>
+                <div class="row">
+
+                    <div class="col-xs-6">
+                        <div id="image">
+                            <img src="~/Images/DefaultPerson.png" alt="Person picture" class="responsive">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="background">
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                    @foreach (var entry in Model.background)
+                                    {
+                                        <tr class="table-active">
+                                            <th scope="row">
+                                                <span class="normalText">@entry.Key</span>
+                                            </th>
+                                            <td scope="row">
+                                                <span class="normalText">@entry.Value</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <h4 style="text-align: center;">Add graph</h4>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="forms">
+                            <h4>Other measurements</h4>
+
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                    @foreach (var f in Model.forms)
+                                    {
+                                        <tr class="table-active">
+                                            <td scope="row">
+                                                <a href="@Url.Action("" , "Patient" )" class="elements">
+                                                    <span class="normalText">@f</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="oppgaver">
+                            <h4>Received documents</h4>
+
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                    @foreach (var entry in Model.tasks)
+                                    {
+                                        <tr class="table-active">
+                                            <td scope="row">
+                                                <a href="@Url.Action("" , "Patient" )" class="elements">
+                                                    <span class="normalText">@entry</span>
+                                                </a>
+                                            </td>
+                                            <td scope="row">
+                                                <span class="normalText">Opened</span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div> 
+            </div>
+
+            <div class="col-xs-7">
+                <div class="row">
+                    <div id="line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var dataPath = "@Model.Measurement1Path";
+    </script>
+    <script src="~/Scripts/Custom/DynamicSpider/SpiderChart.js"></script>
+    <script type="text/javascript" src="~/Scripts/Custom/DynamicSpider/LineChart.js"></script>
+    <script src="~/Scripts/Custom/DynamicSpider/Controller.js"></script>
+</body>
+</html>
+

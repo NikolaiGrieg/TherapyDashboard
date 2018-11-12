@@ -20,21 +20,18 @@ namespace TherapyDashboard.Controllers
             return View(pat);
         }
 
+        [Route("Patient/{id}/v2")]
+        public ActionResult DetailView(int id)
+        {
+            //return Content("patient " + id);
+            Patient pat = Patient.createSimulated();
+            pat.Measurement1Path = "../../Data/Sample_MADRS.csv";
+            return View(pat);
+        }
+
         [Route("Spider")]
         public ActionResult DynamicSpiderView()
         {
-            // TODO parse data
-            /*
-            var csv = new List<string[]>(); // or, List<YourClass>
-            var lines = System.IO.File.ReadAllLines(@"~/Data/data.csv");
-            foreach (string line in lines)
-                csv.Add(line.Split(',')); // or, populate YourClass          
-            string json = new
-                System.Web.Script.Serialization.JavaScriptSerializer().Serialize(csv);
-
-            Patient pat = new Patient();
-            pat.json = json;
-            */
             Patient pat = Patient.createSimulated();
             //pat.Measurement1Path = "Data/SampleComposite.csv";
             pat.Measurement1Path = "Data/Sample_MADRS.csv";

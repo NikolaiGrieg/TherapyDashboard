@@ -141,24 +141,21 @@
             <table class="table table-hover table-striped">
                 <tbody>
                     @foreach (var entry in Model.tasks)
-                {
-                    <tr class="table-active">
-                        <td scope="row">
-                            <a href="@Url.Action("" , "Patient" )" class="elements">
-                                <span>@entry</span>
-                            </a>
-                        </td>
-                        <td scope="row">
-                            <span>Opened</span>
-                        </td>
-                    </tr>
-            }
-
+                        {
+                            <tr class="table-active">
+                                <td scope="row">
+                                    <a href="@Url.Action("" , "Patient" )" class="elements">
+                                        <span>@entry</span>
+                                    </a>
+                                </td>
+                                <td scope="row">
+                                    <span>Opened</span>
+                                </td>
+                            </tr>
+                        }
             </table>
         </div>
     </div>
-    
-
 </body>
 
 

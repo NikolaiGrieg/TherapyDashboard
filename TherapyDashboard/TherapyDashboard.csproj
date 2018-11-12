@@ -246,7 +246,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Views\Patient\SinglePatient.css" />
+    <Content Include="Styles\SinglePatient.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -283,6 +283,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Patient\SinglePatientView.cshtml" />
     <Content Include="Views\Patient\DynamicSpiderView.cshtml" />
+    <Content Include="Views\Patient\DetailView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
