@@ -15,13 +15,13 @@ function selectAxis(axis){
 	//TODO make button actually remove chart
 	//TODO fix positioning in the html, possibly make linecharts less wide
 	var btn = document.createElement("BUTTON");        
-	var t = document.createTextNode("Remove " + axis);
+	var t = document.createTextNode("Remove");
 	btn.classList.add('btn');       
 	btn.classList.add('btn-primary');
 	btn.appendChild(t);
 	btn.style.marginTop = height/1.5 +"px"; //TODO include chart margins here                              
 	btn.onclick = function(){
-		d3.select("#lineChart" + axis).remove();
+		d3.select("#lineChart" + axis.replace(/\s/g, '')).remove();
 		this.remove();
 	}
 

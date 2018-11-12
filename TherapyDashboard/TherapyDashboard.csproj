@@ -223,6 +223,7 @@
     </Content>
     <Content Include="Data\data.csv" />
     <Content Include="Data\SampleComposite.csv" />
+    <Content Include="Data\Sample_MADRS.csv" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\ActivityChart.js" />
     <Content Include="Scripts\Custom\BarChart.js" />

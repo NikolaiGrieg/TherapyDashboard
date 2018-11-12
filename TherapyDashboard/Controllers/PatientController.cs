@@ -36,7 +36,8 @@ namespace TherapyDashboard.Controllers
             pat.json = json;
             */
             Patient pat = Patient.createSimulated();
-            pat.Measurement1Path = "Data/SampleComposite.csv";
+            //pat.Measurement1Path = "Data/SampleComposite.csv";
+            pat.Measurement1Path = "Data/Sample_MADRS.csv";
             return View(pat);
         }
 
