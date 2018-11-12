@@ -199,7 +199,7 @@ SpiderChart.prototype.updateVis = function(){
 
         //TODO bisect on axis to find closest point
         axis.on("click", function(d) {
-            vis.controller.selectAxis(d);
+            vis.controller.selectAxis("#selectedCategory", d);
         });
 
         vis.data.forEach(function (y, x) {

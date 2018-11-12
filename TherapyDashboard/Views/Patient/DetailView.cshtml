@@ -5,6 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <script src="http://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../../Styles/SinglePatient.css">
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
 </head>
 <body>
     <div class="container">
@@ -44,6 +48,37 @@
                     </div>
                     <div class="col-xs-6">
                         <h4 style="text-align: center;">Add graph</h4>
+
+                        <div class="graphControl">
+                            <table class="table table-hover table-striped">
+                                <tbody>
+                                    <tr class="table-active">
+                                        <td scope="row">
+                                            <button type="button" class="btn btn-info" 
+                                                onclick="createSpiderChart('#line')">
+                                                MADRS kategori
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="table-active">
+                                        <td scope="row">
+                                            <button type="button" class="btn btn-info" 
+                                            onclick="createBarChart('line')">
+                                                Innloggingsaktivitet
+                                            </button>
+                                        </td>
+                                        
+                                    </tr>
+                                    <tr class="table-active">
+                                        <td scope="row">
+                                            <button type="button" class="btn btn-info">Søvn</button>
+                                        </td>  
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -106,6 +141,7 @@
     <script>
         var dataPath = "@Model.Measurement1Path";
     </script>
+
     <script src="~/Scripts/Custom/DynamicSpider/SpiderChart.js"></script>
     <script type="text/javascript" src="~/Scripts/Custom/DynamicSpider/LineChart.js"></script>
     <script src="~/Scripts/Custom/DynamicSpider/Controller.js"></script>

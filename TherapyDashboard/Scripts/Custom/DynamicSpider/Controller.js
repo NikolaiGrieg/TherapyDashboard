@@ -1,19 +1,20 @@
 ﻿//console.log(dataPath);
 linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
-linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
-linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
-linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
 spiderchart = new SpiderChart("#chart", this, dataPath);
 
+
+function createSpiderChart(parent){
+	var spiderchart = new SpiderChart(parent, this, dataPath);
+}
 
 function update(index){
 	spiderchart.wrangleData(index)
 }
 
-function selectAxis(axis){
+function selectAxis(parent, axis){
 	console.log(axis);
 	var height = 250;
-	var selectedCategoryLine = new LineChart("#selectedCategory", this, axis, axis, dataPath, height=height)
+	var selectedCategoryLine = new LineChart(parent, this, axis, axis, dataPath, height=height)
 
 	//TODO make button actually remove chart
 	//TODO fix positioning in the html, possibly make linecharts less wide
@@ -31,4 +32,48 @@ function selectAxis(axis){
 	document.getElementById("removeButton").appendChild(btn);
 
 	//selectedCategoryLine.wrangleData(axis);
+}
+
+function createBarChart(parent){
+
+	Highcharts.chart(parent, {
+	    chart: {
+	        type: 'column'
+	    },
+	    title: {
+	        text: null
+	    },
+	    yAxis: {
+	        title: {
+	            text: 'Times logged in'
+	        }
+	    },
+	    xAxis: {
+	        title: {
+	            text: 'Week'
+	        }
+	    },
+
+	    plotOptions: {
+	        series: {
+	            label: {
+	                connectorAllowed: false
+	            },
+	            pointStart: 32
+	        }
+	    },
+
+	    series: [{
+	        name: 'Logins',
+	        data: [3, 0, 1, 2, 0, 4, 1, 1]
+	    }],
+
+	    legend: {
+	        enabled: false
+	    },
+
+	    credits: {
+	        enabled: false
+	    },
+	});
 }
