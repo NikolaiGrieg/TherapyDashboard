@@ -28,9 +28,10 @@
             margin-left: 100px;
         }
     </style>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
+
 </head>
 
 <div style="height: 700px">
@@ -84,7 +85,14 @@
     <script src="~/Scripts/Custom/MasterView/PatientModuleChart.js"></script>
 
     <div>
-        <h2>Your patients</h2>
+        <div id="tableHead">
+            <h2>Your patients</h2>
+            <input class="form-control" id="patientFilter" type="text" placeholder="Search..">
+            
+            <button type="button" class="btn btn-primary" onclick="clearFilter()">All</button>
+            <button type="button" class="btn btn-primary" onclick="filterDone()">Not checked</button>
+            <button type="button" class="btn btn-primary" onclick="filterNotDone()">Checked</button>
+        </div>
 
         <table class="table table-hover table-striped" id="masterTable">
             <thead>
@@ -98,7 +106,7 @@
                     <th scope="col">Last checked</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="masterTableBody">
                 @foreach (var pat in Model.patients)
                 {
                     <tr class="table-active">
@@ -169,4 +177,4 @@
     </div>
 
 </div>
-<script src="~/Scripts/Custom/MasterView/TableSort.js"></script>
+<script src="~/Scripts/Custom/MasterView/TableController.js"></script>
