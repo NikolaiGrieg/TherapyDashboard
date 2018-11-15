@@ -1,4 +1,12 @@
-﻿
+﻿// Make monochrome colors
+var pieColors = (function () {
+    //0: steady, 1: improving, 2: declining
+    //blue, green, red
+    var colors = ['#058DC7', '#50B432', '#ED561B']
+
+    return colors;
+}());
+
 Highcharts.chart('piechart', {
     chart: {
         plotBackgroundColor: null,
@@ -21,6 +29,7 @@ Highcharts.chart('piechart', {
         pie: {
             allowPointSelect: true,
             cursor: 'pointer',
+            colors: pieColors,
             dataLabels: {
                 enabled: false
             },
