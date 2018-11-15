@@ -226,6 +226,7 @@
     <Content Include="Data\Sample_MADRS.csv" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\DetailView\ActivityChart.js" />
+    <Content Include="Scripts\Custom\DetailView\HCBarChart.js" />
     <Content Include="Scripts\Custom\MasterView\PatientModuleChart.js" />
     <Content Include="Scripts\Custom\DynamicSpider\Controller.js" />
     <Content Include="Scripts\Custom\DynamicSpider\SpiderChart.js" />

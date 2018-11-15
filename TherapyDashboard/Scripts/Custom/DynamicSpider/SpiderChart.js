@@ -1,8 +1,9 @@
-﻿SpiderChart = function(_parentElement, controller, dataPath, 
+﻿SpiderChart = function(_parentElement, controller, dataPath, name,
     height = 500, width = 500, selectedDiv = "#selectedCategory"){
   this.parentElement = _parentElement;
   this.controller = controller;
   this.dataPath = dataPath;
+  this.name = name;
   this.height = height;
   this.width = width;
   this.selectedDiv = selectedDiv;
@@ -290,6 +291,16 @@ SpiderChart.prototype.updateVis = function(){
             .style('opacity', 0)
             .style('font-family', 'sans-serif')
             .style('font-size', '13px');
+
+        
+
+        g.append("text")
+          .attr("x", (vis.width / 2))             
+          .attr("y", "-2em")
+          .attr("text-anchor", "middle")  
+          .style("font-size", "16px")   
+          .text(vis.name);
+
         }
     };
 
@@ -306,6 +317,7 @@ SpiderChart.prototype.updateVis = function(){
         maxValue: 8,
         levels: 6,
         ExtraWidthX: 150,
+        TranslateY: 50
     }
 
     //Call function to draw the Radar chart
