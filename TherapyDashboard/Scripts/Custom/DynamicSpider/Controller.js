@@ -1,6 +1,6 @@
 ﻿//console.log(dataPath);
 linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
-spiderchart = new SpiderChart("#chart", this, dataPath);
+//spiderchart = new SpiderChart("#chart", this, dataPath);
 
 
 function update(index){
@@ -42,12 +42,20 @@ function createSpiderChart(){
 	var container = document.getElementById(parent);
 	$("#" + parent).append("<div id='spiderChart'></div>"); //overwrites previous barchart if any
 	*/
-	document.getElementById('spiderChart').hidden = false
-	document.getElementById("spiderChart").style.display = "block";
+	var container = document.getElementById('modalContainer');
+	container.hidden = false
+	container.style.display = "block";
 
-	var spiderchart = new SpiderChart("#spiderChart", this, dataPath,
-	 height=500, width=500, selectedDiv = '#line');
+	spiderchart = new SpiderChart("#spiderChart", this, dataPath,
+	 height=450, width=450, selectedDiv = '#line');
+
+	//Avoids adding duplicate summary charts to modal container
+	if($('#aggregateSpiderController').children().length == 0){
+		linechart = new LineChart("#aggregateSpiderController", this, 'Summary', 'all', dataPath);
+	}
+	
 }
 function hideSpiderChart(){
-	document.getElementById('spiderChart').style.display = "none";
+	document.getElementById('modalContainer').style.display = "none";
+
 }
