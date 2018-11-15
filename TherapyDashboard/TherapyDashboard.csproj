@@ -50,6 +50,7 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="RestSharp, Version=106.5.4.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.5.4\lib\net452\RestSharp.dll</HintPath>
     </Reference>
@@ -224,6 +225,8 @@
     <Content Include="Data\data.csv" />
     <Content Include="Data\SampleComposite.csv" />
     <Content Include="Data\Sample_MADRS.csv" />
+    <Content Include="Data\Names\SSB_names_male.csv" />
+    <Content Include="Data\Names\SSB_names_female.csv" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\DetailView\ActivityChart.js" />
     <Content Include="Scripts\Custom\DetailView\HCBarChart.js" />
