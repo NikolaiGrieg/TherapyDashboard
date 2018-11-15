@@ -11,6 +11,11 @@
 
 </head>
 <body>
+    <div id="spiderChart" class="spider">
+        <button type="button" class="btn btn-danger" onclick="hideSpiderChart()">
+        x
+        </button>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-xs-5">
@@ -55,7 +60,7 @@
                                     <tr class="table-active">
                                         <td scope="row">
                                             <button type="button" class="btn btn-info" 
-                                                onclick="createSpiderChart('#line')">
+                                                onclick="createSpiderChart()">
                                                 MADRS kategori
                                             </button>
                                         </td>
@@ -120,6 +125,9 @@
                                             </td>
                                             <td scope="row">
                                                 <span class="normalText">Opened</span>
+                                            </td>
+                                            <td scope="row">
+                                                <span class="normalText">Formal Value</span>
                                             </td>
                                         </tr>
                                     }

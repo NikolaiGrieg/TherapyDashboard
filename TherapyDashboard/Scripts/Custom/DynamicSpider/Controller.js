@@ -3,10 +3,6 @@ linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
 spiderchart = new SpiderChart("#chart", this, dataPath);
 
 
-function createSpiderChart(parent){
-	var spiderchart = new SpiderChart(parent, this, dataPath);
-}
-
 function update(index){
 	spiderchart.wrangleData(index)
 }
@@ -16,8 +12,8 @@ function selectAxis(parent, axis){
 	var height = 250;
 	var selectedCategoryLine = new LineChart(parent, this, axis, axis, dataPath, height=height)
 
-	//TODO make button actually remove chart
-	//TODO fix positioning in the html, possibly make linecharts less wide
+	//Remove button for selected category linecharts
+	/*
 	var btn = document.createElement("BUTTON");        
 	var t = document.createTextNode("Remove");
 	btn.classList.add('btn');       
@@ -30,13 +26,28 @@ function selectAxis(parent, axis){
 	}
 
 	document.getElementById("removeButton").appendChild(btn);
-
+	*/
 	//selectedCategoryLine.wrangleData(axis);
 }
 
 function createBarChart(parent){
 	var container = document.getElementById(parent);
-	$("#" + parent).append("<div id='barChart'></div>");
+	$("#" + parent).append("<div id='barChart'></div>"); //overwrites previous barchart if any
 
 	barChart = new BarChart('barChart', this)
+}
+
+function createSpiderChart(){
+	/*
+	var container = document.getElementById(parent);
+	$("#" + parent).append("<div id='spiderChart'></div>"); //overwrites previous barchart if any
+	*/
+	document.getElementById('spiderChart').hidden = false
+	document.getElementById("spiderChart").style.display = "block";
+
+	var spiderchart = new SpiderChart("#spiderChart", this, dataPath,
+	 height=500, width=500, selectedDiv = '#line');
+}
+function hideSpiderChart(){
+	document.getElementById('spiderChart').style.display = "none";
 }

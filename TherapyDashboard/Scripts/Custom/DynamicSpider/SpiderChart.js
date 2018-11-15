@@ -1,7 +1,11 @@
-﻿SpiderChart = function(_parentElement, controller, dataPath){
+﻿SpiderChart = function(_parentElement, controller, dataPath, 
+    height = 500, width = 500, selectedDiv = "#selectedCategory"){
   this.parentElement = _parentElement;
   this.controller = controller;
   this.dataPath = dataPath;
+  this.height = height;
+  this.width = width;
+  this.selectedDiv = selectedDiv;
   this.initVis();
 };
 
@@ -61,25 +65,6 @@ SpiderChart.prototype.wrangleData = function(index){
                 }
             }
         }
-        /*
-        for (let i = 0; i < 2; i++){
-            for (var key in data[index-i]) {
-                if (data[index-i].hasOwnProperty(key)) {
-                    if (key != 'date'){
-                        axis = {
-                            axis: key, value: +data[index-i][key]
-                        }
-                        if(i == 0){
-                            trace1.push(axis)
-                        }
-                        else{
-                            trace2.push(axis)
-                        }
-                    }
-                }
-            }
-        }
-        */
 
         vis.data = [trace1, trace2];
 
@@ -199,7 +184,7 @@ SpiderChart.prototype.updateVis = function(){
 
         //TODO bisect on axis to find closest point
         axis.on("click", function(d) {
-            vis.controller.selectAxis("#selectedCategory", d);
+            vis.controller.selectAxis(vis.selectedDiv, d);
         });
 
         vis.data.forEach(function (y, x) {
@@ -306,9 +291,6 @@ SpiderChart.prototype.updateVis = function(){
         }
     };
 
-    //TODO inject this
-    var w = 500,
-        h = 500;
 
     var colorscale = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -318,8 +300,8 @@ SpiderChart.prototype.updateVis = function(){
 
     //Options for the Radar chart, other than default
     var mycfg = {
-        w: w,
-        h: h,
+        w: vis.width,
+        h: vis.height,
         maxValue: 8,
         levels: 6,
         ExtraWidthX: 150

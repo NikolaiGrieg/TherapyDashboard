@@ -23,7 +23,7 @@ BarChart.prototype.initVis = function(){
     },
 
     title: {
-        text: null
+        text: "Logins per week"
     },
     yAxis: {
         title: {
