@@ -9,7 +9,7 @@ function update(index){
 
 function selectAxis(parent, axis){
 	console.log(axis);
-	var height = 250;
+	var height = 200;
 	var selectedCategoryLine = new LineChart(parent, this, axis, axis, dataPath, height=height)
 
 	//Remove button for selected category linecharts
@@ -47,7 +47,7 @@ function createSpiderChart(){
 	container.style.display = "block";
 
 	spiderchart = new SpiderChart("#spiderChart", this, dataPath,
-	 height=450, width=450, selectedDiv = '#line');
+	 height=400, width=400, selectedDiv = '#line');
 
 	//Avoids adding duplicate summary charts to modal container
 	if($('#aggregateSpiderController').children().length == 0){

@@ -15,6 +15,7 @@ SpiderChart.prototype.initVis = function(){
     vis.wrangleData(1)
 }
 
+//TODO lock axes based on highest data points
 SpiderChart.prototype.wrangleData = function(index){
     var vis = this;
     //Data
@@ -95,6 +96,7 @@ SpiderChart.prototype.updateVis = function(){
             color: d3.scaleOrdinal(d3.schemeCategory10)
         };
 
+        //TODO should always have equal height and width
         if ('undefined' !== typeof options) {
             for (var i in options) {
                 if ('undefined' !== typeof options[i]) {
@@ -295,8 +297,7 @@ SpiderChart.prototype.updateVis = function(){
     var colorscale = d3.scaleOrdinal(d3.schemeCategory10);
 
     //Legend titles
-    var LegendOptions = ['Smartphone', 'Tablet'];
-
+    //var LegendOptions = ['Smartphone', 'Tablet'];
 
     //Options for the Radar chart, other than default
     var mycfg = {
@@ -304,7 +305,7 @@ SpiderChart.prototype.updateVis = function(){
         h: vis.height,
         maxValue: 8,
         levels: 6,
-        ExtraWidthX: 150
+        ExtraWidthX: 150,
     }
 
     //Call function to draw the Radar chart

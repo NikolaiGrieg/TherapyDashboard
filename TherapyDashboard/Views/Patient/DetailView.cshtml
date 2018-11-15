@@ -11,13 +11,17 @@
 
 </head>
 <body>
+
     <div id="modalContainer">
-        <div id="spiderChart" class="spider"></div>
-        <div id="aggregateSpiderController"></div>
-        <button type="button" class="btn btn-danger" onclick="hideSpiderChart()">
+        <button type="button" class="btn btn-danger" id="closeModalButton" onclick="hideSpiderChart()">
         x
         </button>
+        <div id="outerSpider">
+            <div id="spiderChart" class="spider"></div>
+        </div>
+        <div id="aggregateSpiderController"></div>
     </div>
+
     <div class="container">
         <div class="row">
             <div class="col-xs-5">

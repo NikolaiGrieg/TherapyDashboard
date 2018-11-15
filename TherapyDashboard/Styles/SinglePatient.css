@@ -45,7 +45,7 @@
     width: 100%;
     height: 80%;
     margin-top: 10%;
-    top: 0;
+    top: 8em;
     left: 0;
     right: 0;
     bottom: 0;
@@ -58,4 +58,11 @@
     margin: 1em auto;
 }
 
+#closeModalButton {
+    float: right;
+}
+
+#outerSpider {
+    padding-left: 8em;
+}
 
