@@ -197,13 +197,18 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="DataBase\DashboardContext.cs" />
+    <Compile Include="DataBase\PatientRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\PatientModels\NumericForm.cs" />
+    <Compile Include="Models\PatientModels\Patient.cs" />
+    <Compile Include="Models\PatientModels\PatientFilledForms.cs" />
+    <Compile Include="Models\PatientModels\UnstructuredForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\MultiPatientViewModel.cs" />
