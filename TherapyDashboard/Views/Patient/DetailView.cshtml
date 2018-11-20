@@ -43,16 +43,26 @@
                         <div class="background">
                             <table class="table table-hover table-striped">
                                 <tbody>
-                                    @foreach (var entry in Model.background)
-                                    {
-                                        <tr class="table-active">
-                                            <th scope="row">
-                                                <span class="normalText">@entry.Key</span>
-                                            </th>
-                                            <td scope="row">
-                                                <span class="normalText">@entry.Value</span>
-                                            </td>
-                                        </tr>
+                                    @{
+                                        var background = new Dictionary<string, string>() {
+                                            { "Alder", "30" },
+                                            { "Kjønn", "Mann" },
+                                            { "Utdanning","Videregående skole/gymnas" },
+                                            { "Sivilstatus", "Enslig" },
+                                            { "Antall barn", "Ingen" }
+                                        };
+                                    
+                                        foreach (var entry in background)
+                                        {
+                                            <tr class="table-active">
+                                                <th scope="row">
+                                                    <span class="normalText">@entry.Key</span>
+                                                </th>
+                                                <td scope="row">
+                                                    <span class="normalText">@entry.Value</span>
+                                                </td>
+                                            </tr>
+                                        }
                                     }
                                     <tr class="table-active">
                                             <th scope="row">
@@ -110,15 +120,19 @@
 
                             <table class="table table-hover table-striped">
                                 <tbody>
-                                    @foreach (var f in Model.forms)
-                                    {
-                                        <tr class="table-active">
-                                            <td scope="row">
-                                                <a href="@Url.Action("" , "Patient" )" class="elements">
-                                                    <span class="normalText">@f</span>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                    @{
+                                        List<string> forms = new List<string>(){"SPS", "SIAS", "SE - SKALA", "TIC - C", "Bakgrunn"};
+
+                                        foreach (var f in forms)
+                                        {
+                                            <tr class="table-active">
+                                                <td scope="row">
+                                                    <a href="@Url.Action("" , "Patient" )" class="elements">
+                                                        <span class="normalText">@f</span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
                                     }
                                 </tbody>
                             </table>
@@ -131,21 +145,25 @@
 
                             <table class="table table-hover table-striped">
                                 <tbody>
-                                    @foreach (var entry in Model.tasks)
-                                    {
-                                        <tr class="table-active">
-                                            <td scope="row">
-                                                <a href="@Url.Action("" , "Patient" )" class="elements">
-                                                    <span class="normalText">@entry</span>
-                                                </a>
-                                            </td>
-                                            <td scope="row">
-                                                <span class="normalText">Opened</span>
-                                            </td>
-                                            <td scope="row">
-                                                <span class="normalText">Quality assesment</span>
-                                            </td>
-                                        </tr>
+                                    @{
+                                        var tasks = new string[] { "Modul 1: Skjema 1", "Modul 1: Skjema 2", "Modul 2: Skjema 1", "Modul 2: Skjema 2", "Modul 2: Skjema 3", };
+
+                                        foreach (var entry in tasks)
+                                        {
+                                            <tr class="table-active">
+                                                <td scope="row">
+                                                    <a href="@Url.Action("" , "Patient" )" class="elements">
+                                                        <span class="normalText">@entry</span>
+                                                    </a>
+                                                </td>
+                                                <td scope="row">
+                                                    <span class="normalText">Opened</span>
+                                                </td>
+                                                <td scope="row">
+                                                    <span class="normalText">Quality assesment</span>
+                                                </td>
+                                            </tr>
+                                        }
                                     }
                                 </tbody>
                             </table>
