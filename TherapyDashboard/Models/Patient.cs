@@ -9,7 +9,7 @@ namespace TherapyDashboard.Models
     {
         public int id { get; set; }
         public string name { get; set; }
-        public string[] forms { get; set; }
+        public string[] forms { get; set; } //TODO foreign key
         public Dictionary<string, string> background { get; set; }
         public string[] tasks { get; set; }
         public DateTime previousDelivery { get; set; }
