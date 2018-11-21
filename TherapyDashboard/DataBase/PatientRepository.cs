@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,14 @@ namespace TherapyDashboard.DataBase
             get
             {
                 return db.GetCollection<Patient>("Patient");
+            }
+        }
+
+        public IMongoCollection<BsonDocument> Forms
+        {
+            get
+            {
+                return db.GetCollection<BsonDocument>("Form");
             }
         }
 
