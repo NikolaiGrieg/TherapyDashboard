@@ -45,14 +45,14 @@ namespace TherapyDashboard.Controllers
 
             //init models
             PatientRepository repo = new PatientRepository();
-            var bill = repo.Patients.AsQueryable().First();
+            //var bill = repo.Patients.AsQueryable().First();
 
             MultiPatientViewModel model = new MultiPatientViewModel();
             
             List<Patient> patients = new List<Patient>();
             for (int i = 0; i < 20; i++)
             {
-                var pat = bill;
+                var pat = new Patient();
                 pat.tempRand = 0;
                 var simName = names[i] + " " + names[i + 20] + "sen";
                 pat.name = simName;

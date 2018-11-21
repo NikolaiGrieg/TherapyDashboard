@@ -34,8 +34,31 @@ namespace TherapyDashboard.Controllers
 
             //PatientRepository.createPatient();
             PatientRepository repo = new PatientRepository();
-            //repo.Patients.InsertOne(new Patient() { name = "Bill" });
-            var bill = repo.Patients.AsQueryable().First();
+            //var bill = repo.Patients.AsQueryable().First();
+
+            /*
+            var forms = new List<NumericForm>();
+            forms.Add(new NumericForm
+            {
+                name = "MADRS",
+                colNames = new List<string>()
+                {
+                    "A", "B", "C"
+                },
+                row = new List<int>()
+                {
+                    1, 2, 3
+                }
+
+            });
+
+            repo.Patients.InsertOne(new Patient() {
+                name = "Bill",
+                NumericForms = forms
+            });
+            */
+
+
 
             return View(pat);
         }

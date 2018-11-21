@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using TherapyDashboard.Models.PatientModels;
 
 namespace TherapyDashboard.Models
 {
@@ -12,7 +13,8 @@ namespace TherapyDashboard.Models
         public ObjectId id { get; set; }
         public int tempRand { get; set; }
         public string name { get; set; }
-        public ICollection<PatientFilledForms> forms { get; set; }
+        public ICollection<NumericForm> NumericForms { get; set; }
+        public ICollection<UnstructuredForm> UnstructuredForms { get; set; }
 
 
         public string Measurement1Path{ get; set; } //TODO remove eventually
