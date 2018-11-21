@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,7 +8,9 @@ namespace TherapyDashboard.Models
 {
     public class Patient
     {
-        public int id { get; set; }
+        
+        public ObjectId id { get; set; }
+        public int tempRand { get; set; }
         public string name { get; set; }
         public ICollection<PatientFilledForms> forms { get; set; }
 
@@ -20,8 +23,7 @@ namespace TherapyDashboard.Models
         public static Patient createSimulated()
         {
             Patient pat = new Patient() {
-                name = "Guy Simulated" + 0,
-                id = 0
+                name = "Guy Simulated" + 0
             };
 
             return pat;

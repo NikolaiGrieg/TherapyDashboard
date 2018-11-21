@@ -106,6 +106,7 @@
                     <th scope="col">Last checked</th>
                 </tr>
             </thead>
+            
             <tbody id="masterTableBody">
                 @foreach (var pat in Model.patients)
                 {
@@ -116,16 +117,16 @@
                             </a>
                         </td>
                         <td>
-                            @{ var module = pat.id % 8;}
+                            @{ var module = pat.tempRand % 8;}
                             @module
                         </td>
 
                         <td>
-                            @{ if (pat.id % 4 == 0)
+                            @{ if (pat.tempRand % 4 == 0)
                                 {
                                     <span>Delayed 2 days</span>
                                 }
-                                else if (pat.id % 3 == 1)
+                                else if (pat.tempRand % 3 == 1)
                                 {
                                     <span>Due in 2 days</span>
                                 }
@@ -137,11 +138,11 @@
                         </td>
 
                         <td>
-                            @{ if (pat.id % 8 == 0)
+                            @{ if (pat.tempRand % 8 == 0)
                                 {
                                     <span>Redusert nattesøvn</span>
                                 }
-                                else if (pat.id % 8 == 1)
+                                else if (pat.tempRand % 8 == 1)
                                 {
                                     <span>Svekket appetitt</span>
                                 }
@@ -153,11 +154,11 @@
                         </td>
 
                         <td>
-                            @{ if (pat.id % 8 == 2 || pat.id % 8 == 3)
+                            @{ if (pat.tempRand % 8 == 2 || pat.tempRand % 8 == 3)
                                 {
                                     <span>Improving</span>
                                 }
-                                else if (pat.id % 8 == 1)
+                                else if (pat.tempRand % 8 == 1)
                                 {
                                     <span>Declining</span>
                                 }
@@ -168,8 +169,8 @@
                             }
                         </td>
 
-                        <td>@pat.id days</td>
-                        <td>@pat.id days</td>
+                        <td>@pat.tempRand days</td>
+                        <td>@pat.tempRand days</td>
 
                     </tr>
                 }

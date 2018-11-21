@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using TherapyDashboard.Models;
 using RestSharp;
 using TherapyDashboard.DataBase;
+using MongoDB.Driver;
+using MongoDB.Bson;
 
 namespace TherapyDashboard.Controllers
 {
@@ -24,13 +26,17 @@ namespace TherapyDashboard.Controllers
 
 
         [Route("Patient/{id}/v2")]
-        public ActionResult DetailView(int id)
+        public ActionResult DetailView(string id)
         {
             //return Content("patient " + id);
             Patient pat = Patient.createSimulated();
             pat.Measurement1Path = "../../Data/Sample_MADRS.csv";
 
             //PatientRepository.createPatient();
+            PatientRepository repo = new PatientRepository();
+            //repo.Patients.InsertOne(new Patient() { name = "Bill" });
+            var bill = repo.Patients.AsQueryable().First();
+
             return View(pat);
         }
 

@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using TherapyDashboard.Models;
 using TherapyDashboard.ViewModels;
 using Microsoft.VisualBasic.FileIO;
+using TherapyDashboard.DataBase;
+using MongoDB.Driver;
 
 namespace TherapyDashboard.Controllers
 {
@@ -42,16 +44,22 @@ namespace TherapyDashboard.Controllers
 
 
             //init models
+            PatientRepository repo = new PatientRepository();
+            var bill = repo.Patients.AsQueryable().First();
+
             MultiPatientViewModel model = new MultiPatientViewModel();
+            
             List<Patient> patients = new List<Patient>();
             for (int i = 0; i < 20; i++)
             {
-                var pat = Patient.createSimulated();
+                var pat = bill;
+                pat.tempRand = 0;
                 var simName = names[i] + " " + names[i + 20] + "sen";
                 pat.name = simName;
                 patients.Add(pat);
             }
             model.patients = patients;
+            
 
             return View(model);
         }
