@@ -19,13 +19,20 @@ namespace TherapyDashboard.Models
 
         public string Measurement1Path{ get; set; } //TODO remove eventually
 
-        //public static Random random = null;
+        private static Random random = null;
 
         
         public static Patient createSimulated()
         {
+            if (random == null)
+            {
+                random = new Random();
+            }
+            int rand = random.Next(20);
+
             Patient pat = new Patient() {
-                name = "Guy Simulated" + 0
+                name = "Guy Simulated" + rand,
+                tempRand = rand 
             };
 
             return pat;

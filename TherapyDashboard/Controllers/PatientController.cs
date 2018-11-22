@@ -40,7 +40,14 @@ namespace TherapyDashboard.Controllers
             //MongoRepository.createPatient("John");
             //MongoRepository.addFormToPatient("Bill");
             //MongoRepository.addFormToPatient("John");
-            MongoRepository.getPatientForms("Bill");
+
+            //TODO make new viewmodel accepting getPatientForms
+            //Cast the List<BsonDocument> to json
+            //Pass viewmodel to frontend
+            //Wrangle JSON on frontend as appropriate to fit charts
+
+
+            //MongoRepository.getPatientForms("Bill");
 
             return View(pat);
         }

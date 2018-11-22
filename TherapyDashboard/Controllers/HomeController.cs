@@ -52,8 +52,7 @@ namespace TherapyDashboard.Controllers
             List<Patient> patients = new List<Patient>();
             for (int i = 0; i < 20; i++)
             {
-                var pat = new Patient();
-                pat.tempRand = 0;
+                var pat = Patient.createSimulated();
                 var simName = names[i] + " " + names[i + 20] + "sen";
                 pat.name = simName;
                 patients.Add(pat);
