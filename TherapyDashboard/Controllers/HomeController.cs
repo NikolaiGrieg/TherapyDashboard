@@ -44,7 +44,7 @@ namespace TherapyDashboard.Controllers
 
 
             //init models
-            PatientRepository repo = new PatientRepository();
+            MongoDBConnection repo = new MongoDBConnection();
             //var bill = repo.Patients.AsQueryable().First();
 
             MultiPatientViewModel model = new MultiPatientViewModel();

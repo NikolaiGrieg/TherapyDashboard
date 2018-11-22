@@ -8,12 +8,12 @@ using TherapyDashboard.Models;
 
 namespace TherapyDashboard.DataBase
 {
-    public class PatientRepository
+    public class MongoDBConnection
     {
 
         private IMongoDatabase db;
 
-        public PatientRepository()
+        public MongoDBConnection()
         {
             MongoClient client = new MongoClient();
             this.db = client.GetDatabase("Dashboard");
