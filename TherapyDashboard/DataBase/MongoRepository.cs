@@ -25,11 +25,11 @@ namespace TherapyDashboard.DataBase
             });
         }
 
-        public static void addFormToPatient(string patientName)
+        public static void addFormToPatient(string patName)
         {
             //PatientRepository.createPatient();
             MongoDBConnection db = new MongoDBConnection();
-            var filter = Builders<Patient>.Filter.Eq(x => x.name, patientName);
+            var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
             var pat = db.Patients.Find(filter).FirstOrDefault(); //TODO handle multiple patients w same name
 
 
@@ -66,14 +66,10 @@ namespace TherapyDashboard.DataBase
                     }
 
                     //update patient
-                    //Builders<BsonDocument>.Update.AddToSet("numericForms", pat.NumericForms);
-
                     db.Patients.ReplaceOne(
                         item => item.id == pat.id,
                         pat
                         );
-
-                    //see https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1 for queries/joins
                 }
 
             }
@@ -81,9 +77,17 @@ namespace TherapyDashboard.DataBase
             //to find documents with a given date: db.Form.find({"somedate" : { $exists : true} }).pretty()
         }
 
-        public BsonDocument getPatientForms(string patName)
+        public static List<BsonDocument> getPatientForms(string patName)
         {
-            return null;
+            //see https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1 for queries/joins
+
+            MongoDBConnection db = new MongoDBConnection();
+            var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
+            var pat = db.Patients.Find(filter).FirstOrDefault();
+
+            var formFilter = Builders<BsonDocument>.Filter.In<ObjectId>("_id", pat.NumericForms);
+            var forms = db.Forms.Find(formFilter).ToList();
+            return forms;
         }
     }
 }
