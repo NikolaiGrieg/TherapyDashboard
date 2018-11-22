@@ -13,7 +13,7 @@ namespace TherapyDashboard.Models
         public ObjectId id { get; set; }
         public int tempRand { get; set; }
         public string name { get; set; }
-        public ICollection<NumericForm> NumericForms { get; set; }
+        public ICollection<ObjectId> NumericForms { get; set; } //ObjectId for each form
         public ICollection<UnstructuredForm> UnstructuredForms { get; set; }
 
 

@@ -14,18 +14,24 @@ namespace TherapyDashboard.DataBase
 {
     public class MongoRepository
     {
+        public static void createPatient(string name)
+        {
+            MongoDBConnection db = new MongoDBConnection();
+
+            db.Patients.InsertOne(new Patient()
+            {
+                name = name
+
+            });
+        }
+
         public static void addFormToPatient(string patientName)
         {
             //PatientRepository.createPatient();
             MongoDBConnection db = new MongoDBConnection();
             var filter = Builders<Patient>.Filter.Eq(x => x.name, patientName);
-            var bill = db.Patients.Find(filter).FirstOrDefault(); //TODO handle multiple patients w same name
+            var pat = db.Patients.Find(filter).FirstOrDefault(); //TODO handle multiple patients w same name
 
-
-            //repo.Patients.InsertOne(new Patient() {
-            //    name = "Bill",
-
-            //});
 
             using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/Data/sample_json_1m_1d.json"))
             {
@@ -37,30 +43,47 @@ namespace TherapyDashboard.DataBase
                 foreach (KeyValuePair<string, object> kvp in values)
                 {
                     var entryDict = new Dictionary<string, object> {
-                        { kvp.Key, kvp.Value },
-                        { "PatientFK" , bill.id}
+                        { kvp.Key, kvp.Value }
                     };
                     var jsonDoc = JsonConvert.SerializeObject(entryDict);
                     var bsonDoc = BsonSerializer.Deserialize<BsonDocument>(jsonDoc);
-                    //var document = BsonSerializer.Deserialize<BsonDocument>((BsonDocument)entry.Value);
+
+                    //TODO make atomic maybe
                     db.Forms.InsertOne(bsonDoc);
+
+                    var id = bsonDoc.GetElement("_id");
+                    var objectID = (ObjectId)id.Value;
+
+                    if (pat.NumericForms == null)
+                    {
+                        pat.NumericForms = new List<ObjectId>() {
+                            objectID
+                        };
+                    }
+                    else
+                    {
+                        pat.NumericForms.Add(objectID);
+                    }
+
+                    //update patient
+                    //Builders<BsonDocument>.Update.AddToSet("numericForms", pat.NumericForms);
+
+                    db.Patients.ReplaceOne(
+                        item => item.id == pat.id,
+                        pat
+                        );
+
+                    //see https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1 for queries/joins
                 }
 
             }
 
             //to find documents with a given date: db.Form.find({"somedate" : { $exists : true} }).pretty()
+        }
 
-
-            //Gives each entry as an enumerable object as the value in dict
-            //BsonDocument form = repo.Forms.AsQueryable().First();
-            //var entries = BsonSerializer.Deserialize(form, typeof(Dictionary<string, object>));
-
-            //TODO drop current Form collection
-            //Read in entries as one form per document
-            //Have date as key in form
-            //add patients as FK in form
-            //should then be possible to query all forms for a patient, or all forms on a date
-            
+        public BsonDocument getPatientForms(string patName)
+        {
+            return null;
         }
     }
 }

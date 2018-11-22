@@ -36,7 +36,7 @@ namespace TherapyDashboard.Controllers
             Patient pat = Patient.createSimulated();
             pat.Measurement1Path = "../../Data/Sample_MADRS.csv";
 
-            //MongoRepository.addFormToPatient("Bill");
+            MongoRepository.addFormToPatient("Bill");
 
             return View(pat);
         }
