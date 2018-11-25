@@ -33,12 +33,13 @@ namespace TherapyDashboard.DataBase
             var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
             var pat = db.Patients.Find(filter).FirstOrDefault(); //TODO handle multiple patients w same name
 
+
             
-            //utf8 encoding doesn't seem to work for the StreamReader, TODO fix 
-            using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/Data/sample_json_1m_1d.json", System.Text.Encoding.UTF8))
+            using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/Data/sample_json_1m_1d.json", System.Text.Encoding.Default))
             {
                 string json = @r.ReadToEnd();
                 System.Diagnostics.Debug.WriteLine(json);
+                //System.Diagnostics.Debug.WriteLine("øæå"); //this works
 
                 var documents = BsonSerializer.Deserialize<BsonDocument>(json);
                 Dictionary<string, object> values = documents.ToDictionary();
