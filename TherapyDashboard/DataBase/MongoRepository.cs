@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -88,6 +89,27 @@ namespace TherapyDashboard.DataBase
             var formFilter = Builders<BsonDocument>.Filter.In<ObjectId>("_id", pat.NumericForms);
             var forms = db.Forms.Find(formFilter).ToList();
             return forms;
+        }
+
+        public static string getPatientFormsSingle(string patName)
+        {
+            MongoDBConnection db = new MongoDBConnection();
+            var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
+            var pat = db.Patients.Find(filter).FirstOrDefault();
+
+            var formFilter = Builders<BsonDocument>.Filter.In<ObjectId>("_id", pat.NumericForms);
+            var forms = db.Forms.Find(formFilter).ToList();
+            var mainDocument = forms[0];
+            for (int i = 1; i < forms.Count; i++)
+            {
+                mainDocument.Merge(forms[i]);
+            }
+
+            var jsonWriterSettings = new MongoDB.Bson.IO.JsonWriterSettings { OutputMode = MongoDB.Bson.IO.JsonOutputMode.Strict };
+            string json = mainDocument.ToJson(jsonWriterSettings);
+
+
+            return json;
         }
     }
 }

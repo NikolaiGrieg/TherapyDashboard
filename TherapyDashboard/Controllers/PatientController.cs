@@ -12,6 +12,7 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using MongoDB.Bson.Serialization;
+using TherapyDashboard.ViewModels;
 
 namespace TherapyDashboard.Controllers
 {
@@ -33,7 +34,9 @@ namespace TherapyDashboard.Controllers
         public ActionResult DetailView(string id)
         {
             //return Content("patient " + id);
+            DetailViewModel model = new DetailViewModel();
             Patient pat = Patient.createSimulated();
+            model.pat = pat;
             pat.Measurement1Path = "../../Data/Sample_MADRS.csv";
 
             //MongoRepository.createPatient("Bill");
@@ -41,15 +44,13 @@ namespace TherapyDashboard.Controllers
             //MongoRepository.addFormToPatient("Bill");
             //MongoRepository.addFormToPatient("John");
 
-            //TODO make new viewmodel accepting getPatientForms
-            //Cast the List<BsonDocument> to json
-            //Pass viewmodel to frontend
+            //TODO 
             //Wrangle JSON on frontend as appropriate to fit charts
 
 
-            //MongoRepository.getPatientForms("Bill");
-
-            return View(pat);
+            var json = MongoRepository.getPatientFormsSingle("Bill");
+            model.json = json;
+            return View(model);
         }
 
         [Route("Spider")]

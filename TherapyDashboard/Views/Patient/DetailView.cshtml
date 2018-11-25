@@ -1,5 +1,4 @@
-﻿@model TherapyDashboard.Models.Patient
-
+﻿@model TherapyDashboard.ViewModels.DetailViewModel
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -103,7 +102,7 @@
                                     <tr class="table-active">
                                         <td scope="row">
                                             <button type="button" class="btn btn-info"
-                                            onclick="createEventLine('line')">Søvn</button>
+                                            onclick="createEventLine('line')">Events</button>
                                         </td>  
                                     </tr>
 
@@ -181,7 +180,10 @@
         </div>
     </div>
     <script>
-        var dataPath = "@Model.Measurement1Path";
+        var forms = @Html.Raw(@Model.json);
+        console.log(forms["2010-12-01"])
+
+        var dataPath = "@Model.pat.Measurement1Path";
     </script>
 
     <pre id="csvdata" style="display: none">
