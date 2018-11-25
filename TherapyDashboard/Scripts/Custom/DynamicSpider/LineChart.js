@@ -1,14 +1,13 @@
 ﻿
 LineChart = function(_parentElement, controller, name, elements,
-     dataPath, forms, height = 200, width = 700){
+   forms, height = 200, width = 700){
   this.parentElement = _parentElement;
   this.controller = controller;
   this.name = name;
   this.elements = elements;
-  this.dataPath = dataPath;
   this.initHeight = height;
   this.initWidt = width;
-  this.data = JSON.parse(JSON.stringify(forms));
+  this.data = JSON.parse(JSON.stringify(forms)); //deep clone
   
   this.initVis();
 

@@ -17,8 +17,6 @@ namespace TherapyDashboard.Models
         public ICollection<UnstructuredForm> UnstructuredForms { get; set; }
 
 
-        public string Measurement1Path{ get; set; } //TODO remove eventually
-
         private static Random random = null;
 
         

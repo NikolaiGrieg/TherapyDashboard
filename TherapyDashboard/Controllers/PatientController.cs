@@ -25,7 +25,6 @@ namespace TherapyDashboard.Controllers
         {
             //return Content("patient " + id);
             Patient pat = Patient.createSimulated();
-            pat.Measurement1Path = "Data/SampleComposite.csv";
             return View(pat);
         }
 
@@ -37,12 +36,11 @@ namespace TherapyDashboard.Controllers
             DetailViewModel model = new DetailViewModel();
             Patient pat = Patient.createSimulated();
             model.pat = pat;
-            pat.Measurement1Path = "../../Data/Sample_MADRS.csv";
 
-            //MongoRepository.createPatient("Bill");
-            //MongoRepository.createPatient("John");
-            //MongoRepository.addFormToPatient("Bill");
-            //MongoRepository.addFormToPatient("John");
+            MongoRepository.createPatient("Bill");
+            MongoRepository.createPatient("John");
+            MongoRepository.addFormToPatient("Bill");
+            MongoRepository.addFormToPatient("John");
 
             //all forms in db collection Form are for the same measurement
             //somehow tag which ones go where, and distribute them over multiple collections
@@ -56,8 +54,6 @@ namespace TherapyDashboard.Controllers
         public ActionResult DynamicSpiderView()
         {
             Patient pat = Patient.createSimulated();
-            //pat.Measurement1Path = "Data/SampleComposite.csv";
-            pat.Measurement1Path = "Data/Sample_MADRS.csv";
             return View(pat);
         }
 

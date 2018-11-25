@@ -1,8 +1,7 @@
-﻿SpiderChart = function(_parentElement, controller, dataPath, forms, name,
+﻿SpiderChart = function(_parentElement, controller, forms, name,
     height = 500, width = 500, selectedDiv = "#selectedCategory"){
   this.parentElement = _parentElement;
   this.controller = controller;
-  this.dataPath = dataPath;
   this.name = name;
   this.height = height;
   this.width = width;
