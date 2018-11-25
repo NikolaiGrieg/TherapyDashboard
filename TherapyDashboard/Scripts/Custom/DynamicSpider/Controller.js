@@ -46,7 +46,7 @@ function createSpiderChart(){
 	container.hidden = false
 	container.style.display = "block";
 
-	spiderchart = new SpiderChart("#spiderChart", this, dataPath, "MADRS-S",
+	spiderchart = new SpiderChart("#spiderChart", this, dataPath, forms, "MADRS-S",
 	 height=400, width=400, selectedDiv = '#line');
 
 	//Avoids adding duplicate summary charts to modal container

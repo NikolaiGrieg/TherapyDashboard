@@ -1,4 +1,4 @@
-﻿SpiderChart = function(_parentElement, controller, dataPath, name,
+﻿SpiderChart = function(_parentElement, controller, dataPath, forms, name,
     height = 500, width = 500, selectedDiv = "#selectedCategory"){
   this.parentElement = _parentElement;
   this.controller = controller;
@@ -7,6 +7,7 @@
   this.height = height;
   this.width = width;
   this.selectedDiv = selectedDiv;
+  this.forms = JSON.parse(JSON.stringify(forms)); //deep clone
   this.initVis();
 };
 
@@ -17,14 +18,25 @@ SpiderChart.prototype.initVis = function(){
 }
 
 //TODO lock axes based on highest data points
+//TODO refactor data processing out to fit this and linechart
 SpiderChart.prototype.wrangleData = function(index){
     var vis = this;
     //Data
-    d3.csv(vis.dataPath, function(error, data) {
-        if (error) throw error;
-
+    $(function() {
+        
         // parse the date / time
         var parseTime = d3.timeParse("%Y-%m-%d");//"%d-%b-%y");
+        var data = [];
+
+        //wrangle data 
+        for (var key in vis.forms) { //TODO rename vis.data
+           if (vis.forms.hasOwnProperty(key)) {
+              //console.log(key, vis.data[key]);
+              var entry = vis.forms[key];
+              entry['date'] = key;
+              data.push(entry);
+           }
+        }
 
         // format the data
         data.forEach(function(d) {

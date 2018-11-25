@@ -38,8 +38,7 @@ namespace TherapyDashboard.DataBase
             using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/Data/sample_json_1m_1d.json", System.Text.Encoding.Default))
             {
                 string json = @r.ReadToEnd();
-                System.Diagnostics.Debug.WriteLine(json);
-                //System.Diagnostics.Debug.WriteLine("øæå"); //this works
+                //System.Diagnostics.Debug.WriteLine(json);
 
                 var documents = BsonSerializer.Deserialize<BsonDocument>(json);
                 Dictionary<string, object> values = documents.ToDictionary();
@@ -96,7 +95,7 @@ namespace TherapyDashboard.DataBase
 
         public static string getPatientFormsSingle(string patName)
         {
-            //maybe refactor this first part
+            //maybe refactor this first part out
             MongoDBConnection db = new MongoDBConnection();
             var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
             var pat = db.Patients.Find(filter).FirstOrDefault();

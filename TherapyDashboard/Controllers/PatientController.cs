@@ -44,7 +44,9 @@ namespace TherapyDashboard.Controllers
             //MongoRepository.addFormToPatient("Bill");
             //MongoRepository.addFormToPatient("John");
 
-
+            //all forms in db collection Form are for the same measurement
+            //somehow tag which ones go where, and distribute them over multiple collections
+            //ex "background", "summary/", "single", "unstrucured" TODO revisit these
             var json = MongoRepository.getPatientFormsSingle("Bill");
             model.json = json;
             return View(model);
