@@ -33,10 +33,12 @@ namespace TherapyDashboard.DataBase
             var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
             var pat = db.Patients.Find(filter).FirstOrDefault(); //TODO handle multiple patients w same name
 
-
-            using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/Data/sample_json_1m_1d.json"))
+            
+            //utf8 encoding doesn't seem to work for the StreamReader, TODO fix 
+            using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/Data/sample_json_1m_1d.json", System.Text.Encoding.UTF8))
             {
                 string json = @r.ReadToEnd();
+                System.Diagnostics.Debug.WriteLine(json);
 
                 var documents = BsonSerializer.Deserialize<BsonDocument>(json);
                 Dictionary<string, object> values = documents.ToDictionary();
@@ -93,12 +95,17 @@ namespace TherapyDashboard.DataBase
 
         public static string getPatientFormsSingle(string patName)
         {
+            //maybe refactor this first part
             MongoDBConnection db = new MongoDBConnection();
             var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
             var pat = db.Patients.Find(filter).FirstOrDefault();
 
             var formFilter = Builders<BsonDocument>.Filter.In<ObjectId>("_id", pat.NumericForms);
-            var forms = db.Forms.Find(formFilter).ToList();
+            var forms = db.Forms.Find(formFilter)
+                .Project(Builders<BsonDocument>.Projection
+                .Exclude("_id"))
+                .ToList();
+
             var mainDocument = forms[0];
             for (int i = 1; i < forms.Count; i++)
             {

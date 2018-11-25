@@ -1,6 +1,6 @@
 ﻿
 LineChart = function(_parentElement, controller, name, elements,
-     dataPath, height = 200, width = 700){
+     dataPath, forms, height = 200, width = 700){
   this.parentElement = _parentElement;
   this.controller = controller;
   this.name = name;
@@ -8,7 +8,7 @@ LineChart = function(_parentElement, controller, name, elements,
   this.dataPath = dataPath;
   this.initHeight = height;
   this.initWidt = width;
-
+  this.data = JSON.parse(JSON.stringify(forms));
   
   this.initVis();
 
@@ -44,11 +44,24 @@ LineChart.prototype.wrangleData = function(){
   vis.xScale = d3.scaleTime().range([0, vis.width]);
   vis.yScale = d3.scaleLinear().range([vis.height, 0]);
 
-  d3.csv(vis.dataPath, function(error, data) {
-    if (error) throw error;
+  $(function() {
 
     // parse the date / time
     var parseTime = d3.timeParse("%Y-%m-%d");//"%d-%b-%y");
+
+    var data = [];
+
+    //wrangle data 
+    for (var key in vis.data) { //TODO rename vis.data
+       if (vis.data.hasOwnProperty(key)) {
+          //console.log(key, vis.data[key]);
+          var entry = vis.data[key];
+          entry['date'] = key;
+          data.push(entry);
+       }
+    }
+
+    //TODO remove _id field on backend
 
     // format the data
     if (vis.elements == 'all'){
@@ -57,7 +70,7 @@ LineChart.prototype.wrangleData = function(){
           let sum = 0;
           for (var key in d) {
             if (d.hasOwnProperty(key)) {
-                if(key != 'date'){
+                if(key != 'date' && key != '$oid'){
                   //console.log(key + " -> " + d[key]);
                   sum += +d[key]
                 }
@@ -70,6 +83,9 @@ LineChart.prototype.wrangleData = function(){
       data.forEach(function(d) {
         d.date = parseTime(d.date);
         let sum = 0;
+        if (d.close != null){ //??
+          delete d.close;
+        }
         for (var key in d) {
           if (d.hasOwnProperty(key)) {
               if(key != 'date'){

@@ -44,7 +44,7 @@ namespace TherapyDashboard.Controllers
             //MongoRepository.addFormToPatient("Bill");
             //MongoRepository.addFormToPatient("John");
 
-            //TODO 
+            //TODO fix utf-8 problem
             //Wrangle JSON on frontend as appropriate to fit charts
 
 

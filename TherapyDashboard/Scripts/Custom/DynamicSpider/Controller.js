@@ -1,5 +1,5 @@
-﻿//console.log(dataPath);
-linechart = new LineChart("#line", this, 'Summary', 'all', dataPath);
+//console.log(dataPath);
+linechart = new LineChart("#line", this, 'Summary', 'all', dataPath, forms);
 //spiderchart = new SpiderChart("#chart", this, dataPath);
 
 
@@ -10,7 +10,7 @@ function update(index){
 function selectAxis(parent, axis){
 	console.log(axis);
 	var height = 200;
-	var selectedCategoryLine = new LineChart(parent, this, axis, axis, dataPath, height=height)
+	var selectedCategoryLine = new LineChart(parent, this, axis, axis, dataPath, forms, height=height)
 
 	//Remove button for selected category linecharts
 	/*
@@ -51,7 +51,7 @@ function createSpiderChart(){
 
 	//Avoids adding duplicate summary charts to modal container
 	if($('#aggregateSpiderController').children().length == 0){
-		linechart = new LineChart("#aggregateSpiderController", this, 'Summary', 'all', dataPath);
+		linechart = new LineChart("#aggregateSpiderController", this, 'Summary', 'all', dataPath, forms);
 	}
 	
 }
