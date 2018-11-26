@@ -34,7 +34,9 @@ namespace TherapyDashboard.Controllers
         {
             //return Content("patient " + id);
             DetailViewModel model = new DetailViewModel();
-            Patient pat = Patient.createSimulated();
+            
+            //Patient pat = MongoRepository.getPatientByName("Magnus Danielsen");
+            Patient pat = MongoRepository.getPatientById(new ObjectId(id));
             model.pat = pat;
 
             //MongoRepository.createPatient("Bill");
@@ -46,7 +48,7 @@ namespace TherapyDashboard.Controllers
             //need to somehow tag which ones go where, and distribute them over multiple collections
             //ex "background", "summary/", "single", "unstrucured" TODO revisit these
             //Assuming only 1 "summary" is probably reasonable
-            var json = MongoRepository.getPatientFormsSingle("Magnus Danielsen");
+            var json = MongoRepository.getPatientFormsSingle(pat.id); //TODO
             model.json = json;
             return View(model);
         }
