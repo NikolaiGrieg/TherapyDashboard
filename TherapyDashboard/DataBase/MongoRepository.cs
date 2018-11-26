@@ -26,7 +26,12 @@ namespace TherapyDashboard.DataBase
             });
         }
 
-        public static void addFormToPatient(string patName)
+        public static void addFormToPatient(string patName, string formType, string formName)
+        {
+            //TODO
+        }
+
+        public static void addFormsToPatient(string patName, string path)
         {
             //PatientRepository.createPatient();
             MongoDBConnection db = new MongoDBConnection();
@@ -35,7 +40,7 @@ namespace TherapyDashboard.DataBase
 
 
             
-            using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/Data/sample_json_1m_1d.json", System.Text.Encoding.Default))
+            using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + path, System.Text.Encoding.Default))
             {
                 string json = @r.ReadToEnd();
                 //System.Diagnostics.Debug.WriteLine(json);

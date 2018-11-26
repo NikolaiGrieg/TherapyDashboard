@@ -37,15 +37,16 @@ namespace TherapyDashboard.Controllers
             Patient pat = Patient.createSimulated();
             model.pat = pat;
 
-            MongoRepository.createPatient("Bill");
-            MongoRepository.createPatient("John");
-            MongoRepository.addFormToPatient("Bill");
-            MongoRepository.addFormToPatient("John");
+            //MongoRepository.createPatient("Bill");
+            //MongoRepository.createPatient("John");
+            //MongoRepository.addFormsToPatient("Bill", "/Data/sample_json_1m_1d.json");
+            //MongoRepository.addFormsToPatient("John", "/Data/sample_json_1m_1d.json");
 
             //all forms in db collection Form are for the same measurement
-            //somehow tag which ones go where, and distribute them over multiple collections
+            //need to somehow tag which ones go where, and distribute them over multiple collections
             //ex "background", "summary/", "single", "unstrucured" TODO revisit these
-            var json = MongoRepository.getPatientFormsSingle("Bill");
+            //Assuming only 1 "summary" is probably reasonable
+            var json = MongoRepository.getPatientFormsSingle("Magnus Danielsen");
             model.json = json;
             return View(model);
         }
