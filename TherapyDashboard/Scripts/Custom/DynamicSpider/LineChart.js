@@ -1,6 +1,6 @@
 ﻿
 LineChart = function(_parentElement, controller, name, elements,
-   forms, height = 200, width = 700){
+   forms, height = 200, width = 700, fhir = false){
   this.parentElement = _parentElement;
   this.controller = controller;
   this.name = name;
@@ -8,7 +8,8 @@ LineChart = function(_parentElement, controller, name, elements,
   this.initHeight = height;
   this.initWidt = width;
   this.data = JSON.parse(JSON.stringify(forms)); //deep clone
-  
+  this.fhir = fhir;
+
   this.initVis();
 
 };
@@ -46,7 +47,15 @@ LineChart.prototype.wrangleData = function(){
   $(function() {
 
     // parse the date / time
-    var parseTime = d3.timeParse("%Y-%m-%d");//"%d-%b-%y");
+    var parseTime;
+    if (vis.fhir){
+      //2008-05-15T06:28:55-04:00
+      parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
+    }
+    else{
+      parseTime = d3.timeParse("%Y-%m-%d");//"%d-%b-%y");
+    }
+    
 
     var data = [];
 
@@ -55,7 +64,17 @@ LineChart.prototype.wrangleData = function(){
        if (vis.data.hasOwnProperty(key)) {
           //console.log(key, vis.data[key]);
           var entry = vis.data[key];
-          entry['date'] = key;
+          if (typeof entry === 'object'){
+            entry['date'] = key;
+          }
+          else{
+            let val = entry;
+            entry = {
+              value : val,
+              date : key
+            }
+          }
+          
           data.push(entry);
        }
     }
