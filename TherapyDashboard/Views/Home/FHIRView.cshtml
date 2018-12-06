@@ -9,7 +9,7 @@
         var data = []
         //This is somehow only works on this page... DONT REMOVE
         FHIR.oauth2.ready(function (smart) {
-            smart.patient.api.fetchAllWithReferences({ type: "Observation" }).then(function (results, refs) {
+            smart.api.fetchAllWithReferences({ type: "Observation" }).then(function (results, refs) {
                 results.forEach(function (obs) {
                     console.log(obs)
                     var entry;

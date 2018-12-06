@@ -1,12 +1,14 @@
 //console.log(dataPath);
-linechart = new LineChart("#line", this, 'Summary', 'all', forms);
+linechart = new LineChart("#line", this, 'MADRS-S', 'all', forms);
 //spiderchart = new SpiderChart("#chart", this, dataPath);
 
 
 
 
 function update(index){
-	spiderchart.wrangleData(index)
+	if (typeof spiderchart !== 'undefined'){ //TODO maybe disable update calls from background charts
+		spiderchart.wrangleData(index)
+	}
 }
 
 function selectAxis(parent, axis){

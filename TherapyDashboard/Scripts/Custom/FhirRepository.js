@@ -3,7 +3,22 @@
 $(function fhirData(){
 	var data = []
 	FHIR.oauth2.ready(function (smart) {
-	    smart.patient.api.fetchAllWithReferences({ type: "Observation" }, ["Body Mass Index"]).then(function (results, refs) {
+		
+		//Get BMI observations for specified patient
+		smart.api.search({type: "Observation", query: {
+			code : ["39156-5"],
+			patient : ["42ab2ed1-eb1d-4501-be82-642e11538eac"]
+			}
+		}).then(function(results, refs){
+			console.log(results)
+		});
+		
+		//Get all questionnaire responses
+		smart.api.search({type: "QuestionnaireResponse"}).then(function(results, refs){
+			console.log(results)
+		});
+	    smart.api.fetchAllWithReferences({ type: "Observation" }).then(function (results, refs) {
+	    	//TODO get all patients for main page
 	        results.forEach(function (obs) {
 	            //console.log(obs)
 	            var entry;
@@ -32,6 +47,8 @@ $(function fhirData(){
 })
 
 function fhirCharts(data){
+
+	//TODO iterate over all measurements
 	var cleaned = []
 	var measurement = data[0].measurement
 	for(let i = 0; i < data.length; i++){
@@ -47,6 +64,7 @@ function fhirCharts(data){
 		}
 	}
 	
+
 	var categorized = {}
 
 	for(let i = 0; i < cleaned.length; i++){
@@ -60,12 +78,6 @@ function fhirCharts(data){
 			
 
 			categorized[time] = quantity;
-			
-			/*
-			if (quantity){ //TODO find out why some times are undefined
-				categorized.push(entry)
-			}
-			*/
 			
 		}
 	}
