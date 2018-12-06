@@ -49,6 +49,7 @@ namespace TherapyDashboard.Controllers
             //ex "background", "summary/", "single", "unstrucured" TODO revisit these
             //Assuming only 1 "summary" is probably reasonable
             var json = MongoRepository.getPatientFormsSingle(pat.id); //TODO
+            var avgPat = MongoRepository.getPatientByName("AvgPatient");
             model.json = json;
             return View(model);
         }

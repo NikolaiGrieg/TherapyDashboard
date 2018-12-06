@@ -63,7 +63,7 @@ LineChart.prototype.wrangleData = function(){
     //TODO remove _id field on backend
 
     // format the data
-    if (vis.elements == 'all'){
+    if (vis.elements === 'all'){
           data.forEach(function(d) {
           d.date = parseTime(d.date);
           let sum = 0;

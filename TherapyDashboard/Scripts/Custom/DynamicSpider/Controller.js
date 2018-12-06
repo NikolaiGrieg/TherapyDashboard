@@ -3,6 +3,8 @@ linechart = new LineChart("#line", this, 'Summary', 'all', forms);
 //spiderchart = new SpiderChart("#chart", this, dataPath);
 
 
+
+
 function update(index){
 	spiderchart.wrangleData(index)
 }
@@ -62,42 +64,42 @@ function hideSpiderChart(){
 
 function createEventLine(parent){
 	var margin = {top: 20, right: 20, bottom: 30, left: 60},
-    width = 960 - margin.left - margin.right,
-    height = 200 - margin.top - margin.bottom;
+	width = 960 - margin.left - margin.right,
+	height = 200 - margin.top - margin.bottom;
 
 	var colorOf = d3.scaleOrdinal(d3.schemeCategory10)
-	    
+		
 	var y = d3.scaleBand()
 		.domain([height, 0], 0.3);
 
 	var x = d3.scaleTime()
-	    .range([5, width]);
+		.range([5, width]);
 
 	var yAxis = d3
 		.axisLeft(y);
-	    
+		
 	var xAxis = d3
 		.axisBottom(x)
 		.tickFormat(d3.timeFormat("%m/%d/%Y %Hh"));
-	    
+		
 	var parseDate = d3.timeFormat("%m/%d/%Y %H:%M");
 
 	var svg = d3.select("body").append("svg")
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
 	  .append("g")
-	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 	var raw = d3.select("#csvdata").text();
 
 	var data = d3.csv("#csvdata", function(error, data) {
-        if (error) throw error;
+		if (error) throw error;
 
-        data.forEach(function(d) {
-  			d.time = parseDate(d.time);
-    	});
+		data.forEach(function(d) {
+			d.time = parseDate(d.time);
+		});
 
-    	y.domain(data.map(function(d) { return d.type; }));
+		y.domain(data.map(function(d) { return d.type; }));
 		x.domain(d3.extent(data, function(d) { return d.time; }));
 		colorOf.domain(data.map(function(d) { return d.type; }));
 
@@ -119,7 +121,7 @@ function createEventLine(parent){
 		  .attr("x", function(d) { return x(d.time); })
 		  .attr("width", 1)
 		  .style("fill", function(d) { return colorOf(d.type); });
-    });
+	});
 
 	//var data = d3.csv.parse(raw);
 

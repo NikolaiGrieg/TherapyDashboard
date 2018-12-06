@@ -45,5 +45,19 @@ namespace TherapyDashboard.Controllers
 
             return View();
         }
+
+        [Route("fhir-app")]
+        public ActionResult FHIRView()
+        {
+            
+            return View();
+        }
+
+        [Route("fhir-app/launch")]
+        public ActionResult FHIRLaunch()
+        {
+
+            return View();
+        }
     }
 }

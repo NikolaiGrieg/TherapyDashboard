@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://rawgithub.com/smart-on-fhir/client-js/master/dist/fhir-client.js"></script>
+</head>
+<body>
+    <script type="text/javascript">
+    	function fhirData(){
+    		var data = []
+	    	FHIR.oauth2.ready(function (smart) {
+	            smart.patient.api.fetchAllWithReferences({ type: "Observation" }, ["Body Mass Index"]).then(function (results, refs) {
+	                results.forEach(function (obs) {
+	                	console.log(obs)
+	                	var entry;
+	                	if (obs.component){
+	                		entry = {
+		                		patient : obs.subject.reference,
+		                		measurement : obs.code.coding[0].display,
+		                		time : obs.effectiveDateTime,
+		                		component : obs.component,
+		                	}
+	                	}
+	                	else{
+	                		entry = {
+		                		patient : obs.subject.reference,
+		                		measurement : obs.code.coding[0].display,
+		                		time : obs.effectiveDateTime,
+		                		quantity : obs.valueQuantity.value
+		                	}
+	                	}
+	                	
+	                	data.push(entry)
+	                });
+	            });
+	        });
+	        //console.log(data)
+	        return data;
+    	}
+    	
+    </script>
+</body>
+</html>

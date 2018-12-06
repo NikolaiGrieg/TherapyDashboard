@@ -256,6 +256,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\DetailView\ActivityChart.js" />
     <Content Include="Scripts\Custom\DetailView\HCBarChart.js" />
+    <Content Include="Scripts\Custom\FhirRepository.js" />
     <Content Include="Scripts\Custom\MasterView\PatientModuleChart.js" />
     <Content Include="Scripts\Custom\DynamicSpider\Controller.js" />
     <Content Include="Scripts\Custom\DynamicSpider\SpiderChart.js" />
@@ -314,6 +315,8 @@
     <Content Include="Views\Patient\SinglePatientView.cshtml" />
     <Content Include="Views\Patient\DynamicSpiderView.cshtml" />
     <Content Include="Views\Patient\DetailView.cshtml" />
+    <Content Include="Views\Home\FHIRView.cshtml" />
+    <Content Include="Views\Home\FHIRLaunch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
