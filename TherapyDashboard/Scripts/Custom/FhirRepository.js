@@ -54,20 +54,6 @@ function initCheckBoxes(names){
 	for (let i = 0; i < names.length; i++){
 		var selectorContainer = document.createElement("div");
 
-		/*
-		var checkbox = document.createElement('input');
-		checkbox.type = "checkbox";
-		checkbox.id = "obs" + i;
-		checkbox.value = "true";
-		checkbox.setAttribute("onClick", "toggleChart(this)");
-
-		var label = document.createElement('label')
-		label.htmlFor = "obs" + i;
-		label.appendChild(document.createTextNode(names[i]));
-
-		selectorContainer.appendChild(checkbox);
-		selectorContainer.appendChild(label);
-		*/
 		var html = `
 			<div class="btn-group">
 			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -121,10 +107,16 @@ const getMeasurementNames = data =>{
 
 function lineChart(a) {
 	let name = a.id.replace("lineFor", "");
-	let linechart = disabledCharts[name];
-
-	var parent = document.getElementById("line");
-	parent.appendChild(linechart);
+	var linechart;
+	if(Object.keys(disabledCharts).includes(name)){
+		linechart = disabledCharts[name];
+		var parent = document.getElementById("line");
+		parent.appendChild(linechart);
+	}
+	else{
+		linechart = new LineChart("#line", this, name, 'all', filteredMeasurements[name], 200, 700, fhir=true);
+	}
+	
 }
 
 function frequencyChart(a){
@@ -151,7 +143,7 @@ function disableChart(a){
 
 }
 
-
+var filteredMeasurements = {};
 //TODO get background information from patient
 //available data should contain: Age, gender, maritalStatus, language(?), missing module, children, education
 function fhirCharts(data){
@@ -160,7 +152,6 @@ function fhirCharts(data){
 	let measurements = getMeasurementNames(data);
 	//console.log(measurements)
 
-	let filteredMeasurements = [];
 	for (let i = 0; i < measurements.length; i++){
 		var cleaned = []
 		var measurement = measurements[i]
@@ -173,7 +164,6 @@ function fhirCharts(data){
 				cleaned.push(observation)
 			}
 		}
-		
 
 		var categorized = {}
 
@@ -186,21 +176,18 @@ function fhirCharts(data){
 				time = time.slice(0, time.length - 6)
 				time = time.replace("T", " ");
 				
-
 				categorized[time] = quantity;
-				
 			}
 		}
 
 		//remove observations with 1 data point
 		if (Object.keys(categorized).length > 1){
-			filteredMeasurements.push(measurement)
-			let linechart = new LineChart("#line", this, measurement, 'all', categorized, 200, 700, fhir=true);
-			//charts[measurement] = linechart;
+			filteredMeasurements[measurement] = categorized;
+			//let linechart = new LineChart("#line", this, measurement, 'all', categorized, 200, 700, fhir=true);
 		}
 		
 	}
-	initCheckBoxes(filteredMeasurements);
+	initCheckBoxes(Object.keys(filteredMeasurements));
 
 	
 }
