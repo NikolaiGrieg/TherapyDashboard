@@ -121,17 +121,20 @@ function disableChart(a){
 	//TODO just set inactive, don't actually remove
 	let name = a.id.replace("removeFor", "")
 	let divName = name.replace(/\s/g, ''); //remove spaces to match correct div
-	let containerName = "lineChart" + divName
+	let containerName = "lineChart" + divName //TODO more generic names so it works on freq/event
 	var chart = document.getElementById(containerName);
 
-	disabledCharts[name] = chart;
+	if(chart){
+		disabledCharts[name] = chart;
 
-	var parent = chart.parentNode;
-	parent.removeChild(chart);
+		var parent = chart.parentNode;
+		parent.removeChild(chart);
 
+	}
 	//destroy selector button
 	let selector = document.getElementById("selectorContainerFor" + name);
 	selector.parentNode.removeChild(selector);
 
 	changeSelectedObservationBtnText("Select Chart")
+	
 }

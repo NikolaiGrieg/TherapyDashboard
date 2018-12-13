@@ -24,6 +24,11 @@ $(function fhirData(){
 
 		smart.api.search({type: "Patient"}).then(results =>{
 			console.log(results)
+
+			//TODO get actual patient instead of first
+			let pat = results.data.entry[0];
+
+			//initBackground(pat.resource)
 		});
 		
 	    smart.api.fetchAllWithReferences({ type: "Observation" }).then(function (results, refs) {
@@ -110,4 +115,46 @@ function filterFhirData(data){
 		
 	}
 	initSelectors(filteredMeasurements);
+}
+
+//This function works somewhat (missing some unpacking), but the returned FHIR data doesnt appear to be very complete
+function initBackground(patient){
+
+	let listItems = "";
+	let keys = Object.keys(patient);
+
+	let filter = ["name", "gender", "birthDate", "telecom"];
+
+	for (let i = 0; i < keys.length; i++){
+		if(filter.includes(keys[i])){
+			let curVal = patient[keys[i]]
+			var currentHTML = `
+				<tr class="table-active">
+	                <th scope="row">
+	                    <span class="normalText">${keys[i]}</span>
+	                </th>
+	                <td scope="row">
+	                    <span class="normalText">${curVal}</span>
+	                </td>
+	            </tr>
+			`
+			listItems += currentHTML;
+		}
+	}
+	
+
+	var html = `
+	<table class="table table-hover table-striped">
+	    <tbody>
+            ${listItems}  
+	    </tbody>
+	</table>
+	`
+
+	var backgroundTable = document.createElement("div");
+	backgroundTable.innerHTML = html;
+
+	let container = document.getElementById("background");
+	container.appendChild(backgroundTable);
+
 }
