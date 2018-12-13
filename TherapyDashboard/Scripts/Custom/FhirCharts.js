@@ -42,11 +42,15 @@ function createChartSelector(obsSelector) {
 	let name = obsSelector.id.replace("selectorFor", "");
 	var container = document.getElementById("observationsContainer");
 
-	//Logic for determining chart options go here
+	//Logic for determining local chart options go here
 
 	//create chart selector
+	let prev = document.getElementById("selectorContainer");
+	if (prev){
+		prev.parentNode.removeChild(prev); //remove previous selection
+	}
 	var selectorContainer = document.createElement("div");
-	selectorContainer.id = "selectorContainerFor" + name;
+	selectorContainer.id = "selectorContainer";
 
 	var html = `
 			<div class="btn-group">
@@ -98,9 +102,9 @@ function lineChart(a) {
 		linechart = new LineChart("#line", this, name, 'all', filteredMeasurements[name], 200, 700, fhir=true);
 	}
 
-	//clean up
+	//clean up TODO extract this
 	//destroy selector button
-	let selector = document.getElementById("selectorContainerFor" + name);
+	let selector = document.getElementById("selectorContainer");
 	selector.parentNode.removeChild(selector);
 
 	changeSelectedObservationBtnText("Select Chart")
@@ -131,8 +135,8 @@ function disableChart(a){
 		parent.removeChild(chart);
 
 	}
-	//destroy selector button
-	let selector = document.getElementById("selectorContainerFor" + name);
+
+	let selector = document.getElementById("selectorContainer");
 	selector.parentNode.removeChild(selector);
 
 	changeSelectedObservationBtnText("Select Chart")
