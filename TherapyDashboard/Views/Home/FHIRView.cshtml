@@ -9,6 +9,7 @@
         var data = []
         //This is somehow only works on this page... DONT REMOVE
         FHIR.oauth2.ready(function (smart) {
+            /*
             smart.api.fetchAllWithReferences({ type: "Observation" }).then(function (results, refs) {
                 results.forEach(function (obs) {
                     console.log(obs)
@@ -34,6 +35,11 @@
                 });
                 //fhirCharts(data)
             });
+            */
+
+
+            //Not sure why this is necessary, but redirecting before Oauth.ready breaks it later
+            window.location.href = '../';
         });
 
     	

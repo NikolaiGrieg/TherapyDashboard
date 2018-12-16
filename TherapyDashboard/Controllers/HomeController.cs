@@ -13,11 +13,9 @@ namespace TherapyDashboard.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize]
+        //[Authorize]
         public ActionResult Index()
         {
-
-            
 
             //init models
             MongoDBConnection repo = new MongoDBConnection();
@@ -49,8 +47,8 @@ namespace TherapyDashboard.Controllers
         [Route("fhir-app")]
         public ActionResult FHIRView()
         {
-            
-            return View();
+
+            return View();//RedirectToAction("Index");
         }
 
         [Route("fhir-app/launch")]
