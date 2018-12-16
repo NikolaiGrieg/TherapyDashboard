@@ -107,7 +107,7 @@ function lineChart(a) {
 	let selector = document.getElementById("selectorContainer");
 	selector.parentNode.removeChild(selector);
 
-	changeSelectedObservationBtnText("Select Chart")
+	changeSelectedObservationBtnText("Select Observation")
 	
 }
 
@@ -139,6 +139,6 @@ function disableChart(a){
 	let selector = document.getElementById("selectorContainer");
 	selector.parentNode.removeChild(selector);
 
-	changeSelectedObservationBtnText("Select Chart")
+	changeSelectedObservationBtnText("Select Observation")
 	
 }

@@ -256,6 +256,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\DetailView\ActivityChart.js" />
     <Content Include="Scripts\Custom\DetailView\HCBarChart.js" />
+    <Content Include="Scripts\Custom\FhirCharts.js" />
     <Content Include="Scripts\Custom\FhirRepository.js" />
     <Content Include="Scripts\Custom\MasterView\PatientModuleChart.js" />
     <Content Include="Scripts\Custom\DynamicSpider\Controller.js" />

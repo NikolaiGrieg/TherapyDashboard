@@ -21,17 +21,21 @@ $(function fhirData(){
 			console.log(results)
 		});
 		*/
-
+		/*
 		smart.api.search({type: "Patient"}).then(results =>{
 			console.log(results)
-
 			//TODO get actual patient instead of first
 			let pat = results.data.entry[0];
 
 			//initBackground(pat.resource)
 		});
+		*/
 		
-	    smart.api.fetchAllWithReferences({ type: "Observation" }).then(function (results, refs) {
+	    smart.api.fetchAllWithReferences({ 
+	    	type: "Observation", query: {
+	    		patient : ["42ab2ed1-eb1d-4501-be82-642e11538eac"] //specific patient for now
+	    	}
+		}).then(function (results, refs) {
 	    	//TODO get all patients for main page
 	        results.forEach(function (obs) {
 	            //console.log(obs)
