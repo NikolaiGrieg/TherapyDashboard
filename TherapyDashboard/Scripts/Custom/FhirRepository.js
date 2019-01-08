@@ -3,7 +3,6 @@
 $(function fhirData(){
 	var data = []
 	FHIR.oauth2.ready(function (smart) {
-		
 		/*
 		//Get BMI observations for specified patient
 		smart.api.search({type: "Observation", query: {
@@ -33,13 +32,14 @@ $(function fhirData(){
 		
 	    smart.api.fetchAllWithReferences({ 
 	    	type: "Observation", query: {
-	    		patient : ["42ab2ed1-eb1d-4501-be82-642e11538eac"] //specific patient for now
+	    		patient : ["fdb4e56a-145b-4962-8a54-e056757832aa"] //specific patient for now
 	    	}
 		}).then(function (results, refs) {
 	    	//TODO get all patients for main page
-	        results.forEach(function (obs) {
+	    	console.log(results)
+	        results.data.entry.forEach(function (obs) {
 	            //console.log(obs)
-	            var entry;
+	            obs = obs.resource;
 	            if (obs.component){
 	                entry = {
 	                    patient : obs.subject.reference,

@@ -11,6 +11,7 @@
         FHIR.oauth2.ready(function (smart) {
             /*
             smart.api.fetchAllWithReferences({ type: "Observation" }).then(function (results, refs) {
+                console.log(results)
                 results.forEach(function (obs) {
                     console.log(obs)
                     var entry;
@@ -31,7 +32,7 @@
                         }
                     }
 
-                    data.push(entry)
+                    //data.push(entry)
                 });
                 //fhirCharts(data)
             });
