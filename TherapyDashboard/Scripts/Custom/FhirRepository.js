@@ -1,67 +1,83 @@
 ﻿//TODO make prototype, initialize from controller?
 
+//No auth connection
+
+/*
+smart.api.search({type: "Patient"}).then(results =>{
+	console.log(results)
+});
+*/
+
+
 $(function fhirData(){
 	var data = []
-	FHIR.oauth2.ready(function (smart) {
-		/*
-		//Get BMI observations for specified patient
-		smart.api.search({type: "Observation", query: {
-			code : ["39156-5"],
-			patient : ["42ab2ed1-eb1d-4501-be82-642e11538eac"]
-			}
-		}).then(function(results, refs){
-			console.log(results)
-		});
-		*/
-		
-		/*
-		//Get all questionnaire responses
-		smart.api.search({type: "QuestionnaireResponse"}).then(results =>{
-			console.log(results)
-		});
-		*/
-		/*
-		smart.api.search({type: "Patient"}).then(results =>{
-			console.log(results)
-			//TODO get actual patient instead of first
-			let pat = results.data.entry[0];
+	var config = {
+		serviceUrl: "http://ec2-54-93-230-9.eu-central-1.compute.amazonaws.com/baseDstu3",
+		auth: {
+		  type: 'none'
+		}
+	};
+	var smart = FHIR.client(config);
 
-			//initBackground(pat.resource)
-		});
-		*/
 		
-	    smart.api.fetchAllWithReferences({ 
-	    	type: "Observation", query: {
-	    		patient : ["fdb4e56a-145b-4962-8a54-e056757832aa"] //specific patient for now
-	    	}
-		}).then(function (results, refs) {
-	    	//TODO get all patients for main page
-	    	console.log(results)
-	        results.data.entry.forEach(function (obs) {
-	            //console.log(obs)
-	            obs = obs.resource;
-	            if (obs.component){
-	                entry = {
-	                    patient : obs.subject.reference,
-	                    measurement : obs.code.coding[0].display,
-	                    time : obs.effectiveDateTime,
-	                    component : obs.component,
-	                }
-	            }
-	            else{
-	                entry = {
-	                    patient : obs.subject.reference,
-	                    measurement : obs.code.coding[0].display,
-	                    time : obs.effectiveDateTime,
-	                    quantity : obs.valueQuantity.value
-	                }
-	            }
-	            
-	            data.push(entry)
-	        });
-	        filterFhirData(data);
-	    });
+	/*
+	//Get BMI observations for specified patient
+	smart.api.search({type: "Observation", query: {
+		code : ["39156-5"],
+		patient : ["42ab2ed1-eb1d-4501-be82-642e11538eac"]
+		}
+	}).then(function(results, refs){
+		console.log(results)
 	});
+	*/
+	
+	/*
+	//Get all questionnaire responses
+	smart.api.search({type: "QuestionnaireResponse"}).then(results =>{
+		console.log(results)
+	});
+	*/
+	/*
+	smart.api.search({type: "Patient"}).then(results =>{
+		console.log(results)
+		//TODO get actual patient instead of first
+		let pat = results.data.entry[0];
+
+		//initBackground(pat.resource)
+	});
+	*/
+	
+    smart.api.fetchAllWithReferences({ 
+    	type: "Observation", query: {
+    		patient : ["47994"] //specific patient for now
+    	}
+	}).then(function (results, refs) {
+    	//TODO get all patients for main page
+    	console.log(results)
+        results.data.entry.forEach(obs =>{
+            //console.log(obs)
+            obs = obs.resource;
+            if (obs.component){
+                entry = {
+                    patient : obs.subject.reference,
+                    measurement : obs.code.coding[0].display,
+                    time : obs.effectiveDateTime,
+                    component : obs.component,
+                }
+            }
+            else if (obs.valueQuantity){ //TODO FIX for valueInteger++
+                entry = {
+                    patient : obs.subject.reference,
+                    measurement : obs.code.coding[0].display,
+                    time : obs.effectiveDateTime,
+                    quantity : obs.valueQuantity.value
+                }
+            }
+            
+            data.push(entry)
+        });
+        filterFhirData(data);
+    });
 })
 
 
