@@ -1,12 +1,19 @@
 //console.log(dataPath);
-linechart = new LineChart("#line", this, 'MADRS-S', 'all', forms);
+//TODO change name, this is no longer a controller
+
+function initQRLineCharts(resources){
+	var temp_a = forms; //forms should be same format as resources.
+	//console.log(temp_a)
+	linechart = new LineChart("#line", this, 'MADRS-S', 'all', resources);
+}
+
 //spiderchart = new SpiderChart("#chart", this, dataPath);
 
 
 
 
 function update(index){
-	if (typeof spiderchart !== 'undefined'){ //TODO maybe disable update calls from background charts
+	if (typeof spiderchart !== 'undefined'){ //TODO disable update calls from background charts
 		spiderchart.wrangleData(index)
 	}
 }
