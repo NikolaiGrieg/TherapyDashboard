@@ -1,16 +1,11 @@
 //console.log(dataPath);
 //TODO change name, this is no longer a controller
 
+//called from FhirRepository
 function initQRLineCharts(resources){
-	var temp_a = forms; //forms should be same format as resources.
-	//console.log(temp_a)
+	console.log(forms)
 	linechart = new LineChart("#line", this, 'MADRS-S', 'all', resources);
 }
-
-//spiderchart = new SpiderChart("#chart", this, dataPath);
-
-
-
 
 function update(index){
 	if (typeof spiderchart !== 'undefined'){ //TODO disable update calls from background charts
@@ -18,6 +13,7 @@ function update(index){
 	}
 }
 
+//called from SpiderChart
 function selectAxis(parent, axis, data){
 	console.log(axis);
 	var height = 200;

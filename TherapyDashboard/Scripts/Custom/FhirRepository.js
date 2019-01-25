@@ -9,38 +9,80 @@ smart.api.search({type: "Patient"}).then(results =>{
 */
 
 //TODO RENAME, this is the new controller
+//TODO refactor out QR handling
 var data = []
-    var config = {
-        serviceUrl: "http://localhost:8080/hapi/baseDstu3", //"http://ec2-54-93-230-9.eu-central-1.compute.amazonaws.com/baseDstu3",
-        auth: {
-          type: 'none'
-        }
-    };
+var config = {
+    serviceUrl: "http://localhost:8080/hapi/baseDstu3", //"http://ec2-54-93-230-9.eu-central-1.compute.amazonaws.com/baseDstu3",
+    auth: {
+      type: 'none'
+    }
+};
 var smart = FHIR.client(config);
 var tempCurrentPatient = ["325"];  
 
 //TODO maybe encapsulate this and getQRResources in class
 var QRResourceData; //Singleton
-
 async function getQRResources(){
 	if (!QRResourceData){
-		let results = await smart.api.fetchAllWithReferences({ 
-			type: "QuestionnaireResponse", query: {
-			    patient : tempCurrentPatient 
-			}
-		});
-	    QRResourceData = wrangleFhirQRToTimeSeries(results);
-	    return QRResourceData;
+		let QRResourceData = await pageChainSearch();
+		return QRResourceData;
 	}
 	else{
 		return QRResourceData;
 	}
 }
 
-//TODO singleton the data so it's not pulled on each update IMPORTANT
+async function pageChainSearch(){
+	let results = await smart.api.fetchAllWithReferences({ 
+		type: "QuestionnaireResponse", query: {
+		    patient : tempCurrentPatient 
+		}
+	});
+	
+    let intermediateResultList = [wrangleFhirQRToTimeSeries(results, true)];
+    let nextPageUrl = getNextUrl(results, true)
+
+    //get all remaining resource pages
+    while (nextPageUrl){
+    	//undocumented function in 
+    	//https://raw.githubusercontent.com/smart-on-fhir/client-js/master/dist/fhir-client.js
+    	let results = await $.getJSON(nextPageUrl);
+    	intermediateResultList.push(wrangleFhirQRToTimeSeries(results, false))
+    	nextPageUrl = getNextUrl(results, false);
+    }
+
+    //wrangle into d3 accepted format
+    let processedResults = {};
+    intermediateResultList.forEach(resourceList => {
+    	Object.entries(resourceList).forEach(res =>{
+    		let date = res[0];
+    		let val = res[1];
+    		processedResults[date] = val;
+    	})
+    })
+    return processedResults;
+}
+
+function getNextUrl(resource, first){ //can return undefined
+	let links;
+	if(first){
+		links = resource.data.link;
+	}
+	else {
+		links = resource.link;
+	}
+	for (let i = 0; i < links.length; i++){
+		if (links[i].relation === "next") {
+			return links[i].url;
+		}
+	}
+}
+
+/// Gets all QR resources (all pages) for the current patient, and wrangles it into chart data
+//TODO maybe load data initially (async), now it loads on button (composite kat) click
 function initSpider(){
 	getQRResources().then(timeSeries => {
-		console.log(timeSeries)
+		//console.log(timeSeries)
 		createSpiderChart(timeSeries);
 	});
 }
@@ -59,7 +101,7 @@ $(function fhirData(){
 	}).then(function (results, refs) {
 		//console.log(results);
 		//TODO pull all resources (pages etc)
-		var timeSeries = wrangleFhirQRToTimeSeries(results);
+		var timeSeries = wrangleFhirQRToTimeSeries(results, true);
 		initQRLineCharts(timeSeries);
     });
     
@@ -106,13 +148,21 @@ $(function fhirData(){
     });
 })
 
-function wrangleFhirQRToTimeSeries(bundle){
+function wrangleFhirQRToTimeSeries(bundle, first){
 	//console.log(bundle)
 	//TODO get list of QR resources
 	var resources = []
-	bundle.data.entry.forEach(listItem => {
-		resources.push(listItem.resource);
-	});
+	if (first){
+		bundle.data.entry.forEach(listItem => {
+			resources.push(listItem.resource);
+		});
+	}
+	else{
+		bundle.entry.forEach(listItem => {
+			resources.push(listItem.resource);
+		});
+	}
+	
 	//console.log(resources)
 
 	//TODO method for converting resource to date:form format
@@ -122,7 +172,6 @@ function wrangleFhirQRToTimeSeries(bundle){
 		let date = Object.keys(timeDict)[0]
 		series[date] = timeDict[date]
 	})
-	//console.log(series);
 	return series;
 }
 
@@ -159,7 +208,6 @@ function filterFhirData(data){
 
     //Find unique measurements
     let measurements = getMeasurementNames(data);
-    //console.log(measurements)
 
     for (let i = 0; i < measurements.length; i++){
         var cleaned = []
