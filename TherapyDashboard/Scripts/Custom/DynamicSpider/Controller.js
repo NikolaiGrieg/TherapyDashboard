@@ -18,10 +18,10 @@ function update(index){
 	}
 }
 
-function selectAxis(parent, axis){
+function selectAxis(parent, axis, data){
 	console.log(axis);
 	var height = 200;
-	var selectedCategoryLine = new LineChart(parent, this, axis, axis, forms, height=height)
+	var selectedCategoryLine = new LineChart(parent, this, axis, axis, data, height=height)
 
 	//Remove button for selected category linecharts
 	/*
