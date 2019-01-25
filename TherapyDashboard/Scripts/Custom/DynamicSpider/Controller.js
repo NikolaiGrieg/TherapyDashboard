@@ -48,7 +48,8 @@ function createBarChart(parent){
 	barChart = new BarChart('barChart', this)
 }
 
-function createSpiderChart(){
+//called from html?
+function createSpiderChart(resources){
 	/*
 	var container = document.getElementById(parent);
 	$("#" + parent).append("<div id='spiderChart'></div>"); //overwrites previous barchart if any
@@ -57,12 +58,12 @@ function createSpiderChart(){
 	container.hidden = false
 	container.style.display = "block";
 
-	spiderchart = new SpiderChart("#spiderChart", this, forms, "MADRS-S",
+	spiderchart = new SpiderChart("#spiderChart", this, resources, "MADRS-S",
 	 height=400, width=400, selectedDiv = '#line');
 
 	//Avoids adding duplicate summary charts to modal container
 	if($('#aggregateSpiderController').children().length == 0){
-		linechart = new LineChart("#aggregateSpiderController", this, 'Summary', 'all', forms);
+		linechart = new LineChart("#aggregateSpiderController", this, 'Summary', 'all', resources);
 	}
 	
 }

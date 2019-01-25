@@ -8,21 +8,44 @@ smart.api.search({type: "Patient"}).then(results =>{
 });
 */
 
-
-$(function fhirData(){
-    var data = []
+//TODO RENAME, this is the new controller
+var data = []
     var config = {
         serviceUrl: "http://localhost:8080/hapi/baseDstu3", //"http://ec2-54-93-230-9.eu-central-1.compute.amazonaws.com/baseDstu3",
         auth: {
           type: 'none'
         }
     };
-    var smart = FHIR.client(config);
+var smart = FHIR.client(config);
+var tempCurrentPatient = ["325"];  
 
-    var tempCurrentPatient = ["325"];
-        
-    
-    
+//TODO maybe encapsulate this and getQRResources in class
+var QRResourceData; //Singleton
+
+async function getQRResources(){
+	if (!QRResourceData){
+		let results = await smart.api.fetchAllWithReferences({ 
+			type: "QuestionnaireResponse", query: {
+			    patient : tempCurrentPatient 
+			}
+		});
+	    QRResourceData = wrangleFhirQRToTimeSeries(results);
+	    return QRResourceData;
+	}
+	else{
+		return QRResourceData;
+	}
+}
+
+//TODO singleton the data so it's not pulled on each update IMPORTANT
+function initSpider(){
+	getQRResources().then(timeSeries => {
+		console.log(timeSeries)
+		createSpiderChart(timeSeries);
+	});
+}
+
+$(function fhirData(){
     //Get all questionnaire responses
     /*
     smart.api.search({type: "QuestionnaireResponse"}).then(results =>{
