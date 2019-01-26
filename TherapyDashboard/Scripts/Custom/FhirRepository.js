@@ -145,7 +145,7 @@ function initSpider(){
 
 //TODO not call this at master view
 
-$(function fhirData(){
+function initDetailView(){
 
     getQRResources().then(results =>{
         initQRLineCharts(results);
@@ -193,9 +193,7 @@ $(function fhirData(){
         });
         filterFhirData(data);
     });
-})
-
-
+}
 
 function unpackBundle(bundle, first){
     var resources = []

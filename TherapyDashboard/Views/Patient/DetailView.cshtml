@@ -196,6 +196,7 @@
         var forms = @Html.Raw(@Model.json);
         var name = "@Model.pat.name";
         //console.log(forms["2010-12-01"])
+
     </script>
 
 
@@ -205,6 +206,10 @@
     <script src="~/Scripts/Custom/DetailView/HCBarChart.js"></script>
     <script src="~/Scripts/Custom/FhirRepository.js"></script>
     <script type="text/javascript" src="~/Scripts/Custom/FhirCharts.js"></script>
+    
+    <script type="text/javascript">
+        initDetailView(); //TODO refactor
+    </script>
 </body>
 </html>
 
