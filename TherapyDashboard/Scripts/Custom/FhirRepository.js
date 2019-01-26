@@ -23,7 +23,7 @@ async function getQRResources(){
 	        }
 	    });
         let QRResources = await pageChainSearch(results);
-        let QRResourceData = wrangleQRToTS(QRResources);
+        let QRResourceData = wrangleQR(QRResources);
         return QRResourceData;
     }
     else{
@@ -31,11 +31,26 @@ async function getQRResources(){
     }
 }
 
+var patientResourceData;
+async function getPatientResources(){
+	if (!patientResourceData){
+		let results = await smart.api.fetchAllWithReferences({ //TODO difference between this and api.search?
+	        type: "Patient"
+	    });
+	    let allPatients = await pageChainSearch(results)
+	    patientResourceData = unpackBundleArray(allPatients);
+	    return patientResourceData;
+	}
+	else{
+		return patientResourceData;
+	}
+}
+
 ///accepts a resource bundle, and returns a list of all bundles in search pages
 //should work for generic resources
 async function pageChainSearch(results){
-	console.log(results)
-	console.log("--")
+	//console.log(results)
+	//console.log("--")
 
     let intermediateResultList = [results];
     let nextPageUrl = getNextUrl(results, true)
@@ -52,29 +67,50 @@ async function pageChainSearch(results){
 }
 
 //TODO better name
-function wrangleQRToTS(intermediateResources){
+function wrangleQR(intermediateResources){
 	//wrangle into d3 accepted format
-	console.log(intermediateResources)
-	let intermediateResultList = []
-	for (let i = 0; i < intermediateResources.length; i++){
-		if (i === 0){
-			intermediateResultList.push(wrangleFhirQRToTimeSeries(intermediateResources[i], true))
-		}
-		else{
-			intermediateResultList.push(wrangleFhirQRToTimeSeries(intermediateResources[i], false))
-		}
-	}
-	console.log(intermediateResultList)
+	//console.log(intermediateResources)
+
+	let intermediateResultList = unpackBundleArray(intermediateResources);
+	let timeDict = wrangleFhirQRToTimeSeries(intermediateResultList);
+	console.log(timeDict)
     let processedResults = {};
-    intermediateResultList.forEach(resourceList => {
-        Object.entries(resourceList).forEach(res =>{
-            let date = res[0];
-            let val = res[1];
-            processedResults[date] = val;
-        })
+    Object.entries(timeDict).forEach(resource => {
+        let date = resource[0];
+        let val = resource[1];
+        processedResults[date] = val;
     })
     console.log(processedResults)
     return processedResults;
+}
+
+//called from singletonhandlers, accepts input as returned from pageChainSearch
+function unpackBundleArray(bundles){
+	let intermediateResultList = []
+	for (let i = 0; i < bundles.length; i++){
+		let unpackedRes;
+		if (i === 0){
+			unpackedRes = unpackBundle(bundles[i], true)
+		}
+		else{
+			unpackedRes = unpackBundle(bundles[i], false)
+		}
+		unpackedRes.forEach(res =>{
+			intermediateResultList.push(res)
+		})
+		
+	}
+	return intermediateResultList;
+}
+
+function wrangleFhirQRToTimeSeries(resources){
+    var series = {};
+    resources.forEach(resource => {
+        let timeDict = QRResourceToTimeDict(resource);
+        let date = Object.keys(timeDict)[0]
+        series[date] = timeDict[date]
+    })
+    return series;
 }
 
 //used in pageChainSearch
@@ -103,8 +139,10 @@ function initSpider(){
     });
 }
 
+//TODO not call this at master view
+
 $(function fhirData(){
-	
+
     getQRResources().then(results =>{
         initQRLineCharts(results);
     });
@@ -118,6 +156,7 @@ $(function fhirData(){
         //initBackground(pat.resource)
     });
     */
+    
     
     smart.api.fetchAllWithReferences({ 
         type: "Observation", query: {
@@ -152,32 +191,21 @@ $(function fhirData(){
     });
 })
 
-function wrangleFhirQRToTimeSeries(bundle, first){
-    let resources = unpackBundle(bundle, first);
 
-    //TODO method for converting resource to date:form format
-    var series = {};
-    resources.forEach(resource => {
-        let timeDict = QRResourceToTimeDict(resource);
-        let date = Object.keys(timeDict)[0]
-        series[date] = timeDict[date]
-    })
-    return series;
-}
 
 function unpackBundle(bundle, first){
-	    var resources = []
-	    if (first){
-	        bundle.data.entry.forEach(listItem => {
-	            resources.push(listItem.resource);
-	        });
-	    }
-	    else{
-	        bundle.entry.forEach(listItem => {
-	            resources.push(listItem.resource);
-	        });
-	    }
-	    return resources;
+    var resources = []
+    if (first){
+        bundle.data.entry.forEach(listItem => {
+            resources.push(listItem.resource);
+        });
+    }
+    else{
+        bundle.entry.forEach(listItem => {
+            resources.push(listItem.resource);
+        });
+    }
+    return resources;
 }
 
 function QRResourceToTimeDict(resource){
