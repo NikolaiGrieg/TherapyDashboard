@@ -32,12 +32,12 @@ async function getQRResources(){
 }
 
 var patientResourceData;
-async function getPatientResources(){
+async function getPatientResources(limit=100){
 	if (!patientResourceData){
 		let results = await smart.api.fetchAllWithReferences({ //TODO difference between this and api.search?
 	        type: "Patient"
 	    });
-	    let allPatients = await pageChainSearch(results)
+	    let allPatients = await pageChainSearch(results, limit)
 	    patientResourceData = unpackBundleArray(allPatients);
 	    return patientResourceData;
 	}
@@ -48,9 +48,8 @@ async function getPatientResources(){
 
 ///accepts a resource bundle, and returns a list of all bundles in search pages
 //should work for generic resources
-async function pageChainSearch(results){
-	//console.log(results)
-	//console.log("--")
+//default limit is 100 pages = 1000 resources
+async function pageChainSearch(results, limit=100){
 
     let intermediateResultList = [results];
     let nextPageUrl = getNextUrl(results, true)
@@ -61,7 +60,12 @@ async function pageChainSearch(results){
         //https://raw.githubusercontent.com/smart-on-fhir/client-js/master/dist/fhir-client.js
         let results = await $.getJSON(nextPageUrl);
         intermediateResultList.push(results)
-        nextPageUrl = getNextUrl(results, false);
+        if(intermediateResultList.length < limit){
+        	nextPageUrl = getNextUrl(results, false);
+        }
+        else{
+        	nextPageUrl = undefined;
+        }
     }
     return intermediateResultList;
 }

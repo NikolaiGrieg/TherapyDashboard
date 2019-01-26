@@ -12,7 +12,7 @@ function buildTable(){
 
 //TODO refactor out
 async function getPatients(){
-    let allPatients = getPatientResources();
+    let allPatients = getPatientResources(limit=10);
     return allPatients;
 }
 
