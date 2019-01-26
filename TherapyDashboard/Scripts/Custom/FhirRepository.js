@@ -1,14 +1,7 @@
 ﻿//TODO make prototype, initialize from controller?
 
-//No auth connection
-
-/*
-smart.api.search({type: "Patient"}).then(results =>{
-    console.log(results)
-});
-*/
-
 //TODO RENAME, this is the new controller
+//TODO refactor to one file for handling data on specific, and one for master
 //TODO refactor out QR handling
 var data = []
 var config = {
@@ -23,86 +16,97 @@ var tempCurrentPatient = ["325"];
 //TODO maybe encapsulate this and getQRResources in class
 var QRResourceData; //Singleton
 async function getQRResources(){
-	if (!QRResourceData){
-		let QRResourceData = await pageChainSearch();
-		return QRResourceData;
-	}
-	else{
-		return QRResourceData;
-	}
+    if (!QRResourceData){
+	    let results = await smart.api.fetchAllWithReferences({ 
+	        type: "QuestionnaireResponse", query: {
+	            patient : tempCurrentPatient 
+	        }
+	    });
+        let QRResources = await pageChainSearch(results);
+        let QRResourceData = wrangleQRToTS(QRResources);
+        return QRResourceData;
+    }
+    else{
+        return QRResourceData;
+    }
 }
 
-async function pageChainSearch(){
-	let results = await smart.api.fetchAllWithReferences({ 
-		type: "QuestionnaireResponse", query: {
-		    patient : tempCurrentPatient 
-		}
-	});
-	
-    let intermediateResultList = [wrangleFhirQRToTimeSeries(results, true)];
+///accepts a resource bundle, and returns a list of all bundles in search pages
+//should work for generic resources
+async function pageChainSearch(results){
+	console.log(results)
+	console.log("--")
+
+    let intermediateResultList = [results];
     let nextPageUrl = getNextUrl(results, true)
 
     //get all remaining resource pages
     while (nextPageUrl){
-    	//undocumented function in 
-    	//https://raw.githubusercontent.com/smart-on-fhir/client-js/master/dist/fhir-client.js
-    	let results = await $.getJSON(nextPageUrl);
-    	intermediateResultList.push(wrangleFhirQRToTimeSeries(results, false))
-    	nextPageUrl = getNextUrl(results, false);
+        //undocumented function in 
+        //https://raw.githubusercontent.com/smart-on-fhir/client-js/master/dist/fhir-client.js
+        let results = await $.getJSON(nextPageUrl);
+        intermediateResultList.push(results)
+        nextPageUrl = getNextUrl(results, false);
     }
+    return intermediateResultList;
+}
 
-    //wrangle into d3 accepted format
+//TODO better name
+function wrangleQRToTS(intermediateResources){
+	//wrangle into d3 accepted format
+	console.log(intermediateResources)
+	let intermediateResultList = []
+	for (let i = 0; i < intermediateResources.length; i++){
+		if (i === 0){
+			intermediateResultList.push(wrangleFhirQRToTimeSeries(intermediateResources[i], true))
+		}
+		else{
+			intermediateResultList.push(wrangleFhirQRToTimeSeries(intermediateResources[i], false))
+		}
+	}
+	console.log(intermediateResultList)
     let processedResults = {};
     intermediateResultList.forEach(resourceList => {
-    	Object.entries(resourceList).forEach(res =>{
-    		let date = res[0];
-    		let val = res[1];
-    		processedResults[date] = val;
-    	})
+        Object.entries(resourceList).forEach(res =>{
+            let date = res[0];
+            let val = res[1];
+            processedResults[date] = val;
+        })
     })
+    console.log(processedResults)
     return processedResults;
 }
 
+//used in pageChainSearch
 function getNextUrl(resource, first){ //can return undefined
-	let links;
-	if(first){
-		links = resource.data.link;
-	}
-	else {
-		links = resource.link;
-	}
-	for (let i = 0; i < links.length; i++){
-		if (links[i].relation === "next") {
-			return links[i].url;
-		}
-	}
+    let links;
+    if(first){
+        links = resource.data.link;
+    }
+    else {
+        links = resource.link;
+    }
+    for (let i = 0; i < links.length; i++){
+        if (links[i].relation === "next") {
+            return links[i].url;
+        }
+    }
 }
 
 /// Gets all QR resources (all pages) for the current patient, and wrangles it into chart data
 //TODO maybe load data initially (async), now it loads on button (composite kat) click
+//TODO possibly get all pages async? not sure how to get the links
 function initSpider(){
-	getQRResources().then(timeSeries => {
-		//console.log(timeSeries)
-		createSpiderChart(timeSeries);
-	});
+    getQRResources().then(timeSeries => {
+        //console.log(timeSeries)
+        createSpiderChart(timeSeries);
+    });
 }
 
 $(function fhirData(){
-    //Get all questionnaire responses
-    /*
-    smart.api.search({type: "QuestionnaireResponse"}).then(results =>{
-        console.log(results)
-    });
-    */
-	smart.api.fetchAllWithReferences({ 
-		type: "QuestionnaireResponse", query: {
-		    patient : tempCurrentPatient 
-		}
-	}).then(function (results, refs) {
-		//console.log(results);
-		//TODO pull all resources (pages etc)
-		var timeSeries = wrangleFhirQRToTimeSeries(results, true);
-		initQRLineCharts(timeSeries);
+	
+    getQRResources().then(results =>{
+        initQRLineCharts(results);
     });
     
     /*
@@ -149,45 +153,46 @@ $(function fhirData(){
 })
 
 function wrangleFhirQRToTimeSeries(bundle, first){
-	//console.log(bundle)
-	//TODO get list of QR resources
-	var resources = []
-	if (first){
-		bundle.data.entry.forEach(listItem => {
-			resources.push(listItem.resource);
-		});
-	}
-	else{
-		bundle.entry.forEach(listItem => {
-			resources.push(listItem.resource);
-		});
-	}
-	
-	//console.log(resources)
+    let resources = unpackBundle(bundle, first);
 
-	//TODO method for converting resource to date:form format
-	var series = {};
-	resources.forEach(resource => {
-		let timeDict = QRResourceToTimeDict(resource);
-		let date = Object.keys(timeDict)[0]
-		series[date] = timeDict[date]
-	})
-	return series;
+    //TODO method for converting resource to date:form format
+    var series = {};
+    resources.forEach(resource => {
+        let timeDict = QRResourceToTimeDict(resource);
+        let date = Object.keys(timeDict)[0]
+        series[date] = timeDict[date]
+    })
+    return series;
+}
+
+function unpackBundle(bundle, first){
+	    var resources = []
+	    if (first){
+	        bundle.data.entry.forEach(listItem => {
+	            resources.push(listItem.resource);
+	        });
+	    }
+	    else{
+	        bundle.entry.forEach(listItem => {
+	            resources.push(listItem.resource);
+	        });
+	    }
+	    return resources;
 }
 
 function QRResourceToTimeDict(resource){
-	let date = resource.authored;
-	let form = {};
-	resource.item.forEach(listItem => {
-		let value = listItem.answer[0].valueInteger;
-		let category = listItem.text;
+    let date = resource.authored;
+    let form = {};
+    resource.item.forEach(listItem => {
+        let value = listItem.answer[0].valueInteger;
+        let category = listItem.text;
 
-		form[category] = value;
-	})
-	let timeDict = {
-		[date]: form
-	}
-	return timeDict;
+        form[category] = value;
+    })
+    let timeDict = {
+        [date]: form
+    }
+    return timeDict;
 }
 
 

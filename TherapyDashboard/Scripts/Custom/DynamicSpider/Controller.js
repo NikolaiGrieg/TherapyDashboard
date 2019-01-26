@@ -3,7 +3,7 @@
 
 //called from FhirRepository
 function initQRLineCharts(resources){
-	console.log(forms)
+	//console.log(forms)
 	linechart = new LineChart("#line", this, 'MADRS-S', 'all', resources);
 }
 

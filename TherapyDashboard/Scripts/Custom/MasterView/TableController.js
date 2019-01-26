@@ -1,6 +1,31 @@
 ﻿function initTable() {
+    buildTable();
     enableTableSort();
     initSearch();
+}
+
+function buildTable(){
+    getPatients().then(results => {
+        console.log(results)
+    });
+}
+
+//TODO refactor out
+async function getPatients(){
+    var config = {
+        serviceUrl: "http://localhost:8080/hapi/baseDstu3", //"http://ec2-54-93-230-9.eu-central-1.compute.amazonaws.com/baseDstu3",
+        auth: {
+          type: 'none'
+        }
+    };
+    var smart = FHIR.client(config);
+    var tempCurrentPatient = ["325"];  
+
+    let results = await smart.api.fetchAllWithReferences({ 
+        type: "Patient"
+    });
+    let allPatients = pageChainSearch(results) //from fhirrepository
+    return allPatients
 }
 
 function enableTableSort() {

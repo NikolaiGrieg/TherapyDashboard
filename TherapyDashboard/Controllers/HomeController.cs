@@ -26,6 +26,11 @@ namespace TherapyDashboard.Controllers
             List<Patient> patients = MongoRepository.getAllPatients();
             model.patients = patients;
             
+            //TODO fetch all patients from FHIR
+
+            //TODO calculate QR deltas for each patient
+
+            //TODO persist calculations in cache
 
             return View(model);
         }
