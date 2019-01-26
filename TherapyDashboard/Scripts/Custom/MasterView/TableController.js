@@ -1,5 +1,5 @@
 ﻿function initTable() {
-    buildTable();
+    buildTable(); //comment this to use mongodb, uncomment for fhir
     enableTableSort();
     initSearch();
 }
@@ -7,7 +7,111 @@
 function buildTable(){
     getPatients().then(results => {
         console.log(results)
+        const table = document.getElementById("masterTableBody");
+        table.innerHTML = ""
+
+        //TODO wrangle patients
+        //TODO move this to data wrangling class
+        let patNames = []
+        let patIDs = []
+        results.forEach(res =>{
+            let name = "" + res.name[0].given[0] + " " + res.name[0].family;
+            patNames.push(name)
+            patIDs.push(res.id)
+        })
+
+        //TODO look at CDS hooks, to see if this processing can be cached without inducing unupdated resources
+        //processing, TODO move
+        createSummaries(results).then(summaries=>{
+            console.log(summaries)
+            let listItems = "";
+            for (let i = 0; i < results.length; i++){
+                var currentHTML = `
+                    <tr class="table-active">
+                        <td scope="row">
+                            <span class="normalText">${patNames[i]}</span>
+                        </td>
+                        <td scope="row">
+                            <span class="normalText">${patIDs[i]}</span>
+                        </td>
+                        <td scope="row">
+                            <span class="normalText">TODO</span>
+                        </td>
+                        <td scope="row">
+                            <span class="normalText">${summaries[i]}</span>
+                        </td>
+                        <td scope="row">
+                            <span class="normalText">NYI</span>
+                        </td>
+                        <td scope="row">
+                            <span class="normalText">NYI</span>
+                        </td>
+                    </tr>
+                `
+                listItems += currentHTML;
+            }
+            table.innerHTML = listItems
+        })
+
+        
+
     });
+}
+
+async function createSummaries(patientResources){
+    let summaries = []
+    for (let i = 0; i < patientResources.length; i++){
+        //TODO execute all these simultaneously, currently n RTTs.
+        let sum = await getPatientSummary(patientResources[i]);
+        summaries.push(sum);
+    }
+    return summaries;
+}
+
+
+async function getPatientSummary(resource){
+    //get patient ID
+    let id = resource.id
+
+    //get all QRs
+    let QRs = await tempGetQRResNoCache(id);
+    if (!QRs){
+        return "No forms"
+    }
+
+    //process QRs
+    //TODO FIX/IMRPOVE
+    let dates = Object.keys(QRs)
+    var minDate = dates.reduce(function (a, b) { return a < b ? a : b; }); 
+    var maxDate = dates.reduce(function (a, b) { return a > b ? a : b; });
+
+    
+    let firstQR = QRs[minDate]; //can not assume order is kept in json
+    //maybe search through dates
+    let cumulativeFirst = 0
+    Object.entries(firstQR).forEach(entry =>{
+        let val = entry[1]
+        cumulativeFirst += val
+    })
+
+    let lastQR = QRs[maxDate];
+    let cumulativeLast = 0
+    Object.entries(lastQR).forEach(entry =>{
+        let val = entry[1]
+        cumulativeLast += val
+    })
+
+    let totalChange = cumulativeFirst - cumulativeLast;
+    if (totalChange <= 50){
+        return "Declining"
+    }
+    else if (totalChange > 50 && totalChange < 54){
+        return "Steady"
+    }
+    else{
+        return "Improving"
+    }
+    return totalChange
 }
 
 //TODO refactor out

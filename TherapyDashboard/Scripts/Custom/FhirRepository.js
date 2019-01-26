@@ -15,11 +15,11 @@ var tempCurrentPatient = ["325"];
 
 //TODO maybe encapsulate this and getQRResources in class
 var QRResourceData; //Singleton
-async function getQRResources(){
+async function getQRResources(patientID){
     if (!QRResourceData){
 	    let results = await smart.api.fetchAllWithReferences({ 
 	        type: "QuestionnaireResponse", query: {
-	            patient : tempCurrentPatient 
+	            patient : patientID 
 	        }
 	    });
         let QRResources = await pageChainSearch(results);
@@ -29,6 +29,20 @@ async function getQRResources(){
     else{
         return QRResourceData;
     }
+}
+
+async function tempGetQRResNoCache(patientID){
+    let results = await smart.api.fetchAllWithReferences({ 
+        type: "QuestionnaireResponse", query: {
+            patient : patientID 
+        }
+    });
+    let QRResources = await pageChainSearch(results);
+    if (QRResources){
+        let QRResourceData = wrangleQR(QRResources);
+        return QRResourceData;
+    }
+    return undefined;
 }
 
 var patientResourceData;
@@ -51,6 +65,9 @@ async function getPatientResources(limit=100){
 //default limit is 100 pages = 1000 resources
 async function pageChainSearch(results, limit=100){
 
+    if (results.data.total === 0){ //no forms found
+        return undefined
+    }
     let intermediateResultList = [results];
     let nextPageUrl = getNextUrl(results, true)
 
@@ -137,7 +154,7 @@ function getNextUrl(resource, first){ //can return undefined
 //TODO maybe load data initially (async), now it loads on button (composite kat) click
 //TODO possibly get all pages async? not sure how to get the links
 function initSpider(){
-    getQRResources().then(timeSeries => {
+    getQRResources(tempCurrentPatient).then(timeSeries => {
         //console.log(timeSeries)
         createSpiderChart(timeSeries);
     });
@@ -147,7 +164,7 @@ function initSpider(){
 
 function initDetailView(){
 
-    getQRResources().then(results =>{
+    getQRResources(tempCurrentPatient).then(results =>{
         initQRLineCharts(results);
     });
     
