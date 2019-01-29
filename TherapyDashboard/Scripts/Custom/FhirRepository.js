@@ -48,10 +48,12 @@ async function tempGetQRResNoCache(patientID){
 var patientResourceData;
 async function getPatientResources(limit=100){
 	if (!patientResourceData){
+        console.log("fetching patients")
 		let results = await smart.api.fetchAllWithReferences({ //TODO difference between this and api.search?
 	        type: "Patient"
 	    });
 	    let allPatients = await pageChainSearch(results, limit)
+        console.log("patients fetched")
 	    patientResourceData = unpackBundleArray(allPatients);
 	    return patientResourceData;
 	}
@@ -90,18 +92,17 @@ async function pageChainSearch(results, limit=100){
 //TODO better name
 function wrangleQR(intermediateResources){
 	//wrangle into d3 accepted format
-	//console.log(intermediateResources)
 
 	let intermediateResultList = unpackBundleArray(intermediateResources);
 	let timeDict = wrangleFhirQRToTimeSeries(intermediateResultList);
-	console.log(timeDict)
+
     let processedResults = {};
     Object.entries(timeDict).forEach(resource => {
         let date = resource[0];
         let val = resource[1];
         processedResults[date] = val;
     })
-    console.log(processedResults)
+    //console.log(processedResults)
     return processedResults;
 }
 

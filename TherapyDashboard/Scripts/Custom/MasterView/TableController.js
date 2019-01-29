@@ -1,14 +1,13 @@
 ﻿function initTable() {
-    buildTable(); //comment this to use mongodb, uncomment for fhir
+    initFHIRData(); //comment this to use mongodb, uncomment for fhir
     enableTableSort();
     initSearch();
 }
 
-function buildTable(){
+//TODO rename, controls the entire view
+function initFHIRData(){
     getPatients().then(results => {
-        console.log(results)
-        const table = document.getElementById("masterTableBody");
-        table.innerHTML = ""
+        //console.log(results)
 
         //TODO wrangle patients
         //TODO move this to data wrangling class
@@ -20,46 +19,126 @@ function buildTable(){
             patIDs.push(res.id)
         })
 
-        //TODO look at CDS hooks, to see if this processing can be cached without inducing unupdated resources
+        //TODO save resources on server, request new (date based) resources in search query
         //processing, TODO move
         createSummaries(results).then(summaries=>{
-            console.log(summaries)
-            let listItems = "";
-            for (let i = 0; i < results.length; i++){
-                var currentHTML = `
-                    <tr class="table-active">
-                        <td scope="row">
-                            <span class="normalText">${patNames[i]}</span>
-                        </td>
-                        <td scope="row">
-                            <span class="normalText">${patIDs[i]}</span>
-                        </td>
-                        <td scope="row">
-                            <span class="normalText">TODO</span>
-                        </td>
-                        <td scope="row">
-                            <span class="normalText">${summaries[i]}</span>
-                        </td>
-                        <td scope="row">
-                            <span class="normalText">NYI</span>
-                        </td>
-                        <td scope="row">
-                            <span class="normalText">NYI</span>
-                        </td>
-                    </tr>
-                `
-                listItems += currentHTML;
-            }
-            table.innerHTML = listItems
-        })
+            createFlags(results).then(flags =>{
+                buildTable(summaries, patNames, patIDs, flags)
+            })
 
-        
+            let pieChartData = calculatePieChartData(summaries);
+            plotSummariesPieChart(pieChartData);
+        })
 
     });
 }
 
+async function createFlags(patientResources){
+    let flags = []
+    for (let i = 0; i < patientResources.length; i++){
+        //TODO execute all these simultaneously, currently n RTTs.
+        let flag = await calculateFlag(patientResources[i]);
+        flags.push(flag);
+    }
+    return flags;
+}
+
+async function calculateFlag(resource){
+    //TODO inject parameters
+    
+    let id = resource.id
+
+    //get all QRs 
+    //TODO could maybe use only last 2 forms here, probably still use cached data from table call
+    let QRs = await tempGetQRResNoCache(id);//TODO use cached version IMPORTANT
+    if (QRs){
+        //console.log(QRs)
+        let dates = Object.keys(QRs)
+        var minDate = dates.reduce(function (a, b) { return a < b ? a : b; }); 
+        var maxDate = dates.reduce(function (a, b) { return a > b ? a : b; });
+
+        //TODO for now just use max latest measurement, implment delta checks later
+        let lastQR = QRs[maxDate];
+        let maxKey = Object.keys(lastQR).reduce((a, b) => lastQR[a] > lastQR[b] ? a : b);
+
+        return maxKey;
+    }
+    else{
+        return "";
+    }
+    
+}
+
+function calculatePieChartData(summaries){
+    let steady = 0;
+    let improving = 0;
+    let declining = 0;
+
+    summaries.forEach(str => {
+        //switch?
+        if (str === "Declining"){
+            declining++;
+        }
+        else if (str === "Improving"){
+            improving++;
+        }
+        else if (str === "Steady"){
+            steady++;
+        }
+    })
+
+    let data = [{
+        name: 'Steady',
+        y: steady,
+        sliced: true,
+        selected: true
+    }, {
+        name: 'Improving',
+        y: improving
+    }, {
+        name: 'Declining',
+        y: declining
+    }]
+    
+    return data
+    
+}
+
+function buildTable(summaries, patNames, patIDs, flags){
+    const table = document.getElementById("masterTableBody");
+    table.innerHTML = ""
+    let listItems = "";
+    for (let i = 0; i < patNames.length; i++){
+        var currentHTML = `
+            <tr class="table-active">
+                <td scope="row">
+                    <span class="normalText">${patNames[i]}</span>
+                </td>
+                <td scope="row">
+                    <span class="normalText">${patIDs[i]}</span>
+                </td>
+                <td scope="row">
+                    <span class="normalText">${flags[i]}</span>
+                </td>
+                <td scope="row">
+                    <span class="normalText">${summaries[i]}</span>
+                </td>
+                <td scope="row">
+                    <span class="normalText">NYI</span>
+                </td>
+                <td scope="row">
+                    <span class="normalText">NYI</span>
+                </td>
+            </tr>
+        `
+        listItems += currentHTML;
+    }
+    table.innerHTML = listItems
+}
+
 async function createSummaries(patientResources){
     let summaries = []
+    console.log("fetching QRs for summaries")
     for (let i = 0; i < patientResources.length; i++){
         //TODO execute all these simultaneously, currently n RTTs.
         let sum = await getPatientSummary(patientResources[i]);
@@ -101,11 +180,12 @@ async function getPatientSummary(resource){
         cumulativeLast += val
     })
 
+    //TODO inject parameters for this calculation
     let totalChange = cumulativeFirst - cumulativeLast;
-    if (totalChange <= 50){
+    if (totalChange <= 48){
         return "Declining"
     }
-    else if (totalChange > 50 && totalChange < 54){
+    else if (totalChange > 48 && totalChange < 50){
         return "Steady"
     }
     else{
