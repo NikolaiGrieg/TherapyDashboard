@@ -5,8 +5,11 @@
 }
 
 //TODO rename, controls the entire view
-function initFHIRData(){
-    getPatients().then(results => {
+async function initFHIRData(){
+    let allQRs = await getQRRForAllPatients();
+    //TODO replace api calls in createFlags and createSummaries with allQRs
+    console.log(allQRs)
+    getPatientResources().then(results => {
         //console.log(results)
 
         //TODO wrangle patients
@@ -192,12 +195,6 @@ async function getPatientSummary(resource){
         return "Improving"
     }
     return totalChange
-}
-
-//TODO refactor out
-async function getPatients(){
-    let allPatients = getPatientResources(limit=10);
-    return allPatients;
 }
 
 function enableTableSort() {

@@ -13,23 +13,41 @@ var config = {
 var smart = FHIR.client(config);
 var tempCurrentPatient = ["325"];  
 
-//TODO maybe encapsulate this and getQRResources in class
-var QRResourceData; //Singleton
+//TODO maybe encapsulate this in class
 async function getQRResources(patientID){
+    let results = await smart.api.fetchAllWithReferences({ 
+        type: "QuestionnaireResponse", query: {
+            patient : patientID 
+        }
+    });
+    let QRResources = await pageChainSearch(results);
+    let processedQRResource = wrangleQR(QRResources);
+    return processedQRResource;
+}
+
+//TODO do these methods on backend instead, and return with model.
+var QRResourceData;
+async function getQRRForAllPatients(){
+    //possible filter here for therapist access
     if (!QRResourceData){
-	    let results = await smart.api.fetchAllWithReferences({ 
-	        type: "QuestionnaireResponse", query: {
-	            patient : patientID 
-	        }
-	    });
-        let QRResources = await pageChainSearch(results);
-        let QRResourceData = wrangleQR(QRResources);
-        return QRResourceData;
+        console.log("fetcing all QRs")
+        QRResourceData = [];
+        let results = await getPatientResources();
+            
+        for (let i = 0; i < results.length; i++){
+            let resource = results[i];
+            let QRs = await getQRResources(resource.id);
+            QRResourceData.push(QRs);
+        }
+        return QRResourceData
     }
     else{
+        console.log("using cached QRs")
         return QRResourceData;
     }
+    
 }
+
 
 async function tempGetQRResNoCache(patientID){
     let results = await smart.api.fetchAllWithReferences({ 
@@ -39,14 +57,14 @@ async function tempGetQRResNoCache(patientID){
     });
     let QRResources = await pageChainSearch(results);
     if (QRResources){
-        let QRResourceData = wrangleQR(QRResources);
-        return QRResourceData;
+        let processedQRResource = wrangleQR(QRResources);
+        return processedQRResource;
     }
     return undefined;
 }
 
 var patientResourceData;
-async function getPatientResources(limit=100){
+async function getPatientResources(limit=10){
 	if (!patientResourceData){
         console.log("fetching patients")
 		let results = await smart.api.fetchAllWithReferences({ //TODO difference between this and api.search?
@@ -92,18 +110,19 @@ async function pageChainSearch(results, limit=100){
 //TODO better name
 function wrangleQR(intermediateResources){
 	//wrangle into d3 accepted format
+    if (intermediateResources){
+        let intermediateResultList = unpackBundleArray(intermediateResources);
+        let timeDict = wrangleFhirQRToTimeSeries(intermediateResultList);
 
-	let intermediateResultList = unpackBundleArray(intermediateResources);
-	let timeDict = wrangleFhirQRToTimeSeries(intermediateResultList);
-
-    let processedResults = {};
-    Object.entries(timeDict).forEach(resource => {
-        let date = resource[0];
-        let val = resource[1];
-        processedResults[date] = val;
-    })
-    //console.log(processedResults)
-    return processedResults;
+        let processedResults = {};
+        Object.entries(timeDict).forEach(resource => {
+            let date = resource[0];
+            let val = resource[1];
+            processedResults[date] = val;
+        })
+        //console.log(processedResults)
+        return processedResults;
+    }
 }
 
 //called from singletonhandlers, accepts input as returned from pageChainSearch
