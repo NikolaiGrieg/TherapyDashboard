@@ -57,7 +57,7 @@
                         <tr class="table-active">
                             <td scope="row">
                                 <a href="@Url.Action("" , "Patient" )" class="elements">
-                                    <span>@Model.patients[i].name</span>
+                                    <span>_NAME</span>
                                 </a>
                             </td>
                             <td>
@@ -102,78 +102,13 @@
                     <th scope="col">Current module (PHs)</th>
                     <th scope="col">Flags</th>
                     <th scope="col">Summary</th>
-                    <th scope="col">Last login</th>
                     <th scope="col">Last checked</th>
                 </tr>
             </thead>
             
-            <tbody id="masterTableBody">
-                @foreach (var pat in Model.patients)
-                {
-                    <tr class="table-active">
-                        <td scope="row">
-                            <a href="@Url.Action("" + pat.id + "/v2", "Patient" )" class="elements">
-                                <span>@pat.name</span>
-                            </a>
-                        </td>
-                        <td>
-                            @{ var module = pat.module;}
-                            @module
-                        </td>
+            <tbody id="masterTableBody"></tbody>
+                
 
-                        <td>
-                            @{ if (pat.tempRand % 4 == 0)
-                                {
-                                    <span>Delayed 2 days</span>
-                                }
-                                else if (pat.tempRand % 3 == 1)
-                                {
-                                    <span>Due in 2 days</span>
-                                }
-                                else
-                                {
-                                    <span>Delivered</span>
-                                }
-                            }
-                        </td>
-
-                        <td>
-                            @{ if (pat.tempRand % 8 == 0)
-                                {
-                                    <span>Redusert nattesøvn</span>
-                                }
-                                else if (pat.tempRand % 8 == 1)
-                                {
-                                    <span>Svekket appetitt</span>
-                                }
-                                else
-                                {
-                                    <span></span>
-                                }
-                            }
-                        </td>
-
-                        <td>
-                            @{ if (pat.tempRand % 8 == 2 || pat.tempRand % 8 == 3)
-                                {
-                                    <span>Improving</span>
-                                }
-                                else if (pat.tempRand % 8 == 1)
-                                {
-                                    <span>Declining</span>
-                                }
-                                else
-                                {
-                                    <span>Steady</span>
-                                }
-                            }
-                        </td>
-
-                        <td>@pat.tempRand days</td>
-                        <td>@pat.tempRand days</td>
-
-                    </tr>
-                }
         </table>
     </div>
 

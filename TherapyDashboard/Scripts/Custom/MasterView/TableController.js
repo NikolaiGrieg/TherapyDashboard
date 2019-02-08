@@ -129,9 +129,6 @@ function buildTable(summaries, patNames, patIDs, flags){
                 <td scope="row">
                     <span class="normalText">NYI</span>
                 </td>
-                <td scope="row">
-                    <span class="normalText">NYI</span>
-                </td>
             </tr>
         `
         listItems += currentHTML;

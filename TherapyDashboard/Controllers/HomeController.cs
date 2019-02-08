@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TherapyDashboard.Models;
 using TherapyDashboard.ViewModels;
 using Microsoft.VisualBasic.FileIO;
 using TherapyDashboard.DataBase;
 using MongoDB.Driver;
+using TherapyDashboard.Services;
+using Hl7.Fhir.Model;
 
 namespace TherapyDashboard.Controllers
 {
@@ -17,7 +18,8 @@ namespace TherapyDashboard.Controllers
         public ActionResult Index()
         {
 
-            //init models
+            //TODO remove these when fully integrated with FHIR
+            /*
             MongoDBConnection repo = new MongoDBConnection();
             //var bill = repo.Patients.AsQueryable().First();
 
@@ -25,14 +27,20 @@ namespace TherapyDashboard.Controllers
 
             List<Patient> patients = MongoRepository.getAllPatients();
             model.patients = patients;
-            
-            //TODO fetch all patients from FHIR
+            */
+
+            //fetch all patients from FHIR
+            FHIRRepository repo = new FHIRRepository();
+
+            //Get list of QRs for each patient
+            List<List<QuestionnaireResponse>> QRs = repo.getAllQRs(); //indexed by patient ID order
+
 
             //TODO calculate QR deltas for each patient
 
             //TODO persist calculations in cache
 
-            return View(model);
+            return View();
         }
 
         public ActionResult About()
