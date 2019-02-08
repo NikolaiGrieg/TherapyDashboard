@@ -37,8 +37,17 @@ namespace TherapyDashboard.Controllers
 
 
             //TODO calculate QR deltas for each patient
+            PatientAnalytics calc = new PatientAnalytics();
+            List<string> summaries = new List<string>();
 
-            //TODO persist calculations in cache
+            foreach (var QR in QRs)
+            {
+                string summary = calc.calculateSummary(QR);
+                summaries.Add(summary);
+            }
+            
+
+            //TODO persist calculations in DB
 
             return View();
         }

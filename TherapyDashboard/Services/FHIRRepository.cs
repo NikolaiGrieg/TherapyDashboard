@@ -50,7 +50,10 @@ namespace TherapyDashboard.Services
             {
                 //TODO async
                 List<QuestionnaireResponse> QRs = getQRByPatientId(id);
-                allQRs.Add(QRs);
+                if (QRs.Any())
+                {
+                    allQRs.Add(QRs);
+                }
             }
 
             return allQRs;
