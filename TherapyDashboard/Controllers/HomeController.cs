@@ -45,9 +45,11 @@ namespace TherapyDashboard.Controllers
                 string summary = calc.calculateSummary(QR);
                 summaries.Add(summary);
             }
-            
+
 
             //TODO persist calculations in DB
+            DBCache cache = new DBCache();
+            cache.saveMetaData(QRs, summaries);
 
             return View();
         }
