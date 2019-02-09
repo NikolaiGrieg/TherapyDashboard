@@ -20,7 +20,7 @@ namespace TherapyDashboard.Services
             
             List<Patient> patients = new List<Patient>();
             
-            Bundle results = client.Search<Patient>();
+            Bundle results = client.Search<Patient>(); //todo error handling 
             while (results != null)
             {
                 foreach (var entry in results.Entry)
@@ -36,7 +36,7 @@ namespace TherapyDashboard.Services
             return patients;
         }
 
-        public List<List<QuestionnaireResponse>> getAllQRs()
+        public Dictionary<int, List<QuestionnaireResponse>> getAllQRs()
         {
             List<Patient> patients = getAllPatients();
 
@@ -45,14 +45,14 @@ namespace TherapyDashboard.Services
             {
                 ids.Add(Int32.Parse(pat.Id));
             }
-            List<List<QuestionnaireResponse>> allQRs = new List<List<QuestionnaireResponse>>();
+            Dictionary<int, List<QuestionnaireResponse>> allQRs = new Dictionary<int, List<QuestionnaireResponse>>();
             foreach( var id in ids)
             {
                 //TODO async
                 List<QuestionnaireResponse> QRs = getQRByPatientId(id);
                 if (QRs.Any())
                 {
-                    allQRs.Add(QRs);
+                    allQRs[id] = QRs;
                 }
             }
 

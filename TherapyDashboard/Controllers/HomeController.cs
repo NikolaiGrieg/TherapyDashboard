@@ -33,17 +33,18 @@ namespace TherapyDashboard.Controllers
             FHIRRepository repo = new FHIRRepository();
 
             //Get list of QRs for each patient
-            List<List<QuestionnaireResponse>> QRs = repo.getAllQRs(); //indexed by patient ID order
+            Dictionary<int, List<QuestionnaireResponse>> QRs = repo.getAllQRs(); //indexed by patient ID order
 
 
             //TODO calculate QR deltas for each patient
             PatientAnalytics calc = new PatientAnalytics();
-            List<string> summaries = new List<string>();
+            Dictionary<int, string> summaries = new Dictionary<int, string>();
 
-            foreach (var QR in QRs)
+            foreach (var kvp in QRs)
             {
-                string summary = calc.calculateSummary(QR);
-                summaries.Add(summary);
+                int id = kvp.Key;
+                string summary = calc.calculateSummary(kvp);
+                summaries[id] = summary;
             }
 
 

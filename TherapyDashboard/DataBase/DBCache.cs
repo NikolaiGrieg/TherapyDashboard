@@ -21,8 +21,19 @@ namespace TherapyDashboard.DataBase
         }
 
         //implement saving metadata
-        public void saveMetaData(List<List<QuestionnaireResponse>> QRs, List<string> summaries)
+        public void saveMetaData(Dictionary<int, List<QuestionnaireResponse>> QRDict, Dictionary<int, string> summaries)
         {
+            //create metadata objects
+            
+            foreach (var kvp in QRDict) //iterate over patients
+            {
+                int id = kvp.Key;
+                List<QuestionnaireResponse> QRs = kvp.Value;
+                string summary = summaries[id];
+
+                MetaData metaData = new MetaData(id, DateTime.Now, summary);
+                collection.InsertOne(metaData);
+            }
 
         }
 

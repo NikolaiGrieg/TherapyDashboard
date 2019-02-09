@@ -7,6 +7,15 @@ namespace TherapyDashboard.Models
 {
     public class MetaData
     {
-        //TODO
+        public long fhirID { get; set; }
+        public DateTime lastUpdate { get; set; }
+        public string lastSummary { get; set; }
+
+        public MetaData(long _fhirID, DateTime _lastUpdate, string _lastSummary)
+        {
+            this.fhirID = _fhirID;
+            this.lastUpdate = _lastUpdate;
+            this.lastSummary = _lastSummary;
+        }
     }
 }

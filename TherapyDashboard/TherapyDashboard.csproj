@@ -234,6 +234,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
+    <Compile Include="DataBase\DBCache.cs" />
     <Compile Include="DataBase\MongoDBConnection.cs" />
     <Compile Include="DataBase\MongoRepository.cs" />
     <Compile Include="Global.asax.cs">
@@ -242,6 +243,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MetaData.cs" />
     <Compile Include="Models\PatientModels\NumericForm.cs" />
     <Compile Include="Models\PatientModels\Patient.cs" />
     <Compile Include="Models\PatientModels\PatientFilledForms.cs" />
