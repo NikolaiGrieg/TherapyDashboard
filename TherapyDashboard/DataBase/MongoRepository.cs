@@ -15,6 +15,7 @@ namespace TherapyDashboard.DataBase
 {
     public class MongoRepository
     {
+        /*
         public static void createPatient(string name)
         {
             MongoDBConnection db = new MongoDBConnection();
@@ -61,7 +62,7 @@ namespace TherapyDashboard.DataBase
             var pat = db.Patients.Find(filter).FirstOrDefault(); //TODO handle multiple patients w same name
 
 
-            
+
             using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + path, System.Text.Encoding.Default))
             {
                 string json = @r.ReadToEnd();
@@ -171,5 +172,7 @@ namespace TherapyDashboard.DataBase
 
             return json;
         }
+        */
     }
+    
 }

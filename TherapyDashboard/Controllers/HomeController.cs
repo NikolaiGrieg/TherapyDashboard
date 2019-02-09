@@ -31,26 +31,12 @@ namespace TherapyDashboard.Controllers
 
             //fetch all patients from FHIR
             FHIRRepository repo = new FHIRRepository();
-
-            //Get list of QRs for each patient
-            Dictionary<int, List<QuestionnaireResponse>> QRs = repo.getAllQRs(); //indexed by patient ID order
+            
+            Dictionary<int, string> summaries = repo.getSummaries();
 
 
             //TODO calculate QR deltas for each patient
-            PatientAnalytics calc = new PatientAnalytics();
-            Dictionary<int, string> summaries = new Dictionary<int, string>();
-
-            foreach (var kvp in QRs)
-            {
-                int id = kvp.Key;
-                string summary = calc.calculateSummary(kvp);
-                summaries[id] = summary;
-            }
-
-
-            //TODO persist calculations in DB
-            DBCache cache = new DBCache();
-            cache.saveMetaData(QRs, summaries);
+            
 
             return View();
         }

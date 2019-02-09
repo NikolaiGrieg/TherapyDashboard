@@ -10,7 +10,7 @@ namespace TherapyDashboard.DataBase
 {
     public class MongoDBConnection
     {
-
+        /*
         private IMongoDatabase db;
 
         public MongoDBConnection()
@@ -35,7 +35,7 @@ namespace TherapyDashboard.DataBase
                 return db.GetCollection<BsonDocument>("Form");
             }
         }
-
+        */
 
 
     }
