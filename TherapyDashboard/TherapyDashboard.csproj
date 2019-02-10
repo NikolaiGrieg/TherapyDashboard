@@ -263,12 +263,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\data.csv" />
-    <Content Include="Data\SampleComposite.csv" />
-    <Content Include="Data\Sample_MADRS.csv" />
-    <Content Include="Data\Names\SSB_names_male.csv" />
-    <Content Include="Data\Names\SSB_names_female.csv" />
-    <Content Include="Data\sample_json_1m_1d.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\DetailView\ActivityChart.js" />
     <Content Include="Scripts\Custom\DetailView\HCBarChart.js" />
