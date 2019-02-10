@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TherapyDashboard.ViewModels;
 using Microsoft.VisualBasic.FileIO;
 using TherapyDashboard.DataBase;
 using MongoDB.Driver;

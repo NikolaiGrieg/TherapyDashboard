@@ -244,16 +244,10 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MetaData.cs" />
-    <Compile Include="Models\PatientModels\NumericForm.cs" />
-    <Compile Include="Models\PatientModels\Patient.cs" />
-    <Compile Include="Models\PatientModels\PatientFilledForms.cs" />
-    <Compile Include="Models\PatientModels\UnstructuredForm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FHIRRepository.cs" />
     <Compile Include="Services\PatientAnalytics.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\DetailViewModel.cs" />
-    <Compile Include="ViewModels\MultiPatientViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-lumen.css" />
