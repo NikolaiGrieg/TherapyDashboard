@@ -18,7 +18,7 @@ namespace TherapyDashboard.Services
             client = new FhirClient("http://localhost:8080/hapi/baseDstu3");
         }
 
-        public List<QuestionnaireResponse> getQRsAfterDateTime(DateTime dt, long patID)
+        private List<QuestionnaireResponse> getQRsAfterDateTime(DateTime dt, long patID)
         {
             List<QuestionnaireResponse> QRs = new List<QuestionnaireResponse>();
             string dtString = dt.ToString("o"); //XML string

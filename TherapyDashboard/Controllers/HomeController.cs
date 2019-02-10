@@ -19,9 +19,13 @@ namespace TherapyDashboard.Controllers
             FHIRRepository repo = new FHIRRepository();
             List<Patient> patients = repo.getAllPatients();
 
+            //TODO create Aggregation class, and flagCalc class (names tbd)
+
             Dictionary<long, string> summaries = repo.getSummaries(patients);
-            
-            //return summary data to the view
+            //TODO return summary data to the view
+
+            //TODO calculate flags
+
             return View();
         }
 

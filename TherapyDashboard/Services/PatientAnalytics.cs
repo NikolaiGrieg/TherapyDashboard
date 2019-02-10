@@ -9,7 +9,7 @@ namespace TherapyDashboard.Services
     //TODO maybe static?
     public class PatientAnalytics
     {
-        //TODO private
+        //TODO private?
         public string calculateSummary(KeyValuePair<long, List<QuestionnaireResponse>> kvp)
         {
             //TODO get aggregation settings/formula from DB
@@ -53,15 +53,18 @@ namespace TherapyDashboard.Services
             }
             else if ((delta >= -threshold) && (delta <= threshold))
             {
-                //steady
                 return "steady";
             }
-            else if (delta > threshold) //should cover all possibilities by this point
+            else if (delta > threshold) 
             {
-                //improving
                 return "improving";
             }
             return "error"; // error checking
+        }
+
+        public string calculateFlags()
+        {
+            return null;
         }
     }
 }

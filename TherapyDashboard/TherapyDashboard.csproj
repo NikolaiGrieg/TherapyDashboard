@@ -235,7 +235,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
     <Compile Include="DataBase\DBCache.cs" />
-    <Compile Include="DataBase\MongoDBConnection.cs" />
     <Compile Include="DataBase\MongoRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
