@@ -330,7 +330,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Patient\SinglePatientView.cshtml" />
     <Content Include="Views\Patient\DynamicSpiderView.cshtml" />
     <Content Include="Views\Patient\DetailView.cshtml" />
     <Content Include="Views\Home\FHIRView.cshtml" />

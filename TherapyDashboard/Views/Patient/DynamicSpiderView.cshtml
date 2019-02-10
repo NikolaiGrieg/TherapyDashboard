@@ -1,6 +1,4 @@
-﻿@model TherapyDashboard.Models.Patient
-
-<html>
+﻿<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>Radar chart</title>
@@ -14,7 +12,7 @@
         }
 
         .container {
-        	width: 90%;
+            width: 90%;
         }
 
         .line {
@@ -38,29 +36,27 @@
     </style>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-6">
-				<div id="chart"></div>
-			</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="chart"></div>
+            </div>
 
-			<div class="col-sm-1">
-				<div id="removeButton"></div>
-			</div>
+            <div class="col-sm-1">
+                <div id="removeButton"></div>
+            </div>
 
-			<div class="col-sm-4">
-				<div id="selectedCategory"></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-8">
-				<div id="line"></div>
-			</div>
-		</div>
-	</div>
-	<script>
-        var dataPath = "@Model.Measurement1Path";
-    </script>
+            <div class="col-sm-4">
+                <div id="selectedCategory"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div id="line"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="~/Scripts/Custom/DynamicSpider/SpiderChart.js"></script>
 
     <script type="text/javascript" src="~/Scripts/Custom/DynamicSpider/LineChart.js"></script>

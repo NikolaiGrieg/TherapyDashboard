@@ -30,8 +30,8 @@ namespace TherapyDashboard.Controllers
         }
         */
 
-        [Route("Patient/v2")]
-        public ActionResult DetailView()
+        [Route("Patient/{id}")]
+        public ActionResult DetailView(int id)
         {
             
             return View();

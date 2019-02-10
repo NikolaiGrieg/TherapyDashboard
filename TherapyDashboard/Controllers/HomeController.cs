@@ -16,25 +16,9 @@ namespace TherapyDashboard.Controllers
         //[Authorize]
         public ActionResult Index()
         {
-
-            //TODO remove these when fully integrated with FHIR
-            /*
-            MongoDBConnection repo = new MongoDBConnection();
-            //var bill = repo.Patients.AsQueryable().First();
-
-            MultiPatientViewModel model = new MultiPatientViewModel();
-
-            List<Patient> patients = MongoRepository.getAllPatients();
-            model.patients = patients;
-            */
-
-            //fetch all patients from FHIR
             FHIRRepository repo = new FHIRRepository();
             
             Dictionary<int, string> summaries = repo.getSummaries();
-
-
-            //TODO calculate QR deltas for each patient
             
 
             return View();
@@ -54,11 +38,12 @@ namespace TherapyDashboard.Controllers
             return View();
         }
 
+        /*
         [Route("fhir-app")]
         public ActionResult FHIRView()
         {
 
-            return View();//RedirectToAction("Index");
+            return View();
         }
 
         [Route("fhir-app/launch")]
@@ -67,5 +52,6 @@ namespace TherapyDashboard.Controllers
 
             return View();
         }
+        */
     }
 }
