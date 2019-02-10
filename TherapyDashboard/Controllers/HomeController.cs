@@ -17,10 +17,11 @@ namespace TherapyDashboard.Controllers
         public ActionResult Index()
         {
             FHIRRepository repo = new FHIRRepository();
-            
-            Dictionary<int, string> summaries = repo.getSummaries();
-            
+            List<Patient> patients = repo.getAllPatients();
 
+            Dictionary<long, string> summaries = repo.getSummaries(patients);
+            
+            //return summary data to the view
             return View();
         }
 

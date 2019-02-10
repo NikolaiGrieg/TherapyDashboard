@@ -67,85 +67,101 @@ namespace TherapyDashboard.Services
         }
 
 
-        public Dictionary<int, string> getSummaries()
+        public Dictionary<long, string> getSummaries(List<Patient> patients)
         {
             DBCache cache = new DBCache();
 
             //get all patient IDs
-            List<Patient> patients = getAllPatients();
-            List<int> ids = new List<int>();
+            
+            List<long> oldIds = new List<long>();
             foreach (var pat in patients)
             {
-                ids.Add(Int32.Parse(pat.Id));
+                oldIds.Add(Int32.Parse(pat.Id));
             }
 
-            //get metadata
-            List<MetaData> metaData = cache.getMetaData(ids);
+            //get cached data
+            Dictionary<long, List<QuestionnaireResponse>> patientData = cache.getAllPatientResources(oldIds); //could be empty
 
+            List<long> newIds = new List<long>();
+            foreach (var id in patientData.Keys)
+            {
+                newIds.Add(id);
+            }
 
             //query new, update cache
-            /*
-            List<int> sums = new List<int>();
-            foreach (var md in metaData)
+            //create list of new elements
+            List<Patient> newPats = new List<Patient>();
+            foreach (var pat in patients)
             {
-                if (md != null)
+                if (!newIds.Contains(Int32.Parse(pat.Id)))
                 {
-                    DateTime lastDate = md.lastUpdate;
-
-                    //query FHIR server for resources after this
-                    var newQRs = getQRsAfterDateTime(lastDate, md.fhirID);
-
-                    if (newQRs.Any())
-                    {
-                        //add to score
-                    }
-                    else
-                    {
-                        //use old score
-                    }
-                }
-                else
-                {
-                    //patient wasn't previously cached -> query all
+                    newPats.Add(pat);
                 }
             }
-            */
-            //calculate scores
 
-            PatientAnalytics calc = new PatientAnalytics();
-            Dictionary<int, string> summaries = new Dictionary<int, string>();
+            //get all QRs for new patients
+            Dictionary<long, List<QuestionnaireResponse>> newQRs = new Dictionary<long, List<QuestionnaireResponse>>();
+            foreach (var pat in newPats)
+            {
+                long patID = Int32.Parse(pat.Id);
+                var newQRList = getQRByPatientId(patID);
+                newQRs[patID] = newQRList;
+                patientData[patID] = newQRList;
+            }
 
-            //TODO calculate summaries here
+            //get new QRs for old patients, TODO refactor extract method
+            Dictionary<long, List<QuestionnaireResponse>> newQRsOldPatients = new Dictionary<long, List<QuestionnaireResponse>>();
+            foreach (var kvp in patientData)
+            {
+                long patId = kvp.Key;
+                List<QuestionnaireResponse> newQRList = getNewestQRs(patId, patientData);
+                if (newQRList != null && newQRList.Any())
+                {
+                    newQRs[patId] = newQRList;
+                    newQRsOldPatients[patId] = newQRList;
+                }
+            }
+
+            foreach (var kvp in newQRsOldPatients)
+            {
+                patientData[kvp.Key] = kvp.Value;
+            }
+
+
+            //insert new elements in cache
+            cache.insertNewQRs(newQRs);
+
+            PatientAnalytics calc = new PatientAnalytics(); //TODO refactor -> reverse this coupling
+            Dictionary<long, string> summaries = new Dictionary<long, string>();
+
+            //calculate summaries
+            foreach (var kvp in patientData) 
+            {
+                summaries[kvp.Key] = calc.calculateSummary(kvp);
+            }
 
             return summaries;
         }
 
-        /*
-        public Dictionary<int, List<QuestionnaireResponse>> getAllQRs()
+
+        private List<QuestionnaireResponse> getNewestQRs(long patId, Dictionary<long, List<QuestionnaireResponse>> patientData)
         {
-            List<Patient> patients = getAllPatients();
+            var oldQRs = patientData[patId]; //if this is empty, the resource server doesn't have QRs for the patient
 
-            List<int> ids = new List<int>();
-            foreach (var pat in patients)
+            if (!oldQRs.Any())
             {
-                ids.Add(Int32.Parse(pat.Id));
+                return null;
             }
-            Dictionary<int, List<QuestionnaireResponse>> allQRs = new Dictionary<int, List<QuestionnaireResponse>>();
-            foreach( var id in ids)
-            {
-                //TODO async
-                List<QuestionnaireResponse> QRs = getQRByPatientId(id);
-                if (QRs.Any())
-                {
-                    allQRs[id] = QRs;
-                }
-            }
+            //get newest QR, currently assuming order holds, TODO test this
+            QuestionnaireResponse lastQR = oldQRs[oldQRs.Count - 1];
+            DateTime lastDate = DateTime.Parse(lastQR.Authored); //TODO this might throw error
 
-            return allQRs;
+            List<QuestionnaireResponse> newQRs = getQRsAfterDateTime(lastDate, patId);
+
+            return newQRs;
         }
-        */
 
-        private List<QuestionnaireResponse> getQRByPatientId(int id)
+        private List<QuestionnaireResponse> getQRByPatientId(long id)
         {
             List<QuestionnaireResponse> QRs = new List<QuestionnaireResponse>();
 

@@ -19,21 +19,11 @@ namespace TherapyDashboard.Controllers
     //[Authorize]
     public class PatientController : Controller
     {
-        // GET: Patient
-        /*
-        [Route("Patient/{id}")]
-        public ActionResult SinglePatientView(int id)
-        {
-            //return Content("patient " + id);
-            
-            return View();
-        }
-        */
 
         [Route("Patient/{id}")]
         public ActionResult DetailView(int id)
         {
-            
+            //TODO use cached resources her aswell
             return View();
         }
 

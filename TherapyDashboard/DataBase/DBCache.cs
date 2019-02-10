@@ -1,4 +1,8 @@
 ﻿using Hl7.Fhir.Model;
+using Hl7.Fhir.Serialization;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -12,52 +16,84 @@ namespace TherapyDashboard.DataBase
     public class DBCache
     {
 
-        //TODO replace MetaData class with inherited FHIR QRs
-
-
-        IMongoCollection<MetaData> collection;
+        IMongoCollection<PatientData> collection;
         FHIRRepository repo;
 
-        //init connection
         public DBCache()
         {
+
+            BsonClassMap.RegisterClassMap<Hl7.Fhir.Model.Integer>();
+            ConventionRegistry.Register(
+                "Ignore null values",
+                new ConventionPack
+                {
+                    new IgnoreIfDefaultConvention(true)
+                },
+                t => true);
+            
             MongoClient client = new MongoClient();
             var db = client.GetDatabase("Dashboard");
-            collection = db.GetCollection<MetaData>("MetaData");
+            collection = db.GetCollection<PatientData>("PatientData");
 
             repo = new FHIRRepository();
         }
 
-        /// <summary>
-        /// Can return nulls as part of list, should return list of size n
-        /// </summary>
-        /// <param name="patientIDs"></param>
-        /// <returns></returns>
-        public List<MetaData> getMetaData(List<int> patientIDs)
+        public Dictionary<long, List<QuestionnaireResponse>> getAllPatientResources(List<long> patientIDs)
         {
-            List<MetaData> mds = new List<MetaData>();
+            Dictionary<long, List<QuestionnaireResponse>> mds = new Dictionary<long, List<QuestionnaireResponse>>();
             foreach (var id in patientIDs)
             {
-                
-                mds.Add(getMetaDataByPatientId(id));
+                var patData = getPatientDataById(id);
+                if (patData != null)
+                {
+                    var QRs = patData.QRs;
+                    mds[id] = QRs;
+                }
             }
             return mds;
         }
 
-        public MetaData getMetaDataByPatientId(long fhirID)
+        public PatientData getPatientDataById(long fhirID)
         {
-            MongoDBConnection db = new MongoDBConnection();
-            var filter = Builders<MetaData>.Filter.Eq(x => x.fhirID, fhirID);
+            /*
+            BsonClassMap.RegisterClassMap<QuestionnaireResponse>();
+            BsonClassMap.RegisterClassMap<QuestionnaireResponse.AnswerComponent>();
+            BsonClassMap.RegisterClassMap<QuestionnaireResponse.ItemComponent>();
+            */
+            //BsonClassMap.RegisterClassMap<PatientData>();
+            
+
+            var filter = Builders<PatientData>.Filter.Eq(x => x.fhirID, fhirID);
             var md = collection.Find(filter).FirstOrDefault();
+
             return md;
         }
 
-        private void insertSingleMetaData(int id, string summary)
+        private void insertSinglePatientData(long id, List<QuestionnaireResponse> QRs)
         {
-            MetaData metaData = new MetaData(id, DateTime.Now, summary);
-            collection.InsertOne(metaData);
+            PatientData data = new PatientData(id, QRs);
+            var QR = QRs.FirstOrDefault();
+            //QR.Meta
+            //BsonClassMap.RegisterClassMap<PatientData>();
+            
+
+            string json = QRs.FirstOrDefault().ToJson();
+
+
+            collection.InsertOne(data);
+            //PatientData after = collection.Find<PatientData>(x => true).FirstOrDefault();
         }
 
-        //possibly another place, get new ones based on metadata
+        public void insertNewQRs(Dictionary<long, List<QuestionnaireResponse>> newQRs)
+        {
+            foreach (var kvp in newQRs)
+            {
+                if (kvp.Value.Any()) //QRlist not empty
+                {
+                    insertSinglePatientData(kvp.Key, kvp.Value);
+                }
+                
+            }
+        }
     }
 }
