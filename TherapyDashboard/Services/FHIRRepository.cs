@@ -61,7 +61,6 @@ namespace TherapyDashboard.Services
 
                 results = client.Continue(results);
             }
-            
 
             return patients;
         }
@@ -72,7 +71,6 @@ namespace TherapyDashboard.Services
             DBCache cache = new DBCache();
 
             //get all patient IDs
-            
             List<long> oldIds = new List<long>();
             foreach (var pat in patients)
             {
@@ -88,8 +86,7 @@ namespace TherapyDashboard.Services
                 newIds.Add(id);
             }
 
-            //query new, update cache
-            //create list of new elements
+            //get all QRs for new patients
             List<Patient> newPats = new List<Patient>();
             foreach (var pat in patients)
             {
@@ -99,7 +96,6 @@ namespace TherapyDashboard.Services
                 }
             }
 
-            //get all QRs for new patients
             Dictionary<long, List<QuestionnaireResponse>> newQRs = new Dictionary<long, List<QuestionnaireResponse>>();
             foreach (var pat in newPats)
             {
@@ -131,10 +127,11 @@ namespace TherapyDashboard.Services
             //insert new elements in cache
             cache.insertNewQRs(newQRs);
 
+
+            //calculate summaries
             PatientAnalytics calc = new PatientAnalytics(); //TODO refactor -> reverse this coupling
             Dictionary<long, string> summaries = new Dictionary<long, string>();
 
-            //calculate summaries
             foreach (var kvp in patientData) 
             {
                 summaries[kvp.Key] = calc.calculateSummary(kvp);
@@ -152,20 +149,21 @@ namespace TherapyDashboard.Services
             {
                 return null;
             }
+
             //get newest QR, currently assuming order holds, TODO test this
             QuestionnaireResponse lastQR = oldQRs[oldQRs.Count - 1];
-            DateTime lastDate = DateTime.Parse(lastQR.Authored); //TODO this might throw error
+            DateTime lastDate = DateTime.Parse(lastQR.Authored); 
 
             List<QuestionnaireResponse> newQRs = getQRsAfterDateTime(lastDate, patId);
 
             return newQRs;
         }
 
+
         private List<QuestionnaireResponse> getQRByPatientId(long id)
         {
             List<QuestionnaireResponse> QRs = new List<QuestionnaireResponse>();
 
-            //TODO only get new ones when db is implemented
             Bundle results = client.Search<QuestionnaireResponse>(new string[] { "subject=Patient/" + id });
 
             while (results != null)

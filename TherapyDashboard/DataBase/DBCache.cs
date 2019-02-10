@@ -55,14 +55,6 @@ namespace TherapyDashboard.DataBase
 
         public PatientData getPatientDataById(long fhirID)
         {
-            /*
-            BsonClassMap.RegisterClassMap<QuestionnaireResponse>();
-            BsonClassMap.RegisterClassMap<QuestionnaireResponse.AnswerComponent>();
-            BsonClassMap.RegisterClassMap<QuestionnaireResponse.ItemComponent>();
-            */
-            //BsonClassMap.RegisterClassMap<PatientData>();
-            
-
             var filter = Builders<PatientData>.Filter.Eq(x => x.fhirID, fhirID);
             var md = collection.Find(filter).FirstOrDefault();
 
@@ -72,16 +64,7 @@ namespace TherapyDashboard.DataBase
         private void insertSinglePatientData(long id, List<QuestionnaireResponse> QRs)
         {
             PatientData data = new PatientData(id, QRs);
-            var QR = QRs.FirstOrDefault();
-            //QR.Meta
-            //BsonClassMap.RegisterClassMap<PatientData>();
-            
-
-            string json = QRs.FirstOrDefault().ToJson();
-
-
             collection.InsertOne(data);
-            //PatientData after = collection.Find<PatientData>(x => true).FirstOrDefault();
         }
 
         public void insertNewQRs(Dictionary<long, List<QuestionnaireResponse>> newQRs)
