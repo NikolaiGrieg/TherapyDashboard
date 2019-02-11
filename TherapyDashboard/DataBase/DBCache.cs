@@ -17,7 +17,6 @@ namespace TherapyDashboard.DataBase
     {
 
         IMongoCollection<PatientData> collection;
-        FHIRRepository repo;
 
         public DBCache()
         {
@@ -32,13 +31,12 @@ namespace TherapyDashboard.DataBase
                 {
                     new IgnoreIfDefaultConvention(true)
                 },
-                t => true);
+                filter: t => t.Name.Contains("QuestionnaireResponse"));
             
             MongoClient client = new MongoClient();
             var db = client.GetDatabase("Dashboard");
             collection = db.GetCollection<PatientData>("PatientData");
 
-            repo = new FHIRRepository();
         }
 
         public Dictionary<long, List<QuestionnaireResponse>> getAllPatientResources(List<long> patientIDs)

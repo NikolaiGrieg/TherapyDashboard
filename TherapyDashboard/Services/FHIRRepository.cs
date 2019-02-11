@@ -12,10 +12,12 @@ namespace TherapyDashboard.Services
     public class FHIRRepository
     {
         FhirClient client;
+        DBCache cache;
 
         public FHIRRepository()
         {
             client = new FhirClient("http://localhost:8080/hapi/baseDstu3");
+            cache = new DBCache(); //TODO fix
         }
 
         private List<QuestionnaireResponse> getQRsAfterDateTime(DateTime dt, long patID)
@@ -23,7 +25,7 @@ namespace TherapyDashboard.Services
             List<QuestionnaireResponse> QRs = new List<QuestionnaireResponse>();
             string dtString = dt.ToString("o"); //XML string
 
-            Bundle results = client.Search<QuestionnaireResponse>(new string[] {
+            Bundle results = client.Search<QuestionnaireResponse>(new string[] { //TODO handle errors
                 "subject=Patient/" + patID,
                 "authored=gt" + dtString 
             });
@@ -47,7 +49,7 @@ namespace TherapyDashboard.Services
         /// <returns>List of FHIR Patient objects</returns>
         public List<Patient> getAllPatients()
         {
-            
+            //TODO limit max
             List<Patient> patients = new List<Patient>();
             
             Bundle results = client.Search<Patient>(); //todo error handling 
@@ -68,7 +70,7 @@ namespace TherapyDashboard.Services
 
         public Dictionary<long, string> getSummaries(List<Patient> patients)
         {
-            DBCache cache = new DBCache();
+            
 
             //get all patient IDs
             List<long> oldIds = new List<long>();
@@ -140,6 +142,19 @@ namespace TherapyDashboard.Services
             return summaries;
         }
 
+        public List<QuestionnaireResponse> getCachedQRsForPatient(long patId)
+        {
+            PatientData pat = cache.getPatientDataById(patId);
+            if (pat != null)
+            {
+                List<QuestionnaireResponse> QRs = pat.QRs;
+                return QRs;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         private List<QuestionnaireResponse> getNewestQRs(long patId, Dictionary<long, List<QuestionnaireResponse>> patientData)
         {

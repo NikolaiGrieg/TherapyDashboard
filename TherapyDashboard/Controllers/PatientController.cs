@@ -12,7 +12,8 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using MongoDB.Bson.Serialization;
-
+using TherapyDashboard.Services;
+using Hl7.Fhir.Model;
 
 namespace TherapyDashboard.Controllers
 {
@@ -21,10 +22,25 @@ namespace TherapyDashboard.Controllers
     {
 
         [Route("Patient/{id}")]
-        public ActionResult DetailView(int id)
+        public ActionResult DetailView(long id)
         {
             //TODO use cached resources her aswell
-            return View();
+            FHIRRepository repo = new FHIRRepository();
+            List<QuestionnaireResponse> QRs = repo.getCachedQRsForPatient(id);
+            if (QRs != null)
+            {
+                List<string> jsonList = new List<string>();
+                foreach (var QR in QRs)
+                {
+                    jsonList.Add(QR.ToJson());
+                }
+
+                return View(jsonList);
+            }
+            else
+            {
+                return new HttpNotFoundResult("No with ID " + id +" found");
+            }
         }
 
     }

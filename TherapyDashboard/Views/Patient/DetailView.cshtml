@@ -1,4 +1,4 @@
-﻿
+﻿@model List<string>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -210,6 +210,8 @@
     <script type="text/javascript" src="~/Scripts/Custom/FhirCharts.js"></script>
     
     <script type="text/javascript">
+        var _QRList = @Model;
+        console.log(_QRList);
         initDetailView(); //TODO refactor
     </script>
 </body>
