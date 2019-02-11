@@ -24,7 +24,7 @@ async function getQRResources(patientID){
     let processedQRResource = wrangleQR(QRResources);
     return processedQRResource;
 }
-
+/*
 //TODO do these methods on backend instead, and return with model.
 var QRResourceData;
 async function getQRRForAllPatients(){
@@ -79,7 +79,7 @@ async function getPatientResources(limit=10){
 		return patientResourceData;
 	}
 }
-
+*/
 ///accepts a resource bundle, and returns a list of all bundles in search pages
 //should work for generic resources
 //default limit is 100 pages = 1000 resources
