@@ -6,33 +6,6 @@
 
 
 async function initFHIRData(){
-    /*
-    getPatientResources().then(results => {
-        //console.log(results)
-
-        //TODO wrangle patients
-        //TODO move this to data wrangling class
-        let patNames = []
-        let patIDs = []
-        results.forEach(res =>{
-            let name = "" + res.name[0].given[0] + " " + res.name[0].family;
-            patNames.push(name)
-            patIDs.push(res.id)
-        })
-
-        //TODO save resources on server, request new (date based) resources in search query
-        //processing, TODO move
-        createSummaries(results).then(summaries=>{
-            createFlags(results).then(flags =>{
-                buildTable(summaries, patNames, patIDs, flags)
-            })
-
-            let pieChartData = calculatePieChartData(summaries);
-            plotSummariesPieChart(pieChartData);
-        })
-
-    });
-    */
     let patIDs = Object.keys(_summaries);
     let summaryStrings = Object.values(_summaries);
     let patNames = Object.values(_patientNames);

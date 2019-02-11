@@ -1,17 +1,5 @@
-﻿//TODO make prototype, initialize from controller?
-
-//TODO RENAME, this is the new controller
-//TODO refactor to one file for handling data on specific, and one for master
-//TODO refactor out QR handling
+﻿
 var data = []
-var config = {
-    serviceUrl: "http://localhost:8080/hapi/baseDstu3", //"http://ec2-54-93-230-9.eu-central-1.compute.amazonaws.com/baseDstu3",
-    auth: {
-      type: 'none'
-    }
-};
-var smart = FHIR.client(config);
-var tempCurrentPatient = ["325"];  
 
 function wrangleFhirQRToTimeSeries(resources){
     var series = {};
