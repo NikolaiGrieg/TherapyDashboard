@@ -14,12 +14,13 @@ namespace TherapyDashboard.Models
         public ObjectId id { get; set; }
         public long fhirID { get; set; }
         public List<QuestionnaireResponse> QRs { get; set; }
+        public List<Observation> observations { get; set; }
 
-
-        public PatientData(long _fhirID, List<QuestionnaireResponse> _QRs)
+        public PatientData(long _fhirID, List<QuestionnaireResponse> _QRs, List<Observation> _observations)
         {
             this.fhirID = _fhirID;
             this.QRs = _QRs;
+            this.observations = _observations;
         }
     }
 }

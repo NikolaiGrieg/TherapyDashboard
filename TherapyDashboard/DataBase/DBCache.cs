@@ -68,11 +68,52 @@ namespace TherapyDashboard.DataBase
             return md;
         }
 
-        private void insertSinglePatientData(long id, List<QuestionnaireResponse> QRs)
+        private void insertSinglePatientQRs(long id, List<QuestionnaireResponse> QRs)
         {
             registerCMs();
-            PatientData data = new PatientData(id, QRs);
+
+            //TODO check if id exists before inserting
+            PatientData data = new PatientData(id, QRs, null);
             collection.InsertOne(data);
+        }
+
+        private void insertSinglePatientObservations(long id, List<Observation> observations)
+        {
+            registerCMs();
+
+            //TODO check if id exists before inserting
+            var filter = Builders<PatientData>.Filter.Eq(x => x.fhirID, id);
+            PatientData pd;
+            //PatientData toInsert = new PatientData(id, null, observations);
+            try
+            {
+                pd = collection.Find(filter).FirstOrDefault();
+                if (pd.observations == null)
+                {
+                    pd.observations = observations;
+                }
+                else
+                {
+                    List<Observation> oldObservations = pd.observations;
+                    List<Observation> newObservations = new List<Observation>();
+                    foreach (var obs in observations)
+                    {
+                        if (!oldObservations.Any(x => x.Id == obs.Id))
+                        {
+                            newObservations.Add(obs);
+                        }
+                    }
+                    pd.observations = oldObservations.Concat(newObservations).ToList();
+                }
+
+                collection.ReplaceOne(filter, pd);
+            }
+            catch (Exception e)
+            {
+                //no patient with that Id
+                pd = new PatientData(id, null, observations);
+                collection.InsertOne(pd);
+            }
         }
 
         public void insertNewQRs(Dictionary<long, List<QuestionnaireResponse>> newQRs)
@@ -82,7 +123,7 @@ namespace TherapyDashboard.DataBase
             {
                 if (kvp.Value.Any()) //QRlist not empty
                 {
-                    insertSinglePatientData(kvp.Key, kvp.Value);
+                    insertSinglePatientQRs(kvp.Key, kvp.Value);
                 }
                 
             }

@@ -53,6 +53,19 @@ namespace TherapyDashboard.Controllers
                 model.QRs = QRJsonList;  
             }
 
+            //observations
+            List<Observation> observations = repo.getAllObservationsByPatId(id);
+            if (observations != null)
+            {
+                List<string> observationList = new List<string>();
+                foreach (var obs in observations)
+                {
+                    string json = serializer.SerializeToString(obs);
+                    observationList.Add(json);
+                }
+                model.observations = observationList;
+            }
+
 
 
             return View(model);

@@ -212,7 +212,8 @@
     <script type="text/javascript">
         var _QRList = @Html.Raw(Json.Encode(@Model.QRs));
         var _patient = @Html.Raw(Json.Encode(@Model.patient));
-        
+        var _observations = @Html.Raw(Json.Encode(@Model.observations));
+        console.log(_observations)
         initDetailView(); //TODO refactor
     </script>
 </body>

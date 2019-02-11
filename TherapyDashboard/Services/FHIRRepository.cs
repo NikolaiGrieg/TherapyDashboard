@@ -9,7 +9,7 @@ using TherapyDashboard.Models;
 
 namespace TherapyDashboard.Services
 {
-    public class FHIRRepository
+    public class FHIRRepository //TODO refactor duplicate code
     {
         FhirClient client;
         DBCache cache;
@@ -17,7 +17,7 @@ namespace TherapyDashboard.Services
         public FHIRRepository()
         {
             client = new FhirClient("http://localhost:8080/hapi/baseDstu3");
-            cache = new DBCache(); //TODO fix
+            cache = new DBCache(); 
         }
 
         private List<QuestionnaireResponse> getQRsAfterDateTime(DateTime dt, long patID)
@@ -202,6 +202,87 @@ namespace TherapyDashboard.Services
                 results = client.Continue(results);
             }
             return QRs;
+        }
+
+        
+        public List<Observation> getCachedObservationssForPatient(long patId)
+        {
+            PatientData pat = cache.getPatientDataById(patId);
+            if (pat != null)
+            {
+                List<Observation> observations = pat.observations;
+                return observations;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        
+        public List<Observation> getAllObservationsByPatId(long id)
+        {
+            List<Observation> oldObservations = getCachedObservationssForPatient(id);
+            if (oldObservations != null)
+            {
+
+            }
+
+            List<Observation> newObservations = new List<Observation>();
+            Bundle results = client.Search<Observation>(new string[] { "subject=Patient/" + id });
+
+            while (results != null)
+            {
+                foreach (var entry in results.Entry)
+                {
+                    Observation obs = (Observation)entry.Resource;
+                    newObservations.Add(obs);
+                }
+
+                results = client.Continue(results);
+            }
+            return newObservations;
+        }
+
+        private List<Observation> getNewestQRs(long patId, Dictionary<long, List<Observation>> observations)
+        {
+            var oldObservations = observations[patId]; //if this is empty, the resource server doesn't have QRs for the patient
+
+            if (!oldObservations.Any())
+            {
+                return null;
+            }
+
+            //get newest QR, currently assuming order holds, TODO test this
+            Observation lastObs = oldObservations[oldObservations.Count - 1];
+            DateTime lastDate = DateTime.Parse(lastObs.Meta.LastUpdated.ToString());//could maybe do this without the string cast
+
+            List<Observation> newObs = getObservationsAfterDateTime(lastDate, patId);
+
+            return newObs;
+        }
+
+        private List<Observation> getObservationsAfterDateTime(DateTime dt, long patID)
+        {
+            List<Observation> observations = new List<Observation>();
+            string dtString = dt.ToString("o"); //XML string
+
+            Bundle results = client.Search<Observation>(new string[] { //TODO handle errors
+                "subject=Patient/" + patID,
+                "authored=gt" + dtString
+            });
+
+            while (results != null)
+            {
+                foreach (var entry in results.Entry)
+                {
+                    Observation obs = (Observation)entry.Resource;
+                    observations.Add(obs);
+                }
+
+                results = client.Continue(results);
+            }
+            return observations;
         }
     }
 }
