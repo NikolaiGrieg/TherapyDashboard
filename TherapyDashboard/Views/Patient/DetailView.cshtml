@@ -210,8 +210,7 @@
     <script type="text/javascript" src="~/Scripts/Custom/FhirCharts.js"></script>
     
     <script type="text/javascript">
-        var _QRList = @Model;
-        console.log(_QRList);
+        var _QRList = @Html.Raw(Json.Encode(@Model));
         initDetailView(); //TODO refactor
     </script>
 </body>

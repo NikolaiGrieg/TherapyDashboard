@@ -68,6 +68,16 @@ function hideSpiderChart(){
 
 }
 
+function parseJsonFromStringArray(strings){
+	let objects = []
+	strings.forEach(str => {
+		let obj = JSON.parse(str);
+		objects.push(obj);
+	})
+	return objects;
+}
+
+/*
 function createEventLine(parent){
 	var margin = {top: 20, right: 20, bottom: 30, left: 60},
 	width = 960 - margin.left - margin.right,
@@ -134,3 +144,4 @@ function createEventLine(parent){
 
 
 }
+*/

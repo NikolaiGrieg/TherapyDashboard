@@ -14,6 +14,7 @@ using Newtonsoft.Json.Linq;
 using MongoDB.Bson.Serialization;
 using TherapyDashboard.Services;
 using Hl7.Fhir.Model;
+using Hl7.Fhir.Serialization;
 
 namespace TherapyDashboard.Controllers
 {
@@ -27,12 +28,14 @@ namespace TherapyDashboard.Controllers
             //TODO use cached resources her aswell
             FHIRRepository repo = new FHIRRepository();
             List<QuestionnaireResponse> QRs = repo.getCachedQRsForPatient(id);
+            FhirJsonSerializer serializer = new FhirJsonSerializer();
             if (QRs != null)
             {
                 List<string> jsonList = new List<string>();
                 foreach (var QR in QRs)
                 {
-                    jsonList.Add(QR.ToJson());
+                    string json = serializer.SerializeToString(QR);
+                    jsonList.Add(json);
                 }
 
                 return View(jsonList);
