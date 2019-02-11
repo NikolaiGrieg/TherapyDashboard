@@ -8,6 +8,7 @@ using TherapyDashboard.DataBase;
 using MongoDB.Driver;
 using TherapyDashboard.Services;
 using Hl7.Fhir.Model;
+using TherapyDashboard.ViewModels;
 
 namespace TherapyDashboard.Controllers
 {
@@ -25,8 +26,14 @@ namespace TherapyDashboard.Controllers
             //TODO return summary data to the view
 
             //TODO calculate flags
+            MasterViewModel model = new MasterViewModel();
+            model.summaries = new Dictionary<string, string>();
+            foreach (var kvp in summaries)
+            {
+                model.summaries[kvp.Key.ToString()] = kvp.Value;
+            }
 
-            return View();
+            return View(model);
         }
 
         public ActionResult About()

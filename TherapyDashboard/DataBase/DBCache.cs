@@ -21,8 +21,11 @@ namespace TherapyDashboard.DataBase
 
         public DBCache()
         {
-
-            BsonClassMap.RegisterClassMap<Hl7.Fhir.Model.Integer>();
+            if (!BsonClassMap.IsClassMapRegistered(typeof(Hl7.Fhir.Model.Integer)))
+            {
+                BsonClassMap.RegisterClassMap<Hl7.Fhir.Model.Integer>();
+            }
+            
             ConventionRegistry.Register(
                 "Ignore null values",
                 new ConventionPack
