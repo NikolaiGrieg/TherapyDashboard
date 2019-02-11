@@ -33,6 +33,12 @@ namespace TherapyDashboard.Controllers
                 model.summaries[kvp.Key.ToString()] = kvp.Value;
             }
 
+            model.patientNames = new Dictionary<string, string>();
+            foreach (var pat in patients)
+            {
+                model.patientNames[pat.Id] = pat.Name[0].Given.FirstOrDefault() + " " + pat.Name[0].Family;
+            }
+
             return View(model);
         }
 
