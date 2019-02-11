@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TherapyDashboard.ViewModels;
 using Microsoft.VisualBasic.FileIO;
 using TherapyDashboard.DataBase;
 using MongoDB.Driver;
 using TherapyDashboard.Services;
 using Hl7.Fhir.Model;
+using TherapyDashboard.ViewModels;
 
 namespace TherapyDashboard.Controllers
 {
@@ -17,28 +17,29 @@ namespace TherapyDashboard.Controllers
         //[Authorize]
         public ActionResult Index()
         {
-
-            //TODO remove these when fully integrated with FHIR
-            /*
-            MongoDBConnection repo = new MongoDBConnection();
-            //var bill = repo.Patients.AsQueryable().First();
-
-            MultiPatientViewModel model = new MultiPatientViewModel();
-
-            List<Patient> patients = MongoRepository.getAllPatients();
-            model.patients = patients;
-            */
-
-            //fetch all patients from FHIR
             FHIRRepository repo = new FHIRRepository();
-            
-            Dictionary<int, string> summaries = repo.getSummaries();
+            List<Patient> patients = repo.getAllPatients();
 
+            //TODO create Aggregation class, and flagCalc class (names tbd)
 
-            //TODO calculate QR deltas for each patient
-            
+            Dictionary<long, string> summaries = repo.getSummaries(patients);
+            //TODO return summary data to the view
 
-            return View();
+            //TODO calculate flags
+            MasterViewModel model = new MasterViewModel();
+            model.summaries = new Dictionary<string, string>();
+            foreach (var kvp in summaries)
+            {
+                model.summaries[kvp.Key.ToString()] = kvp.Value;
+            }
+
+            model.patientNames = new Dictionary<string, string>();
+            foreach (var pat in patients)
+            {
+                model.patientNames[pat.Id] = pat.Name[0].Given.FirstOrDefault() + " " + pat.Name[0].Family;
+            }
+
+            return View(model);
         }
 
         public ActionResult About()
@@ -55,18 +56,5 @@ namespace TherapyDashboard.Controllers
             return View();
         }
 
-        [Route("fhir-app")]
-        public ActionResult FHIRView()
-        {
-
-            return View();//RedirectToAction("Index");
-        }
-
-        [Route("fhir-app/launch")]
-        public ActionResult FHIRLaunch()
-        {
-
-            return View();
-        }
     }
 }

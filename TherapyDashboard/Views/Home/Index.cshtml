@@ -1,4 +1,4 @@
-﻿@model TherapyDashboard.ViewModels.MultiPatientViewModel
+﻿@model TherapyDashboard.ViewModels.MasterViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -113,5 +113,13 @@
     </div>
 
 </div>
+<script>
+    var _summaries = @Html.Raw(Json.Encode(@Model.summaries));
+    //console.log(summaries);
+    var _patientNames = @Html.Raw(Json.Encode(@Model.patientNames));
+    //console.log(_patientNames);
+
+    
+</script>
 <script src="~/Scripts/Custom/FhirRepository.js"></script>
 <script src="~/Scripts/Custom/MasterView/TableController.js"></script>

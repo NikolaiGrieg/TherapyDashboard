@@ -12,53 +12,63 @@ using System.IO;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using MongoDB.Bson.Serialization;
+using TherapyDashboard.Services;
+using Hl7.Fhir.Model;
+using Hl7.Fhir.Serialization;
 using TherapyDashboard.ViewModels;
 
 namespace TherapyDashboard.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class PatientController : Controller
     {
-        // GET: Patient
+
         [Route("Patient/{id}")]
-        public ActionResult SinglePatientView(int id)
+        public ActionResult DetailView(long id)
         {
-            //return Content("patient " + id);
-            Patient pat = Patient.createSimulated();
-            return View(pat);
-        }
+            //TODO use cached resources her aswell
+            FHIRRepository repo = new FHIRRepository();
+            FhirJsonSerializer serializer = new FhirJsonSerializer();
 
-
-        [Route("Patient/{id}/v2")]
-        public ActionResult DetailView(string id)
-        {
-            //return Content("patient " + id);
             DetailViewModel model = new DetailViewModel();
+
+            //add patient details
+            Patient patient = repo.getPatientById(id);
+            if (patient != null)
+            {
+                string patJson = serializer.SerializeToString(patient);
+                model.patient = patJson;
+            }
             
-            //Patient pat = MongoRepository.getPatientByName("Magnus Danielsen");
-            Patient pat = MongoRepository.getPatientById(new ObjectId(id));
-            model.pat = pat;
+            //add QRs
+            List<QuestionnaireResponse> QRs = repo.getCachedQRsForPatient(id);
+            if (QRs != null)
+            {
+                List<string> QRJsonList = new List<string>();
+                foreach (var QR in QRs)
+                {
+                    string json = serializer.SerializeToString(QR);
+                    QRJsonList.Add(json);
+                }
+                model.QRs = QRJsonList;  
+            }
 
-            //MongoRepository.createPatient("Bill");
-            //MongoRepository.createPatient("John");
-            //MongoRepository.addFormsToPatient("Bill", "/Data/sample_json_1m_1d.json");
-            //MongoRepository.addFormsToPatient("John", "/Data/sample_json_1m_1d.json");
+            //observations
+            List<Observation> observations = repo.getAllObservationsByPatId(id);
+            if (observations != null)
+            {
+                List<string> observationList = new List<string>();
+                foreach (var obs in observations)
+                {
+                    string json = serializer.SerializeToString(obs);
+                    observationList.Add(json);
+                }
+                model.observations = observationList;
+            }
 
-            //all forms in db collection Form are for the same measurement
-            //need to somehow tag which ones go where, and distribute them over multiple collections
-            //ex "background", "summary/", "single", "unstrucured" TODO revisit these
-            //Assuming only 1 "summary" is probably reasonable
-            var json = MongoRepository.getPatientFormsSingle(pat.id); //TODO
-            var avgPat = MongoRepository.getPatientByName("AvgPatient");
-            model.json = json;
+
+
             return View(model);
-        }
-
-        [Route("Spider")]
-        public ActionResult DynamicSpiderView()
-        {
-            Patient pat = Patient.createSimulated();
-            return View(pat);
         }
 
     }

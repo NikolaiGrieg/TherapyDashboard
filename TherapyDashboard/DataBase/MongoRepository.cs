@@ -16,43 +16,12 @@ namespace TherapyDashboard.DataBase
     public class MongoRepository
     {
         /*
-        public static void createPatient(string name)
-        {
-            MongoDBConnection db = new MongoDBConnection();
-
-            db.Patients.InsertOne(new Patient()
-            {
-                name = name
-
-            });
-        }
-
-        public static Patient getPatientByName(string name)
-        {
-            MongoDBConnection db = new MongoDBConnection();
-            var filter = Builders<Patient>.Filter.Eq(x => x.name, name);
-            var pat = db.Patients.Find(filter).FirstOrDefault(); //TODO handle multiple patients w same name
-            return pat;
-        }
-
-        public static Patient getPatientById(ObjectId id)
-        {
-            MongoDBConnection db = new MongoDBConnection();
-            var filter = Builders<Patient>.Filter.Eq(x => x.id, id);
-            var pat = db.Patients.Find(filter).FirstOrDefault(); //TODO handle multiple patients w same name
-            return pat;
-        }
-
         public static List<Patient> getAllPatients()
         {
             MongoDBConnection db = new MongoDBConnection();
             return db.Patients.Find(_ => true).ToList();
         }
 
-        public static void addFormToPatient(string patName, string formType, string formName)
-        {
-            //TODO
-        }
 
         public static void addFormsToPatient(string patName, string path)
         {
@@ -126,32 +95,6 @@ namespace TherapyDashboard.DataBase
             //maybe refactor this first part out
             MongoDBConnection db = new MongoDBConnection();
             var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
-            var pat = db.Patients.Find(filter).FirstOrDefault();
-
-            var formFilter = Builders<BsonDocument>.Filter.In<ObjectId>("_id", pat.NumericForms);
-            var forms = db.Forms.Find(formFilter)
-                .Project(Builders<BsonDocument>.Projection
-                .Exclude("_id"))
-                .ToList();
-
-            var mainDocument = forms[0];
-            for (int i = 1; i < forms.Count; i++)
-            {
-                mainDocument.Merge(forms[i]);
-            }
-
-            var jsonWriterSettings = new MongoDB.Bson.IO.JsonWriterSettings { OutputMode = MongoDB.Bson.IO.JsonOutputMode.Strict };
-            string json = mainDocument.ToJson(jsonWriterSettings);
-
-
-            return json;
-        }
-
-        public static string getPatientFormsSingle(ObjectId id)
-        {
-            //maybe refactor this first part out
-            MongoDBConnection db = new MongoDBConnection();
-            var filter = Builders<Patient>.Filter.Eq(x => x.id, id);
             var pat = db.Patients.Find(filter).FirstOrDefault();
 
             var formFilter = Builders<BsonDocument>.Filter.In<ObjectId>("_id", pat.NumericForms);

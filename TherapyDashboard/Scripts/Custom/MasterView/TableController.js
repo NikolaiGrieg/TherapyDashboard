@@ -1,75 +1,19 @@
 ﻿function initTable() {
-    initFHIRData(); //comment this to use mongodb, uncomment for fhir
+    initFHIRData(); 
     enableTableSort();
     initSearch();
 }
 
-//TODO rename, controls the entire view
+
 async function initFHIRData(){
-    let allQRs = await getQRRForAllPatients();
-    //TODO replace api calls in createFlags and createSummaries with allQRs
-    console.log(allQRs)
-    getPatientResources().then(results => {
-        //console.log(results)
+    let patIDs = Object.keys(_summaries);
+    let summaryStrings = Object.values(_summaries);
+    let patNames = Object.values(_patientNames);
+    buildTable(patNames, summaryStrings, patIDs);
 
-        //TODO wrangle patients
-        //TODO move this to data wrangling class
-        let patNames = []
-        let patIDs = []
-        results.forEach(res =>{
-            let name = "" + res.name[0].given[0] + " " + res.name[0].family;
-            patNames.push(name)
-            patIDs.push(res.id)
-        })
 
-        //TODO save resources on server, request new (date based) resources in search query
-        //processing, TODO move
-        createSummaries(results).then(summaries=>{
-            createFlags(results).then(flags =>{
-                buildTable(summaries, patNames, patIDs, flags)
-            })
-
-            let pieChartData = calculatePieChartData(summaries);
-            plotSummariesPieChart(pieChartData);
-        })
-
-    });
-}
-
-async function createFlags(patientResources){
-    let flags = []
-    for (let i = 0; i < patientResources.length; i++){
-        //TODO execute all these simultaneously, currently n RTTs.
-        let flag = await calculateFlag(patientResources[i]);
-        flags.push(flag);
-    }
-    return flags;
-}
-
-async function calculateFlag(resource){
-    //TODO inject parameters
-    
-    let id = resource.id
-
-    //get all QRs 
-    //TODO could maybe use only last 2 forms here, probably still use cached data from table call
-    let QRs = await tempGetQRResNoCache(id);//TODO use cached version IMPORTANT
-    if (QRs){
-        //console.log(QRs)
-        let dates = Object.keys(QRs)
-        var minDate = dates.reduce(function (a, b) { return a < b ? a : b; }); 
-        var maxDate = dates.reduce(function (a, b) { return a > b ? a : b; });
-
-        //TODO for now just use max latest measurement, implment delta checks later
-        let lastQR = QRs[maxDate];
-        let maxKey = Object.keys(lastQR).reduce((a, b) => lastQR[a] > lastQR[b] ? a : b);
-
-        return maxKey;
-    }
-    else{
-        return "";
-    }
-    
+    let pieChartData = calculatePieChartData(summaryStrings);
+    plotSummariesPieChart(pieChartData);
 }
 
 function calculatePieChartData(summaries){
@@ -79,13 +23,13 @@ function calculatePieChartData(summaries){
 
     summaries.forEach(str => {
         //switch?
-        if (str === "Declining"){
+        if (str === "declining"){
             declining++;
         }
-        else if (str === "Improving"){
+        else if (str === "improving"){
             improving++;
         }
-        else if (str === "Steady"){
+        else if (str === "steady"){
             steady++;
         }
     })
@@ -107,11 +51,13 @@ function calculatePieChartData(summaries){
     
 }
 
-function buildTable(summaries, patNames, patIDs, flags){
+function buildTable(patNames, summaries, patIDs){
     const table = document.getElementById("masterTableBody");
     table.innerHTML = ""
     let listItems = "";
-    for (let i = 0; i < patNames.length; i++){
+
+    //TODO some matching between IDs, and not use index
+    for (let i = 0; i < patIDs.length; i++){
         var currentHTML = `
             <tr class="table-active">
                 <td scope="row">
@@ -121,7 +67,7 @@ function buildTable(summaries, patNames, patIDs, flags){
                     <span class="normalText">${patIDs[i]}</span>
                 </td>
                 <td scope="row">
-                    <span class="normalText">${flags[i]}</span>
+                    <span class="normalText">_Flag</span>
                 </td>
                 <td scope="row">
                     <span class="normalText">${summaries[i]}</span>
@@ -134,64 +80,6 @@ function buildTable(summaries, patNames, patIDs, flags){
         listItems += currentHTML;
     }
     table.innerHTML = listItems
-}
-
-async function createSummaries(patientResources){
-    let summaries = []
-    console.log("fetching QRs for summaries")
-    for (let i = 0; i < patientResources.length; i++){
-        //TODO execute all these simultaneously, currently n RTTs.
-        let sum = await getPatientSummary(patientResources[i]);
-        summaries.push(sum);
-    }
-    return summaries;
-}
-
-
-async function getPatientSummary(resource){
-    //get patient ID
-    let id = resource.id
-
-    //get all QRs
-    let QRs = await tempGetQRResNoCache(id);
-    if (!QRs){
-        return "No forms"
-    }
-
-    //process QRs
-    //TODO FIX/IMRPOVE
-    let dates = Object.keys(QRs)
-    var minDate = dates.reduce(function (a, b) { return a < b ? a : b; }); 
-    var maxDate = dates.reduce(function (a, b) { return a > b ? a : b; });
-
-    
-    let firstQR = QRs[minDate]; //can not assume order is kept in json
-    //maybe search through dates
-    let cumulativeFirst = 0
-    Object.entries(firstQR).forEach(entry =>{
-        let val = entry[1]
-        cumulativeFirst += val
-    })
-
-    let lastQR = QRs[maxDate];
-    let cumulativeLast = 0
-    Object.entries(lastQR).forEach(entry =>{
-        let val = entry[1]
-        cumulativeLast += val
-    })
-
-    //TODO inject parameters for this calculation
-    let totalChange = cumulativeFirst - cumulativeLast;
-    if (totalChange <= 48){
-        return "Declining"
-    }
-    else if (totalChange > 48 && totalChange < 50){
-        return "Steady"
-    }
-    else{
-        return "Improving"
-    }
-    return totalChange
 }
 
 function enableTableSort() {

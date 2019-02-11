@@ -9,14 +9,19 @@ namespace TherapyDashboard.Services
     //TODO maybe static?
     public class PatientAnalytics
     {
-        //TODO private
-        public string calculateSummary(KeyValuePair<int, List<QuestionnaireResponse>> kvp)
+        //TODO private?
+        public string calculateSummary(KeyValuePair<long, List<QuestionnaireResponse>> kvp)
         {
             //TODO get aggregation settings/formula from DB
             //for now use (sum delta last and second last > x)
 
             //TODO current assumption is that last element will be latest, check if this is the case
             var QRs = kvp.Value;
+            if (QRs == null || !QRs.Any())
+            {
+                return "no forms";
+            }
+
             QuestionnaireResponse lastQR = QRs[QRs.Count -1];
             QuestionnaireResponse secondLastQR = QRs[QRs.Count - 2];
 
@@ -48,15 +53,18 @@ namespace TherapyDashboard.Services
             }
             else if ((delta >= -threshold) && (delta <= threshold))
             {
-                //steady
                 return "steady";
             }
-            else if (delta > threshold) //should cover all possibilities by this point
+            else if (delta > threshold) 
             {
-                //improving
                 return "improving";
             }
             return "error"; // error checking
+        }
+
+        public string calculateFlags()
+        {
+            return null;
         }
     }
 }

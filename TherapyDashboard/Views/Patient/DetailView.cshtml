@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-xs-5">
                 <div class="row" >
-                    <h3 style="text-align: center;">@Model.pat.name</h3> 
+                    <h3 style="text-align: center;">_NAME</h3> 
                 </div>
                 <div class="row">
 
@@ -86,7 +86,7 @@
                                                 <span class="normalText">Modul</span>
                                             </th>
                                             <td scope="row">
-                                                <span class="normalText">@Model.pat.module</span>
+                                                <span class="normalText">_Module</span>
                                             </td>
                                         </tr>
                                 </tbody>
@@ -199,12 +199,7 @@
             </div>
         </div>
     </div>
-    <script>
-        var forms = @Html.Raw(@Model.json);
-        var name = "@Model.pat.name";
-        //console.log(forms["2010-12-01"])
 
-    </script>
 
 
     <script src="~/Scripts/Custom/DynamicSpider/SpiderChart.js"></script>
@@ -215,6 +210,10 @@
     <script type="text/javascript" src="~/Scripts/Custom/FhirCharts.js"></script>
     
     <script type="text/javascript">
+        var _QRList = @Html.Raw(Json.Encode(@Model.QRs));
+        var _patient = @Html.Raw(Json.Encode(@Model.patient));
+        var _observations = @Html.Raw(Json.Encode(@Model.observations));
+        console.log(_observations)
         initDetailView(); //TODO refactor
     </script>
 </body>
