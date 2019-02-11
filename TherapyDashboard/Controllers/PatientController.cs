@@ -15,6 +15,7 @@ using MongoDB.Bson.Serialization;
 using TherapyDashboard.Services;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Serialization;
+using TherapyDashboard.ViewModels;
 
 namespace TherapyDashboard.Controllers
 {
@@ -27,23 +28,34 @@ namespace TherapyDashboard.Controllers
         {
             //TODO use cached resources her aswell
             FHIRRepository repo = new FHIRRepository();
-            List<QuestionnaireResponse> QRs = repo.getCachedQRsForPatient(id);
             FhirJsonSerializer serializer = new FhirJsonSerializer();
+
+            DetailViewModel model = new DetailViewModel();
+
+            //add patient details
+            Patient patient = repo.getPatientById(id);
+            if (patient != null)
+            {
+                string patJson = serializer.SerializeToString(patient);
+                model.patient = patJson;
+            }
+            
+            //add QRs
+            List<QuestionnaireResponse> QRs = repo.getCachedQRsForPatient(id);
             if (QRs != null)
             {
-                List<string> jsonList = new List<string>();
+                List<string> QRJsonList = new List<string>();
                 foreach (var QR in QRs)
                 {
                     string json = serializer.SerializeToString(QR);
-                    jsonList.Add(json);
+                    QRJsonList.Add(json);
                 }
+                model.QRs = QRJsonList;  
+            }
 
-                return View(jsonList);
-            }
-            else
-            {
-                return new HttpNotFoundResult("No with ID " + id +" found");
-            }
+
+
+            return View(model);
         }
 
     }

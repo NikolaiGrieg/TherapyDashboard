@@ -1,4 +1,4 @@
-﻿@model List<string>
+﻿@model TherapyDashboard.ViewModels.DetailViewModel
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
@@ -210,7 +210,9 @@
     <script type="text/javascript" src="~/Scripts/Custom/FhirCharts.js"></script>
     
     <script type="text/javascript">
-        var _QRList = @Html.Raw(Json.Encode(@Model));
+        var _QRList = @Html.Raw(Json.Encode(@Model.QRs));
+        var _patient = @Html.Raw(Json.Encode(@Model.patient));
+        
         initDetailView(); //TODO refactor
     </script>
 </body>

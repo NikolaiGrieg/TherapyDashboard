@@ -24,7 +24,6 @@ function wrangleFhirQRToTimeSeries(resources){
 }
 
 
-
 function initSpider(){
     createSpiderChart(processedQRResources);
 }
@@ -33,17 +32,13 @@ function initSpider(){
 var processedQRResources;
 function initDetailView(){
 
-
     let QRs = parseJsonFromStringArray(_QRList);
-    console.log(QRs);
+    //console.log(QRs);
     processedQRResources = wrangleFhirQRToTimeSeries(QRs);
     initQRLineCharts(processedQRResources);
 
-    /*
-    getQRResources(tempCurrentPatient).then(results =>{
-        initQRLineCharts(results);
-    });
-    */
+    let patient = JSON.parse(_patient);
+    console.log(patient);
     
     
     smart.api.fetchAllWithReferences({ 
@@ -51,8 +46,6 @@ function initDetailView(){
             patient : tempCurrentPatient //specific patient for now
         }
     }).then(function (results, refs) {
-        //TODO get all patients for main page
-        //console.log(results)
         results.data.entry.forEach(obs =>{
             //console.log(obs)
             obs = obs.resource;

@@ -67,6 +67,16 @@ namespace TherapyDashboard.Services
             return patients;
         }
 
+        public Patient getPatientById(long id)
+        {
+            Bundle results = client.SearchById<Patient>(id.ToString());
+            if (results.Entry.Any())
+            {
+                Patient pat = (Patient)results.Entry[0].Resource;
+                return pat;
+            }
+            return null;
+        }
 
         public Dictionary<long, string> getSummaries(List<Patient> patients)
         {

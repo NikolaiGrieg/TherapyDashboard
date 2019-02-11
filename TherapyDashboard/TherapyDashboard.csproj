@@ -247,6 +247,7 @@
     <Compile Include="Services\FHIRRepository.cs" />
     <Compile Include="Services\PatientAnalytics.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DetailViewModel.cs" />
     <Compile Include="ViewModels\MasterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

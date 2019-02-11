@@ -20,11 +20,6 @@ namespace TherapyDashboard.DataBase
 
         public DBCache()
         {
-            if (!BsonClassMap.IsClassMapRegistered(typeof(Hl7.Fhir.Model.Integer)))
-            {
-                BsonClassMap.RegisterClassMap<Hl7.Fhir.Model.Integer>();
-            }
-            
             ConventionRegistry.Register(
                 "Ignore null values",
                 new ConventionPack
@@ -39,8 +34,18 @@ namespace TherapyDashboard.DataBase
 
         }
 
+        private void registerCMs()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(Hl7.Fhir.Model.Integer)))
+            {
+                BsonClassMap.RegisterClassMap<Hl7.Fhir.Model.Integer>();
+            }
+        }
+
         public Dictionary<long, List<QuestionnaireResponse>> getAllPatientResources(List<long> patientIDs)
         {
+            registerCMs();
+
             Dictionary<long, List<QuestionnaireResponse>> mds = new Dictionary<long, List<QuestionnaireResponse>>();
             foreach (var id in patientIDs)
             {
@@ -56,6 +61,7 @@ namespace TherapyDashboard.DataBase
 
         public PatientData getPatientDataById(long fhirID)
         {
+            registerCMs();
             var filter = Builders<PatientData>.Filter.Eq(x => x.fhirID, fhirID);
             var md = collection.Find(filter).FirstOrDefault();
 
@@ -64,12 +70,14 @@ namespace TherapyDashboard.DataBase
 
         private void insertSinglePatientData(long id, List<QuestionnaireResponse> QRs)
         {
+            registerCMs();
             PatientData data = new PatientData(id, QRs);
             collection.InsertOne(data);
         }
 
         public void insertNewQRs(Dictionary<long, List<QuestionnaireResponse>> newQRs)
         {
+            registerCMs();
             foreach (var kvp in newQRs)
             {
                 if (kvp.Value.Any()) //QRlist not empty
