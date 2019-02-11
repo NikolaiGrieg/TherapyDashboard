@@ -38,38 +38,35 @@ function initDetailView(){
     initQRLineCharts(processedQRResources);
 
     let patient = JSON.parse(_patient);
-    console.log(patient);
-    
-    
-    smart.api.fetchAllWithReferences({ 
-        type: "Observation", query: {
-            patient : tempCurrentPatient //specific patient for now
+    //console.log(patient);
+
+    let observations = []
+    _observations.forEach(str => {
+        let obs = JSON.parse(str);
+        observations.push(obs);
+    })
+
+    observations.forEach(obs =>{
+        if (obs.component){
+            entry = {
+                patient : obs.subject.reference,
+                measurement : obs.code.coding[0].display,
+                time : obs.effectiveDateTime,
+                component : obs.component,
+            }
         }
-    }).then(function (results, refs) {
-        results.data.entry.forEach(obs =>{
-            //console.log(obs)
-            obs = obs.resource;
-            if (obs.component){
-                entry = {
-                    patient : obs.subject.reference,
-                    measurement : obs.code.coding[0].display,
-                    time : obs.effectiveDateTime,
-                    component : obs.component,
-                }
+        else if (obs.valueQuantity){ //TODO FIX for valueInteger++
+            entry = {
+                patient : obs.subject.reference,
+                measurement : obs.code.coding[0].display,
+                time : obs.effectiveDateTime,
+                quantity : obs.valueQuantity.value
             }
-            else if (obs.valueQuantity){ //TODO FIX for valueInteger++
-                entry = {
-                    patient : obs.subject.reference,
-                    measurement : obs.code.coding[0].display,
-                    time : obs.effectiveDateTime,
-                    quantity : obs.valueQuantity.value
-                }
-            }
-            
-            data.push(entry)
-        });
-        filterFhirData(data);
-    });
+        }
+        
+        data.push(entry)
+    })
+    filterFhirData(data);
 }
 
 
