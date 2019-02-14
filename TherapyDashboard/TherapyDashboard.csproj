@@ -247,6 +247,8 @@
     <Compile Include="Services\AggregationFunctions\IAggregationFunction.cs" />
     <Compile Include="Services\AggregationFunctions\SumCompareThresholdFunc.cs" />
     <Compile Include="Services\FHIRRepository.cs" />
+    <Compile Include="Services\FlagFunctions\IFlagFunction.cs" />
+    <Compile Include="Services\FlagFunctions\MaxDeltaFlagFunc.cs" />
     <Compile Include="Services\PatientAnalytics.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />

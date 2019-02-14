@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using TherapyDashboard.Services.AggregationFunctions;
+using TherapyDashboard.Services.FlagFunctions;
 
 namespace TherapyDashboard.Services
 {
@@ -26,9 +27,15 @@ namespace TherapyDashboard.Services
             
         }
 
-        public string calculateFlags()
+        public string calculateFlags(KeyValuePair<long, List<QuestionnaireResponse>> kvp, IFlagFunction func)
         {
-            return null;
+            var QRs = kvp.Value;
+            if (QRs == null || !QRs.Any())
+            {
+                return "no forms";
+            }
+            string summary = func.calculateFlag(QRs);
+            return summary;
         }
     }
 }

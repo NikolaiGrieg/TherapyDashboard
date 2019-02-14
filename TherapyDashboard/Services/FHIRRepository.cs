@@ -7,6 +7,7 @@ using Hl7.Fhir.Rest;
 using TherapyDashboard.DataBase;
 using TherapyDashboard.Models;
 using TherapyDashboard.Services.AggregationFunctions;
+using TherapyDashboard.Services.FlagFunctions;
 
 namespace TherapyDashboard.Services
 {
@@ -81,8 +82,6 @@ namespace TherapyDashboard.Services
 
         public Dictionary<long, string> getSummaries(List<Patient> patients)
         {
-            
-
             //get all patient IDs
             List<long> oldIds = new List<long>();
             foreach (var pat in patients)
@@ -142,13 +141,21 @@ namespace TherapyDashboard.Services
 
 
             //calculate summaries
-            PatientAnalytics calc = new PatientAnalytics(); //TODO refactor -> reverse this coupling
+            PatientAnalytics calc = new PatientAnalytics(); //TODO refactor 
             Dictionary<long, string> summaries = new Dictionary<long, string>();
 
             IAggregationFunction aggFunc = new SumCompareThresholdFunc(1);
             foreach (var kvp in patientData) 
             {
                 summaries[kvp.Key] = calc.calculateSummary(kvp, aggFunc);
+            }
+
+            //TODO refactor this out to another method
+            IFlagFunction flagFunc = new MaxDeltaFlagFunc();
+            Dictionary<long, string> TEMPDICT = new Dictionary<long, string>();
+            foreach (var kvp in patientData)
+            {
+                TEMPDICT[kvp.Key] = calc.calculateFlags(kvp, flagFunc);
             }
 
             return summaries;

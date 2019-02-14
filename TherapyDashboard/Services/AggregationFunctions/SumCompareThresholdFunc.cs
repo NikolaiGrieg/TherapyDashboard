@@ -14,6 +14,7 @@ namespace TherapyDashboard.Services.AggregationFunctions
         {
             this.threshold = _deltaThreshold;
         }
+
         public string aggregate(List<QuestionnaireResponse> QRs)
         {
             //TODO current assumption is that last element will be latest, check if this is the case
