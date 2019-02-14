@@ -61,7 +61,9 @@ function buildTable(patNames, summaries, patIDs){
         var currentHTML = `
             <tr class="table-active">
                 <td scope="row">
-                    <span class="normalText">${patNames[i]}</span>
+                    <a href="Patient/${patIDs[i]}">
+                        <span class="normalText">${patNames[i]}</span>
+                    </a>
                 </td>
                 <td scope="row">
                     <span class="normalText">${patIDs[i]}</span>
