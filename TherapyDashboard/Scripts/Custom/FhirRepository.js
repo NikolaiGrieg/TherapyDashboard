@@ -30,6 +30,7 @@ function initDetailView(){
 
     let patient = JSON.parse(_patient);
     renderPatient(patient);
+    initBackground(patient);
     //console.log(patient);
 
     let observations = []
@@ -137,28 +138,26 @@ function filterFhirData(data){
 
 //This function works somewhat (missing some unpacking), but the returned FHIR data doesnt appear to be very complete
 function initBackground(patient){
-
+    console.log(patient)
     let listItems = "";
-    let keys = Object.keys(patient);
+    let filter = ["name", "gender", "birthDate", "telecom", "maritalStatus"]; //should come from backend
 
-    let filter = ["name", "gender", "birthDate", "telecom"];
+    let data = unpackPatientData(patient, filter);
+    //console.log(data);
 
-    for (let i = 0; i < keys.length; i++){
-        if(filter.includes(keys[i])){
-            let curVal = patient[keys[i]]
-            var currentHTML = `
-                <tr class="table-active">
-                    <th scope="row">
-                        <span class="normalText">${keys[i]}</span>
-                    </th>
-                    <td scope="row">
-                        <span class="normalText">${curVal}</span>
-                    </td>
-                </tr>
-            `
-            listItems += currentHTML;
-        }
-    }
+    Object.entries(data).forEach(kvp => {
+        var currentHTML = `
+            <tr class="table-active">
+                <th scope="row">
+                    <span class="normalText">${kvp[0]}</span>
+                </th>
+                <td scope="row">
+                    <span class="normalText">${kvp[1]}</span>
+                </td>
+            </tr>
+        `
+        listItems += currentHTML;
+    })
     
 
     var html = `
@@ -174,5 +173,31 @@ function initBackground(patient){
 
     let container = document.getElementById("background");
     container.appendChild(backgroundTable);
+}
 
+function unpackPatientData(patient, filter){
+    var entries = {}
+    Object.entries(patient).forEach(kvp =>{
+        let key = kvp[0];
+        let val = kvp[1];
+        if (filter.includes(key)){
+            //console.log(kvp)
+            let entry;
+            //Switch?
+            if (key == "name"){
+                entry = val[0].given[0] + " " + val[0].family;
+            }
+            else if (key == "telecom"){
+                entry = val[0].system + ": " + val[0].value;
+            }
+            else if(key == "maritalStatus"){ //see https://www.hl7.org/fhir/v3/MaritalStatus/cs.html
+                entry = val.text;
+            }
+            else{
+                entry = val;
+            }
+            entries[key] = entry;
+        }
+    })
+    return entries;
 }
