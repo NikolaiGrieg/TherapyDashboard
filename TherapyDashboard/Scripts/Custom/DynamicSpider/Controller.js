@@ -13,6 +13,13 @@ function update(index){
 	}
 }
 
+function renderPatient(patient){
+	let h3 = document.getElementById("nameHeader");
+	//console.log(patient)
+	let name = patient.name[0].given[0] + " " + patient.name[0].family;
+	h3.innerHTML = name;
+}
+
 //called from SpiderChart
 function selectAxis(parent, axis, data){
 	console.log(axis);
@@ -70,11 +77,14 @@ function hideSpiderChart(){
 
 function parseJsonFromStringArray(strings){
 	let objects = []
-	strings.forEach(str => {
-		let obj = JSON.parse(str);
-		objects.push(obj);
-	})
-	return objects;
+	if (strings){
+		strings.forEach(str => {
+			let obj = JSON.parse(str);
+			objects.push(obj);
+		})
+		return objects;
+	}
+	return null;
 }
 
 /*

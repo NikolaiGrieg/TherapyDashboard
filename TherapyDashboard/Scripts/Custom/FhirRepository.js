@@ -22,10 +22,14 @@ function initDetailView(){
 
     let QRs = parseJsonFromStringArray(_QRList);
     //console.log(QRs);
-    processedQRResources = wrangleFhirQRToTimeSeries(QRs);
-    initQRLineCharts(processedQRResources);
+    if (QRs){
+        processedQRResources = wrangleFhirQRToTimeSeries(QRs);
+        initQRLineCharts(processedQRResources);
+    }
+    
 
     let patient = JSON.parse(_patient);
+    renderPatient(patient);
     //console.log(patient);
 
     let observations = []
@@ -35,6 +39,7 @@ function initDetailView(){
     })
 
     observations.forEach(obs =>{
+        let entry;
         if (obs.component){
             entry = {
                 patient : obs.subject.reference,
@@ -51,8 +56,9 @@ function initDetailView(){
                 quantity : obs.valueQuantity.value
             }
         }
-        
-        data.push(entry)
+        if(entry){
+            data.push(entry) 
+        }
     })
     filterFhirData(data);
 }

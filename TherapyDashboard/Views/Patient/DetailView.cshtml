@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-xs-5">
                 <div class="row" >
-                    <h3 style="text-align: center;">_NAME</h3> 
+                    <h3 style="text-align: center;" id="nameHeader"></h3> 
                 </div>
                 <div class="row">
 
@@ -132,6 +132,7 @@
                     </div>
                      -->
                 </div>
+                <!--
                 <div class="row">
                     <div class="col-xs-6">
                         <div class="forms">
@@ -190,8 +191,9 @@
                     </div>
 
                 </div> 
+                -->
             </div>
-
+            
             <div class="col-xs-7">
                 <div class="row">
                     <div id="line"></div>
@@ -213,7 +215,7 @@
         var _QRList = @Html.Raw(Json.Encode(@Model.QRs));
         var _patient = @Html.Raw(Json.Encode(@Model.patient));
         var _observations = @Html.Raw(Json.Encode(@Model.observations));
-        console.log(_observations)
+        //console.log(_observations)
         initDetailView(); //TODO refactor
     </script>
 </body>
