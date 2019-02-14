@@ -244,6 +244,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PatientData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AggregationFunctions\IAggregationFunction.cs" />
+    <Compile Include="Services\AggregationFunctions\SumCompareThresholdFunc.cs" />
     <Compile Include="Services\FHIRRepository.cs" />
     <Compile Include="Services\PatientAnalytics.cs" />
     <Compile Include="Startup.cs" />

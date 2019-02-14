@@ -6,6 +6,7 @@ using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
 using TherapyDashboard.DataBase;
 using TherapyDashboard.Models;
+using TherapyDashboard.Services.AggregationFunctions;
 
 namespace TherapyDashboard.Services
 {
@@ -144,9 +145,10 @@ namespace TherapyDashboard.Services
             PatientAnalytics calc = new PatientAnalytics(); //TODO refactor -> reverse this coupling
             Dictionary<long, string> summaries = new Dictionary<long, string>();
 
+            IAggregationFunction aggFunc = new SumCompareThresholdFunc(1);
             foreach (var kvp in patientData) 
             {
-                summaries[kvp.Key] = calc.calculateSummary(kvp);
+                summaries[kvp.Key] = calc.calculateSummary(kvp, aggFunc);
             }
 
             return summaries;
