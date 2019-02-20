@@ -10,11 +10,45 @@ async function initFHIRData(){
     let summaryStrings = Object.values(_summaries);
     let flagStrings = Object.values(_flags);
     let patNames = Object.values(_patientNames);
+
     buildTable(patNames, summaryStrings, flagStrings, patIDs);
 
+    let warningIDs = Object.keys(_warnings);
+    let warningParams = Object.values(_warnings);
+    let warningNames = []
+
+    //TODO is this safe? potential desync between which patient has which params
+    warningIDs.forEach(id =>{
+        warningNames.push(_patientNames[id])
+    })
+    renderWarnings(warningNames, warningIDs, warningParams);
 
     let pieChartData = calculatePieChartData(summaryStrings);
     plotSummariesPieChart(pieChartData);
+}
+
+function renderWarnings(patNames, patIDs, parameters){
+    const table = document.getElementById("warningTable");
+    table.innerHTML = ""
+    let listItems = "";
+
+    //TODO some matching between IDs, and not use index
+    for (let i = 0; i < patIDs.length; i++){
+        var currentHTML = `
+            <tr class="table-active">
+                <td scope="row">
+                    <a href="Patient/${patIDs[i]}">
+                        <span class="normalText">${patNames[i]}</span>
+                    </a>
+                </td>
+                <td scope="row">
+                    <span class="normalText">${parameters[i]}</span>
+                </td>
+            </tr>
+        `
+        listItems += currentHTML;
+    }
+    table.innerHTML = listItems
 }
 
 function calculatePieChartData(summaries){
