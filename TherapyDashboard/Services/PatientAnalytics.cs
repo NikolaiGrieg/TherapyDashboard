@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using TherapyDashboard.Services.AggregationFunctions;
 using TherapyDashboard.Services.FlagFunctions;
+using TherapyDashboard.Services.WarningFunctions;
 
 namespace TherapyDashboard.Services
 {
@@ -34,8 +35,19 @@ namespace TherapyDashboard.Services
             {
                 return "no forms";
             }
-            string summary = func.calculateFlag(QRs);
-            return summary;
+            string flag = func.calculateFlag(QRs);
+            return flag;
+        }
+
+        public List<string> calculateWarnings(KeyValuePair<long, List<QuestionnaireResponse>> kvp, IWarningFunction func)
+        {
+            var QRs = kvp.Value;
+            if (QRs == null || !QRs.Any())
+            {
+                return new List<string>();
+            }
+            List<string> warning = func.calculateWarning(QRs);
+            return warning;
         }
     }
 }

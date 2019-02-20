@@ -146,7 +146,16 @@ namespace TherapyDashboard.Services
 
         public Dictionary<long, List<string>> getWarnings(IWarningFunction warningFunc)
         {
-            return null;
+            Dictionary<long, List<string>> warnings = new Dictionary<long, List<string>>();
+            foreach (var kvp in patientData)
+            {
+                List<string> warning = calc.calculateWarnings(kvp, warningFunc);
+                if (warning.Any())
+                {
+                    warnings[kvp.Key] = warning;
+                }
+            }
+            return warnings;
         }
 
         public Dictionary<long, string> getFlags(IFlagFunction flagFunc)

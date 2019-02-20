@@ -119,6 +119,8 @@
     var _patientNames = @Html.Raw(Json.Encode(@Model.patientNames));
     //console.log(_patientNames);
     var _flags = @Html.Raw(Json.Encode(@Model.flags));
+    var _warnings = @Html.Raw(Json.Encode(@Model.warnings));
+    console.log(_warnings);
     
 </script>
 <script src="~/Scripts/Custom/FhirRepository.js"></script>
