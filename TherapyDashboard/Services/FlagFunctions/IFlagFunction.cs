@@ -9,6 +9,6 @@ namespace TherapyDashboard.Services.FlagFunctions
 {
     public interface IFlagFunction
     {
-        string calculateFlag(List<QuestionnaireResponse> QRs);
+        List<string> calculateFlag(List<QuestionnaireResponse> QRs);
     }
 }

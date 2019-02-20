@@ -158,9 +158,9 @@ namespace TherapyDashboard.Services
             return warnings;
         }
 
-        public Dictionary<long, string> getFlags(IFlagFunction flagFunc)
+        public Dictionary<long, List<string>> getFlags(IFlagFunction flagFunc)
         {
-            Dictionary<long, string> flags = new Dictionary<long, string>();
+            Dictionary<long, List<string>> flags = new Dictionary<long, List<string>>();
             foreach (var kvp in patientData)
             {
                 flags[kvp.Key] = calc.calculateFlags(kvp, flagFunc);

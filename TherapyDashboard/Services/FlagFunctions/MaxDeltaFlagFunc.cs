@@ -8,7 +8,7 @@ namespace TherapyDashboard.Services.FlagFunctions
 {
     public class MaxDeltaFlagFunc : IFlagFunction
     {
-        public string calculateFlag(List<QuestionnaireResponse> QRs)
+        public List<string> calculateFlag(List<QuestionnaireResponse> QRs)
         {
             //TODO current assumption is that last element will be latest, check if this is the case
             QuestionnaireResponse lastQR = QRs[QRs.Count - 1];
@@ -30,7 +30,7 @@ namespace TherapyDashboard.Services.FlagFunctions
                     highestDelta = new KeyValuePair<string, float>(keyPrev, delta);
                 }
             }
-            return highestDelta.Key;
+            return new List<string>(new string[] { highestDelta.Key });
         }
     }
 }

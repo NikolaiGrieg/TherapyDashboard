@@ -28,14 +28,14 @@ namespace TherapyDashboard.Services
             
         }
 
-        public string calculateFlags(KeyValuePair<long, List<QuestionnaireResponse>> kvp, IFlagFunction func)
+        public List<string> calculateFlags(KeyValuePair<long, List<QuestionnaireResponse>> kvp, IFlagFunction func)
         {
             var QRs = kvp.Value;
             if (QRs == null || !QRs.Any())
             {
-                return "no forms";
+                return new List<string>(new string[] { "no forms" });
             }
-            string flag = func.calculateFlag(QRs);
+            List<string> flag = func.calculateFlag(QRs);
             return flag;
         }
 

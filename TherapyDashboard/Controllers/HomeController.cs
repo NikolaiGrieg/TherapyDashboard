@@ -31,7 +31,7 @@ namespace TherapyDashboard.Controllers
             IWarningFunction warningFunc = new DeltaThresholdWarningFunc(1);
 
             Dictionary<long, string> summaries = repo.getSummaries(aggFunc);
-            Dictionary<long, string> flags = repo.getFlags(flagFunc); //todo handle multiple flags
+            Dictionary<long, List<string>> flags = repo.getFlags(flagFunc); //todo handle multiple flags
             Dictionary<long, List<string>> warnings = repo.getWarnings(warningFunc);
 
             //convert dictionaries to strings, and add to model, TODO extract this to method
@@ -42,7 +42,7 @@ namespace TherapyDashboard.Controllers
                 model.summaries[kvp.Key.ToString()] = kvp.Value;
             }
 
-            model.flags = new Dictionary<string, string>();
+            model.flags = new Dictionary<string, List<string>>();
             foreach (var kvp in flags)
             {
                 model.flags[kvp.Key.ToString()] = kvp.Value;

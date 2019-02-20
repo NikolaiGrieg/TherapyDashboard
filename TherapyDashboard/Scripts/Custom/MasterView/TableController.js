@@ -27,6 +27,8 @@ async function initFHIRData(){
     plotSummariesPieChart(pieChartData);
 }
 
+//TODO handle overflow here
+//possible fixes: scroll box, render multiple items as "x flags" with data on mouseover
 function renderWarnings(patNames, patIDs, parameters){
     const table = document.getElementById("warningTable");
     table.innerHTML = ""
