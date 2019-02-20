@@ -15,11 +15,14 @@ namespace TherapyDashboard.Services
     {
         FhirClient client;
         DBCache cache;
+        PatientAnalytics calc;
+        Dictionary<long, List<QuestionnaireResponse>> patientData;
 
         public FHIRRepository()
         {
             client = new FhirClient("http://localhost:8080/hapi/baseDstu3");
-            cache = new DBCache(); 
+            cache = new DBCache();
+            calc = new PatientAnalytics();
         }
 
         private List<QuestionnaireResponse> getQRsAfterDateTime(DateTime dt, long patID)
@@ -29,7 +32,7 @@ namespace TherapyDashboard.Services
 
             Bundle results = client.Search<QuestionnaireResponse>(new string[] { //TODO handle errors
                 "subject=Patient/" + patID,
-                "authored=gt" + dtString 
+                "authored=gt" + dtString
             });
 
             while (results != null)
@@ -53,7 +56,7 @@ namespace TherapyDashboard.Services
         {
             //TODO limit max
             List<Patient> patients = new List<Patient>();
-            
+
             Bundle results = client.Search<Patient>(); //todo error handling 
             while (results != null)
             {
@@ -80,7 +83,7 @@ namespace TherapyDashboard.Services
             return null;
         }
 
-        public Dictionary<long, string> getSummaries(List<Patient> patients)
+        public void updateResources(List<Patient> patients)
         {
             //get all patient IDs
             List<long> oldIds = new List<long>();
@@ -90,7 +93,7 @@ namespace TherapyDashboard.Services
             }
 
             //get cached data
-            Dictionary<long, List<QuestionnaireResponse>> patientData = cache.getAllPatientResources(oldIds); //could be empty
+            patientData = cache.getAllPatientResources(oldIds); //could be empty -- global for this object
 
             List<long> newIds = new List<long>();
             foreach (var id in patientData.Keys)
@@ -141,23 +144,33 @@ namespace TherapyDashboard.Services
 
 
             //calculate summaries
-            PatientAnalytics calc = new PatientAnalytics(); //TODO refactor 
-            Dictionary<long, string> summaries = new Dictionary<long, string>();
+            //IAggregationFunction aggFunc = new SumCompareThresholdFunc(1); //TODO extract
+            //Dictionary<long, string> summaries = calculateSummaries(patientData, aggFunc);
 
-            IAggregationFunction aggFunc = new SumCompareThresholdFunc(1);
-            foreach (var kvp in patientData) 
+            //IFlagFunction flagFunc = new MaxDeltaFlagFunc();
+            //Dictionary<long, string> flags = calculateFlags(patientData, flagFunc);
+
+            //return summaries;
+        }
+
+        public Dictionary<long, string> getFlags(IFlagFunction flagFunc)
+        {
+            Dictionary<long, string> flags = new Dictionary<long, string>();
+            foreach (var kvp in patientData)
+            {
+                flags[kvp.Key] = calc.calculateFlags(kvp, flagFunc);
+            }
+            return flags;
+        }
+
+        public Dictionary<long, string> getSummaries(IAggregationFunction aggFunc)
+        {
+            calc = new PatientAnalytics();
+            Dictionary<long, string> summaries = new Dictionary<long, string>();
+            foreach (var kvp in patientData)
             {
                 summaries[kvp.Key] = calc.calculateSummary(kvp, aggFunc);
             }
-
-            //TODO refactor this out to another method
-            IFlagFunction flagFunc = new MaxDeltaFlagFunc();
-            Dictionary<long, string> TEMPDICT = new Dictionary<long, string>();
-            foreach (var kvp in patientData)
-            {
-                TEMPDICT[kvp.Key] = calc.calculateFlags(kvp, flagFunc);
-            }
-
             return summaries;
         }
 
@@ -186,7 +199,7 @@ namespace TherapyDashboard.Services
 
             //get newest QR, currently assuming order holds, TODO test this
             QuestionnaireResponse lastQR = oldQRs[oldQRs.Count - 1];
-            DateTime lastDate = DateTime.Parse(lastQR.Authored); 
+            DateTime lastDate = DateTime.Parse(lastQR.Authored);
 
             List<QuestionnaireResponse> newQRs = getQRsAfterDateTime(lastDate, patId);
 
@@ -213,7 +226,7 @@ namespace TherapyDashboard.Services
             return QRs;
         }
 
-        
+
         public List<Observation> getCachedObservationssForPatient(long patId)
         {
             PatientData pat = cache.getPatientDataById(patId);
@@ -228,7 +241,7 @@ namespace TherapyDashboard.Services
             }
         }
 
-        
+
         public List<Observation> getAllObservationsByPatId(long id)
         {
             List<Observation> oldObservations = getCachedObservationssForPatient(id);

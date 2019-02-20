@@ -26,7 +26,6 @@ namespace TherapyDashboard.Controllers
         [Route("Patient/{id}")]
         public ActionResult DetailView(long id)
         {
-            //TODO use cached resources her aswell
             FHIRRepository repo = new FHIRRepository();
             FhirJsonSerializer serializer = new FhirJsonSerializer();
 

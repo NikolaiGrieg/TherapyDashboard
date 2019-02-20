@@ -99,7 +99,7 @@
             <thead>
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Current module (PHs)</th>
+                    <th scope="col">Current module</th>
                     <th scope="col">Flags</th>
                     <th scope="col">Summary</th>
                     <th scope="col">Last checked</th>
@@ -118,7 +118,7 @@
     //console.log(summaries);
     var _patientNames = @Html.Raw(Json.Encode(@Model.patientNames));
     //console.log(_patientNames);
-
+    var _flags = @Html.Raw(Json.Encode(@Model.flags));
     
 </script>
 <script src="~/Scripts/Custom/FhirRepository.js"></script>

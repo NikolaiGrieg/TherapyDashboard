@@ -8,8 +8,9 @@
 async function initFHIRData(){
     let patIDs = Object.keys(_summaries);
     let summaryStrings = Object.values(_summaries);
+    let flagStrings = Object.values(_flags);
     let patNames = Object.values(_patientNames);
-    buildTable(patNames, summaryStrings, patIDs);
+    buildTable(patNames, summaryStrings, flagStrings, patIDs);
 
 
     let pieChartData = calculatePieChartData(summaryStrings);
@@ -51,7 +52,7 @@ function calculatePieChartData(summaries){
     
 }
 
-function buildTable(patNames, summaries, patIDs){
+function buildTable(patNames, summaries, flags, patIDs){
     const table = document.getElementById("masterTableBody");
     table.innerHTML = ""
     let listItems = "";
@@ -66,10 +67,10 @@ function buildTable(patNames, summaries, patIDs){
                     </a>
                 </td>
                 <td scope="row">
-                    <span class="normalText">${patIDs[i]}</span>
+                    <span class="normalText">_Module</span>
                 </td>
                 <td scope="row">
-                    <span class="normalText">_Flag</span>
+                    <span class="normalText">${flags[i]}</span>
                 </td>
                 <td scope="row">
                     <span class="normalText">${summaries[i]}</span>
