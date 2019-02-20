@@ -27,8 +27,8 @@ async function initFHIRData(){
     plotSummariesPieChart(pieChartData);
 }
 
-//TODO handle overflow here
-//possible fixes: scroll box, render multiple items as "x flags" with data on mouseover
+//TODO handle vertical overflow
+//TODO: sort depending on severity (highest number?)
 function renderWarnings(patNames, patIDs, parameters){
     const table = document.getElementById("warningTable");
     table.innerHTML = ""
@@ -36,21 +36,67 @@ function renderWarnings(patNames, patIDs, parameters){
 
     //TODO some matching between IDs, and not use index
     for (let i = 0; i < patIDs.length; i++){
-        var currentHTML = `
+        var currPatNameHTML = `
             <tr class="table-active">
                 <td scope="row">
                     <a href="Patient/${patIDs[i]}">
                         <span class="normalText">${patNames[i]}</span>
                     </a>
                 </td>
+                `
+        var currPatWarningParamsHTML = "";
+        if (parameters[i].length === 1){
+            currPatWarningParamsHTML = `
                 <td scope="row">
                     <span class="normalText">${parameters[i]}</span>
                 </td>
             </tr>
         `
+        }
+        else {
+            //create list item for each parameter
+            let currParamsListHTML = "";
+            parameters[i].forEach(param => {
+                let paramHTML = `
+                <tr class="table-active">
+                    <td scope="row">
+                        <span class="normalText">${param}</span>
+                    </td>
+                </tr>
+                `
+                currParamsListHTML += paramHTML;
+            })
+
+            // integrate list in popup box
+            currPatWarningParamsHTML = `
+                <td scope="row" class="popupTrigger">
+                    <span class="normalText">${parameters[i].length} warnings</span>
+                    <div class="popup">
+                        <table class="table table-hover table-striped">
+                            <tbody>
+                                ${currParamsListHTML}
+                            </tbody>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        `
+        }
+        
+        currentHTML = currPatNameHTML + currPatWarningParamsHTML;
         listItems += currentHTML;
     }
-    table.innerHTML = listItems
+    table.innerHTML = listItems;
+    addPopupListener();
+}
+
+//adapted function from https://stackoverflow.com/questions/3559467/description-box-using-onmouseover
+function addPopupListener(){
+    $(".popupTrigger").mouseover(function() {
+        $(this).children(".popup").show();
+    }).mouseout(function() {
+        $(this).children(".popup").hide();
+    });
 }
 
 function calculatePieChartData(summaries){
