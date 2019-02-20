@@ -8,6 +8,7 @@ using TherapyDashboard.DataBase;
 using TherapyDashboard.Models;
 using TherapyDashboard.Services.AggregationFunctions;
 using TherapyDashboard.Services.FlagFunctions;
+using TherapyDashboard.Services.WarningFunctions;
 
 namespace TherapyDashboard.Services
 {
@@ -141,16 +142,11 @@ namespace TherapyDashboard.Services
 
             //insert new elements in cache
             cache.insertNewQRs(newQRs);
+        }
 
-
-            //calculate summaries
-            //IAggregationFunction aggFunc = new SumCompareThresholdFunc(1); //TODO extract
-            //Dictionary<long, string> summaries = calculateSummaries(patientData, aggFunc);
-
-            //IFlagFunction flagFunc = new MaxDeltaFlagFunc();
-            //Dictionary<long, string> flags = calculateFlags(patientData, flagFunc);
-
-            //return summaries;
+        public Dictionary<long, List<string>> getWarnings(IWarningFunction warningFunc)
+        {
+            return null;
         }
 
         public Dictionary<long, string> getFlags(IFlagFunction flagFunc)

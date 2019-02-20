@@ -11,6 +11,7 @@ using Hl7.Fhir.Model;
 using TherapyDashboard.ViewModels;
 using TherapyDashboard.Services.AggregationFunctions;
 using TherapyDashboard.Services.FlagFunctions;
+using TherapyDashboard.Services.WarningFunctions;
 
 namespace TherapyDashboard.Controllers
 {
@@ -27,11 +28,13 @@ namespace TherapyDashboard.Controllers
             //declare calculation functions
             IAggregationFunction aggFunc = new SumCompareThresholdFunc(1);
             IFlagFunction flagFunc = new MaxDeltaFlagFunc();
+            IWarningFunction warningFunc = new DeltaThresholdWarningFunc(1);
 
             Dictionary<long, string> summaries = repo.getSummaries(aggFunc);
-            Dictionary<long, string> flags = repo.getFlags(flagFunc);
+            Dictionary<long, string> flags = repo.getFlags(flagFunc); //todo handle multiple flags
+            Dictionary<long, List<string>> warnings = repo.getWarnings(warningFunc);
 
-            //convert dictionaries to strings, and add to model
+            //convert dictionaries to strings, and add to model, TODO extract this to method
             MasterViewModel model = new MasterViewModel();
             model.summaries = new Dictionary<string, string>();
             foreach (var kvp in summaries)
@@ -44,6 +47,16 @@ namespace TherapyDashboard.Controllers
             {
                 model.flags[kvp.Key.ToString()] = kvp.Value;
             }
+
+            model.warnings = new Dictionary<string, List<string>>();
+            if (warnings != null)
+            {
+                foreach (var kvp in warnings)
+                {
+                    model.warnings[kvp.Key.ToString()] = kvp.Value;
+                }
+            }
+            
 
             model.patientNames = new Dictionary<string, string>();
             foreach (var pat in patients)
