@@ -216,6 +216,8 @@
         var _patient = @Html.Raw(Json.Encode(@Model.patient));
         var _observations = @Html.Raw(Json.Encode(@Model.observations));
         //console.log(_observations)
+        var _qMap = @Html.Raw(Json.Encode(@Model.questionnaireMap));
+        console.log(_qMap);
         initDetailView(); //TODO refactor
     </script>
 </body>

@@ -73,6 +73,47 @@ namespace TherapyDashboard.Services
             return patients;
         }
 
+        public Dictionary<string, string> getQMap(long patID)
+        {
+            //get QRs
+            var QRs = getQRByPatientId(patID); //TODO see if we can not call this twice
+
+            //get unique QIDs
+            List<string> uniqueQIDs = new List<string>();
+            foreach (var QR in QRs)
+            {
+                string qid = QR.Questionnaire.Reference;
+                if (!uniqueQIDs.Contains(qid))
+                {
+                    uniqueQIDs.Add(qid);
+                }
+            }
+
+            //get Qs for each ID
+            List<Questionnaire> questionnaires = new List<Questionnaire>();
+            foreach(var qid in uniqueQIDs)
+            {
+                Bundle results = client.SearchById<Questionnaire>(qid);
+
+                foreach (var entry in results.Entry) //should be one
+                {
+                    Questionnaire questionnaire  = (Questionnaire)entry.Resource;
+                    questionnaires.Add(questionnaire);
+                }
+                
+            }
+
+            //asseble map
+            Dictionary<string, string> qMap = new Dictionary<string, string>();
+            foreach (var questionnaire in questionnaires)
+            {
+                string qid = questionnaire.Id;
+                qMap[qid] = questionnaire.Title;
+            }
+
+            return qMap;
+        }
+
         public Patient getPatientById(long id)
         {
             Bundle results = client.SearchById<Patient>(id.ToString());

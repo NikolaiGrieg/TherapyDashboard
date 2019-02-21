@@ -21,9 +21,12 @@ var processedQRResources;
 function initDetailView(){
 
     let QRs = parseJsonFromStringArray(_QRList);
-    //console.log(QRs);
+    
+    //group QRs based on Questionnaire
+    let groupedQRList = groupQRs(QRs)
+
     if (QRs){
-        processedQRResources = wrangleFhirQRToTimeSeries(QRs);
+        processedQRResources = wrangleFhirQRToTimeSeries(QRs); //this overwrites if time already exists, TODO handle
         initQRLineCharts(processedQRResources);
     }
     
@@ -64,6 +67,21 @@ function initDetailView(){
     filterFhirData(data);
 }
 
+function groupQRs(QRs){
+    /*
+    let QRList = []
+    QRs.forEach(QR => {
+        //get Q
+        console.log(QR)
+        let QID = QR.questionnaire.reference;
+
+        //find if Q in QRList
+
+        //upsert
+    })
+    */
+}
+
 
 function QRResourceToTimeDict(resource){
     let date = resource.authored;
@@ -92,8 +110,6 @@ const getMeasurementNames = data =>{
 }
 
 var filteredMeasurements = {};
-//TODO get background information from patient
-//available data should contain: Age, gender, maritalStatus, language(?), missing module, children, education
 function filterFhirData(data){
 
     //Find unique measurements
