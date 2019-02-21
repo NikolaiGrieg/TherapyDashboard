@@ -7,17 +7,19 @@
   this.width = width;
   this.selectedDiv = selectedDiv;
   this.forms = JSON.parse(JSON.stringify(forms)); //deep clone
+  this.axisNameLength = 30;
+  this.maxValueIncreaseProportion = 0.4
   this.initVis();
 };
 
 SpiderChart.prototype.initVis = function(){
     var vis = this;
-
+    vis.maxValue = 0; // set dynamically
+    vis.globalMaxValue = 1;
     vis.wrangleData(1)
 }
 
-//TODO lock axes based on highest data points
-//TODO refactor data processing out to fit this and linechart
+//TODO dont wrangle data for each update step
 SpiderChart.prototype.wrangleData = function(index){
     var vis = this;
     //Data
@@ -31,7 +33,16 @@ SpiderChart.prototype.wrangleData = function(index){
         for (var key in vis.forms) { //TODO rename vis.data
            if (vis.forms.hasOwnProperty(key)) {
               //console.log(key, vis.data[key]);
-              var entry = vis.forms[key];
+              var entryRaw = vis.forms[key];
+              var entry = {};
+              //cap length of axis labels
+              Object.entries(entryRaw).forEach(entryOld => {
+                let oldKey = entryOld[0];
+                let oldVal = entryOld[1];
+                let newKey = oldKey.slice(0, vis.axisNameLength);
+                entry[newKey] = oldVal;
+              })
+
               entry['date'] = key;
               data.push(entry);
            }
@@ -81,10 +92,29 @@ SpiderChart.prototype.wrangleData = function(index){
 
         vis.data = [trace1, trace2];
 
+        vis.calculateAxisMaxValue()
+
         vis.updateVis()
     });
 }
 
+SpiderChart.prototype.calculateAxisMaxValue = function(){
+    var vis = this;
+    let data = vis.data;
+    let maxTrace = data[1];
+    let maxTraceValues = [];
+    //TODO use global maximum
+    maxTrace.forEach(entry => {
+        maxTraceValues.push(entry.value)
+    })
+    let currUpdateMaxVal = Math.max(...maxTraceValues);
+    //console.log(currUpdateMaxVal);
+    if (currUpdateMaxVal > vis.globalMaxValue){
+        vis.maxValue = currUpdateMaxVal + (currUpdateMaxVal * vis.maxValueIncreaseProportion)
+        vis.globalMaxValue = currUpdateMaxVal;
+    }
+    
+}
 
 SpiderChart.prototype.updateVis = function(){
   var vis = this;
@@ -325,7 +355,7 @@ SpiderChart.prototype.updateVis = function(){
     var mycfg = {
         w: vis.width,
         h: vis.height,
-        maxValue: 8,
+        maxValue: vis.maxValue,
         levels: 6,
         ExtraWidthX: 150,
         TranslateY: 50

@@ -29,6 +29,7 @@ async function initFHIRData(){
 
 //TODO handle vertical overflow
 //TODO: sort depending on severity (highest number?)
+//TODO make this generic to work with flags as well
 function renderWarnings(patNames, patIDs, parameters){
     const table = document.getElementById("warningTable");
     table.innerHTML = ""
