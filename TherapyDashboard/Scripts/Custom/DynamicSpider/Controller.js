@@ -2,9 +2,8 @@
 //TODO change name, this is no longer a controller
 
 //called from FhirRepository
-function initQRLineCharts(resources){
-	//console.log(resources)
-	linechart = new LineChart("#line", this, '_FORMNAME', 'all', resources);
+function initQRLineChart(resources, name){
+	linechart = new LineChart("#line", this, name, 'all', resources);
 }
 
 function update(index){

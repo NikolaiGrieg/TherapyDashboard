@@ -23,12 +23,30 @@ function initDetailView(){
     let QRs = parseJsonFromStringArray(_QRList);
     
     //group QRs based on Questionnaire
-    let groupedQRList = groupQRs(QRs)
+    let groupedQRList = {}
 
-    if (QRs){
+    QRs.forEach(QR => {
+        let qid = QR.questionnaire.reference.slice(14); //remove "Questionnaire/"
+        let name = _qMap[qid];
+        //console.log(name)
+        //if name not already key
+        if (Object.keys(groupedQRList) === undefined || !Object.keys(groupedQRList).includes(name)){
+            groupedQRList[name] = [QR]
+        }
+        else{
+            let bucket = groupedQRList[name];
+            bucket.push(QR)
+        }
+    })
+    //console.log(groupedQRList);
+
+    Object.entries(groupedQRList).forEach(kvp => {
+        let QRs = kvp[1]
+        let qName = kvp[0]
+
         processedQRResources = wrangleFhirQRToTimeSeries(QRs); //this overwrites if time already exists, TODO handle
-        initQRLineCharts(processedQRResources);
-    }
+        initQRLineChart(processedQRResources, qName);
+    })
     
 
     let patient = JSON.parse(_patient);
@@ -65,21 +83,6 @@ function initDetailView(){
         }
     })
     filterFhirData(data);
-}
-
-function groupQRs(QRs){
-    /*
-    let QRList = []
-    QRs.forEach(QR => {
-        //get Q
-        console.log(QR)
-        let QID = QR.questionnaire.reference;
-
-        //find if Q in QRList
-
-        //upsert
-    })
-    */
 }
 
 
@@ -154,7 +157,7 @@ function filterFhirData(data){
 
 //This function works somewhat (missing some unpacking), but the returned FHIR data doesnt appear to be very complete
 function initBackground(patient){
-    console.log(patient)
+    //console.log(patient)
     let listItems = "";
     let filter = ["name", "gender", "birthDate", "telecom", "maritalStatus"]; //should come from backend
 
