@@ -40,15 +40,9 @@
 
                     <div class="col-xs-6" style="position: relative;">
                         <!-- TODO have dropdown ignore overflow, and remove hardcoded pixels -->
-                        <fieldset class="form-group" id="observationsContainer" style ="height: 300px; overflow-x: hidden;">
-                            <!-- TODO One of these buttons for each form type maybe -->  
-                            <button type="button" class="btn btn-info" 
-                                onclick="initSpider()">
-                                Composite forms
-                            </button>
-          
-
-                            <legend>Observations</legend>
+                        <fieldset class="form-group" id="observationsContainer" style ="height: 300px; overflow-x: hidden;"> 
+                            
+                            <legend>Observations and Forms</legend>
                             
                         </fieldset>
                     </div>
@@ -56,142 +50,9 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        <div class="background" id="background">
-                            <!--
-                            <table class="table table-hover table-striped">
-                                <tbody>
-                                    @{
-                                        var background = new Dictionary<string, string>() {
-                                            { "Alder", "30" },
-                                            { "Kjønn", "Mann" },
-                                            { "Utdanning","Videregående skole/gymnas" },
-                                            { "Sivilstatus", "Enslig" },
-                                            { "Antall barn", "Ingen" }
-                                        };
-                                    
-                                        foreach (var entry in background)
-                                        {
-                                            <tr class="table-active">
-                                                <th scope="row">
-                                                    <span class="normalText">@entry.Key</span>
-                                                </th>
-                                                <td scope="row">
-                                                    <span class="normalText">@entry.Value</span>
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
-                                    <tr class="table-active">
-                                            <th scope="row">
-                                                <span class="normalText">Modul</span>
-                                            </th>
-                                            <td scope="row">
-                                                <span class="normalText">_Module</span>
-                                            </td>
-                                        </tr>
-                                </tbody>
-                            </table>
-                            -->
-                        </div>
+                        <div class="background" id="background"></div>
                     </div>
-                    <!--
-                    <div class="col-xs-6">
-                        <h4 style="text-align: center;">Add graph</h4>
-
-                        <div class="graphControl">
-                            <table class="table table-hover table-striped">
-                                <tbody>
-                                    <tr class="table-active">
-                                        <td scope="row">
-                                            <button type="button" class="btn btn-info" 
-                                                onclick="initSpider()">
-                                                Composite forms
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    
-                                    <tr class="table-active">
-                                        <td scope="row">
-                                            <button type="button" class="btn btn-info" 
-                                            onclick="createBarChart('line')">
-                                                Innloggingsaktivitet
-                                            </button>
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr class="table-active">
-                                        <td scope="row">
-                                            <button type="button" class="btn btn-info"
-                                            onclick="createEventLine('line')">Events TODO remove</button>
-                                        </td>  
-                                    </tr>       
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                     -->
                 </div>
-                <!--
-                <div class="row">
-                    <div class="col-xs-6">
-                        <div class="forms">
-                            <h4>Other measurements</h4>
-
-                            <table class="table table-hover table-striped">
-                                <tbody>
-                                    @{
-                                        List<string> forms = new List<string>(){"SPS", "SIAS", "SE - SKALA", "TIC - C", "Bakgrunn"};
-
-                                        foreach (var f in forms)
-                                        {
-                                            <tr class="table-active">
-                                                <td scope="row">
-                                                    <a href="@Url.Action("" , "Patient" )" class="elements">
-                                                        <span class="normalText">@f</span>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-xs-6">
-                        <div class="oppgaver">
-                            <h4>Received documents</h4>
-
-                            <table class="table table-hover table-striped">
-                                <tbody>
-                                    @{
-                                        var tasks = new string[] { "Modul 1: Skjema 1", "Modul 1: Skjema 2", "Modul 2: Skjema 1", "Modul 2: Skjema 2", "Modul 2: Skjema 3", };
-
-                                        foreach (var entry in tasks)
-                                        {
-                                            <tr class="table-active">
-                                                <td scope="row">
-                                                    <a href="@Url.Action("" , "Patient" )" class="elements">
-                                                        <span class="normalText">@entry</span>
-                                                    </a>
-                                                </td>
-                                                <td scope="row">
-                                                    <span class="normalText">Opened</span>
-                                                </td>
-                                                <td scope="row">
-                                                    <span class="normalText">Quality 1</span>
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                </div> 
-                -->
             </div>
             
             <div class="col-xs-7">

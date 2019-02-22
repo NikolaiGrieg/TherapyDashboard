@@ -1,6 +1,6 @@
 ﻿
 LineChart = function(_parentElement, controller, name, elements,
-   forms, height = 200, width = 700, fhir = false){
+   forms, height = 200, width = 700, fhir = false, id = name){
   this.parentElement = _parentElement;
   this.controller = controller;
   this.name = name;
@@ -9,7 +9,7 @@ LineChart = function(_parentElement, controller, name, elements,
   this.initWidt = width;
   this.data = JSON.parse(JSON.stringify(forms)); //deep clone
   this.fhir = fhir;
-
+  this.id = id;
   this.initVis();
 
 };
@@ -26,7 +26,7 @@ LineChart.prototype.initVis = function(){
   // appends a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
   vis.svg = d3.select(vis.parentElement).append("svg")
-      .attr("id", "lineChart" + vis.name.replace(/\s/g, ''))
+      .attr("id", "lineChart" + vis.id.replace(/\s/g, ''))
       .attr("width", vis.width + vis.margin.left + vis.margin.right)
       .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
     .append("g")

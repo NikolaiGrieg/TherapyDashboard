@@ -11,19 +11,17 @@ function wrangleFhirQRToTimeSeries(resources){
     return series;
 }
 
+function initSpider(chartName){
+    let QRs = groupedQRList[chartName]
 
-function initSpider(){
-    createSpiderChart(processedQRResources);
+    let processedQRResources = wrangleFhirQRToTimeSeries(QRs);
+    createSpiderChart(processedQRResources, chartName);
 }
 
-//TODO not call this at master view
-var processedQRResources;
+var groupedQRList = {}
 function initDetailView(){
-
     let QRs = parseJsonFromStringArray(_QRList);
-    
     //group QRs based on Questionnaire
-    let groupedQRList = {}
 
     QRs.forEach(QR => {
         let qid = QR.questionnaire.reference.slice(14); //remove "Questionnaire/"
@@ -41,10 +39,10 @@ function initDetailView(){
     //console.log(groupedQRList);
 
     Object.entries(groupedQRList).forEach(kvp => {
-        let QRs = kvp[1]
         let qName = kvp[0]
-
-        processedQRResources = wrangleFhirQRToTimeSeries(QRs); //this overwrites if time already exists, TODO handle
+        let QRs = kvp[1]
+        
+        let processedQRResources = wrangleFhirQRToTimeSeries(QRs); //this overwrites if time already exists, TODO handle
         initQRLineChart(processedQRResources, qName);
     })
     
@@ -52,7 +50,6 @@ function initDetailView(){
     let patient = JSON.parse(_patient);
     renderPatient(patient);
     initBackground(patient);
-    //console.log(patient);
 
     let observations = []
     _observations.forEach(str => {
@@ -82,6 +79,7 @@ function initDetailView(){
             data.push(entry) 
         }
     })
+    createSpiderChartSelectors(Object.keys(groupedQRList))
     filterFhirData(data);
 }
 

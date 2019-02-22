@@ -17,14 +17,13 @@
 		listItems += currentHTML;
 	}
 
-	//TODO have button take the name of clicked observation
 	var html = `
 			<div class="btn-group">
-			<button type="button" class="btn btn-info btn-block dropdown-toggle" 
-			data-toggle="dropdown" id="observationSelectorBtn" aria-haspopup="true" aria-expanded="false">
-			Select Observation
-			<span class="caret"></span>
-			</button> 
+				<button type="button" class="btn btn-info btn-block dropdown-toggle" 
+				data-toggle="dropdown" id="observationSelectorBtn" aria-haspopup="true" aria-expanded="false">
+					Select Observation
+					<span class="caret"></span>
+				</button> 
 			<ul class="dropdown-menu" style="position: absolute;"> 
 			${listItems}
 			</ul> 
@@ -35,7 +34,26 @@
 	var observationsDropdown = document.createElement("div");
 	observationsDropdown.innerHTML = html;
 	container.appendChild(observationsDropdown);
+}
 
+function createSpiderChartSelectors(chartNames){
+	//build HTML
+	var resHTML = "";
+	chartNames.forEach(name => {
+		let button = `	<button type="button" class="btn btn-primary" 
+	                    onclick="initSpider('${name}')">
+	                    ${name}
+	                </button>
+                            `
+        resHTML += button;
+	})
+
+	//insert HTML
+	var containerDiv = document.createElement("div");
+	containerDiv.innerHTML = resHTML;
+
+	var container = document.getElementById("observationsContainer");
+	container.appendChild(containerDiv);
 }
 
 function createChartSelector(obsSelector) {

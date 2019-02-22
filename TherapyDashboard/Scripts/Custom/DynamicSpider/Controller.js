@@ -50,24 +50,24 @@ function createBarChart(parent){
 	barChart = new BarChart('barChart', this)
 }
 
-//called from html?
-function createSpiderChart(resources){
-	/*
-	var container = document.getElementById(parent);
-	$("#" + parent).append("<div id='spiderChart'></div>"); //overwrites previous barchart if any
-	*/
+function createSpiderChart(resources, name){
 	var container = document.getElementById('modalContainer');
 	container.hidden = false
 	container.style.display = "block";
 
-	spiderchart = new SpiderChart("#spiderChart", this, resources, "MADRS-S",
+	spiderchart = new SpiderChart("#spiderChart", this, resources, "",
 	 height=400, width=400, selectedDiv = '#line');
 
-	//Avoids adding duplicate summary charts to modal container
+	//we only want 1 linechart in the modal container
 	if($('#aggregateSpiderController').children().length == 0){
-		linechart = new LineChart("#aggregateSpiderController", this, 'Summary', 'all', resources);
+		new LineChart("#aggregateSpiderController", this, name, 'all', resources,
+			undefined, undefined, undefined, "modalLineChart");
 	}
-	
+	else{
+		d3.select("#lineChart" + "modalLineChart").remove();
+		new LineChart("#aggregateSpiderController", this, name, 'all', resources,
+			undefined, undefined, undefined, "modalLineChart");
+	}
 }
 function hideSpiderChart(){
 	document.getElementById('modalContainer').style.display = "none";
