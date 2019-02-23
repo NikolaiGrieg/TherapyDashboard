@@ -6,20 +6,42 @@ using Hl7.Fhir.Model;
 
 namespace TherapyDashboard.Services.AggregationFunctions
 {
-    public class SumCompareThresholdFunc : IAggregationFunction
+    public class SumDeltaThresholdSingleQRFunc : IAggregationFunction
     {
         public float threshold { get; set; }
+        public string qid { get; set; }
 
-        public SumCompareThresholdFunc(float _deltaThreshold)
+        public SumDeltaThresholdSingleQRFunc(float _deltaThreshold, string _questionnaireID)
         {
             this.threshold = _deltaThreshold;
+            this.qid = "Questionnaire/" + _questionnaireID; //fhir canonical uri
         }
 
         public string aggregate(List<QuestionnaireResponse> QRs)
         {
-            //TODO current assumption is that last element will be latest, check if this is the case
-            QuestionnaireResponse lastQR = QRs[QRs.Count - 1];
-            QuestionnaireResponse secondLastQR = QRs[QRs.Count - 2];
+            //find QRs matching "qid" string
+            List<QuestionnaireResponse> matchingQRs = new List<QuestionnaireResponse>();
+            foreach (var QR in QRs)
+            {
+                if (QR.Questionnaire.Reference == qid)
+                {
+                    matchingQRs.Add(QR);
+                }
+            }
+
+            //find latest and second latest of matched QRs
+            QuestionnaireResponse lastQR = null;
+            QuestionnaireResponse secondLastQR = null;
+
+            foreach (var QR in matchingQRs)
+            {
+                DateTime date = DateTime.Parse(QR.Authored);
+                if (lastQR == null || DateTime.Parse(lastQR.Authored) < date)
+                {
+                    secondLastQR = lastQR;
+                    lastQR = QR;
+                }
+            }
 
             //calculate sums
             int sumLatest = 0;

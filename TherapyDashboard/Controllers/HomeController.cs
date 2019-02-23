@@ -26,7 +26,7 @@ namespace TherapyDashboard.Controllers
             repo.updateResources(patients); //TODO consider better options, as an exception is called if this line isnt executed before calculations
 
             //declare calculation functions
-            IAggregationFunction aggFunc = new SumCompareThresholdFunc(1);
+            IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "42220");
             IFlagFunction flagFunc = new MaxDeltaFlagFunc();
             IWarningFunction warningFunc = new DeltaThresholdWarningFunc(1);
 

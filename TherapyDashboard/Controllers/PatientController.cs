@@ -65,7 +65,7 @@ namespace TherapyDashboard.Controllers
                 model.observations = observationList;
             }
 
-            //questionnaireMap
+            //questionnaireMap - <name, id>
             Dictionary<string, string> qMap = repo.getQMap(id);
             model.questionnaireMap = qMap;
 
