@@ -64,6 +64,10 @@ namespace TherapyDashboard.Controllers
                 model.patientNames[pat.Id] = pat.Name[0].Given.FirstOrDefault() + " " + pat.Name[0].Family;
             }
 
+            //lastchecked
+            var LCHandler = new LastCheckedHandler();
+            var lastCheckedMap = LCHandler.readPatientMap(0); //0 is therapistID, replace with ID when authentication is impl
+
             return View(model);
         }
 

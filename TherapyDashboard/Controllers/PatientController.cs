@@ -69,6 +69,9 @@ namespace TherapyDashboard.Controllers
             Dictionary<string, string> qMap = repo.getQMap(id);
             model.questionnaireMap = qMap;
 
+            //update LastUpdated
+            var LCHandler = new LastCheckedHandler();
+            LCHandler.updatePatientChecked(0, id); //0 is therapistID, replace with ID when authentication is impl
 
 
             return View(model);
