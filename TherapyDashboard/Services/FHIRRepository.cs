@@ -18,35 +18,31 @@ namespace TherapyDashboard.Services
         DBCache cache;
         PatientAnalytics calc;
         Dictionary<long, List<QuestionnaireResponse>> patientData;
+        FHIRObservationHandler obsHandler;
+        FHIRQRHandler QRHandler;
 
         public FHIRRepository()
         {
             client = new FhirClient("http://localhost:8080/hapi/baseDstu3");
             cache = new DBCache();
             calc = new PatientAnalytics();
+            obsHandler = new FHIRObservationHandler(client, cache, calc);
+            QRHandler = new FHIRQRHandler(client, cache);
+        }
+        public List<Observation> getCachedObservationssForPatient(long patId)
+        {
+            return obsHandler.getCachedObservationssForPatient(patId);
         }
 
-        private List<QuestionnaireResponse> getQRsAfterDateTime(DateTime dt, long patID)
+
+        public List<Observation> getAllObservationsByPatId(long id)
         {
-            List<QuestionnaireResponse> QRs = new List<QuestionnaireResponse>();
-            string dtString = dt.ToString("o"); //XML string
+            return obsHandler.getAllObservationsByPatId(id);
+        }
 
-            Bundle results = client.Search<QuestionnaireResponse>(new string[] { //TODO handle errors
-                "subject=Patient/" + patID,
-                "authored=gt" + dtString
-            });
-
-            while (results != null)
-            {
-                foreach (var entry in results.Entry)
-                {
-                    QuestionnaireResponse QR = (QuestionnaireResponse)entry.Resource;
-                    QRs.Add(QR);
-                }
-
-                results = client.Continue(results);
-            }
-            return QRs;
+        public List<QuestionnaireResponse> getAllQRsByPatId(long id)
+        {
+            return QRHandler.getCachedQRsForPatient(id);
         }
 
         /// <summary>
@@ -76,7 +72,7 @@ namespace TherapyDashboard.Services
         public Dictionary<string, string> getQMap(long patID)
         {
             //get QRs
-            var QRs = getQRByPatientId(patID); //TODO see if we can not call this twice
+            var QRs = QRHandler.getQRByPatientId(patID); //TODO see if we can not call this twice
 
             //get unique QIDs
             List<string> uniqueQIDs = new List<string>();
@@ -143,6 +139,14 @@ namespace TherapyDashboard.Services
                 newIds.Add(id);
             }
 
+            Dictionary<long, List<QuestionnaireResponse>> newQRs = updateAllQRs(patients, newIds);
+
+            //insert new elements in cache
+            cache.insertNewQRs(newQRs);
+        }
+
+        private Dictionary<long, List<QuestionnaireResponse>> updateAllQRs(List<Patient> patients, List<long> newIds)
+        {
             //get all QRs for new patients
             List<Patient> newPats = new List<Patient>();
             foreach (var pat in patients)
@@ -153,24 +157,24 @@ namespace TherapyDashboard.Services
                 }
             }
 
-            Dictionary<long, List<QuestionnaireResponse>> newQRs = new Dictionary<long, List<QuestionnaireResponse>>();
+            Dictionary<long, List<QuestionnaireResponse>> allQRs = new Dictionary<long, List<QuestionnaireResponse>>();
             foreach (var pat in newPats)
             {
                 long patID = Int32.Parse(pat.Id);
-                var newQRList = getQRByPatientId(patID);
-                newQRs[patID] = newQRList;
+                var newQRList = QRHandler.getQRByPatientId(patID);
+                allQRs[patID] = newQRList;
                 patientData[patID] = newQRList;
             }
 
-            //get new QRs for old patients, TODO refactor extract method
+            //get new QRs for old patients
             Dictionary<long, List<QuestionnaireResponse>> newQRsOldPatients = new Dictionary<long, List<QuestionnaireResponse>>();
             foreach (var kvp in patientData)
             {
                 long patId = kvp.Key;
-                List<QuestionnaireResponse> newQRList = getNewestQRs(patId, patientData);
+                List<QuestionnaireResponse> newQRList = QRHandler.getNewestQRs(patId, patientData);
                 if (newQRList != null && newQRList.Any())
                 {
-                    newQRs[patId] = newQRList;
+                    allQRs[patId] = newQRList;
                     newQRsOldPatients[patId] = newQRList;
                 }
             }
@@ -180,9 +184,7 @@ namespace TherapyDashboard.Services
                 patientData[kvp.Key] = kvp.Value;
             }
 
-
-            //insert new elements in cache
-            cache.insertNewQRs(newQRs);
+            return allQRs;
         }
 
         public Dictionary<long, List<string>> getWarnings(IWarningFunction warningFunc)
@@ -220,137 +222,7 @@ namespace TherapyDashboard.Services
             return summaries;
         }
 
-        public List<QuestionnaireResponse> getCachedQRsForPatient(long patId)
-        {
-            PatientData pat = cache.getPatientDataById(patId);
-            if (pat != null)
-            {
-                List<QuestionnaireResponse> QRs = pat.QRs;
-                return QRs;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        
 
-        private List<QuestionnaireResponse> getNewestQRs(long patId, Dictionary<long, List<QuestionnaireResponse>> patientData)
-        {
-            var oldQRs = patientData[patId]; //if this is empty, the resource server doesn't have QRs for the patient
-
-            if (!oldQRs.Any())
-            {
-                return null;
-            }
-
-            //get newest QR, currently assuming order holds, TODO test this
-            QuestionnaireResponse lastQR = oldQRs[oldQRs.Count - 1];
-            DateTime lastDate = DateTime.Parse(lastQR.Authored);
-
-            List<QuestionnaireResponse> newQRs = getQRsAfterDateTime(lastDate, patId);
-
-            return newQRs;
-        }
-
-
-        private List<QuestionnaireResponse> getQRByPatientId(long id)
-        {
-            List<QuestionnaireResponse> QRs = new List<QuestionnaireResponse>();
-
-            Bundle results = client.Search<QuestionnaireResponse>(new string[] { "subject=Patient/" + id });
-
-            while (results != null)
-            {
-                foreach (var entry in results.Entry)
-                {
-                    QuestionnaireResponse QR = (QuestionnaireResponse)entry.Resource;
-                    QRs.Add(QR);
-                }
-
-                results = client.Continue(results);
-            }
-            return QRs;
-        }
-
-
-        public List<Observation> getCachedObservationssForPatient(long patId)
-        {
-            PatientData pat = cache.getPatientDataById(patId);
-            if (pat != null)
-            {
-                List<Observation> observations = pat.observations;
-                return observations;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-
-        public List<Observation> getAllObservationsByPatId(long id)
-        {
-            List<Observation> oldObservations = getCachedObservationssForPatient(id);
-            if (oldObservations != null)
-            {
-
-            }
-
-            List<Observation> newObservations = new List<Observation>();
-            Bundle results = client.Search<Observation>(new string[] { "subject=Patient/" + id });
-
-            while (results != null)
-            {
-                foreach (var entry in results.Entry)
-                {
-                    Observation obs = (Observation)entry.Resource;
-                    newObservations.Add(obs);
-                }
-
-                results = client.Continue(results);
-            }
-            return newObservations;
-        }
-
-        private List<Observation> getNewestQRs(long patId, Dictionary<long, List<Observation>> observations)
-        {
-            var oldObservations = observations[patId]; //if this is empty, the resource server doesn't have QRs for the patient
-
-            if (!oldObservations.Any())
-            {
-                return null;
-            }
-
-            //get newest QR, currently assuming order holds, TODO test this
-            Observation lastObs = oldObservations[oldObservations.Count - 1];
-            DateTime lastDate = DateTime.Parse(lastObs.Meta.LastUpdated.ToString());//could maybe do this without the string cast
-
-            List<Observation> newObs = getObservationsAfterDateTime(lastDate, patId);
-
-            return newObs;
-        }
-
-        private List<Observation> getObservationsAfterDateTime(DateTime dt, long patID)
-        {
-            List<Observation> observations = new List<Observation>();
-            string dtString = dt.ToString("o"); //XML string
-
-            Bundle results = client.Search<Observation>(new string[] { //TODO handle errors
-                "subject=Patient/" + patID,
-                "authored=gt" + dtString
-            });
-
-            while (results != null)
-            {
-                foreach (var entry in results.Entry)
-                {
-                    Observation obs = (Observation)entry.Resource;
-                    observations.Add(obs);
-                }
-
-                results = client.Continue(results);
-            }
-            return observations;
-        }
     }
 }

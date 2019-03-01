@@ -40,7 +40,7 @@ namespace TherapyDashboard.Controllers
             }
             
             //add QRs
-            List<QuestionnaireResponse> QRs = repo.getCachedQRsForPatient(id);
+            List<QuestionnaireResponse> QRs = repo.getAllQRsByPatId(id);
             if (QRs != null)
             {
                 List<string> QRJsonList = new List<string>();
