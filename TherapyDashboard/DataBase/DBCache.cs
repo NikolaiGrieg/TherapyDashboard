@@ -10,6 +10,9 @@ using System.Linq;
 using System.Web;
 using TherapyDashboard.Models;
 using TherapyDashboard.Services;
+using TherapyDashboard.Services.AggregationFunctions;
+using TherapyDashboard.Services.FlagFunctions;
+using TherapyDashboard.ViewModels;
 
 namespace TherapyDashboard.DataBase
 {
@@ -17,6 +20,10 @@ namespace TherapyDashboard.DataBase
     {
 
         IMongoCollection<PatientData> collection;
+        IMongoCollection<MasterViewModel> viewModels; //TODO map to therapist
+
+        //TODO create functionality for persisting viewmodel, and load it on index call
+        //with replacement of the viewmodel on update resources
 
         public DBCache()
         {
@@ -31,7 +38,12 @@ namespace TherapyDashboard.DataBase
             MongoClient client = new MongoClient();
             var db = client.GetDatabase("Dashboard");
             collection = db.GetCollection<PatientData>("PatientData");
+            viewModels = db.GetCollection<MasterViewModel>("ViewModels");
+        }
 
+        public MasterViewModel loadViewModel()
+        {
+            return viewModels.Find(x => true).FirstOrDefault();//TODO therapistID here
         }
 
         private void registerCMs()
@@ -58,6 +70,24 @@ namespace TherapyDashboard.DataBase
             }
             return mds;
         }
+
+        /*
+        public Dictionary<long, List<QuestionnaireResponse>> loadCache()
+        {
+            registerCMs();
+
+            Dictionary<long, List<QuestionnaireResponse>> mds = new Dictionary<long, List<QuestionnaireResponse>>();
+
+            List<PatientData> pds = collection.Find(x => true).ToList();
+
+            foreach (var pat in pds)
+            {
+                mds[pat.fhirID] = pat.QRs;
+            }
+            return mds;
+
+        }
+        */
 
         public PatientData getPatientDataById(long fhirID)
         {
@@ -113,6 +143,19 @@ namespace TherapyDashboard.DataBase
                 //no patient with that Id
                 pd = new PatientData(id, null, observations);
                 collection.InsertOne(pd);
+            }
+        }
+
+        public void cacheModel(MasterViewModel model)
+        {
+            var prev = viewModels.Find(x => x.id == model.id).FirstOrDefault();
+            if (prev != null)
+            {
+                viewModels.ReplaceOne(x => x.id == model.id, model);
+            }
+            else
+            {
+                viewModels.InsertOne(model);
             }
         }
 

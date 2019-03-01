@@ -9,6 +9,7 @@ using TherapyDashboard.Models;
 using TherapyDashboard.Services.AggregationFunctions;
 using TherapyDashboard.Services.FlagFunctions;
 using TherapyDashboard.Services.WarningFunctions;
+using TherapyDashboard.ViewModels;
 
 namespace TherapyDashboard.Services
 {
@@ -34,6 +35,65 @@ namespace TherapyDashboard.Services
             return obsHandler.getCachedObservationssForPatient(patId);
         }
 
+        public MasterViewModel loadCache()
+        {
+            return cache.loadViewModel();
+        }
+
+        public void updateResources()
+        {
+            FHIRRepository repo = new FHIRRepository();
+            List<Patient> patients = repo.getAllPatients();
+
+            repo.updateResources(patients); //TODO consider better options, as an exception is called if this line isnt executed before calculations
+            //repo.loadCache(); //TODO cache viewmodel, and update it on resource update
+
+            //declare calculation functions
+            IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "42220");
+            IFlagFunction flagFunc = new MaxDeltaFlagFunc();
+            IWarningFunction warningFunc = new DeltaThresholdWarningFunc(1);
+
+            Dictionary<long, string> summaries = repo.getSummaries(aggFunc);
+            Dictionary<long, List<string>> flags = repo.getFlags(flagFunc); //todo handle multiple flags
+            Dictionary<long, List<string>> warnings = repo.getWarnings(warningFunc);
+
+            //convert dictionaries to strings, and add to model, TODO extract this to method
+            MasterViewModel model = new MasterViewModel();
+            model.summaries = new Dictionary<string, string>();
+            foreach (var kvp in summaries)
+            {
+                model.summaries[kvp.Key.ToString()] = kvp.Value;
+            }
+
+            model.flags = new Dictionary<string, List<string>>();
+            foreach (var kvp in flags)
+            {
+                model.flags[kvp.Key.ToString()] = kvp.Value;
+            }
+
+            model.warnings = new Dictionary<string, List<string>>();
+            if (warnings != null)
+            {
+                foreach (var kvp in warnings)
+                {
+                    model.warnings[kvp.Key.ToString()] = kvp.Value;
+                }
+            }
+
+
+            model.patientNames = new Dictionary<string, string>();
+            foreach (var pat in patients)
+            {
+                model.patientNames[pat.Id] = pat.Name[0].Given.FirstOrDefault() + " " + pat.Name[0].Family;
+            }
+
+            //lastchecked
+            var LCHandler = new LastCheckedHandler();
+            var lastCheckedMap = LCHandler.readPatientMap(0); //0 is therapistID, replace with ID when authentication is impl
+            model.lastCheckedMap = lastCheckedMap.patientMap;
+
+            cache.cacheModel(model);
+        }
 
         public List<Observation> getAllObservationsByPatId(long id)
         {
@@ -44,6 +104,15 @@ namespace TherapyDashboard.Services
         {
             return QRHandler.getCachedQRsForPatient(id);
         }
+        /*
+        public void loadCache()
+        {
+           
+            if (patientData == null)
+            {
+                patientData = cache.loadCache();
+            }
+        }*/
 
         /// <summary>
         /// 
