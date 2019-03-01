@@ -103,6 +103,8 @@
     var _flags = @Html.Raw(Json.Encode(@Model.flags));
     var _warnings = @Html.Raw(Json.Encode(@Model.warnings));
     //console.log(_warnings);
+    var _lastChecked = @Html.Raw(Json.Encode(@Model.lastCheckedMap));
+    //console.log(_lastChecked);
     
 </script>
 <script src="~/Scripts/Custom/FhirRepository.js"></script>

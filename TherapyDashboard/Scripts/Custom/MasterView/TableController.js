@@ -10,8 +10,9 @@ async function initFHIRData(){
     let summaryStrings = Object.values(_summaries);
     let flagStrings = Object.values(_flags);
     let patNames = Object.values(_patientNames);
+    let lastChecked = wrangleLastChecked(_lastChecked);
 
-    buildTable(patNames, summaryStrings, flagStrings, patIDs);
+    buildTable(patNames, summaryStrings, flagStrings, patIDs, lastChecked);
 
     let warningIDs = Object.keys(_warnings);
     let warningParams = Object.values(_warnings);
@@ -25,6 +26,21 @@ async function initFHIRData(){
 
     let pieChartData = calculatePieChartData(summaryStrings);
     plotSummariesPieChart(pieChartData);
+}
+
+function wrangleLastChecked(_lastChecked){
+    let dateMap = {}
+    Object.entries(_lastChecked).forEach(kvp => {
+        
+        let patID = kvp[0];
+        let dateStr = kvp[1]
+                .replace(/\D/g,''); //remove non numerical symbols
+
+        let date = new Date(parseInt(dateStr));
+        dateMap[patID] = date;
+    })
+    
+    return dateMap;
 }
 
 //TODO handle vertical overflow
@@ -135,13 +151,19 @@ function calculatePieChartData(summaries){
     
 }
 
-function buildTable(patNames, summaries, flags, patIDs){
+function buildTable(patNames, summaries, flags, patIDs, lastChecked){
     const table = document.getElementById("masterTableBody");
     table.innerHTML = ""
     let listItems = "";
 
     //TODO some matching between IDs, and not use index
     for (let i = 0; i < patIDs.length; i++){
+
+        let lastCheckedCurrent = "Never"
+        if(Object.keys(lastChecked).includes(patIDs[i])){
+            lastCheckedCurrent = lastChecked[patIDs[i]];
+        }
+
         var currentHTML = `
             <tr class="table-active">
                 <td scope="row">
@@ -159,7 +181,7 @@ function buildTable(patNames, summaries, flags, patIDs){
                     <span class="normalText">${summaries[i]}</span>
                 </td>
                 <td scope="row">
-                    <span class="normalText">NYI</span>
+                    <span class="normalText">${lastCheckedCurrent}</span>
                 </td>
             </tr>
         `

@@ -67,7 +67,7 @@ namespace TherapyDashboard.Controllers
             //lastchecked
             var LCHandler = new LastCheckedHandler();
             var lastCheckedMap = LCHandler.readPatientMap(0); //0 is therapistID, replace with ID when authentication is impl
-
+            model.lastCheckedMap = lastCheckedMap.patientMap;
             return View(model);
         }
 
