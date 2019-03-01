@@ -37,10 +37,35 @@ function wrangleLastChecked(_lastChecked){
                 .replace(/\D/g,''); //remove non numerical symbols
 
         let date = new Date(parseInt(dateStr));
-        dateMap[patID] = date;
+        let readableDate = dateToHumanReadable(date);
+
+        dateMap[patID] = readableDate;
     })
     
     return dateMap;
+}
+
+//TODO test, appears to be correct
+//adapted from https://stackoverflow.com/questions/2627473/how-to-calculate-the-number-of-days-between-two-dates
+function dateToHumanReadable(date){
+    var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+    var firstDate = date;
+    var secondDate = new Date();
+
+    var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+
+    let daysStr;
+    if(diffDays == 0){
+        daysStr = "Today"
+    }
+    else if (diffDays < 7){
+        daysStr = diffDays + " days ago";
+    }
+    else{
+        diffWeeks = diffDays / 7
+        daysStr = diffWeeks + "weeks ago";
+    }
+    return daysStr;
 }
 
 //TODO handle vertical overflow
