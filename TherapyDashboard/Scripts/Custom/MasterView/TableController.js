@@ -230,9 +230,15 @@ function enableTableSort() {
     //adapted from https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
     const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
 
-    const comparer = (idx, asc) => (a, b) => ((v1, v2) =>
-        v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
-    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+    const comparer = (idx, asc) => (a, b) => ((v1, v2) => v1 !== '' && v2 !== '' && 
+        !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2))
+    (getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+    const _comparer = (idx, asc) => (a, b) => {
+        let aVal = getCellValue(a, idx);
+        let bVal = getCellValue(b, idx);
+        return a - b;
+    }
 
     //TODO doesn't work for the first element in the table
     let ths = document.querySelectorAll('th');
@@ -251,9 +257,33 @@ function enableTableSort() {
     //apply alphaNumerical sorting
     alphaNumSorted.forEach(th => th.addEventListener('click', (() => {
         const table = document.getElementById("masterTable");
-        Array.from(table.tBodies[0].querySelectorAll('tr:nth-child(n+1)'))
-            .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-            .forEach(tr => table.tBodies[0].appendChild(tr));
+        let sortedTrs;
+
+        //Hack to fix bug where name column refused to sort correctly
+        if (th.innerHTML == "Name"){
+            let nameSortedPatNames = Object.values(_patientNames).sort();
+            sortedTrs = [];
+            nameSortedPatNames.forEach(name =>{
+                let tdQuery = Array.from($("td:contains(" + name + ")"))
+                let td;
+                tdQuery.forEach(listElement => {
+                    if (listElement.parentNode.parentNode.id == "masterTableBody"){
+                        sortedTrs.push(listElement.parentNode);
+                    }
+                })
+            })
+            if (this.asc){
+                sortedTrs.reverse()
+            }
+            this.asc = !this.asc;
+        }
+        else{
+            let alphaNumTrs = Array.from(table.tBodies[0].querySelectorAll('tr:nth-child(n+1)'));
+            sortedTrs = alphaNumTrs.sort(comparer(Array.from(th.parentNode.children).indexOf(th), 
+                this.asc = !this.asc));
+        }
+        
+        sortedTrs.forEach(tr => table.tBodies[0].appendChild(tr));
     })));
 
     //apply date sorting
@@ -273,7 +303,6 @@ function enableTableSort() {
     })
 
     //add eventlistener
-    var asc = true;
     dateSorted.addEventListener('click', (() => {
         const table = document.getElementById("masterTable");
         trs.forEach(tr => table.tBodies[0].appendChild(tr));
