@@ -225,6 +225,7 @@ function buildTable(patNames, summaries, flags, patIDs, lastChecked){
     table.innerHTML = listItems
 }
 
+//TODO clean this up
 function enableTableSort() {
     //adapted from https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
     const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
@@ -234,12 +235,50 @@ function enableTableSort() {
     )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
 
     //TODO doesn't work for the first element in the table
-    document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+    let ths = document.querySelectorAll('th');
+    
+    let alphaNumSorted = []
+    let dateSorted;
+    ths.forEach(th => {
+        if (th.innerHTML != "Last checked"){
+            alphaNumSorted.push(th)
+        }
+        else{
+            dateSorted = th;
+        }
+    })
+
+    //apply alphaNumerical sorting
+    alphaNumSorted.forEach(th => th.addEventListener('click', (() => {
         const table = document.getElementById("masterTable");
         Array.from(table.tBodies[0].querySelectorAll('tr:nth-child(n+1)'))
             .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
             .forEach(tr => table.tBodies[0].appendChild(tr));
     })));
+
+    //apply date sorting
+    let dateSortedPatNames = getDateSortedPatNameArray();
+
+    //assemble list of patNames in order of sorted date
+    let trs = [];
+    dateSortedPatNames.forEach(name =>{
+        let tdQuery = Array.from($("td:contains(" + name + ")"))
+        let td;
+         //if duplicate names, one of the names will have wrong position in list
+        tdQuery.forEach(listElement => {
+            if (listElement.parentNode.parentNode.id == "masterTableBody"){
+                trs.push(listElement.parentNode);
+            }
+        })
+    })
+
+    //add eventlistener
+    var asc = true;
+    dateSorted.addEventListener('click', (() => {
+        const table = document.getElementById("masterTable");
+        trs.forEach(tr => table.tBodies[0].appendChild(tr));
+        trs.reverse();
+    }))
 }
 
 function initSearch(){
@@ -253,9 +292,25 @@ function initSearch(){
     });
 }
 
-function _sortOnDate(){
-    let lastChecked = wrangleLastChecked(_lastChecked);
-    //TODOD impl
+//newest entries have lowest index - sorted ascending based on date diff
+function getDateSortedPatNameArray(){
+    //patients with existing checked
+    let lastChecked = wrangleLastChecked(_lastChecked, false);
+    let dateSorted = Object.keys(lastChecked).sort(function(a,b){return lastChecked[b]-lastChecked[a]})
+
+    //patients without exsiting checked
+    let allPatIds = Object.keys(_summaries);
+    allPatIds.forEach(id =>{
+        if (!dateSorted.includes(id)){
+            dateSorted.push(id)
+        }
+    })
+    let names = []
+    dateSorted.forEach(id => {
+        names.push(_patientNames[id])
+    })
+
+    return names;
 }
 
 function clearFilter() {
