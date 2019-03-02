@@ -5,7 +5,7 @@
 }
 
 
-async function initFHIRData(){
+function initFHIRData(){
     let patIDs = Object.keys(_summaries);
     let summaryStrings = Object.values(_summaries);
     let flagStrings = Object.values(_flags);
@@ -28,7 +28,7 @@ async function initFHIRData(){
     plotSummariesPieChart(pieChartData);
 }
 
-function wrangleLastChecked(_lastChecked){
+function wrangleLastChecked(_lastChecked, humanReadable=true){
     let dateMap = {}
     Object.entries(_lastChecked).forEach(kvp => {
         
@@ -37,22 +37,32 @@ function wrangleLastChecked(_lastChecked){
                 .replace(/\D/g,''); //remove non numerical symbols
 
         let date = new Date(parseInt(dateStr));
-        let readableDate = dateToHumanReadable(date);
-
-        dateMap[patID] = readableDate;
+        if(humanReadable){
+            let readableDate = dateToHumanReadable(date);
+            dateMap[patID] = readableDate;
+        }
+        else{
+            dateMap[patID] = date;
+        }
+        
     })
     
     return dateMap;
 }
 
-//TODO test, appears to be correct
 //adapted from https://stackoverflow.com/questions/2627473/how-to-calculate-the-number-of-days-between-two-dates
-function dateToHumanReadable(date){
+function getDiffDays(date){
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
     var firstDate = date;
     var secondDate = new Date();
 
     var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+    return diffDays;
+}
+
+//TODO test, appears to be correct
+function dateToHumanReadable(date){
+    var diffDays = getDiffDays(date);
 
     let daysStr;
     if(diffDays == 0){
@@ -243,6 +253,11 @@ function initSearch(){
     });
 }
 
+function _sortOnDate(){
+    let lastChecked = wrangleLastChecked(_lastChecked);
+    //TODOD impl
+}
+
 function clearFilter() {
     $(function(){
         $("#masterTableBody tr").filter(function() {
@@ -251,26 +266,45 @@ function clearFilter() {
     });
 }
 
-function filterDone() {
+function applyDateFilter(isDone){
+    clearFilter();
+    let lastChecked = wrangleLastChecked(_lastChecked, false);
+    let threshold = 7;
+
+    //get list of lastChecked within 7 days
+    let filteredPatients = [];
+    Object.entries(lastChecked).forEach(kvp =>{
+        let patID = kvp[0];
+        let date = kvp[1];
+        let diffDays = getDiffDays(date);
+        if (diffDays < threshold){
+            let patName = _patientNames[patID]; //global variable.. 
+            filteredPatients.push(patName);
+        }
+    })
+
+    //update gui
     $(function(){
-        var threshold = 7;
         $("#masterTableBody tr").filter(function() {
-            var colSixVal = this.children[6]
-            var lastCheckedCurrent = parseInt(colSixVal.innerText[0])
-            $(this).toggle(lastCheckedCurrent > threshold)
+            var patientColumn = this.children[0]
+            var patNameCurrent = patientColumn.innerText;
+            if(isDone){
+                $(this).toggle(!filteredPatients.includes(patNameCurrent));
+            }
+            else{
+                $(this).toggle(filteredPatients.includes(patNameCurrent));
+            }
         });
     });
 }
 
+function filterDone() {
+    applyDateFilter(true);
+}
+
+
 function filterNotDone() {
-    $(function(){
-        var threshold = 7;
-        $("#masterTableBody tr").filter(function() {
-            var colSixVal = this.children[6]
-            var lastCheckedCurrent = parseInt(colSixVal.innerText[0])
-            $(this).toggle(lastCheckedCurrent <= threshold)
-        });
-    });
+    applyDateFilter(false);
 }
 
 initTable();
