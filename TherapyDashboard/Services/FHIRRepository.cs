@@ -18,7 +18,7 @@ namespace TherapyDashboard.Services
         FhirClient client;
         DBCache cache;
         PatientAnalytics calc;
-        Dictionary<long, List<QuestionnaireResponse>> patientData;
+        Dictionary<long, List<QuestionnaireResponse>> patientData; //TODO consider other ways to handle this
         FHIRObservationHandler obsHandler;
         FHIRQRHandler QRHandler;
 
@@ -124,10 +124,6 @@ namespace TherapyDashboard.Services
         }
         
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns>List of FHIR Patient objects</returns>
         public List<Patient> getAllPatients()
         {
             List<Patient> patients = new List<Patient>();
@@ -147,6 +143,13 @@ namespace TherapyDashboard.Services
             return patients;
         }
 
+        /// <summary>
+        /// Used to map questionnaire IDs to their corresponding names in DetailView. 
+        /// As the FHIR QRs does not contain the name of the questionnaire, 
+        /// this is done to avoid having to return the Questionnaire resources to the view.
+        /// </summary>
+        /// <param name="patID">ID of the patient with the requested QRs</param>
+        /// <returns>Dict with (name: id)</returns>
         public Dictionary<string, string> getQMap(long patID)
         {
             //get QRs
@@ -177,7 +180,7 @@ namespace TherapyDashboard.Services
                 
             }
 
-            //asseble map
+            //assemble map
             Dictionary<string, string> qMap = new Dictionary<string, string>();
             foreach (var questionnaire in questionnaires)
             {
@@ -199,6 +202,7 @@ namespace TherapyDashboard.Services
             return null;
         }
 
+        //TODO update observation resources
         public void updateResources(List<Patient> patients)
         {
             //get all patient IDs
@@ -223,6 +227,13 @@ namespace TherapyDashboard.Services
             cache.insertNewQRs(newQRs);
         }
 
+        /// <summary>
+        /// Updates the QuestionnaireResponses for all patients by using the previously cached QRs, and 
+        /// querying the resource server for QRs after the latest date per patient.
+        /// </summary>
+        /// <param name="patients">List of FHIR Patient objects</param>
+        /// <param name="newIds">List of IDs of patients with no QRs cached</param>
+        /// <returns>Dict mapping patientID to their list of QuestionnaireResponses</returns>
         private Dictionary<long, List<QuestionnaireResponse>> updateAllQRs(List<Patient> patients, List<long> newIds)
         {
             //get all QRs for new patients
@@ -257,6 +268,7 @@ namespace TherapyDashboard.Services
                 }
             }
 
+            //wrangle to format
             foreach (var kvp in newQRsOldPatients)
             {
                 patientData[kvp.Key] = kvp.Value;
