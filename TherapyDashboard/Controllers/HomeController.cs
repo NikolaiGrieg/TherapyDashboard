@@ -21,15 +21,26 @@ namespace TherapyDashboard.Controllers
         public ActionResult Index()
         {
             FHIRRepository repo = new FHIRRepository();
+            repo.updateTherapistState(0); //using 0 as default therapistID
+
             var model = repo.loadCache(); //TODO also do this for detailView
+            if (model == null)
+            {
+                repo.updateGlobalState(); //expensive operation
+                repo.updateTherapistState(0); //workaround for this function requiring the global state to update first if model is null
+
+                model = repo.loadCache();
+            }
             return View(model);
         }
 
         public ActionResult updateCache()
         {
             FHIRRepository repo = new FHIRRepository();
+            
             repo.updateGlobalState();
-            return Content("Successfully updated");
+
+            return Content("Successfully updated global state");
         }
 
         public ActionResult About()

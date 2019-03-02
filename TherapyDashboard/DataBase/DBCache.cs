@@ -146,6 +146,7 @@ namespace TherapyDashboard.DataBase
             }
         }
 
+        //TODO support more than 1 therapist
         public void cacheModel(MasterViewModel model)
         {
             var prev = viewModels.Find(x => x.id == model.id).FirstOrDefault();

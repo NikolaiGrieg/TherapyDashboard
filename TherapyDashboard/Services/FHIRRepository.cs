@@ -41,6 +41,30 @@ namespace TherapyDashboard.Services
             return cache.loadViewModel();
         }
 
+        /// <summary>
+        /// Reads the lastCheckedMap for the given therapist from DB and returns it. 
+        /// Requires an existing global model to exist before calling this, 
+        /// and will do nothing if this is not the case (should only happen if database is completely fresh).
+        /// </summary>
+        public void updateTherapistState(long therapistID)
+        {
+            var model = loadCache();
+            if (model != null)
+            {
+                var LCHandler = new LastCheckedHandler();
+                var lastCheckedMap = LCHandler.readPatientMap(therapistID); //0 is therapistID, replace with ID when authentication is impl
+                model.lastCheckedMap = lastCheckedMap.patientMap;
+                cache.cacheModel(model);
+            }
+            
+        }
+
+        /// <summary>
+        /// Refreshes Resources from FHIR server and preforms all necessary calculations for master view. 
+        /// Result is stored as MasterViewModel in db. 
+        /// Operates independent of logged in therapist.
+        /// Should preferably be called by a task scheduler on the server as this is a long running process.
+        /// </summary>
         public void updateGlobalState()
         {
             List<Patient> patients = getAllPatients();
@@ -86,11 +110,6 @@ namespace TherapyDashboard.Services
                 model.patientNames[pat.Id] = pat.Name[0].Given.FirstOrDefault() + " " + pat.Name[0].Family;
             }
 
-            //lastchecked
-            var LCHandler = new LastCheckedHandler();
-            var lastCheckedMap = LCHandler.readPatientMap(0); //0 is therapistID, replace with ID when authentication is impl
-            model.lastCheckedMap = lastCheckedMap.patientMap;
-
             cache.cacheModel(model);
         }
 
@@ -111,7 +130,6 @@ namespace TherapyDashboard.Services
         /// <returns>List of FHIR Patient objects</returns>
         public List<Patient> getAllPatients()
         {
-            //TODO limit max
             List<Patient> patients = new List<Patient>();
 
             Bundle results = client.Search<Patient>(); //todo error handling 
