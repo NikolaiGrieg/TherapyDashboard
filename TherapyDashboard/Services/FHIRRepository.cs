@@ -30,9 +30,10 @@ namespace TherapyDashboard.Services
             obsHandler = new FHIRObservationHandler(client, cache, calc);
             QRHandler = new FHIRQRHandler(client, cache);
         }
-        public List<Observation> getCachedObservationssForPatient(long patId)
+
+        public List<Observation> getCachedObservationsForPatient(long patId)
         {
-            return obsHandler.getCachedObservationssForPatient(patId);
+            return obsHandler.getCachedObservationsForPatient(patId);
         }
 
         public MasterViewModel loadCache()
@@ -40,22 +41,20 @@ namespace TherapyDashboard.Services
             return cache.loadViewModel();
         }
 
-        public void updateResources()
+        public void updateGlobalState()
         {
-            FHIRRepository repo = new FHIRRepository();
-            List<Patient> patients = repo.getAllPatients();
+            List<Patient> patients = getAllPatients();
 
-            repo.updateResources(patients); //TODO consider better options, as an exception is called if this line isnt executed before calculations
-            //repo.loadCache(); //TODO cache viewmodel, and update it on resource update
+            updateResources(patients); 
 
             //declare calculation functions
             IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "42220");
             IFlagFunction flagFunc = new MaxDeltaFlagFunc();
             IWarningFunction warningFunc = new DeltaThresholdWarningFunc(1);
 
-            Dictionary<long, string> summaries = repo.getSummaries(aggFunc);
-            Dictionary<long, List<string>> flags = repo.getFlags(flagFunc); //todo handle multiple flags
-            Dictionary<long, List<string>> warnings = repo.getWarnings(warningFunc);
+            Dictionary<long, string> summaries = getSummaries(aggFunc);
+            Dictionary<long, List<string>> flags = getFlags(flagFunc); //todo handle multiple flags
+            Dictionary<long, List<string>> warnings = getWarnings(warningFunc);
 
             //convert dictionaries to strings, and add to model, TODO extract this to method
             MasterViewModel model = new MasterViewModel();
@@ -104,15 +103,7 @@ namespace TherapyDashboard.Services
         {
             return QRHandler.getCachedQRsForPatient(id);
         }
-        /*
-        public void loadCache()
-        {
-           
-            if (patientData == null)
-            {
-                patientData = cache.loadCache();
-            }
-        }*/
+        
 
         /// <summary>
         /// 
@@ -256,7 +247,7 @@ namespace TherapyDashboard.Services
             return allQRs;
         }
 
-        public Dictionary<long, List<string>> getWarnings(IWarningFunction warningFunc)
+        private Dictionary<long, List<string>> getWarnings(IWarningFunction warningFunc)
         {
             Dictionary<long, List<string>> warnings = new Dictionary<long, List<string>>();
             foreach (var kvp in patientData)
@@ -270,7 +261,7 @@ namespace TherapyDashboard.Services
             return warnings;
         }
 
-        public Dictionary<long, List<string>> getFlags(IFlagFunction flagFunc)
+        private Dictionary<long, List<string>> getFlags(IFlagFunction flagFunc)
         {
             Dictionary<long, List<string>> flags = new Dictionary<long, List<string>>();
             foreach (var kvp in patientData)
@@ -280,7 +271,7 @@ namespace TherapyDashboard.Services
             return flags;
         }
 
-        public Dictionary<long, string> getSummaries(IAggregationFunction aggFunc)
+        private Dictionary<long, string> getSummaries(IAggregationFunction aggFunc)
         {
             calc = new PatientAnalytics();
             Dictionary<long, string> summaries = new Dictionary<long, string>();

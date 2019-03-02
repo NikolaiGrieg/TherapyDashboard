@@ -28,7 +28,7 @@ namespace TherapyDashboard.Controllers
         public ActionResult updateCache()
         {
             FHIRRepository repo = new FHIRRepository();
-            repo.updateResources();
+            repo.updateGlobalState();
             return Content("Successfully updated");
         }
 

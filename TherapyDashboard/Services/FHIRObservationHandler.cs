@@ -23,7 +23,7 @@ namespace TherapyDashboard.Services
         }
 
         //TODO unused?
-        public List<Observation> getCachedObservationssForPatient(long patId)
+        public List<Observation> getCachedObservationsForPatient(long patId)
         {
             PatientData pat = cache.getPatientDataById(patId);
             if (pat != null)
