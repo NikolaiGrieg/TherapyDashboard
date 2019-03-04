@@ -1,4 +1,4 @@
-﻿
+
 var data = []
 
 function wrangleFhirQRToTimeSeries(resources){
@@ -136,10 +136,13 @@ function filterFhirData(data){
                 let time = dataPoint.time
                 let quantity = dataPoint.quantity
 
+                let dt = new Date(time);
+                let timeStr = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate(); 
+                /*
                 time = time.slice(0, time.length - 6)
                 time = time.replace("T", " ");
-                
-                categorized[time] = quantity;
+                */
+                categorized[timeStr] = quantity;
             }
         }
 

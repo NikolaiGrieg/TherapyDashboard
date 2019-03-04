@@ -47,7 +47,8 @@ LineChart.prototype.wrangleData = function(){
   $(function() {
 
     // parse the date / time
-    var parseTime;
+    var parseTime = d3.timeParse("%Y-%m-%d"); // possibly some precision loss
+    /*
     if (vis.fhir){
       //2008-05-15T06:28:55-04:00
       parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
@@ -55,7 +56,7 @@ LineChart.prototype.wrangleData = function(){
     else{
       parseTime = d3.timeParse("%Y-%m-%d");//"%d-%b-%y");
     }
-    
+    */
 
     var data = [];
 

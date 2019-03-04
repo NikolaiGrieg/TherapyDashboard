@@ -78,9 +78,9 @@ function dateToHumanReadable(date){
     return daysStr;
 }
 
-//TODO handle vertical overflow
 //TODO: sort depending on severity (highest number?)
 //TODO make this generic to work with flags as well
+//TODO fix tooltips in the wrong spots when scrolling
 function renderWarnings(patNames, patIDs, parameters){
     const table = document.getElementById("warningTable");
     table.innerHTML = ""
@@ -227,20 +227,13 @@ function buildTable(patNames, summaries, flags, patIDs, lastChecked){
 
 //TODO clean this up
 function enableTableSort() {
-    //adapted from https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
+    //(heavily adapted) from https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
     const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
 
     const comparer = (idx, asc) => (a, b) => ((v1, v2) => v1 !== '' && v2 !== '' && 
         !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2))
     (getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
 
-    const _comparer = (idx, asc) => (a, b) => {
-        let aVal = getCellValue(a, idx);
-        let bVal = getCellValue(b, idx);
-        return a - b;
-    }
-
-    //TODO doesn't work for the first element in the table
     let ths = document.querySelectorAll('th');
     
     let alphaNumSorted = []
