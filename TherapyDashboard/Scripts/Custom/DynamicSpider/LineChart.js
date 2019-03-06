@@ -174,24 +174,25 @@ LineChart.prototype.wrangleData = function(){
     }).left;
 
     /* Add circles in the line */
-    var circleOpacity = '0.85';
-    var circleRadius = 3;
+    if (vis.data.length < 80){ //TODO extract magic number
+      var circleOpacity = '0.85';
+      var circleRadius = 3;
+    
 
-    //console.log(vis.data[0].values)
-
-    g.selectAll("circle-group")
-      .data(vis.data).enter()
-      .append("g")
-      .style("fill", (d, i) => d3.hcl(-97, 32, 52))//steelblue
-      .selectAll("circle")
-      .data(vis.data).enter()
-      .append("g")
-      .attr("class", "circle")
-      .append("circle")
-      .attr("cx", d => vis.xScale(d.date))
-      .attr("cy", d => vis.yScale(d.close))
-      .attr("r", circleRadius)
-      .style('opacity', circleOpacity)
+      g.selectAll("circle-group")
+        .data(vis.data).enter()
+        .append("g")
+        .style("fill", (d, i) => d3.hcl(-97, 32, 52))//steelblue
+        .selectAll("circle")
+        .data(vis.data).enter()
+        .append("g")
+        .attr("class", "circle")
+        .append("circle")
+        .attr("cx", d => vis.xScale(d.date))
+        .attr("cy", d => vis.yScale(d.close))
+        .attr("r", circleRadius)
+        .style('opacity', circleOpacity)
+      }
 
     //overlay focus selector
     g.append('rect')
