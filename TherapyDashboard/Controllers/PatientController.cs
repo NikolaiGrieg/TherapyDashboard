@@ -27,47 +27,12 @@ namespace TherapyDashboard.Controllers
         public ActionResult DetailView(long id)
         {
             FHIRRepository repo = new FHIRRepository();
-            FhirJsonSerializer serializer = new FhirJsonSerializer();
-
-            DetailViewModel model = new DetailViewModel();
-
-            //add patient details
-            Patient patient = repo.getPatientById(id);
-            if (patient != null)
+            var model = repo.getDetailViewModel(id);
+            if (model == null)
             {
-                string patJson = serializer.SerializeToString(patient);
-                model.patient = patJson;
+                repo.updateCachedDetailViewByPatientId(id); 
+                model = repo.getDetailViewModel(id);
             }
-            
-            //add QRs
-            List<QuestionnaireResponse> QRs = repo.getAllQRsByPatId(id);
-            if (QRs != null)
-            {
-                List<string> QRJsonList = new List<string>();
-                foreach (var QR in QRs)
-                {
-                    string json = serializer.SerializeToString(QR);
-                    QRJsonList.Add(json);
-                }
-                model.QRs = QRJsonList;  
-            }
-
-            //observations
-            List<Observation> observations = repo.getAllObservationsByPatId(id);
-            if (observations != null)
-            {
-                List<string> observationList = new List<string>();
-                foreach (var obs in observations)
-                {
-                    string json = serializer.SerializeToString(obs);
-                    observationList.Add(json);
-                }
-                model.observations = observationList;
-            }
-
-            //questionnaireMap - <name, id>
-            Dictionary<string, string> qMap = repo.getQMap(id);
-            model.questionnaireMap = qMap;
 
             //update LastUpdated
             var LCHandler = new LastCheckedHandler();

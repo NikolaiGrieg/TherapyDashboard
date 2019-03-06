@@ -20,7 +20,9 @@ namespace TherapyDashboard.DataBase
     {
 
         IMongoCollection<PatientData> collection;
-        IMongoCollection<MasterViewModel> viewModels; //TODO map to therapist
+        IMongoCollection<MasterViewModel> masterViewModels; //TODO map to therapist
+        IMongoCollection<DetailViewModel> detailViewModels;
+
 
         //TODO create functionality for persisting viewmodel, and load it on index call
         //with replacement of the viewmodel on update resources
@@ -38,12 +40,18 @@ namespace TherapyDashboard.DataBase
             MongoClient client = new MongoClient();
             var db = client.GetDatabase("Dashboard");
             collection = db.GetCollection<PatientData>("PatientData");
-            viewModels = db.GetCollection<MasterViewModel>("ViewModels");
+            masterViewModels = db.GetCollection<MasterViewModel>("ViewModels");
+            detailViewModels = db.GetCollection<DetailViewModel>("DetailViewModels");
         }
 
         public MasterViewModel loadViewModel()
         {
-            return viewModels.Find(x => true).FirstOrDefault();//TODO therapistID here
+            return masterViewModels.Find(x => true).FirstOrDefault();//TODO therapistID here
+        }
+
+        public DetailViewModel loadDetailViewModel(long id) //TODO in theory this should take a therapistID too... maybe revisit this idea
+        {
+            return detailViewModels.Find(x => x.patientID == id).FirstOrDefault();
         }
 
         private void registerCMs()
@@ -147,16 +155,29 @@ namespace TherapyDashboard.DataBase
         }
 
         //TODO support more than 1 therapist
-        public void cacheModel(MasterViewModel model)
+        public void cacheMasterViewModel(MasterViewModel model)
         {
-            var prev = viewModels.Find(x => x.id == model.id).FirstOrDefault();
+            var prev = masterViewModels.Find(x => x.id == model.id).FirstOrDefault();
             if (prev != null)
             {
-                viewModels.ReplaceOne(x => x.id == model.id, model);
+                masterViewModels.ReplaceOne(x => x.id == model.id, model);
             }
             else
             {
-                viewModels.InsertOne(model);
+                masterViewModels.InsertOne(model);
+            }
+        }
+
+        public void cacheDetailViewModel(DetailViewModel model)
+        {
+            var prev = detailViewModels.Find(x => x.patientID == model.patientID).FirstOrDefault();
+            if (prev != null)
+            {
+                detailViewModels.ReplaceOne(x => x.patientID == model.patientID, model);
+            }
+            else
+            {
+                detailViewModels.InsertOne(model);
             }
         }
 

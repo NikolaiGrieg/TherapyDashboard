@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using Hl7.Fhir.Model;
 using Hl7.Fhir.Rest;
+using Hl7.Fhir.Serialization;
 using TherapyDashboard.DataBase;
 using TherapyDashboard.Models;
 using TherapyDashboard.Services.AggregationFunctions;
@@ -20,6 +21,7 @@ namespace TherapyDashboard.Services
         PatientAnalytics calc;
         Dictionary<long, List<QuestionnaireResponse>> patientData; //TODO consider other ways to handle this
         FHIRObservationHandler obsHandler;
+
         FHIRQRHandler QRHandler;
 
         public FHIRRepository()
@@ -36,9 +38,63 @@ namespace TherapyDashboard.Services
             return obsHandler.getCachedObservationsForPatient(patId);
         }
 
+        public DetailViewModel getDetailViewModel(long id)
+        {
+            return cache.loadDetailViewModel(id);
+        }
+
         public MasterViewModel loadCache()
         {
             return cache.loadViewModel();
+        }
+
+        public void updateCachedDetailViewByPatientId(long id)
+        {
+            FHIRRepository repo = new FHIRRepository();
+            FhirJsonSerializer serializer = new FhirJsonSerializer();
+
+            DetailViewModel model = new DetailViewModel();
+
+            //add patient details
+            Patient patient = repo.getPatientById(id);
+            if (patient != null)
+            {
+                string patJson = serializer.SerializeToString(patient);
+                model.patient = patJson;
+            }
+
+            //add QRs
+            List<QuestionnaireResponse> QRs = repo.getAllQRsByPatId(id);
+            if (QRs != null)
+            {
+                List<string> QRJsonList = new List<string>();
+                foreach (var QR in QRs)
+                {
+                    string json = serializer.SerializeToString(QR);
+                    QRJsonList.Add(json);
+                }
+                model.QRs = QRJsonList;
+            }
+
+            //observations
+            List<Observation> observations = repo.getAllObservationsByPatId(id);
+            if (observations != null)
+            {
+                List<string> observationList = new List<string>();
+                foreach (var obs in observations)
+                {
+                    string json = serializer.SerializeToString(obs);
+                    observationList.Add(json);
+                }
+                model.observations = observationList;
+            }
+
+            //questionnaireMap - <name, id>
+            Dictionary<string, string> qMap = repo.getQMap(id);
+            model.questionnaireMap = qMap;
+
+            model.patientID = id;
+            cache.cacheDetailViewModel(model);
         }
 
         /// <summary>
@@ -54,7 +110,7 @@ namespace TherapyDashboard.Services
                 var LCHandler = new LastCheckedHandler();
                 var lastCheckedMap = LCHandler.readPatientMap(therapistID); //0 is therapistID, replace with ID when authentication is impl
                 model.lastCheckedMap = lastCheckedMap.patientMap;
-                cache.cacheModel(model);
+                cache.cacheMasterViewModel(model);
             }
             
         }
@@ -110,7 +166,13 @@ namespace TherapyDashboard.Services
                 model.patientNames[pat.Id] = pat.Name[0].Given.FirstOrDefault() + " " + pat.Name[0].Family;
             }
 
-            cache.cacheModel(model);
+            cache.cacheMasterViewModel(model);
+
+            foreach (var pat in patients)
+            {
+                long patID = Int32.Parse(pat.Id);
+                updateCachedDetailViewByPatientId(patID);
+            }
         }
 
         public List<Observation> getAllObservationsByPatId(long id)
