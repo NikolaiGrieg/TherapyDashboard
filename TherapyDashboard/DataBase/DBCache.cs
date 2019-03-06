@@ -23,10 +23,6 @@ namespace TherapyDashboard.DataBase
         IMongoCollection<MasterViewModel> masterViewModels; //TODO map to therapist
         IMongoCollection<DetailViewModel> detailViewModels;
 
-
-        //TODO create functionality for persisting viewmodel, and load it on index call
-        //with replacement of the viewmodel on update resources
-
         public DBCache()
         {
             ConventionRegistry.Register(
@@ -79,23 +75,6 @@ namespace TherapyDashboard.DataBase
             return mds;
         }
 
-        /*
-        public Dictionary<long, List<QuestionnaireResponse>> loadCache()
-        {
-            registerCMs();
-
-            Dictionary<long, List<QuestionnaireResponse>> mds = new Dictionary<long, List<QuestionnaireResponse>>();
-
-            List<PatientData> pds = collection.Find(x => true).ToList();
-
-            foreach (var pat in pds)
-            {
-                mds[pat.fhirID] = pat.QRs;
-            }
-            return mds;
-
-        }
-        */
 
         public PatientData getPatientDataById(long fhirID)
         {

@@ -65,3 +65,8 @@
     padding-left: 8em;
 }
 
+.table-fit {
+    white-space: nowrap;
+    width: 1%;
+}
+

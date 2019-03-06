@@ -181,7 +181,7 @@ function initBackground(patient){
     
 
     var html = `
-    <table class="table table-hover table-striped">
+    <table class="table table-hover table-striped table-fit">
         <tbody>
             ${listItems}  
         </tbody>

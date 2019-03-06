@@ -128,7 +128,9 @@ LineChart.prototype.wrangleData = function(){
 
     // Scale the range of the data
     vis.xDomain = d3.extent(vis.data, function(d) { return d.date; });
-    vis.yDomain = [0, d3.max(vis.data, function(d) { return d.close; })];
+    vis.yDomain = d3.extent(vis.data, function(d) { return d.close; }); 
+    //replace with this for absolute range:
+    //[0, d3.max(vis.data, function(d) { return d.close; })]; 
 
     vis.xScale.domain(vis.xDomain)
     vis.yScale.domain(vis.yDomain)
