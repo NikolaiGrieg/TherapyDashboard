@@ -173,6 +173,7 @@ namespace TherapyDashboard.DataBase
             var prev = detailViewModels.Find(x => x.patientID == model.patientID).FirstOrDefault();
             if (prev != null)
             {
+                model.id = prev.id;
                 detailViewModels.ReplaceOne(x => x.patientID == model.patientID, model);
             }
             else

@@ -12,6 +12,7 @@ using TherapyDashboard.ViewModels;
 using TherapyDashboard.Services.AggregationFunctions;
 using TherapyDashboard.Services.FlagFunctions;
 using TherapyDashboard.Services.WarningFunctions;
+using System.Diagnostics;
 
 namespace TherapyDashboard.Controllers
 {
@@ -37,10 +38,18 @@ namespace TherapyDashboard.Controllers
         public ActionResult updateCache()
         {
             FHIRRepository repo = new FHIRRepository();
-            
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
             repo.updateGlobalState();
 
-            return Content("Successfully updated global state");
+            stopwatch.Stop();
+            var ts = stopwatch.Elapsed;
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+
+            return Content("Successfully updated global state in: " + elapsedTime);
         }
 
         public ActionResult About()
