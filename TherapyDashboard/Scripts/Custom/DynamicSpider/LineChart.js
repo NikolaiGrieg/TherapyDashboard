@@ -10,6 +10,7 @@ LineChart = function(_parentElement, controller, name, elements,
   this.data = JSON.parse(JSON.stringify(forms)); //deep clone
   this.fhir = fhir;
   this.id = id;
+  this.axisNameLength = 30;
   this.initVis();
 
 };
@@ -80,8 +81,6 @@ LineChart.prototype.wrangleData = function(){
        }
     }
 
-    //TODO remove _id field on backend
-
     // format the data
     if (vis.elements === 'all'){
           data.forEach(function(d) {
@@ -107,10 +106,10 @@ LineChart.prototype.wrangleData = function(){
         }
         for (var key in d) {
           if (d.hasOwnProperty(key)) {
-              if(key != 'date'){
-                if (key == vis.elements) {
-                  //d[key] = +d[key]
+              if(key !== 'date'){
+                if (key.startsWith(vis.elements)) {
                   d.close = +d[key];
+                  vis.name = key; //hack to solve wrong naming of axes with names > 30 chars
                 }
                 else{
                   delete d[key]
