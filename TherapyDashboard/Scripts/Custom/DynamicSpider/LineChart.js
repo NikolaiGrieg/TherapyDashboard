@@ -159,11 +159,14 @@ LineChart.prototype.wrangleData = function(){
     focus.append('line')
         .attr('id', 'focusLineX')
         .attr('class', 'focusLine');
-        /*
-    focus.append('line')
-        .attr('id', 'focusLineY')
-        .attr('class', 'focusLine');
-        */
+
+    //horizontal blue line
+    if (vis.parentElement === "#line"){     
+      focus.append('line')
+          .attr('id', 'focusLineY')
+          .attr('class', 'focusLine');
+    }
+
 
     var xAxis = d3.axisBottom(vis.xScale);
     var yAxis = d3.axisLeft(vis.yScale);
@@ -191,7 +194,7 @@ LineChart.prototype.wrangleData = function(){
         .attr("cy", d => vis.yScale(d.close))
         .attr("r", circleRadius)
         .style('opacity', circleOpacity)
-      }
+    }
 
     //overlay focus selector
     g.append('rect')
@@ -205,7 +208,7 @@ LineChart.prototype.wrangleData = function(){
             var mouseDate = vis.xScale.invert(mouse[0]);
             const dates = vis.data.map(d => d.date)
             var i = bisectDate(vis.data, mouseDate); // returns the index to the current data item
-            //var j = d3.bisectLeft(dates, mouseDate)
+            var j = d3.bisectLeft(dates, mouseDate)
 
             var d0 = vis.data[i - 1]
             var d1 = vis.data[i];
@@ -220,15 +223,16 @@ LineChart.prototype.wrangleData = function(){
             focus.select('#focusLineX')
                 .attr('x1', x).attr('y1', vis.yScale(vis.yDomain[0]))
                 .attr('x2', x).attr('y2', vis.yScale(vis.yDomain[1]));
-                /*
+                
             focus.select('#focusLineY')
                 .attr('x1', vis.xScale(vis.xDomain[0])).attr('y1', y)
                 .attr('x2', vis.xScale(vis.xDomain[1])).attr('y2', y);
-                */
+                
 
             //send event to controller
-            vis.controller.update(i-1); //Seems to fix some indexing problems from another place
-            
+            if (vis.parentElement === "#aggregateSpiderController"){
+                vis.controller.update(i-1); //Seems to fix some indexing problems from another place
+            }
         });
 
     //Chart Title
