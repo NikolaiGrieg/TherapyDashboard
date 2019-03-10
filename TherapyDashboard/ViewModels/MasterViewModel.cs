@@ -14,6 +14,7 @@ namespace TherapyDashboard.ViewModels
         public Dictionary<string, List<string>> warnings;
         public Dictionary<string, string> summaries { get; set; }
         public Dictionary<string, string> patientNames { get; set; }
+        public Dictionary<string, DateTime> earliestQRDate { get; set; }
         public Dictionary<string, DateTime> lastCheckedMap { get; set; }
     }
 }

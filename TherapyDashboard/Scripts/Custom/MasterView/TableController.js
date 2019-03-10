@@ -12,7 +12,10 @@ function initFHIRData(){
     let patNames = Object.values(_patientNames);
     let lastChecked = wrangleLastChecked(_lastChecked);
 
-    buildTable(patNames, summaryStrings, flagStrings, patIDs, lastChecked);
+    let earliestQRDates = Object.values(_earliestQRDates);
+    let timeInProgramme = wrangleEarliestDate(earliestQRDates);
+
+    buildTable(patNames, summaryStrings, flagStrings, patIDs, lastChecked, timeInProgramme);
 
     let warningIDs = Object.keys(_warnings);
     let warningParams = Object.values(_warnings);
@@ -26,6 +29,28 @@ function initFHIRData(){
 
     let pieChartData = calculatePieChartData(summaryStrings);
     plotSummariesPieChart(pieChartData);
+}
+
+function wrangleEarliestDate(earliestQRDate, humanReadable=true){
+    let dateMap = {}
+    Object.entries(earliestQRDate).forEach(kvp => {
+        
+        let patID = kvp[0];
+        let dateStr = kvp[1]
+                .replace(/\D/g,''); //remove non numerical symbols
+
+        let date = new Date(parseInt(dateStr));
+        if(humanReadable){
+            let readableDate = dateToHumanReadable(date);
+            dateMap[patID] = readableDate;
+        }
+        else{
+            dateMap[patID] = date;
+        }
+        
+    })
+    
+    return dateMap;
 }
 
 function wrangleLastChecked(_lastChecked, humanReadable=true){
@@ -69,11 +94,20 @@ function dateToHumanReadable(date){
         daysStr = "Today"
     }
     else if (diffDays < 7){
-        daysStr = diffDays + " days ago";
+        daysStr = diffDays + " days";
     }
-    else{
-        diffWeeks = diffDays / 7
-        daysStr = diffWeeks + "weeks ago";
+    else if ((diffDays / 7) < 4) {
+        diffWeeks = Math.floor(diffDays / 7)
+        daysStr = diffWeeks + " weeks";
+    }
+    else if (((diffDays / 7) / 4) < 12){
+        diffMonths = Math.floor((diffDays / 7) / 4)
+        daysStr = diffMonths + " months";
+    }
+
+    else {
+        diffYears = Math.floor(((diffDays / 7) / 4) / 12)
+        daysStr = diffYears + " years";
     }
     return daysStr;
 }
@@ -186,7 +220,7 @@ function calculatePieChartData(summaries){
     
 }
 
-function buildTable(patNames, summaries, flags, patIDs, lastChecked){
+function buildTable(patNames, summaries, flags, patIDs, lastChecked, earliestQRDate){
     const table = document.getElementById("masterTableBody");
     table.innerHTML = ""
     let listItems = "";
@@ -207,7 +241,7 @@ function buildTable(patNames, summaries, flags, patIDs, lastChecked){
                     </a>
                 </td>
                 <td scope="row">
-                    <span class="normalText">_Module</span>
+                    <span class="normalText">${earliestQRDate[i]}</span>
                 </td>
                 <td scope="row">
                     <span class="normalText">${flags[i]}</span>

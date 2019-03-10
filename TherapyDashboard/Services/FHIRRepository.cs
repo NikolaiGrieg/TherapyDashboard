@@ -135,6 +135,7 @@ namespace TherapyDashboard.Services
             Dictionary<long, string> summaries = getSummaries(aggFunc);
             Dictionary<long, List<string>> flags = getFlags(flagFunc); //todo handle multiple flags
             Dictionary<long, List<string>> warnings = getWarnings(warningFunc);
+            Dictionary<long, DateTime> earliestDates = getEarliestDates();
 
             //convert dictionaries to strings, and add to model, TODO extract this to method
             MasterViewModel model = new MasterViewModel();
@@ -159,15 +160,23 @@ namespace TherapyDashboard.Services
                 }
             }
 
-
             model.patientNames = new Dictionary<string, string>();
             foreach (var pat in patients)
             {
                 model.patientNames[pat.Id] = pat.Name[0].Given.FirstOrDefault() + " " + pat.Name[0].Family;
             }
 
+
+            model.earliestQRDate = new Dictionary<string, DateTime>();
+            foreach (var kvp in earliestDates)
+            {
+                model.earliestQRDate[kvp.Key.ToString()] = kvp.Value; //TODO check if format is fine
+            }
+
             cache.cacheMasterViewModel(model);
 
+            
+            //Detail views
             foreach (var pat in patients)
             {
                 long patID = Int32.Parse(pat.Id);
@@ -203,6 +212,27 @@ namespace TherapyDashboard.Services
             }
 
             return patients;
+        }
+
+        private Dictionary<long, DateTime> getEarliestDates()
+        {
+            Dictionary<long, DateTime> dates = new Dictionary<long, DateTime>();
+            foreach (var kvp in patientData)
+            {
+                List<QuestionnaireResponse> QRs = kvp.Value;
+                DateTime lastQR = DateTime.Parse(QRs[0].Authored);
+
+                foreach (var QR in QRs)
+                {
+                    DateTime date = DateTime.Parse(QR.Authored);
+                    if (lastQR == null || lastQR > date)
+                    {
+                        lastQR = DateTime.Parse(QR.Authored);
+                    }
+                }
+                dates[kvp.Key] = lastQR;
+            }
+            return dates;
         }
 
         /// <summary>
