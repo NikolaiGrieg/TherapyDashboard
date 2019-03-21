@@ -29,6 +29,9 @@ function initFHIRData(){
 
     let pieChartData = calculatePieChartData(summaryStrings);
     plotSummariesPieChart(pieChartData);
+
+    //TODO fix compare on month here
+    plotPatientDuration(wrangleEarliestDate(earliestQRDates, false));
 }
 
 function wrangleEarliestDate(earliestQRDate, humanReadable=true){
