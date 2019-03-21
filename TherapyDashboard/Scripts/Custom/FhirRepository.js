@@ -195,6 +195,7 @@ function initBackground(patient){
     container.appendChild(backgroundTable);
 }
 
+//TODO clean up outputs
 function unpackPatientData(patient, filter){
     var entries = {}
     Object.entries(patient).forEach(kvp =>{

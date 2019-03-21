@@ -36,13 +36,20 @@
 	container.appendChild(observationsDropdown);
 }
 
+function getFirstWords(str, numWords){
+		    let words = str.split(" ");
+		    let firstWords = words.slice(0, numWords).join(" ").replace(",", "");
+		    return firstWords;
+		}
+
 function createSpiderChartSelectors(chartNames){
 	//build HTML
 	var resHTML = "";
 	chartNames.forEach(name => {
+		let first3Words = name.split(" ").slice(0, 3).join(" ");
 		let button = `	<button type="button" class="btn btn-primary" 
 	                    onclick="initSpider('${name}')">
-	                    ${name}
+	                    ${first3Words}
 	                </button>
                             `
         resHTML += button;
