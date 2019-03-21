@@ -18,7 +18,7 @@ function plotSummariesPieChart(data){
             text: null
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            pointFormat: '{series.name}: <b>{point.y}</b> - <b>{point.percentage:.1f}%</b> '
         },
 
         credits: {
@@ -33,26 +33,15 @@ function plotSummariesPieChart(data){
                 dataLabels: {
                     enabled: false
                 },
-                showInLegend: true
+                showInLegend: true,
+                animation: false,
+                slicedOffset: 0
             }
         },
         series: [{
             name: 'Patients',
             colorByPoint: true,
             data: data
-            /*[{
-                name: 'Steady',
-                y: 61,
-                sliced: true,
-                selected: true
-            }, {
-                name: 'Improving',
-                y: 30
-            }, {
-                name: 'Declining',
-                y: 10
-            }]
-            */
         }]
 
     });
