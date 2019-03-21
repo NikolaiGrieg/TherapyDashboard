@@ -12,6 +12,10 @@ function initFHIRData(){
     let patNames = Object.values(_patientNames);
     let lastChecked = wrangleLastChecked(_lastChecked);
 
+    //cap length
+    flagStrings = capFlagLengths(flagStrings)
+    
+
     let earliestQRDates = Object.values(_earliestQRDates);
     let timeInProgramme = wrangleEarliestDate(earliestQRDates);
 
@@ -32,6 +36,21 @@ function initFHIRData(){
 
     //TODO fix compare on month here
     plotPatientDuration(wrangleEarliestDate(earliestQRDates, false));
+}
+
+//TODO reconsider if this is a good idea, should maybe let the backend functions handle this
+function capFlagLengths(flagStrings, numWords=4){
+    res = []
+    flagStrings.forEach(flags => {
+        res.push(flags.map(x => getFirstWords(x, numWords)))
+    })
+    return res
+}
+
+function getFirstWords(str, numWords){
+    let words = str.split(" ");
+    let firstWords = words.slice(0, numWords).join(" ").replace(",", "");
+    return firstWords;
 }
 
 function wrangleEarliestDate(earliestQRDate, humanReadable=true){
