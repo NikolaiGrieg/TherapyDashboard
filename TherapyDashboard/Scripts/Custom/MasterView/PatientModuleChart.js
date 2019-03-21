@@ -2,7 +2,9 @@
 
 function calculateDurationBins(data){
     //get highest month
+    let calcs = {}
     let maxMonth = 0;
+    let minMonth = Infinity;
     let monthDict = {}
     Object.values(data).forEach(date => {
         let diffDays = getDiffDays(date);
@@ -10,6 +12,10 @@ function calculateDurationBins(data){
         if (diffMonths > maxMonth){
             maxMonth = diffMonths;
         }
+        if (diffMonths < minMonth){
+            minMonth = diffMonths;
+        }
+
         if(monthDict[diffMonths]){
             monthDict[diffMonths] += 1
         }
@@ -19,7 +25,7 @@ function calculateDurationBins(data){
     })
 
     let months = [];
-    for (let i = 0; i < maxMonth+1; i++){ //months are 0 indexed
+    for (let i = minMonth; i < maxMonth+1; i++){ //months are 0 indexed
         if (monthDict[i]){
             months.push(monthDict[i])
         }
@@ -27,8 +33,11 @@ function calculateDurationBins(data){
             months.push(0);
         }
     }
+    calcs['months'] = months;
+    calcs['min'] = minMonth;
+    calcs['max'] = maxMonth;
 
-    return months;
+    return calcs;
 }
 
 //TODO fix duplicate function between here and tablecontroller
@@ -43,6 +52,10 @@ function getDiffDays(date){
 
 function plotPatientDuration(QRdates){
     let data = calculateDurationBins(QRdates);
+    let values = data['months'];
+    let minMonth = data['min'];
+    let maxMonth = data['max'];
+
     Highcharts.chart('barchart', {
         chart: {
             type: 'column'
@@ -51,7 +64,7 @@ function plotPatientDuration(QRdates){
             text: null
         },
         xAxis: {
-            categories: [...Array(12).keys()],
+            categories: Array.from(new Array(maxMonth), (x,i) => i + minMonth),
             crosshair: true,
             title: {
                 text: 'Months in treatment'
@@ -77,7 +90,7 @@ function plotPatientDuration(QRdates){
         },
         series: [{
             name: 'Patients',
-            data: data
+            data: values
 
         }]
     });
