@@ -1,5 +1,5 @@
 ﻿SpiderChart = function(_parentElement, controller, forms, name,
-    height = 500, width = 500, selectedDiv = "#selectedCategory"){
+    height = 500, width = 600, selectedDiv = "#selectedCategory"){
   this.parentElement = _parentElement;
   this.controller = controller;
   this.name = name;
@@ -11,6 +11,7 @@
   this.maxValueIncreaseProportion = 0.4
   this.initVis();
 };
+//adapted from http://bl.ocks.org/nbremer/6506614
 
 SpiderChart.prototype.initVis = function(){
     var vis = this;
@@ -103,12 +104,11 @@ SpiderChart.prototype.calculateAxisMaxValue = function(){
     let data = vis.data;
     let maxTrace = data[1];
     let maxTraceValues = [];
-    //TODO use global maximum
     maxTrace.forEach(entry => {
         maxTraceValues.push(entry.value)
     })
     let currUpdateMaxVal = Math.max(...maxTraceValues);
-    //console.log(currUpdateMaxVal);
+
     if (currUpdateMaxVal > vis.globalMaxValue){
         vis.maxValue = currUpdateMaxVal + (currUpdateMaxVal * vis.maxValueIncreaseProportion)
         vis.globalMaxValue = currUpdateMaxVal;
@@ -153,9 +153,11 @@ SpiderChart.prototype.updateVis = function(){
         var Format = d3.format('r');
         d3.select(id).select("svg").remove();
 
+        var width = document.getElementById("spiderChart").clientWidth; //todo not hardcode this
+
         var g = d3.select(id)
             .append("svg")
-            .attr("width", cfg.w + cfg.ExtraWidthX)
+            .attr("width", width) //.attr("width", cfg.w + cfg.ExtraWidthX)
             .attr("height", cfg.h + cfg.ExtraWidthY)
             .append("g")
             .attr("transform", "translate(" + cfg.TranslateX + "," + cfg.TranslateY + ")");
@@ -348,9 +350,6 @@ SpiderChart.prototype.updateVis = function(){
 
     var colorscale = d3.scaleOrdinal(d3.schemeCategory10);
 
-    //Legend titles
-    //var LegendOptions = ['Smartphone', 'Tablet'];
-
     //Options for the Radar chart, other than default
     var mycfg = {
         w: vis.width,
@@ -363,4 +362,45 @@ SpiderChart.prototype.updateVis = function(){
 
     //Call function to draw the Radar chart
     RadarChart.draw(vis.parentElement, vis.data, mycfg);
+
+    ////////////////////////////////////////////
+    /////////// Initiate legend ////////////////
+    ////////////////////////////////////////////
+    var LegendOptions = ['Latest date','Selected Date'];
+
+    var svg = d3.select(vis.parentElement)
+        .selectAll('svg')
+        .append('svg')
+        .attr("width", vis.width+300)
+        .attr("height", vis.height)
+            
+    //Initiate Legend   
+    var legend = svg.append("g")
+        .attr("class", "legend")
+        .attr("height", 100)
+        .attr("width", 200)
+        .attr('transform', 'translate(200,20)') 
+        ;
+        //Create colour squares
+        legend.selectAll('rect')
+          .data(LegendOptions)
+          .enter()
+          .append("rect")
+          .attr("x", vis.width - 65)
+          .attr("y", function(d, i){ return i * 20;})
+          .attr("width", 10)
+          .attr("height", 10)
+          .style("fill", function(d, i){ return colorscale(i);})
+          ;
+        //Create text next to squares
+        legend.selectAll('text')
+          .data(LegendOptions)
+          .enter()
+          .append("text")
+          .attr("x", vis.width - 52)
+          .attr("y", function(d, i){ return i * 20 + 9;})
+          .attr("font-size", "11px")
+          .attr("fill", "#737373")
+          .text(function(d) { return d; })
+          ; 
 }

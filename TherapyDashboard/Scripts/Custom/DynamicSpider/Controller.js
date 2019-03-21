@@ -7,7 +7,7 @@ function initQRLineChart(resources, name){
 }
 
 function update(index){
-	if (typeof spiderchart !== 'undefined'){ //TODO disable update calls from background charts
+	if (typeof spiderchart !== 'undefined'){ 
 		spiderchart.wrangleData(index)
 	}
 }

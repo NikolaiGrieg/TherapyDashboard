@@ -18,8 +18,13 @@ LineChart = function(_parentElement, controller, name, elements,
 LineChart.prototype.initVis = function(){
   var vis = this
 
+  //hack to solve width in spider
+  if (vis.parentElement === "#aggregateSpiderController"){
+      vis.initWidt = document.getElementById("aggregateSpiderController").clientWidth; //todo not hardcode this
+  }
+
   // set the dimensions and margins of the graph
-  vis.margin = {top: 40, right: 20, bottom: 30, left: 50};
+  vis.margin = {top: 40, right: 50, bottom: 30, left: 50};
   vis.width = vis.initWidt - vis.margin.left - vis.margin.right; //TODO inject these
   vis.height = vis.initHeight - vis.margin.top - vis.margin.bottom;
 
