@@ -7,6 +7,7 @@
 }());
 
 function plotSummariesPieChart(data){
+    let categories = ['steady', 'improving', 'declining']
     Highcharts.chart('piechart', {
         chart: {
             plotBackgroundColor: null,
@@ -41,7 +42,14 @@ function plotSummariesPieChart(data){
         series: [{
             name: 'Patients',
             colorByPoint: true,
-            data: data
+            data: data,
+            point:{
+              events:{
+                  click: function (event) {
+                      sortTableByCategory(categories[this.x]);
+                  }
+              }
+          } 
         }]
 
     });

@@ -207,7 +207,6 @@ namespace TherapyDashboard.Services
             {
                 long patID = Int32.Parse(pat.Id);
                 updateCachedPatientDataModelById(patID);
-                break; //TODO remove after devving
             }
         }
 

@@ -242,6 +242,30 @@ function calculatePieChartData(summaries){
     
 }
 
+function sortTableByCategory(category){
+    const table = document.getElementById("masterTable");
+
+    //add matching rows
+    let sortedTrs = []
+    let tdQuery = Array.from($("td:contains(" + category + ")"))
+    tdQuery.forEach(listElement => {
+        if (listElement.parentNode.parentNode.id === "masterTableBody"){
+            sortedTrs.push(listElement.parentNode);
+        }
+    })
+    
+    //add remaining rows
+    let allTrs = Array.from(table.tBodies[0].querySelectorAll('tr:nth-child(n+1)'));
+    allTrs.forEach(listElement => {
+        if(!sortedTrs.includes(listElement)){
+            sortedTrs.push(listElement);
+        }
+    })
+    
+    //build table
+    sortedTrs.forEach(tr => table.tBodies[0].appendChild(tr));
+}
+
 function buildTable(patNames, summaries, flags, patIDs, lastChecked, earliestQRDate){
     const table = document.getElementById("masterTableBody");
     table.innerHTML = ""

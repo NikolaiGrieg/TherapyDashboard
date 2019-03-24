@@ -34,12 +34,14 @@ function initRemovalFunctionality(name, updatePersist=true, chartType=undefined)
 	//console.log(chartDiv);
 
 	var btn = document.createElement("BUTTON");        
-	var t = document.createTextNode("X");
+	var t = document.createTextNode("Close");
 	btn.classList.add('btn');       
-	btn.classList.add('btn-danger');
+	btn.classList.add('btn-primary');
 	btn.appendChild(t);
-	btn.style.float = 'right';
+	//btn.style.float = 'right';
 	btn.style.opacity = 0.8
+	btn.style.position = 'absolute';
+	btn.style.left = '650px';//todo extract hardcoded value, corresponds to width of linechart
          
 	btn.onclick = function(){
 		console.log("removing " +chartId);
