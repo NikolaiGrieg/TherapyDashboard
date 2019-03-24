@@ -18,20 +18,32 @@ namespace TherapyDashboard.DataBase
             collection = db.GetCollection<ChartSelection>("ChartSelectionModel");
         }
 
-        public void upsertSingleEntry(long therapistID, string chartName)
+        public void upsertSingleEntry(long therapistID, string patientID, string chartName)
         {
             //find if exists
             var filter = Builders<ChartSelection>.Filter.Eq(x => x.therapistID, therapistID);
             var charts = collection.Find(filter).FirstOrDefault();
 
             //insert
-            if (charts != null && charts.chartNames != null)
+            if (charts != null && charts.chartMap != null)
             {
-                List<string> chartList = charts.chartNames;
-                chartList.Add(chartName);
+                Dictionary<string, List<string>> map = charts.chartMap;
+                if (map.Keys.Contains(patientID)) //has settings for patient
+                {
+                    if (!map[patientID].Contains(chartName))
+                    {
+                        map[patientID].Add(chartName);
+                    }
+                    
+                }
+                else
+                {
+                    map[patientID] = new List<string>();
+                    map[patientID].Add(chartName);
+                }
 
                 collection.UpdateOne(filter,
-                    Builders<ChartSelection>.Update.Set("chartNames", chartList)
+                    Builders<ChartSelection>.Update.Set("chartMap", map)
                     );
 
             }
@@ -39,8 +51,9 @@ namespace TherapyDashboard.DataBase
             {
                 ChartSelection entry = new ChartSelection();
                 entry.therapistID = therapistID;
-                entry.chartNames = new List<string>();
-                entry.chartNames.Add(chartName);
+                entry.chartMap = new Dictionary<string, List<string>>();
+                entry.chartMap[patientID] = new List<string>();
+                entry.chartMap[patientID].Add(chartName);
                 collection.InsertOne(entry);
             }
         }

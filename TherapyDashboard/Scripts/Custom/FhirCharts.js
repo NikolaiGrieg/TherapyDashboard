@@ -64,7 +64,7 @@ function createSpiderChartSelectors(chartNames){
 }
 
 
-function lineChart(name){
+function lineChart(name, updatePersist=true){
 	//check if exist to avoid duplicate
 	let container = document.getElementById("line");
 	
@@ -80,5 +80,11 @@ function lineChart(name){
 	
 	if(!exists){
 		new LineChart("#line", this, name, 'all', filteredMeasurements[name], 200, 700, fhir=true);
+
+		//ajax to update persisted charts
+		if(updatePersist){
+			let patient = JSON.parse(_patient);
+			$.post("/Patient/SaveChart/" + patient.id, {'chartName': name});
+		}
 	}
 }

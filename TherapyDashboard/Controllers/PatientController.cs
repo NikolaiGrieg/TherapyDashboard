@@ -42,5 +42,13 @@ namespace TherapyDashboard.Controllers
             return View(model);
         }
 
+        [Route("Patient/SaveChart/{id}")]
+        [HttpPost]
+        public void UpdatePersistedCharts(long id, string chartName)
+        {
+            ChartSelectionRepository chartSelectionRepo = new ChartSelectionRepository();
+            chartSelectionRepo.upsertSingleEntry(0, id.ToString(), chartName);
+
+        }
     }
 }

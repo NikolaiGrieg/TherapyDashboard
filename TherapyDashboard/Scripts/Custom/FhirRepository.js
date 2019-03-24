@@ -81,8 +81,15 @@ function initDetailView(){
     })
     createSpiderChartSelectors(Object.keys(groupedQRList))
     filterFhirData(data);
+    initPersistedCharts(_persistedCharts);
 }
 
+function initPersistedCharts(chartNames){
+    console.log(chartNames)
+    chartNames.forEach(name=> {
+        lineChart(name, false);
+    })
+}
 
 function QRResourceToTimeDict(resource){
     let date = resource.authored;

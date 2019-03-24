@@ -79,6 +79,8 @@
         //console.log(_observations)
         var _qMap = @Html.Raw(Json.Encode(@Model.questionnaireMap));
         //console.log(_qMap);
+        var _persistedCharts = @Html.Raw(Json.Encode(@Model.selectedCharts));
+        //console.log(_persistedCharts)
         initDetailView(); //TODO refactor
     </script>
 </body>

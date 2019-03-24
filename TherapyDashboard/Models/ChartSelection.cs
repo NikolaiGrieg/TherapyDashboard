@@ -10,6 +10,6 @@ namespace TherapyDashboard.Models
     {
         public ObjectId id { get; set; }
         public long therapistID { get; set; }
-        public List<string> chartNames{ get; set; } //chart 
+        public Dictionary<string, List<string>> chartMap{ get; set; } //patientID - charts
     }
 }

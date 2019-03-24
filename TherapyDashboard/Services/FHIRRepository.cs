@@ -57,9 +57,9 @@ namespace TherapyDashboard.Services
 
             //load selected charts
             ChartSelection charts = chartSelectionRepo.getChartsByTherapistId(0); //0 is therapistID, replace with ID when authentication is impl
-            if (charts != null)
+            if (charts != null && charts.chartMap.Keys.Contains(id.ToString())) //saved settings exist
             {
-                model.selectedCharts = charts.chartNames;
+                model.selectedCharts = charts.chartMap[id.ToString()];
             }
             else
             {
