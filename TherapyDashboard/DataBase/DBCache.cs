@@ -21,7 +21,7 @@ namespace TherapyDashboard.DataBase
 
         IMongoCollection<PatientData> collection;
         IMongoCollection<MasterViewModel> masterViewModels; //TODO map to therapist
-        IMongoCollection<DetailViewModel> detailViewModels;
+        IMongoCollection<FullPatientData> fullPatientDataModels;
 
         public DBCache()
         {
@@ -37,7 +37,7 @@ namespace TherapyDashboard.DataBase
             var db = client.GetDatabase("Dashboard");
             collection = db.GetCollection<PatientData>("PatientData");
             masterViewModels = db.GetCollection<MasterViewModel>("ViewModels");
-            detailViewModels = db.GetCollection<DetailViewModel>("DetailViewModels");
+            fullPatientDataModels = db.GetCollection<FullPatientData>("FullPatientDataModels");
         }
 
         public MasterViewModel loadViewModel()
@@ -45,9 +45,9 @@ namespace TherapyDashboard.DataBase
             return masterViewModels.Find(x => true).FirstOrDefault();//TODO therapistID here
         }
 
-        public DetailViewModel loadDetailViewModel(long id) //TODO in theory this should take a therapistID too... maybe revisit this idea
+        public FullPatientData loadPatientDataModel(long id) //TODO in theory this should take a therapistID too... maybe revisit this idea
         {
-            return detailViewModels.Find(x => x.patientID == id).FirstOrDefault();
+            return fullPatientDataModels.Find(x => x.patientID == id).FirstOrDefault();
         }
 
         private void registerCMs()
@@ -136,7 +136,7 @@ namespace TherapyDashboard.DataBase
         //TODO support more than 1 therapist
         public void cacheMasterViewModel(MasterViewModel model)
         {
-            var prev = masterViewModels.Find(x => x.id == model.id).FirstOrDefault();
+            var prev = masterViewModels.Find(x => true).FirstOrDefault(); //currently only supports 1 masterviewmodel (1 therapist)
             if (prev != null)
             {
                 masterViewModels.ReplaceOne(x => x.id == model.id, model);
@@ -147,17 +147,26 @@ namespace TherapyDashboard.DataBase
             }
         }
 
-        public void cacheDetailViewModel(DetailViewModel model)
+        public void cacheFullPatientData(FullPatientData model)
         {
-            var prev = detailViewModels.Find(x => x.patientID == model.patientID).FirstOrDefault();
+            /*
+            FullPatientData model = new FullPatientData();//Possibly move this
+            model.observations = viewModel.observations;
+            model.patient = viewModel.patient;
+            model.patientID = viewModel.patientID;
+            model.QRs = viewModel.QRs;
+            model.questionnaireMap = viewModel.questionnaireMap;
+
+        */
+            var prev = fullPatientDataModels.Find(x => x.patientID == model.patientID).FirstOrDefault();
             if (prev != null)
             {
                 model.id = prev.id;
-                detailViewModels.ReplaceOne(x => x.patientID == model.patientID, model);
+                fullPatientDataModels.ReplaceOne(x => x.patientID == model.patientID, model);
             }
             else
             {
-                detailViewModels.InsertOne(model);
+                fullPatientDataModels.InsertOne(model);
             }
         }
 

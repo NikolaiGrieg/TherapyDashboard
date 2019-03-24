@@ -28,9 +28,9 @@ namespace TherapyDashboard.Controllers
         {
             FHIRRepository repo = new FHIRRepository();
             var model = repo.getDetailViewModel(id);
-            if (model == null)
+            if (model == null || model.patient == null)
             {
-                repo.updateCachedDetailViewByPatientId(id); 
+                repo.updateCachedPatientDataModelById(id); 
                 model = repo.getDetailViewModel(id);
             }
 

@@ -21,6 +21,7 @@ namespace TherapyDashboard.Services
         PatientAnalytics calc;
         Dictionary<long, List<QuestionnaireResponse>> patientData; //TODO consider other ways to handle this
         FHIRObservationHandler obsHandler;
+        ChartSelectionRepository chartSelectionRepo;
 
         FHIRQRHandler QRHandler;
 
@@ -31,6 +32,7 @@ namespace TherapyDashboard.Services
             calc = new PatientAnalytics();
             obsHandler = new FHIRObservationHandler(client, cache, calc);
             QRHandler = new FHIRQRHandler(client, cache);
+            chartSelectionRepo = new ChartSelectionRepository();
         }
 
         public List<Observation> getCachedObservationsForPatient(long patId)
@@ -40,7 +42,31 @@ namespace TherapyDashboard.Services
 
         public DetailViewModel getDetailViewModel(long id)
         {
-            return cache.loadDetailViewModel(id);
+            FullPatientData dataModel = cache.loadPatientDataModel(id);
+            DetailViewModel model = new DetailViewModel();
+
+            if(dataModel != null)
+            {
+                model.observations = dataModel.observations;
+                model.patient = dataModel.patient;
+                model.patientID = dataModel.patientID;
+                model.QRs = dataModel.QRs;
+                model.questionnaireMap = dataModel.questionnaireMap;
+            }
+            
+
+            //load selected charts
+            ChartSelection charts = chartSelectionRepo.getChartsByTherapistId(0); //0 is therapistID, replace with ID when authentication is impl
+            if (charts != null)
+            {
+                model.selectedCharts = charts.chartNames;
+            }
+            else
+            {
+                model.selectedCharts = new List<string>();
+            }
+            
+            return model;
         }
 
         public MasterViewModel loadCache()
@@ -48,12 +74,12 @@ namespace TherapyDashboard.Services
             return cache.loadViewModel();
         }
 
-        public void updateCachedDetailViewByPatientId(long id)
+        public void updateCachedPatientDataModelById(long id)
         {
             FHIRRepository repo = new FHIRRepository();
             FhirJsonSerializer serializer = new FhirJsonSerializer();
 
-            DetailViewModel model = new DetailViewModel();
+            FullPatientData model = new FullPatientData();
 
             //add patient details
             Patient patient = repo.getPatientById(id);
@@ -94,7 +120,7 @@ namespace TherapyDashboard.Services
             model.questionnaireMap = qMap;
 
             model.patientID = id;
-            cache.cacheDetailViewModel(model);
+            cache.cacheFullPatientData(model); //update charts independently
         }
 
         /// <summary>
@@ -130,7 +156,7 @@ namespace TherapyDashboard.Services
             //declare calculation functions
             IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "42220");
             IFlagFunction flagFunc = new MaxDeltaFlagFunc();
-            IWarningFunction warningFunc = new DeltaThresholdWarningFunc(1);
+            IWarningFunction warningFunc = new DeltaThresholdWarningFunc(2);
 
             Dictionary<long, string> summaries = getSummaries(aggFunc);
             Dictionary<long, List<string>> flags = getFlags(flagFunc); //todo handle multiple flags
@@ -180,7 +206,8 @@ namespace TherapyDashboard.Services
             foreach (var pat in patients)
             {
                 long patID = Int32.Parse(pat.Id);
-                updateCachedDetailViewByPatientId(patID);
+                updateCachedPatientDataModelById(patID);
+                break; //TODO remove after devving
             }
         }
 
