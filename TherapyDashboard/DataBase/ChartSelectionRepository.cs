@@ -58,6 +58,35 @@ namespace TherapyDashboard.DataBase
             }
         }
 
+        public void removeSingleEntry(long therapistID, string patientID, string chartName)
+        {
+            //find if exists
+            var filter = Builders<ChartSelection>.Filter.Eq(x => x.therapistID, therapistID);
+            var charts = collection.Find(filter).FirstOrDefault();
+
+            if (charts != null && charts.chartMap != null)
+            {
+                Dictionary<string, List<string>> map = charts.chartMap;
+                if (map.Keys.Contains(patientID)) //has settings for patient
+                {
+                    if (map[patientID].Contains(chartName))
+                    {
+                        map[patientID].Remove(chartName);
+                    }
+                }
+                else
+                {
+                    map[patientID] = new List<string>();
+                    map[patientID].Add(chartName);
+                }
+
+                collection.UpdateOne(filter,
+                    Builders<ChartSelection>.Update.Set("chartMap", map)
+                    );
+
+            }
+        }
+
         public ChartSelection getChartsByTherapistId(long therapistID)
         {
             var filter = Builders<ChartSelection>.Filter.Eq(x => x.therapistID, therapistID);

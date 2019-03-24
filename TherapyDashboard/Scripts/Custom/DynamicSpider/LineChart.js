@@ -29,9 +29,10 @@ LineChart.prototype.initVis = function(){
   vis.height = vis.initHeight - vis.margin.top - vis.margin.bottom;
 
 
+  vis.outerDiv = d3.select(vis.parentElement).append("div");
   // appends a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
-  vis.svg = d3.select(vis.parentElement).append("svg")
+  vis.svg = vis.outerDiv.append("svg")
       .attr("id", "lineChart" + vis.id.replace(/\s/g, ''))
       .attr("width", vis.width + vis.margin.left + vis.margin.right)
       .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
