@@ -2,8 +2,10 @@
 //TODO change name, this is no longer a controller
 
 //called from FhirRepository
+//Currently not possible to persistently remove, TODO fix
 function initQRLineChart(resources, name){
 	linechart = new LineChart("#line", this, name, 'all', resources);
+	initRemovalFunctionality(name, false, 'QRSummary')
 }
 
 function update(index){
@@ -20,27 +22,46 @@ function renderPatient(patient){
 }
 
 //called from SpiderChart
-function selectAxis(parent, axis, data){
-	console.log(axis);
+function selectAxis(parent, axis, data, updatePersist=true){
 	var height = 200;
 	var selectedCategoryLine = new LineChart(parent, this, axis, axis, data, height=height)
+	initRemovalFunctionality(axis, updatePersist, 'QRAxis')
+}
 
-	//Remove button for selected category linecharts
-	/*
+function initRemovalFunctionality(name, updatePersist=true, chartType=undefined){
+	let chartId = "lineChart" + name.replace(/\s/g, '');
+	let chartDiv = document.getElementById(chartId).parentElement;
+	//console.log(chartDiv);
+
 	var btn = document.createElement("BUTTON");        
-	var t = document.createTextNode("Remove");
+	var t = document.createTextNode("X");
 	btn.classList.add('btn');       
-	btn.classList.add('btn-primary');
+	btn.classList.add('btn-danger');
 	btn.appendChild(t);
-	btn.style.marginTop = height/1.5 +"px"; //TODO include chart margins here                              
+	btn.style.float = 'right';
+	btn.style.opacity = 0.8
+         
 	btn.onclick = function(){
-		d3.select("#lineChart" + axis.replace(/\s/g, '')).remove();
+		console.log("removing " +chartId);
+		d3.select("#" + chartId).remove();
+		chartDiv.remove();
+
+		let patient = JSON.parse(_patient);
+		$.post("/Patient/UnsaveChart/" + patient.id, {'chartName': name});
+
 		this.remove();
 	}
 
-	document.getElementById("removeButton").appendChild(btn);
-	*/
-	//selectedCategoryLine.wrangleData(axis);
+	chartDiv.prepend(btn);
+
+	//ajax to update persisted charts
+	if(updatePersist){
+		let patient = JSON.parse(_patient);
+		$.post("/Patient/SaveChart/" + patient.id, {
+			'chartName': name,
+			'chartType': chartType
+		});
+	}
 }
 
 function createBarChart(parent){

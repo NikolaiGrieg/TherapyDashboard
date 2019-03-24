@@ -80,36 +80,6 @@ function lineChart(name, updatePersist=true){
 	
 	if(!exists){
 		new LineChart("#line", this, name, 'all', filteredMeasurements[name], 200, 700, fhir=true);
-
-		let chartId = "lineChart" + name.replace(/\s/g, '');
-		let chartDiv = document.getElementById(chartId).parentElement;
-		//console.log(chartDiv);
-
-		var btn = document.createElement("BUTTON");        
-		var t = document.createTextNode("X");
-		btn.classList.add('btn');       
-		btn.classList.add('btn-danger');
-		btn.appendChild(t);
-		btn.style.float = 'right';
-		btn.style.opacity = 0.8
-             
-		btn.onclick = function(){
-			console.log("removing " +chartId);
-			d3.select("#" + chartId).remove();
-			chartDiv.remove();
-
-			let patient = JSON.parse(_patient);
-			$.post("/Patient/UnsaveChart/" + patient.id, {'chartName': name});
-
-			this.remove();
-		}
-
-		chartDiv.prepend(btn);
-
-		//ajax to update persisted charts
-		if(updatePersist){
-			let patient = JSON.parse(_patient);
-			$.post("/Patient/SaveChart/" + patient.id, {'chartName': name});
-		}
+		initRemovalFunctionality(name, updatePersist, 'observation');
 	}
 }

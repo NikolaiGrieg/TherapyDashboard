@@ -63,7 +63,7 @@ namespace TherapyDashboard.Services
             }
             else
             {
-                model.selectedCharts = new List<string>();
+                model.selectedCharts = new Dictionary<string, string>();
             }
             
             return model;

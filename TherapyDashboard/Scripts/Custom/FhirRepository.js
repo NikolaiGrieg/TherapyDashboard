@@ -13,10 +13,10 @@ function wrangleFhirQRToTimeSeries(resources){
 
 function initSpider(chartName){
     let QRs = groupedQRList[chartName]
-
     let processedQRResources = wrangleFhirQRToTimeSeries(QRs);
     createSpiderChart(processedQRResources, chartName);
 }
+
 
 var groupedQRList = {}
 function initDetailView(){
@@ -86,8 +86,37 @@ function initDetailView(){
 
 function initPersistedCharts(chartNames){
     console.log(chartNames)
-    chartNames.forEach(name=> {
-        lineChart(name, false);
+    Object.entries(chartNames).forEach(kvp=> {
+        let name = kvp[0];
+        let type = kvp[1];
+        if (type === 'observation'){
+            lineChart(name, false);
+        }
+        else if (type === 'QRAxis'){
+            let parent = '#line';
+            //find QR data
+            let axisData = null;
+            let QRNames = Object.keys(groupedQRList);
+            QRNames.forEach(key=> {
+                let procQRs = wrangleFhirQRToTimeSeries(groupedQRList[key]);
+                let firstQR = Object.values(procQRs)[0];
+                Object.keys(firstQR).forEach(category => {
+                    if(category.startsWith(name) || name.startsWith(category)){
+                        axisData = procQRs;
+                        return;
+                    }
+                })
+                if (axisData != null){
+                    return;
+                }
+            })
+
+            selectAxis(parent, name, axisData, false)
+        }
+        else{
+            console.log("unexpected type: "+ type)
+        }
+        
     })
 }
 

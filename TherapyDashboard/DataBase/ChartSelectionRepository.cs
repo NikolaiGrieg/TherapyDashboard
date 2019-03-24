@@ -18,7 +18,7 @@ namespace TherapyDashboard.DataBase
             collection = db.GetCollection<ChartSelection>("ChartSelectionModel");
         }
 
-        public void upsertSingleEntry(long therapistID, string patientID, string chartName)
+        public void upsertSingleEntry(long therapistID, string patientID, string chartName, string chartType)
         {
             //find if exists
             var filter = Builders<ChartSelection>.Filter.Eq(x => x.therapistID, therapistID);
@@ -27,19 +27,19 @@ namespace TherapyDashboard.DataBase
             //insert
             if (charts != null && charts.chartMap != null)
             {
-                Dictionary<string, List<string>> map = charts.chartMap;
+                Dictionary<string, Dictionary<string, string>> map = charts.chartMap;
                 if (map.Keys.Contains(patientID)) //has settings for patient
                 {
-                    if (!map[patientID].Contains(chartName))
+                    if (!map[patientID].Keys.Contains(chartName))
                     {
-                        map[patientID].Add(chartName);
+                        map[patientID][chartName] = chartType;
                     }
                     
                 }
                 else
                 {
-                    map[patientID] = new List<string>();
-                    map[patientID].Add(chartName);
+                    map[patientID] = new Dictionary<string, string>();
+                    map[patientID][chartName] = chartType;
                 }
 
                 collection.UpdateOne(filter,
@@ -51,9 +51,9 @@ namespace TherapyDashboard.DataBase
             {
                 ChartSelection entry = new ChartSelection();
                 entry.therapistID = therapistID;
-                entry.chartMap = new Dictionary<string, List<string>>();
-                entry.chartMap[patientID] = new List<string>();
-                entry.chartMap[patientID].Add(chartName);
+                entry.chartMap = new Dictionary<string, Dictionary<string, string>>();
+                entry.chartMap[patientID] = new Dictionary<string, string>();
+                entry.chartMap[patientID][chartName] = chartType;
                 collection.InsertOne(entry);
             }
         }
@@ -66,24 +66,18 @@ namespace TherapyDashboard.DataBase
 
             if (charts != null && charts.chartMap != null)
             {
-                Dictionary<string, List<string>> map = charts.chartMap;
+                Dictionary<string, Dictionary<string, string>> map = charts.chartMap;
                 if (map.Keys.Contains(patientID)) //has settings for patient
                 {
-                    if (map[patientID].Contains(chartName))
+                    if (map[patientID].Keys.Contains(chartName))
                     {
                         map[patientID].Remove(chartName);
+
+                        collection.UpdateOne(filter,
+                        Builders<ChartSelection>.Update.Set("chartMap", map)
+                        );
                     }
                 }
-                else
-                {
-                    map[patientID] = new List<string>();
-                    map[patientID].Add(chartName);
-                }
-
-                collection.UpdateOne(filter,
-                    Builders<ChartSelection>.Update.Set("chartMap", map)
-                    );
-
             }
         }
 

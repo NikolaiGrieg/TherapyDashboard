@@ -44,10 +44,10 @@ namespace TherapyDashboard.Controllers
 
         [Route("Patient/SaveChart/{id}")]
         [HttpPost]
-        public void SavePersistedCharts(long id, string chartName)
+        public void SavePersistedCharts(long id, string chartName, string chartType)
         {
             ChartSelectionRepository chartSelectionRepo = new ChartSelectionRepository();
-            chartSelectionRepo.upsertSingleEntry(0, id.ToString(), chartName);
+            chartSelectionRepo.upsertSingleEntry(0, id.ToString(), chartName, chartType);
 
         }
 
