@@ -94,6 +94,7 @@ function initPersistedCharts(chartNames){
         }
         else if (type === 'QRAxis'){
             let parent = '#line';
+
             //find QR data
             let axisData = null;
             let QRNames = Object.keys(groupedQRList);
@@ -174,10 +175,7 @@ function filterFhirData(data){
 
                 let dt = new Date(time);
                 let timeStr = dt.getFullYear() + "-" + (dt.getMonth()+1) + "-" + dt.getDate(); 
-                /*
-                time = time.slice(0, time.length - 6)
-                time = time.replace("T", " ");
-                */
+
                 categorized[timeStr] = quantity;
             }
         }
@@ -238,22 +236,27 @@ function unpackPatientData(patient, filter){
         let key = kvp[0];
         let val = kvp[1];
         if (filter.includes(key)){
-            //console.log(kvp)
             let entry;
             //Switch?
             if (key == "name"){
                 entry = val[0].given[0] + " " + val[0].family;
+                entries['Name'] = entry;
             }
             else if (key == "telecom"){
                 entry = val[0].system + ": " + val[0].value;
+                entries['Telecom'] = entry;
             }
             else if(key == "maritalStatus"){ //see https://www.hl7.org/fhir/v3/MaritalStatus/cs.html
                 entry = val.text;
+                entries['Marital Status'] = entry;
             }
             else{
                 entry = val;
+                let displayKey = key.charAt(0).toUpperCase() + key.slice(1) //capitalize first letter
+                    .split(/(?=[A-Z])/).join(" "); //add spaces between capitalized words
+
+                entries[displayKey] = entry;
             }
-            entries[key] = entry;
         }
     })
     return entries;
