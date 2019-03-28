@@ -17,7 +17,7 @@ namespace TherapyDashboard.Services
     public class FHIRRepository //TODO refactor duplicate code
     {
         FhirClient client;
-        DBCache cache;
+        MongoRepository cache;
         PatientAnalytics calc;
         Dictionary<long, List<QuestionnaireResponse>> patientData; //TODO consider other ways to handle this
         FHIRObservationHandler obsHandler;
@@ -28,7 +28,7 @@ namespace TherapyDashboard.Services
         public FHIRRepository()
         {
             client = new FhirClient("http://localhost:8080/hapi/baseDstu3");
-            cache = new DBCache();
+            cache = new MongoRepository();
             calc = new PatientAnalytics();
             obsHandler = new FHIRObservationHandler(client, cache, calc);
             QRHandler = new FHIRQRHandler(client, cache);
@@ -233,7 +233,6 @@ namespace TherapyDashboard.Services
                     Patient pat = (Patient)entry.Resource;
                     patients.Add(pat);
                 }
-
                 results = client.Continue(results);
             }
 

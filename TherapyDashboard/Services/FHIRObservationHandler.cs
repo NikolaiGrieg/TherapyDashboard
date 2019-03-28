@@ -12,10 +12,10 @@ namespace TherapyDashboard.Services
     public class FHIRObservationHandler
     {
         FhirClient client;
-        DBCache cache;
+        MongoRepository cache;
         PatientAnalytics calc;
 
-        public FHIRObservationHandler(FhirClient client, DBCache cache, PatientAnalytics calc)
+        public FHIRObservationHandler(FhirClient client, MongoRepository cache, PatientAnalytics calc)
         {
             this.client = client;
             this.cache = cache;

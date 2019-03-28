@@ -234,22 +234,32 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PatientController.cs" />
-    <Compile Include="DataBase\DBCache.cs" />
+    <Compile Include="DataBase\ChartSelectionRepository.cs" />
     <Compile Include="DataBase\MongoRepository.cs" />
+    <Compile Include="DataBase\LastCheckedRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ChartSelection.cs" />
+    <Compile Include="Models\FullPatientData.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LastCheckedMap.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PatientData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AggregationFunctions\IAggregationFunction.cs" />
-    <Compile Include="Services\AggregationFunctions\SumCompareThresholdFunc.cs" />
+    <Compile Include="Services\AggregationFunctions\SumDeltaThresholdSingleQRFunc.cs" />
+    <Compile Include="Services\FHIRObservationHandler.cs" />
+    <Compile Include="Services\FHIRQRHandler.cs" />
     <Compile Include="Services\FHIRRepository.cs" />
     <Compile Include="Services\FlagFunctions\IFlagFunction.cs" />
     <Compile Include="Services\FlagFunctions\MaxDeltaFlagFunc.cs" />
+    <Compile Include="Services\LastCheckedHandler.cs" />
     <Compile Include="Services\PatientAnalytics.cs" />
+    <Compile Include="Services\WarningFunctions\AbsSuicidalMADRSWarningFunc.cs" />
+    <Compile Include="Services\WarningFunctions\DeltaThresholdWarningFunc.cs" />
+    <Compile Include="Services\WarningFunctions\IWarningFunction.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DetailViewModel.cs" />
     <Compile Include="ViewModels\MasterViewModel.cs" />
@@ -268,6 +278,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom\DetailView\ActivityChart.js" />
     <Content Include="Scripts\Custom\DetailView\HCBarChart.js" />

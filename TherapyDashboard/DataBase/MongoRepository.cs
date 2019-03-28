@@ -1,121 +1,186 @@
-﻿using MongoDB.Bson;
+﻿using Hl7.Fhir.Model;
+using Hl7.Fhir.Serialization;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Web;
-using TherapyDashboard.DataBase;
 using TherapyDashboard.Models;
+using TherapyDashboard.Services;
+using TherapyDashboard.Services.AggregationFunctions;
+using TherapyDashboard.Services.FlagFunctions;
+using TherapyDashboard.ViewModels;
 
 namespace TherapyDashboard.DataBase
 {
     public class MongoRepository
     {
-        /*
-        public static List<Patient> getAllPatients()
+
+        IMongoCollection<PatientData> collection;//TODO remove this collection
+        IMongoCollection<MasterViewModel> masterViewModels; 
+        IMongoCollection<FullPatientData> fullPatientDataModels;
+
+        public MongoRepository()
         {
-            MongoDBConnection db = new MongoDBConnection();
-            return db.Patients.Find(_ => true).ToList();
+            ConventionRegistry.Register(
+                "Ignore null values",
+                new ConventionPack
+                {
+                    new IgnoreIfDefaultConvention(true)
+                },
+                filter: t => t.Name.Contains("QuestionnaireResponse"));
+            
+            MongoClient client = new MongoClient();
+            var db = client.GetDatabase("Dashboard");
+            collection = db.GetCollection<PatientData>("PatientData");
+            masterViewModels = db.GetCollection<MasterViewModel>("ViewModels");
+            fullPatientDataModels = db.GetCollection<FullPatientData>("FullPatientDataModels");
+        }
+
+        public MasterViewModel loadViewModel()
+        {
+            return masterViewModels.Find(x => true).FirstOrDefault();//TODO therapistID here
+        }
+
+        public FullPatientData loadPatientDataModel(long id) //TODO in theory this should take a therapistID too... maybe revisit this idea
+        {
+            return fullPatientDataModels.Find(x => x.patientID == id).FirstOrDefault();
+        }
+
+        private void registerCMs()
+        {
+            if (!BsonClassMap.IsClassMapRegistered(typeof(Hl7.Fhir.Model.Integer)))
+            {
+                BsonClassMap.RegisterClassMap<Hl7.Fhir.Model.Integer>();
+            }
+        }
+
+        public Dictionary<long, List<QuestionnaireResponse>> getAllPatientResources(List<long> patientIDs)
+        {
+            registerCMs();
+
+            Dictionary<long, List<QuestionnaireResponse>> mds = new Dictionary<long, List<QuestionnaireResponse>>();
+            foreach (var id in patientIDs)
+            {
+                var patData = getPatientDataById(id);
+                if (patData != null)
+                {
+                    var QRs = patData.QRs;
+                    mds[id] = QRs;
+                }
+            }
+            return mds;
         }
 
 
-        public static void addFormsToPatient(string patName, string path)
+        public PatientData getPatientDataById(long fhirID)
         {
-            //PatientRepository.createPatient();
-            MongoDBConnection db = new MongoDBConnection();
-            var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
-            var pat = db.Patients.Find(filter).FirstOrDefault(); //TODO handle multiple patients w same name
+            registerCMs();
+            var filter = Builders<PatientData>.Filter.Eq(x => x.fhirID, fhirID);
+            var md = collection.Find(filter).FirstOrDefault();
 
+            return md;
+        }
 
+        private void insertSinglePatientQRs(long id, List<QuestionnaireResponse> QRs)
+        {
+            registerCMs();
 
-            using (StreamReader r = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + path, System.Text.Encoding.Default))
+            //TODO check if id exists before inserting
+            PatientData data = new PatientData(id, QRs, null);
+            collection.InsertOne(data);
+        }
+
+        private void insertSinglePatientObservations(long id, List<Observation> observations)
+        {
+            registerCMs();
+
+            //TODO check if id exists before inserting
+            var filter = Builders<PatientData>.Filter.Eq(x => x.fhirID, id);
+            PatientData pd;
+            //PatientData toInsert = new PatientData(id, null, observations);
+            try
             {
-                string json = @r.ReadToEnd();
-                //System.Diagnostics.Debug.WriteLine(json);
-
-                var documents = BsonSerializer.Deserialize<BsonDocument>(json);
-                Dictionary<string, object> values = documents.ToDictionary();
-
-                foreach (KeyValuePair<string, object> kvp in values)
+                pd = collection.Find(filter).FirstOrDefault();
+                if (pd.observations == null)
                 {
-                    var entryDict = new Dictionary<string, object> {
-                        { kvp.Key, kvp.Value }
-                    };
-                    var jsonDoc = JsonConvert.SerializeObject(entryDict);
-                    var bsonDoc = BsonSerializer.Deserialize<BsonDocument>(jsonDoc);
-
-                    //TODO make atomic maybe
-                    db.Forms.InsertOne(bsonDoc);
-
-                    var id = bsonDoc.GetElement("_id");
-                    var objectID = (ObjectId)id.Value;
-
-                    if (pat.NumericForms == null)
+                    pd.observations = observations;
+                }
+                else
+                {
+                    List<Observation> oldObservations = pd.observations;
+                    List<Observation> newObservations = new List<Observation>();
+                    foreach (var obs in observations)
                     {
-                        pat.NumericForms = new List<ObjectId>() {
-                            objectID
-                        };
+                        if (!oldObservations.Any(x => x.Id == obs.Id))
+                        {
+                            newObservations.Add(obs);
+                        }
                     }
-                    else
-                    {
-                        pat.NumericForms.Add(objectID);
-                    }
-
-                    //update patient
-                    db.Patients.ReplaceOne(
-                        item => item.id == pat.id,
-                        pat
-                        );
+                    pd.observations = oldObservations.Concat(newObservations).ToList();
                 }
 
+                collection.ReplaceOne(filter, pd);
             }
-
-            //to find documents with a given date: db.Form.find({"somedate" : { $exists : true} }).pretty()
-        }
-
-        public static List<BsonDocument> getPatientForms(string patName)
-        {
-            //see https://www.mongodb.com/blog/post/6-rules-of-thumb-for-mongodb-schema-design-part-1 for queries/joins
-
-            MongoDBConnection db = new MongoDBConnection();
-            var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
-            var pat = db.Patients.Find(filter).FirstOrDefault();
-
-            var formFilter = Builders<BsonDocument>.Filter.In<ObjectId>("_id", pat.NumericForms);
-            var forms = db.Forms.Find(formFilter).ToList();
-            return forms;
-        }
-
-        public static string getPatientFormsSingle(string patName)
-        {
-            //maybe refactor this first part out
-            MongoDBConnection db = new MongoDBConnection();
-            var filter = Builders<Patient>.Filter.Eq(x => x.name, patName);
-            var pat = db.Patients.Find(filter).FirstOrDefault();
-
-            var formFilter = Builders<BsonDocument>.Filter.In<ObjectId>("_id", pat.NumericForms);
-            var forms = db.Forms.Find(formFilter)
-                .Project(Builders<BsonDocument>.Projection
-                .Exclude("_id"))
-                .ToList();
-
-            var mainDocument = forms[0];
-            for (int i = 1; i < forms.Count; i++)
+            catch (Exception e)
             {
-                mainDocument.Merge(forms[i]);
+                //no patient with that Id
+                pd = new PatientData(id, null, observations);
+                collection.InsertOne(pd);
             }
-
-            var jsonWriterSettings = new MongoDB.Bson.IO.JsonWriterSettings { OutputMode = MongoDB.Bson.IO.JsonOutputMode.Strict };
-            string json = mainDocument.ToJson(jsonWriterSettings);
-
-
-            return json;
         }
+
+        //TODO support more than 1 therapist
+        public void cacheMasterViewModel(MasterViewModel model)
+        {
+            var prev = masterViewModels.Find(x => true).FirstOrDefault(); //currently only supports 1 masterviewmodel (1 therapist)
+            if (prev != null)
+            {
+                masterViewModels.ReplaceOne(x => x.id == model.id, model);
+            }
+            else
+            {
+                masterViewModels.InsertOne(model);
+            }
+        }
+
+        public void cacheFullPatientData(FullPatientData model)
+        {
+            /*
+            FullPatientData model = new FullPatientData();//Possibly move this
+            model.observations = viewModel.observations;
+            model.patient = viewModel.patient;
+            model.patientID = viewModel.patientID;
+            model.QRs = viewModel.QRs;
+            model.questionnaireMap = viewModel.questionnaireMap;
+
         */
+            var prev = fullPatientDataModels.Find(x => x.patientID == model.patientID).FirstOrDefault();
+            if (prev != null)
+            {
+                model.id = prev.id;
+                fullPatientDataModels.ReplaceOne(x => x.patientID == model.patientID, model);
+            }
+            else
+            {
+                fullPatientDataModels.InsertOne(model);
+            }
+        }
+
+        public void insertNewQRs(Dictionary<long, List<QuestionnaireResponse>> newQRs)
+        {
+            registerCMs();
+            foreach (var kvp in newQRs)
+            {
+                if (kvp.Value.Any()) //QRlist not empty
+                {
+                    insertSinglePatientQRs(kvp.Key, kvp.Value);
+                }
+                
+            }
+        }
     }
-    
 }

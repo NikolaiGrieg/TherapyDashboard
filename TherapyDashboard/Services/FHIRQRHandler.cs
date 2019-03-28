@@ -12,14 +12,15 @@ namespace TherapyDashboard.Services
     public class FHIRQRHandler
     {
         FhirClient client;
-        DBCache cache;
+        MongoRepository cache;
 
-        public FHIRQRHandler(FhirClient client, DBCache cache)
+        public FHIRQRHandler(FhirClient client, MongoRepository cache)
         {
             this.client = client;
             this.cache = cache;
         }
 
+        /*
         private List<QuestionnaireResponse> getQRsAfterDateTime(DateTime dt, long patID)
         {
             List<QuestionnaireResponse> QRs = new List<QuestionnaireResponse>();
@@ -42,6 +43,7 @@ namespace TherapyDashboard.Services
             }
             return QRs;
         }
+        */
 
         public List<QuestionnaireResponse> getCachedQRsForPatient(long patId)
         {
@@ -67,10 +69,10 @@ namespace TherapyDashboard.Services
             }
 
             //get newest QR, currently assuming order holds, TODO test this
-            QuestionnaireResponse lastQR = oldQRs[oldQRs.Count - 1];
-            DateTime lastDate = DateTime.Parse(lastQR.Authored);
+            //QuestionnaireResponse lastQR = oldQRs[oldQRs.Count - 1];
+            //DateTime lastDate = DateTime.Parse(lastQR.Authored);
 
-            List<QuestionnaireResponse> newQRs = getQRsAfterDateTime(lastDate, patId);
+            List<QuestionnaireResponse> newQRs = getQRByPatientId(patId);
 
             return newQRs;
         }
