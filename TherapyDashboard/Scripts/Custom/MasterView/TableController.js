@@ -107,7 +107,7 @@ function getDiffDays(date){
     return diffDays;
 }
 
-//TODO test, appears to be correct
+//TODO 
 function dateToHumanReadable(date){
     var diffDays = getDiffDays(date);
 
@@ -122,14 +122,17 @@ function dateToHumanReadable(date){
         diffWeeks = Math.floor(diffDays / 7)
         daysStr = diffWeeks + " weeks";
     }
-    else if (((diffDays / 7) / 4) < 12){
-        diffMonths = Math.floor((diffDays / 7) / 4)
+    else if ((diffDays / 30) < 12){ //months are approximated to 30 days
+        diffMonths = Math.floor((diffDays / 7.5) / 4)
         daysStr = diffMonths + " months";
     }
-
     else {
-        diffYears = Math.floor(((diffDays / 7) / 4) / 12)
+        diffYears = Math.floor(diffDays /360) //360day year
+        remaining = diffDays % 360;
         daysStr = diffYears + " years";
+        if (Math.floor(remaining /30) > 0){
+            daysStr += " and " + Math.floor(remaining /30) + " months";
+        }
     }
     return daysStr;
 }
@@ -317,13 +320,13 @@ function enableTableSort() {
     let ths = document.querySelectorAll('th');
     
     let alphaNumSorted = []
-    let dateSorted;
+    let dateSorted = [];
     ths.forEach(th => {
-        if (th.innerHTML != "Last checked"){
+        if (th.innerHTML != "Last checked" && th.innerHTML != "Time spent in program"){
             alphaNumSorted.push(th)
         }
         else{
-            dateSorted = th;
+            dateSorted.push(th);
         }
     })
 
@@ -360,27 +363,37 @@ function enableTableSort() {
     })));
 
     //apply date sorting
-    let dateSortedPatNames = getDateSortedPatNameArray();
+    dateSorted.forEach(th => {
+        let dateSortedPatNames;
+        if(th.innerHTML === "Last checked"){
+            dateSortedPatNames = getDateSortedPatNameArray("last");
+        }
+        else{
+            dateSortedPatNames = getDateSortedPatNameArray("first");
+        }
+        
 
-    //assemble list of patNames in order of sorted date
-    let trs = [];
-    dateSortedPatNames.forEach(name =>{
-        let tdQuery = Array.from($("td:contains(" + name + ")"))
-        let td;
-         //if duplicate names, one of the names will have wrong position in list
-        tdQuery.forEach(listElement => {
-            if (listElement.parentNode.parentNode.id == "masterTableBody"){
-                trs.push(listElement.parentNode);
-            }
+        //assemble list of patNames in order of sorted date
+        let trs = [];
+        dateSortedPatNames.forEach(name =>{
+            let tdQuery = Array.from($("td:contains(" + name + ")"))
+            let td;
+             //if duplicate names, one of the names will have wrong position in list
+            tdQuery.forEach(listElement => {
+                if (listElement.parentNode.parentNode.id == "masterTableBody"){
+                    trs.push(listElement.parentNode);
+                }
+            })
         })
-    })
 
-    //add eventlistener
-    dateSorted.addEventListener('click', (() => {
-        const table = document.getElementById("masterTable");
-        trs.forEach(tr => table.tBodies[0].appendChild(tr));
-        trs.reverse();
-    }))
+        //add eventlistener
+        th.addEventListener('click', (() => {
+            const table = document.getElementById("masterTable");
+            trs.forEach(tr => table.tBodies[0].appendChild(tr));
+            trs.reverse();
+        }))
+    }) 
+    
 }
 
 function initSearch(){
@@ -395,10 +408,22 @@ function initSearch(){
 }
 
 //newest entries have lowest index - sorted ascending based on date diff
-function getDateSortedPatNameArray(){
+function getDateSortedPatNameArray(dateSelector='last'){
     //patients with existing checked
-    let lastChecked = wrangleLastChecked(_lastChecked, false);
-    let dateSorted = Object.keys(lastChecked).sort(function(a,b){return lastChecked[b]-lastChecked[a]})
+    let dateSorted;
+    if (dateSelector==='last'){
+        let lastChecked = wrangleLastChecked(_lastChecked, false);
+        dateSorted = Object.keys(lastChecked).sort(function(a,b){return lastChecked[b]-lastChecked[a]})
+    }
+    else if (dateSelector === 'first'){
+        let firstQR = wrangleEarliestDate(_earliestQRDates, false);
+        dateSorted = Object.keys(firstQR).sort(function(a,b){return firstQR[b]-firstQR[a]})
+        let names = []
+        dateSorted.forEach(id => {
+            names.push(_patientNames[id])
+        })
+        return names;
+    }
 
     //patients without exsiting checked
     let allPatIds = Object.keys(_summaries);
