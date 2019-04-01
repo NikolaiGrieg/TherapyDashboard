@@ -29,7 +29,7 @@ function selectAxis(parent, axis, data, updatePersist=true){
 }
 
 function initRemovalFunctionality(name, updatePersist=true, chartType=undefined){
-	let chartId = "lineChart" + name.replace(/\s/g, '');
+	let chartId = "lineChart" + name.replace(/[^\w\s]/gi, '').replace(" ", "");
 	let chartDiv = document.getElementById(chartId).parentElement;
 	//console.log(chartDiv);
 

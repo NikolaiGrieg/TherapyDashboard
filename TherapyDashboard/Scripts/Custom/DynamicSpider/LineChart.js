@@ -33,7 +33,7 @@ LineChart.prototype.initVis = function(){
   // appends a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
   vis.svg = vis.outerDiv.append("svg")
-      .attr("id", "lineChart" + vis.id.replace(/\s/g, ''))
+      .attr("id", "lineChart" + vis.id.replace(/[^\w\s]/gi, '').replace(" ", ""))
       .attr("width", vis.width + vis.margin.left + vis.margin.right)
       .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
     .append("g")

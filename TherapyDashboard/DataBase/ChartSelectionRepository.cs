@@ -69,6 +69,10 @@ namespace TherapyDashboard.DataBase
         public void removeSingleEntry(long therapistID, string patientID, string chartName)
         {
             //find if exists
+            if (chartName.Contains("."))
+            {
+                chartName = chartName.Replace(".", "*"); //can't have dots 
+            }
             var filter = Builders<ChartSelection>.Filter.Eq(x => x.therapistID, therapistID);
             var charts = collection.Find(filter).FirstOrDefault();
 
