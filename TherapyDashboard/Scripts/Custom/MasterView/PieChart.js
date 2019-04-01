@@ -19,7 +19,8 @@ function plotSummariesPieChart(data){
             text: null
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.y}</b> - <b>{point.percentage:.1f}%</b> '
+            pointFormat: '{series.name}: <b>{point.y}</b> - <b>{point.percentage:.1f}%</b> ',
+            
         },
 
         credits: {

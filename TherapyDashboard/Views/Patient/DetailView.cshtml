@@ -15,14 +15,19 @@
 <body>
 
     <div id="modalContainer">
-        <button type="button" class="btn btn-danger" id="closeModalButton" onclick="hideSpiderChart()">
-        x
-        </button>
         <div id="outerSpider">
             <div id="spiderChart" class="spider"></div>
         </div>
         <div id="aggregateSpiderController"></div>
+        <div class="col-md text-center">
+            <button type="button" class="btn btn-primary" id="closeModalButton" onclick="hideSpiderChart()">
+                close
+            </button>
+        </div>
+        
     </div>
+
+    <div id="modalBackground" onclick="hideSpiderChart()"></div>
 
     <div class="container">
         <div class="row">

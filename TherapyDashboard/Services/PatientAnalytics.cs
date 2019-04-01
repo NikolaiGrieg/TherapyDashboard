@@ -23,7 +23,7 @@ namespace TherapyDashboard.Services
             {
                 return "no forms";
             }
-            string summary = func.aggregate(QRs);
+            string summary = func.aggregate(QRs).ToString();
             return summary;
             
         }

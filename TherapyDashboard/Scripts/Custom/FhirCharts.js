@@ -71,7 +71,7 @@ function lineChart(name, updatePersist=true){
 	let exists = false;
 	container.childNodes.forEach( child => {
 		let childName = child.id.replace("lineChart", "")
-		.replace(" ", "");
+		.replace(/\s/g, '').replace(".", "");
 
 		if (childName === name.replace(" ", "")){
 			exists = true;

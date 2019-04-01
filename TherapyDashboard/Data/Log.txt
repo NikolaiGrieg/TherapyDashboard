@@ -1,0 +1,1713 @@
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.35
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.16
+Monday, April 1, 2019;;updateResources - FHIRRepository runtime;;00:03:09.13
+Monday, April 1, 2019;;updateGlobalState(false) runtime;;00:03:14.74
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.38
+Monday, April 1, 2019;;updateResources - FHIRRepository runtime;;00:14:19.53
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;updateResources - FHIRRepository runtime;;00:14:19.11
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2) - FHIRRepository;;00:00:10.60
+Monday, April 1, 2019;;repo.getAllQRsByPatID(68) - FHIRRepository;;00:00:00.22
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2) - FHIRRepository;;00:00:10.92
+Monday, April 1, 2019;;repo.getAllQRsByPatID(68) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(68) - FHIRRepository;;00:00:09.93
+Monday, April 1, 2019;;repo.getAllQRsByPatID(325) - FHIRRepository;;00:00:00.13
+Monday, April 1, 2019;;updateCachedPatientDataModelById(68) - FHIRRepository;;00:00:10.16
+Monday, April 1, 2019;;repo.getAllQRsByPatID(325) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(325) - FHIRRepository;;00:00:05.25
+Monday, April 1, 2019;;repo.getAllQRsByPatID(441) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(325) - FHIRRepository;;00:00:05.34
+Monday, April 1, 2019;;repo.getAllQRsByPatID(441) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(441) - FHIRRepository;;00:00:04.41
+Monday, April 1, 2019;;repo.getAllQRsByPatID(708) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(441) - FHIRRepository;;00:00:03.15
+Monday, April 1, 2019;;repo.getAllQRsByPatID(708) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(708) - FHIRRepository;;00:00:05.61
+Monday, April 1, 2019;;repo.getAllQRsByPatID(828) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;updateCachedPatientDataModelById(708) - FHIRRepository;;00:00:05.99
+Monday, April 1, 2019;;repo.getAllQRsByPatID(828) - FHIRRepository;;00:00:00.10
+Monday, April 1, 2019;;updateCachedPatientDataModelById(828) - FHIRRepository;;00:00:06.82
+Monday, April 1, 2019;;repo.getAllQRsByPatID(967) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(828) - FHIRRepository;;00:00:06.48
+Monday, April 1, 2019;;repo.getAllQRsByPatID(967) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(967) - FHIRRepository;;00:00:11.55
+Monday, April 1, 2019;;repo.getAllQRsByPatID(1308) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(967) - FHIRRepository;;00:00:12.21
+Monday, April 1, 2019;;repo.getAllQRsByPatID(1308) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(1308) - FHIRRepository;;00:00:08.28
+Monday, April 1, 2019;;repo.getAllQRsByPatID(1551) - FHIRRepository;;00:00:00.21
+Monday, April 1, 2019;;updateCachedPatientDataModelById(1308) - FHIRRepository;;00:00:07.90
+Monday, April 1, 2019;;repo.getAllQRsByPatID(1551) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(1551) - FHIRRepository;;00:00:06.70
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2098) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(1551) - FHIRRepository;;00:00:07.14
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2098) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2098) - FHIRRepository;;00:00:03.91
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2148) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2098) - FHIRRepository;;00:00:04.02
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2148) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2148) - FHIRRepository;;00:00:05.35
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2233) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2148) - FHIRRepository;;00:00:05.01
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2233) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2233) - FHIRRepository;;00:00:04.75
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2382) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2233) - FHIRRepository;;00:00:05.53
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2382) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2382) - FHIRRepository;;00:00:04.72
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2444) - FHIRRepository;;00:00:00.15
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2382) - FHIRRepository;;00:00:03.64
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2444) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2444) - FHIRRepository;;00:00:08.52
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2628) - FHIRRepository;;00:00:00.10
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2444) - FHIRRepository;;00:00:09.08
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2628) - FHIRRepository;;00:00:00.11
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2628) - FHIRRepository;;00:00:07.09
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2977) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2977) - FHIRRepository;;00:00:02.80
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2628) - FHIRRepository;;00:00:07.40
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3068) - FHIRRepository;;00:00:00.10
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2977) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2977) - FHIRRepository;;00:00:04.57
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3068) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3068) - FHIRRepository;;00:00:05.86
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3304) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3068) - FHIRRepository;;00:00:03.95
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3304) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3304) - FHIRRepository;;00:00:04.93
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3378) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3378) - FHIRRepository;;00:00:03.19
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3445) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3304) - FHIRRepository;;00:00:05.44
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3378) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3378) - FHIRRepository;;00:00:03.09
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3445) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3445) - FHIRRepository;;00:00:05.48
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3744) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3445) - FHIRRepository;;00:00:04.37
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3744) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3744) - FHIRRepository;;00:00:04.56
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3957) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3744) - FHIRRepository;;00:00:05.49
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3957) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3957) - FHIRRepository;;00:00:05.57
+Monday, April 1, 2019;;repo.getAllQRsByPatID(4130) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(4130) - FHIRRepository;;00:00:03.72
+Monday, April 1, 2019;;repo.getAllQRsByPatID(4348) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(4348) - FHIRRepository;;00:56:29.57
+Monday, April 1, 2019;;repo.getAllQRsByPatID(4587) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(4587) - FHIRRepository;;00:00:07.42
+Monday, April 1, 2019;;repo.getAllQRsByPatID(4826) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;updateCachedPatientDataModelById(4826) - FHIRRepository;;00:00:02.84
+Monday, April 1, 2019;;repo.getAllQRsByPatID(4926) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;updateCachedPatientDataModelById(4926) - FHIRRepository;;00:00:02.68
+Monday, April 1, 2019;;repo.getAllQRsByPatID(5061) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(5061) - FHIRRepository;;00:00:03.47
+Monday, April 1, 2019;;repo.getAllQRsByPatID(5158) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(5158) - FHIRRepository;;00:00:06.94
+Monday, April 1, 2019;;repo.getAllQRsByPatID(5409) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(5409) - FHIRRepository;;00:00:06.48
+Monday, April 1, 2019;;repo.getAllQRsByPatID(5643) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(5643) - FHIRRepository;;00:00:06.24
+Monday, April 1, 2019;;repo.getAllQRsByPatID(5877) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;updateCachedPatientDataModelById(5877) - FHIRRepository;;00:00:05.41
+Monday, April 1, 2019;;repo.getAllQRsByPatID(6055) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(6055) - FHIRRepository;;00:00:03.72
+Monday, April 1, 2019;;repo.getAllQRsByPatID(6191) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(6191) - FHIRRepository;;00:00:05.46
+Monday, April 1, 2019;;repo.getAllQRsByPatID(6473) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(6473) - FHIRRepository;;00:00:03.41
+Monday, April 1, 2019;;repo.getAllQRsByPatID(6576) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(6576) - FHIRRepository;;00:00:04.80
+Monday, April 1, 2019;;repo.getAllQRsByPatID(6919) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(6919) - FHIRRepository;;00:00:04.71
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7110) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7110) - FHIRRepository;;00:00:03.94
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7230) - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7230) - FHIRRepository;;00:00:02.78
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7381) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7381) - FHIRRepository;;00:00:05.92
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7676) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7676) - FHIRRepository;;00:00:03.23
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7858) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7858) - FHIRRepository;;00:00:04.69
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7998) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7998) - FHIRRepository;;00:00:03.28
+Monday, April 1, 2019;;repo.getAllQRsByPatID(8310) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(8310) - FHIRRepository;;00:00:02.92
+Monday, April 1, 2019;;repo.getAllQRsByPatID(8380) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(8380) - FHIRRepository;;00:00:04.20
+Monday, April 1, 2019;;repo.getAllQRsByPatID(8713) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(8713) - FHIRRepository;;00:00:04.49
+Monday, April 1, 2019;;repo.getAllQRsByPatID(8878) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(8878) - FHIRRepository;;00:00:05.08
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9080) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9080) - FHIRRepository;;00:00:03.85
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9301) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9301) - FHIRRepository;;00:00:04.08
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9452) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9452) - FHIRRepository;;00:00:04.43
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9597) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9597) - FHIRRepository;;00:00:02.45
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9767) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9767) - FHIRRepository;;00:00:03.32
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9996) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9996) - FHIRRepository;;00:00:05.65
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10195) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10195) - FHIRRepository;;00:00:03.66
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10335) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10335) - FHIRRepository;;00:00:05.25
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10446) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10446) - FHIRRepository;;00:00:03.88
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10516) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10516) - FHIRRepository;;00:00:03.80
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10641) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10641) - FHIRRepository;;00:00:05.42
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10840) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10840) - FHIRRepository;;00:00:04.12
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10932) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10932) - FHIRRepository;;00:00:03.70
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10997) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10997) - FHIRRepository;;00:00:04.94
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11144) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11144) - FHIRRepository;;00:00:03.86
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11309) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11309) - FHIRRepository;;00:00:03.57
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11418) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11418) - FHIRRepository;;00:00:04.94
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11631) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11631) - FHIRRepository;;00:00:03.19
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11738) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11738) - FHIRRepository;;00:00:04.11
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11838) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11838) - FHIRRepository;;00:00:05.78
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12030) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12030) - FHIRRepository;;00:00:03.40
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12090) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12090) - FHIRRepository;;00:00:05.85
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12253) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12253) - FHIRRepository;;00:00:03.81
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12409) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12409) - FHIRRepository;;00:00:04.46
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12642) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12642) - FHIRRepository;;00:00:02.99
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12756) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12756) - FHIRRepository;;00:00:02.23
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12959) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12959) - FHIRRepository;;00:00:09.29
+Monday, April 1, 2019;;repo.getAllQRsByPatID(13290) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(13290) - FHIRRepository;;00:00:03.68
+Monday, April 1, 2019;;repo.getAllQRsByPatID(13382) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(13382) - FHIRRepository;;00:00:04.98
+Monday, April 1, 2019;;repo.getAllQRsByPatID(13544) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(13544) - FHIRRepository;;00:00:03.29
+Monday, April 1, 2019;;repo.getAllQRsByPatID(13620) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(13620) - FHIRRepository;;00:00:06.74
+Monday, April 1, 2019;;repo.getAllQRsByPatID(13904) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(13904) - FHIRRepository;;00:00:03.24
+Monday, April 1, 2019;;repo.getAllQRsByPatID(14003) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;updateCachedPatientDataModelById(14003) - FHIRRepository;;00:00:07.17
+Monday, April 1, 2019;;repo.getAllQRsByPatID(14265) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(14265) - FHIRRepository;;00:00:04.62
+Monday, April 1, 2019;;repo.getAllQRsByPatID(14406) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;updateCachedPatientDataModelById(14406) - FHIRRepository;;00:00:05.85
+Monday, April 1, 2019;;repo.getAllQRsByPatID(14565) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(14565) - FHIRRepository;;00:00:08.30
+Monday, April 1, 2019;;repo.getAllQRsByPatID(14829) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;updateCachedPatientDataModelById(14829) - FHIRRepository;;00:00:07.57
+Monday, April 1, 2019;;repo.getAllQRsByPatID(15108) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(15108) - FHIRRepository;;00:00:05.72
+Monday, April 1, 2019;;repo.getAllQRsByPatID(15261) - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(15261) - FHIRRepository;;00:00:01.72
+Monday, April 1, 2019;;repo.getAllQRsByPatID(15463) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(15463) - FHIRRepository;;00:00:07.07
+Monday, April 1, 2019;;repo.getAllQRsByPatID(15725) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;updateCachedPatientDataModelById(15725) - FHIRRepository;;00:00:04.72
+Monday, April 1, 2019;;repo.getAllQRsByPatID(15835) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(15835) - FHIRRepository;;00:00:07.07
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16090) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16090) - FHIRRepository;;00:00:04.53
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16215) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16215) - FHIRRepository;;00:00:04.17
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16368) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16368) - FHIRRepository;;00:00:02.70
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16417) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16417) - FHIRRepository;;00:00:03.87
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16527) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16527) - FHIRRepository;;00:00:03.20
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16945) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16945) - FHIRRepository;;00:00:03.62
+Monday, April 1, 2019;;repo.getAllQRsByPatID(17115) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(17115) - FHIRRepository;;00:00:05.53
+Monday, April 1, 2019;;repo.getAllQRsByPatID(17235) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(17235) - FHIRRepository;;00:00:03.18
+Monday, April 1, 2019;;repo.getAllQRsByPatID(17320) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;updateCachedPatientDataModelById(17320) - FHIRRepository;;00:00:07.93
+Monday, April 1, 2019;;repo.getAllQRsByPatID(17794) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(17794) - FHIRRepository;;00:00:03.10
+Monday, April 1, 2019;;repo.getAllQRsByPatID(20313) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(20313) - FHIRRepository;;00:00:03.16
+Monday, April 1, 2019;;repo.getAllQRsByPatID(20413) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(20413) - FHIRRepository;;00:00:06.24
+Monday, April 1, 2019;;repo.getAllQRsByPatID(20663) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(20663) - FHIRRepository;;00:00:03.94
+Monday, April 1, 2019;;repo.getAllQRsByPatID(20789) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(20789) - FHIRRepository;;00:00:03.41
+Monday, April 1, 2019;;repo.getAllQRsByPatID(20841) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(20841) - FHIRRepository;;00:00:06.67
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21130) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21130) - FHIRRepository;;00:00:04.26
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21261) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21261) - FHIRRepository;;00:00:04.20
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21344) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21344) - FHIRRepository;;00:00:02.15
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21394) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21394) - FHIRRepository;;00:00:03.23
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21506) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21506) - FHIRRepository;;00:00:06.29
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21734) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21734) - FHIRRepository;;00:00:07.95
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22005) - FHIRRepository;;00:00:00.11
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22005) - FHIRRepository;;00:00:08.01
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22210) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22210) - FHIRRepository;;00:00:04.55
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22362) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22362) - FHIRRepository;;00:00:07.54
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22691) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22691) - FHIRRepository;;00:00:04.94
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22858) - FHIRRepository;;00:00:00.11
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22858) - FHIRRepository;;00:00:04.21
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22989) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22989) - FHIRRepository;;00:00:03.89
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23225) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23225) - FHIRRepository;;00:00:08.04
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23474) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23474) - FHIRRepository;;00:00:05.12
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23605) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23605) - FHIRRepository;;00:00:03.21
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23686) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23686) - FHIRRepository;;00:00:03.44
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23725) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23725) - FHIRRepository;;00:00:06.62
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23952) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23952) - FHIRRepository;;00:00:04.78
+Monday, April 1, 2019;;repo.getAllQRsByPatID(24090) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;updateCachedPatientDataModelById(24090) - FHIRRepository;;00:00:05.38
+Monday, April 1, 2019;;repo.getAllQRsByPatID(24313) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(24313) - FHIRRepository;;00:00:05.53
+Monday, April 1, 2019;;repo.getAllQRsByPatID(17851) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(17851) - FHIRRepository;;00:00:47.52
+Monday, April 1, 2019;;repo.getAllQRsByPatID(24526) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;updateCachedPatientDataModelById(24526) - FHIRRepository;;00:00:05.25
+Monday, April 1, 2019;;repo.getAllQRsByPatID(24669) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(24669) - FHIRRepository;;00:00:04.07
+Monday, April 1, 2019;;repo.getAllQRsByPatID(24922) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;updateCachedPatientDataModelById(24922) - FHIRRepository;;00:00:03.19
+Monday, April 1, 2019;;repo.getAllQRsByPatID(25051) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(25051) - FHIRRepository;;00:00:03.44
+Monday, April 1, 2019;;repo.getAllQRsByPatID(25123) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(25123) - FHIRRepository;;00:00:06.66
+Monday, April 1, 2019;;repo.getAllQRsByPatID(25371) - FHIRRepository;;00:00:00.11
+Monday, April 1, 2019;;updateCachedPatientDataModelById(25371) - FHIRRepository;;00:00:04.66
+Monday, April 1, 2019;;repo.getAllQRsByPatID(25544) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(25544) - FHIRRepository;;00:00:38.48
+Monday, April 1, 2019;;repo.getAllQRsByPatID(27285) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(27285) - FHIRRepository;;00:00:04.82
+Monday, April 1, 2019;;repo.getAllQRsByPatID(27733) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(27733) - FHIRRepository;;00:00:05.46
+Monday, April 1, 2019;;repo.getAllQRsByPatID(27941) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(27941) - FHIRRepository;;00:00:04.64
+Monday, April 1, 2019;;repo.getAllQRsByPatID(28165) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;updateCachedPatientDataModelById(28165) - FHIRRepository;;00:00:08.26
+Monday, April 1, 2019;;repo.getAllQRsByPatID(28409) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(28409) - FHIRRepository;;00:00:03.67
+Monday, April 1, 2019;;repo.getAllQRsByPatID(28596) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(28596) - FHIRRepository;;00:00:04.26
+Monday, April 1, 2019;;repo.getAllQRsByPatID(28739) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(28739) - FHIRRepository;;00:00:04.58
+Monday, April 1, 2019;;repo.getAllQRsByPatID(28908) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(28908) - FHIRRepository;;00:00:05.88
+Monday, April 1, 2019;;repo.getAllQRsByPatID(29208) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;updateCachedPatientDataModelById(29208) - FHIRRepository;;00:00:03.64
+Monday, April 1, 2019;;repo.getAllQRsByPatID(29443) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;updateCachedPatientDataModelById(29443) - FHIRRepository;;00:00:05.69
+Monday, April 1, 2019;;repo.getAllQRsByPatID(29627) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;updateCachedPatientDataModelById(29627) - FHIRRepository;;00:00:02.65
+Monday, April 1, 2019;;repo.getAllQRsByPatID(29854) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;updateCachedPatientDataModelById(29854) - FHIRRepository;;00:00:07.72
+Monday, April 1, 2019;;repo.getAllQRsByPatID(30119) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(30119) - FHIRRepository;;00:00:04.66
+Monday, April 1, 2019;;repo.getAllQRsByPatID(30370) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;updateCachedPatientDataModelById(30370) - FHIRRepository;;00:00:04.10
+Monday, April 1, 2019;;repo.getAllQRsByPatID(30502) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;updateCachedPatientDataModelById(30502) - FHIRRepository;;00:00:02.31
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.01
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.00
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.01
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.40
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.00
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.00
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.00
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.00
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.00
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.02
+Monday, April 1, 2019;;updateTherapistState runtime;;00:00:00.30
+Monday, April 1, 2019;;updateResources - FHIRRepository runtime;;00:13:57.27
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;updateResources - FHIRRepository runtime;;00:13:57.30
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(2) - FHIRRepository;;00:00:04.69
+Monday, April 1, 2019;;repo.getQMap(2) - FHIRRepository;;00:00:02.50
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient2 - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2) - FHIRRepository;;00:00:08.69
+Monday, April 1, 2019;;repo.getAllQRsByPatID(68) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(2) - FHIRRepository;;00:00:05.81
+Monday, April 1, 2019;;repo.getQMap(2) - FHIRRepository;;00:00:01.88
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient2 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2) - FHIRRepository;;00:00:08.99
+Monday, April 1, 2019;;repo.getAllQRsByPatID(68) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(68) - FHIRRepository;;00:00:05.00
+Monday, April 1, 2019;;repo.getQMap(68) - FHIRRepository;;00:00:02.64
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient68 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(68) - FHIRRepository;;00:00:09.49
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(68) - FHIRRepository;;00:00:05.95
+Monday, April 1, 2019;;repo.getAllQRsByPatID(325) - FHIRRepository;;00:00:00.19
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(325) - FHIRRepository;;00:00:01.64
+Monday, April 1, 2019;;repo.getQMap(68) - FHIRRepository;;00:00:01.89
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient68 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(68) - FHIRRepository;;00:00:09.65
+Monday, April 1, 2019;;repo.getAllQRsByPatID(325) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getQMap(325) - FHIRRepository;;00:00:01.86
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient325 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(325) - FHIRRepository;;00:00:05.00
+Monday, April 1, 2019;;repo.getAllQRsByPatID(441) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(325) - FHIRRepository;;00:00:01.81
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(441) - FHIRRepository;;00:00:01.59
+Monday, April 1, 2019;;repo.getQMap(325) - FHIRRepository;;00:00:02.68
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient325 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(325) - FHIRRepository;;00:00:05.61
+Monday, April 1, 2019;;repo.getAllQRsByPatID(441) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getQMap(441) - FHIRRepository;;00:00:01.85
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient441 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(441) - FHIRRepository;;00:00:04.37
+Monday, April 1, 2019;;repo.getAllQRsByPatID(708) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(441) - FHIRRepository;;00:00:01.67
+Monday, April 1, 2019;;repo.getQMap(441) - FHIRRepository;;00:00:01.49
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient441 - FHIRRepository;;00:00:12.28
+Monday, April 1, 2019;;updateCachedPatientDataModelById(441) - FHIRRepository;;00:00:16.28
+Monday, April 1, 2019;;repo.getAllQRsByPatID(708) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(708) - FHIRRepository;;00:00:01.64
+Monday, April 1, 2019;;repo.getQMap(708) - FHIRRepository;;00:00:01.78
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient708 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(708) - FHIRRepository;;00:00:04.55
+Monday, April 1, 2019;;repo.getAllQRsByPatID(828) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(828) - FHIRRepository;;00:00:01.59
+Monday, April 1, 2019;;repo.getQMap(828) - FHIRRepository;;00:00:02.61
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient828 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(828) - FHIRRepository;;00:00:05.59
+Monday, April 1, 2019;;repo.getAllQRsByPatID(967) - FHIRRepository;;00:00:00.12
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(967) - FHIRRepository;;00:00:03.80
+Monday, April 1, 2019;;repo.getQMap(967) - FHIRRepository;;00:00:01.79
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient967 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(967) - FHIRRepository;;00:00:07.52
+Monday, April 1, 2019;;repo.getAllQRsByPatID(1308) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(1308) - FHIRRepository;;00:00:03.48
+Monday, April 1, 2019;;repo.getQMap(1308) - FHIRRepository;;00:00:01.62
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient1308 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(1308) - FHIRRepository;;00:00:06.53
+Monday, April 1, 2019;;repo.getAllQRsByPatID(1551) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(1551) - FHIRRepository;;00:00:01.80
+Monday, April 1, 2019;;repo.getQMap(1551) - FHIRRepository;;00:00:01.95
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient1551 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(1551) - FHIRRepository;;00:00:04.98
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2098) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(2098) - FHIRRepository;;00:00:00.53
+Monday, April 1, 2019;;repo.getQMap(2098) - FHIRRepository;;00:00:01.31
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient2098 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2098) - FHIRRepository;;00:00:02.59
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2148) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(2148) - FHIRRepository;;00:00:01.15
+Monday, April 1, 2019;;repo.getQMap(2148) - FHIRRepository;;00:00:02.01
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient2148 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2148) - FHIRRepository;;00:00:04.17
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2233) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(2233) - FHIRRepository;;00:00:01.52
+Monday, April 1, 2019;;repo.getQMap(2233) - FHIRRepository;;00:00:00.91
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient2233 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2233) - FHIRRepository;;00:00:03.29
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2382) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(2382) - FHIRRepository;;00:00:00.42
+Monday, April 1, 2019;;repo.getQMap(2382) - FHIRRepository;;00:00:01.44
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient2382 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2382) - FHIRRepository;;00:00:02.66
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2444) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(2444) - FHIRRepository;;00:00:02.81
+Monday, April 1, 2019;;repo.getQMap(2444) - FHIRRepository;;00:00:02.07
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient2444 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2444) - FHIRRepository;;00:00:06.50
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2628) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(2628) - FHIRRepository;;00:00:01.38
+Monday, April 1, 2019;;repo.getQMap(2628) - FHIRRepository;;00:00:02.45
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient2628 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2628) - FHIRRepository;;00:00:05.20
+Monday, April 1, 2019;;repo.getAllQRsByPatID(2977) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(2977) - FHIRRepository;;00:00:00.51
+Monday, April 1, 2019;;repo.getQMap(2977) - FHIRRepository;;00:00:00.98
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient2977 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(2977) - FHIRRepository;;00:00:02.07
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3068) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(3068) - FHIRRepository;;00:00:00.43
+Monday, April 1, 2019;;repo.getQMap(3068) - FHIRRepository;;00:00:01.82
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient3068 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3068) - FHIRRepository;;00:00:03.13
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3304) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(3304) - FHIRRepository;;00:00:00.90
+Monday, April 1, 2019;;repo.getQMap(3304) - FHIRRepository;;00:00:01.74
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient3304 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3304) - FHIRRepository;;00:00:03.65
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3378) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(3378) - FHIRRepository;;00:00:00.65
+Monday, April 1, 2019;;repo.getQMap(3378) - FHIRRepository;;00:00:00.75
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient3378 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3378) - FHIRRepository;;00:00:01.90
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3445) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(3445) - FHIRRepository;;00:00:01.30
+Monday, April 1, 2019;;repo.getQMap(3445) - FHIRRepository;;00:00:01.76
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient3445 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3445) - FHIRRepository;;00:00:04.07
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3744) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(3744) - FHIRRepository;;00:00:01.11
+Monday, April 1, 2019;;repo.getQMap(3744) - FHIRRepository;;00:00:01.72
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient3744 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3744) - FHIRRepository;;00:00:03.89
+Monday, April 1, 2019;;repo.getAllQRsByPatID(3957) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(3957) - FHIRRepository;;00:00:02.39
+Monday, April 1, 2019;;repo.getQMap(3957) - FHIRRepository;;00:00:00.90
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient3957 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(3957) - FHIRRepository;;00:00:04.21
+Monday, April 1, 2019;;repo.getAllQRsByPatID(4130) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(4130) - FHIRRepository;;00:00:00.44
+Monday, April 1, 2019;;repo.getQMap(4130) - FHIRRepository;;00:00:01.15
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient4130 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(4130) - FHIRRepository;;00:00:02.21
+Monday, April 1, 2019;;repo.getAllQRsByPatID(4348) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(4348) - FHIRRepository;;00:00:03.35
+Monday, April 1, 2019;;repo.getQMap(4348) - FHIRRepository;;00:00:01.11
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient4348 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(4348) - FHIRRepository;;00:00:05.57
+Monday, April 1, 2019;;repo.getAllQRsByPatID(4587) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(4587) - FHIRRepository;;00:00:03.61
+Monday, April 1, 2019;;repo.getQMap(4587) - FHIRRepository;;00:00:01.93
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient4587 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(4587) - FHIRRepository;;00:00:07.13
+Monday, April 1, 2019;;repo.getAllQRsByPatID(4826) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(4826) - FHIRRepository;;00:00:01.59
+Monday, April 1, 2019;;repo.getQMap(4826) - FHIRRepository;;00:00:00.93
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient4826 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(4826) - FHIRRepository;;00:00:03.28
+Monday, April 1, 2019;;repo.getAllQRsByPatID(4926) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(4926) - FHIRRepository;;00:00:01.45
+Monday, April 1, 2019;;repo.getQMap(4926) - FHIRRepository;;00:00:00.73
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient4926 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(4926) - FHIRRepository;;00:00:02.90
+Monday, April 1, 2019;;repo.getAllQRsByPatID(5061) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(5061) - FHIRRepository;;00:00:01.49
+Monday, April 1, 2019;;repo.getQMap(5061) - FHIRRepository;;00:00:01.50
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient5061 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(5061) - FHIRRepository;;00:00:03.83
+Monday, April 1, 2019;;repo.getAllQRsByPatID(5158) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(5158) - FHIRRepository;;00:00:04.02
+Monday, April 1, 2019;;repo.getQMap(5158) - FHIRRepository;;00:00:01.57
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient5158 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(5158) - FHIRRepository;;00:00:07.03
+Monday, April 1, 2019;;repo.getAllQRsByPatID(5409) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(5409) - FHIRRepository;;00:00:03.41
+Monday, April 1, 2019;;repo.getQMap(5409) - FHIRRepository;;00:00:01.31
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient5409 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(5409) - FHIRRepository;;00:00:05.98
+Monday, April 1, 2019;;repo.getAllQRsByPatID(5643) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(5643) - FHIRRepository;;00:00:04.08
+Monday, April 1, 2019;;repo.getQMap(5643) - FHIRRepository;;00:00:01.48
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient5643 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(5643) - FHIRRepository;;00:00:06.83
+Monday, April 1, 2019;;repo.getAllQRsByPatID(5877) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(5877) - FHIRRepository;;00:00:01.85
+Monday, April 1, 2019;;repo.getQMap(5877) - FHIRRepository;;00:00:02.07
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient5877 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(5877) - FHIRRepository;;00:00:05.25
+Monday, April 1, 2019;;repo.getAllQRsByPatID(6055) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(6055) - FHIRRepository;;00:00:02.08
+Monday, April 1, 2019;;repo.getQMap(6055) - FHIRRepository;;00:00:01.16
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient6055 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(6055) - FHIRRepository;;00:00:04.25
+Monday, April 1, 2019;;repo.getAllQRsByPatID(6191) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(6191) - FHIRRepository;;00:00:03.43
+Monday, April 1, 2019;;repo.getQMap(6191) - FHIRRepository;;00:00:00.73
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient6191 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(6191) - FHIRRepository;;00:00:05.23
+Monday, April 1, 2019;;repo.getAllQRsByPatID(6473) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(6473) - FHIRRepository;;00:00:00.86
+Monday, April 1, 2019;;repo.getQMap(6473) - FHIRRepository;;00:00:01.36
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient6473 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(6473) - FHIRRepository;;00:00:03.08
+Monday, April 1, 2019;;repo.getAllQRsByPatID(6576) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(6576) - FHIRRepository;;00:00:01.73
+Monday, April 1, 2019;;repo.getQMap(6576) - FHIRRepository;;00:00:01.90
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient6576 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(6576) - FHIRRepository;;00:00:04.86
+Monday, April 1, 2019;;repo.getAllQRsByPatID(6919) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(6919) - FHIRRepository;;00:00:01.46
+Monday, April 1, 2019;;repo.getQMap(6919) - FHIRRepository;;00:00:02.05
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient6919 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(6919) - FHIRRepository;;00:00:04.72
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7110) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(7110) - FHIRRepository;;00:00:01.47
+Monday, April 1, 2019;;repo.getQMap(7110) - FHIRRepository;;00:00:01.30
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient7110 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7110) - FHIRRepository;;00:00:03.65
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7230) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(7230) - FHIRRepository;;00:00:01.60
+Monday, April 1, 2019;;repo.getQMap(7230) - FHIRRepository;;00:00:00.54
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient7230 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7230) - FHIRRepository;;00:00:02.79
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7381) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(7381) - FHIRRepository;;00:00:03.58
+Monday, April 1, 2019;;repo.getQMap(7381) - FHIRRepository;;00:00:00.92
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient7381 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7381) - FHIRRepository;;00:00:05.67
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7676) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(7676) - FHIRRepository;;00:00:00.64
+Monday, April 1, 2019;;repo.getQMap(7676) - FHIRRepository;;00:00:01.77
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient7676 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7676) - FHIRRepository;;00:00:03.23
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7858) - FHIRRepository;;00:00:00.10
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(7858) - FHIRRepository;;00:00:01.61
+Monday, April 1, 2019;;repo.getQMap(7858) - FHIRRepository;;00:00:01.85
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient7858 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7858) - FHIRRepository;;00:00:04.92
+Monday, April 1, 2019;;repo.getAllQRsByPatID(7998) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(7998) - FHIRRepository;;00:00:01.28
+Monday, April 1, 2019;;repo.getQMap(7998) - FHIRRepository;;00:00:01.15
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient7998 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(7998) - FHIRRepository;;00:00:03.22
+Monday, April 1, 2019;;repo.getAllQRsByPatID(8310) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(8310) - FHIRRepository;;00:00:00.83
+Monday, April 1, 2019;;repo.getQMap(8310) - FHIRRepository;;00:00:00.95
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient8310 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(8310) - FHIRRepository;;00:00:02.45
+Monday, April 1, 2019;;repo.getAllQRsByPatID(8380) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(8380) - FHIRRepository;;00:00:01.95
+Monday, April 1, 2019;;repo.getQMap(8380) - FHIRRepository;;00:00:01.28
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient8380 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(8380) - FHIRRepository;;00:00:04.21
+Monday, April 1, 2019;;repo.getAllQRsByPatID(8713) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(8713) - FHIRRepository;;00:00:01.76
+Monday, April 1, 2019;;repo.getQMap(8713) - FHIRRepository;;00:00:01.51
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient8713 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(8713) - FHIRRepository;;00:00:04.34
+Monday, April 1, 2019;;repo.getAllQRsByPatID(8878) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(8878) - FHIRRepository;;00:00:01.74
+Monday, April 1, 2019;;repo.getQMap(8878) - FHIRRepository;;00:00:01.86
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient8878 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(8878) - FHIRRepository;;00:00:04.77
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9080) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(9080) - FHIRRepository;;00:00:01.09
+Monday, April 1, 2019;;repo.getQMap(9080) - FHIRRepository;;00:00:01.69
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient9080 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9080) - FHIRRepository;;00:00:03.87
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9301) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(9301) - FHIRRepository;;00:00:01.28
+Monday, April 1, 2019;;repo.getQMap(9301) - FHIRRepository;;00:00:01.51
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient9301 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9301) - FHIRRepository;;00:00:03.87
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9452) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(9452) - FHIRRepository;;00:00:01.28
+Monday, April 1, 2019;;repo.getQMap(9452) - FHIRRepository;;00:00:01.91
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient9452 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9452) - FHIRRepository;;00:00:04.30
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9597) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(9597) - FHIRRepository;;00:00:00.60
+Monday, April 1, 2019;;repo.getQMap(9597) - FHIRRepository;;00:00:01.10
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient9597 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9597) - FHIRRepository;;00:00:02.38
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9767) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(9767) - FHIRRepository;;00:00:00.84
+Monday, April 1, 2019;;repo.getQMap(9767) - FHIRRepository;;00:00:01.49
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient9767 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9767) - FHIRRepository;;00:00:03.19
+Monday, April 1, 2019;;repo.getAllQRsByPatID(9996) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(9996) - FHIRRepository;;00:00:02.32
+Monday, April 1, 2019;;repo.getQMap(9996) - FHIRRepository;;00:00:01.53
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient9996 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(9996) - FHIRRepository;;00:00:04.98
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10195) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(10195) - FHIRRepository;;00:00:01.23
+Monday, April 1, 2019;;repo.getQMap(10195) - FHIRRepository;;00:00:01.50
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient10195 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10195) - FHIRRepository;;00:00:03.80
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10335) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(10335) - FHIRRepository;;00:00:01.24
+Monday, April 1, 2019;;repo.getQMap(10335) - FHIRRepository;;00:00:02.22
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient10335 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10335) - FHIRRepository;;00:00:04.82
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10446) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(10446) - FHIRRepository;;00:00:00.83
+Monday, April 1, 2019;;repo.getQMap(10446) - FHIRRepository;;00:00:01.75
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient10446 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10446) - FHIRRepository;;00:00:03.52
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10516) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(10516) - FHIRRepository;;00:00:01.61
+Monday, April 1, 2019;;repo.getQMap(10516) - FHIRRepository;;00:00:01.30
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient10516 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10516) - FHIRRepository;;00:00:03.87
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10641) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(10641) - FHIRRepository;;00:00:01.89
+Monday, April 1, 2019;;repo.getQMap(10641) - FHIRRepository;;00:00:02.18
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient10641 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10641) - FHIRRepository;;00:00:05.37
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10840) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(10840) - FHIRRepository;;00:00:01.07
+Monday, April 1, 2019;;repo.getQMap(10840) - FHIRRepository;;00:00:02.26
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient10840 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10840) - FHIRRepository;;00:00:04.43
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10932) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(10932) - FHIRRepository;;00:00:00.66
+Monday, April 1, 2019;;repo.getQMap(10932) - FHIRRepository;;00:00:01.99
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient10932 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10932) - FHIRRepository;;00:00:03.81
+Monday, April 1, 2019;;repo.getAllQRsByPatID(10997) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(10997) - FHIRRepository;;00:00:01.54
+Monday, April 1, 2019;;repo.getQMap(10997) - FHIRRepository;;00:00:01.74
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient10997 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(10997) - FHIRRepository;;00:00:04.48
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11144) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(11144) - FHIRRepository;;00:00:01.87
+Monday, April 1, 2019;;repo.getQMap(11144) - FHIRRepository;;00:00:01.43
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient11144 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11144) - FHIRRepository;;00:00:04.26
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11309) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(11309) - FHIRRepository;;00:00:00.70
+Monday, April 1, 2019;;repo.getQMap(11309) - FHIRRepository;;00:00:01.85
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient11309 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11309) - FHIRRepository;;00:00:03.49
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11418) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(11418) - FHIRRepository;;00:00:02.18
+Monday, April 1, 2019;;repo.getQMap(11418) - FHIRRepository;;00:00:01.32
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient11418 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11418) - FHIRRepository;;00:00:04.68
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11631) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(11631) - FHIRRepository;;00:00:01.39
+Monday, April 1, 2019;;repo.getQMap(11631) - FHIRRepository;;00:00:01.23
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient11631 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11631) - FHIRRepository;;00:00:03.38
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11738) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(11738) - FHIRRepository;;00:00:01.23
+Monday, April 1, 2019;;repo.getQMap(11738) - FHIRRepository;;00:00:01.87
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient11738 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11738) - FHIRRepository;;00:00:04.16
+Monday, April 1, 2019;;repo.getAllQRsByPatID(11838) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(11838) - FHIRRepository;;00:00:02.99
+Monday, April 1, 2019;;repo.getQMap(11838) - FHIRRepository;;00:00:01.76
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient11838 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(11838) - FHIRRepository;;00:00:06.03
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12030) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(12030) - FHIRRepository;;00:00:00.65
+Monday, April 1, 2019;;repo.getQMap(12030) - FHIRRepository;;00:00:01.75
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient12030 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12030) - FHIRRepository;;00:00:03.37
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12090) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(12090) - FHIRRepository;;00:00:01.96
+Monday, April 1, 2019;;repo.getQMap(12090) - FHIRRepository;;00:00:02.09
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient12090 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12090) - FHIRRepository;;00:00:05.43
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12253) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(12253) - FHIRRepository;;00:00:01.86
+Monday, April 1, 2019;;repo.getQMap(12253) - FHIRRepository;;00:00:01.29
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient12253 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12253) - FHIRRepository;;00:00:04.04
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12409) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(12409) - FHIRRepository;;00:00:01.46
+Monday, April 1, 2019;;repo.getQMap(12409) - FHIRRepository;;00:00:01.70
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient12409 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12409) - FHIRRepository;;00:00:04.29
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12642) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(12642) - FHIRRepository;;00:00:01.11
+Monday, April 1, 2019;;repo.getQMap(12642) - FHIRRepository;;00:00:00.96
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient12642 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12642) - FHIRRepository;;00:00:02.77
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12756) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(12756) - FHIRRepository;;00:00:00.86
+Monday, April 1, 2019;;repo.getQMap(12756) - FHIRRepository;;00:00:00.75
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient12756 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12756) - FHIRRepository;;00:00:02.17
+Monday, April 1, 2019;;repo.getAllQRsByPatID(12959) - FHIRRepository;;00:00:00.10
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(12959) - FHIRRepository;;00:00:04.91
+Monday, April 1, 2019;;repo.getQMap(12959) - FHIRRepository;;00:00:02.10
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient12959 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(12959) - FHIRRepository;;00:00:08.85
+Monday, April 1, 2019;;repo.getAllQRsByPatID(13290) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(13290) - FHIRRepository;;00:00:00.68
+Monday, April 1, 2019;;repo.getQMap(13290) - FHIRRepository;;00:00:01.81
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient13290 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(13290) - FHIRRepository;;00:00:03.46
+Monday, April 1, 2019;;repo.getAllQRsByPatID(13382) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(13382) - FHIRRepository;;00:00:02.36
+Monday, April 1, 2019;;repo.getQMap(13382) - FHIRRepository;;00:00:01.49
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient13382 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(13382) - FHIRRepository;;00:00:05.02
+Monday, April 1, 2019;;repo.getAllQRsByPatID(13544) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(13544) - FHIRRepository;;00:00:00.65
+Monday, April 1, 2019;;repo.getQMap(13544) - FHIRRepository;;00:00:01.31
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient13544 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(13544) - FHIRRepository;;00:00:02.75
+Monday, April 1, 2019;;repo.getAllQRsByPatID(13620) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(13620) - FHIRRepository;;00:00:04.07
+Monday, April 1, 2019;;repo.getQMap(13620) - FHIRRepository;;00:00:01.26
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient13620 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(13620) - FHIRRepository;;00:00:06.70
+Monday, April 1, 2019;;repo.getAllQRsByPatID(13904) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(13904) - FHIRRepository;;00:00:00.86
+Monday, April 1, 2019;;repo.getQMap(13904) - FHIRRepository;;00:00:01.43
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient13904 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(13904) - FHIRRepository;;00:00:03.12
+Monday, April 1, 2019;;repo.getAllQRsByPatID(14003) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(14003) - FHIRRepository;;00:00:03.78
+Monday, April 1, 2019;;repo.getQMap(14003) - FHIRRepository;;00:00:01.71
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient14003 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(14003) - FHIRRepository;;00:00:06.89
+Monday, April 1, 2019;;repo.getAllQRsByPatID(14265) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(14265) - FHIRRepository;;00:00:01.51
+Monday, April 1, 2019;;repo.getQMap(14265) - FHIRRepository;;00:00:01.88
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient14265 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(14265) - FHIRRepository;;00:00:04.62
+Monday, April 1, 2019;;repo.getAllQRsByPatID(14406) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(14406) - FHIRRepository;;00:00:02.30
+Monday, April 1, 2019;;repo.getQMap(14406) - FHIRRepository;;00:00:01.91
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient14406 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(14406) - FHIRRepository;;00:00:05.66
+Monday, April 1, 2019;;repo.getAllQRsByPatID(14565) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(14565) - FHIRRepository;;00:00:04.21
+Monday, April 1, 2019;;repo.getQMap(14565) - FHIRRepository;;00:00:01.70
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient14565 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(14565) - FHIRRepository;;00:00:07.54
+Monday, April 1, 2019;;repo.getAllQRsByPatID(14829) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(14829) - FHIRRepository;;00:00:03.38
+Monday, April 1, 2019;;repo.getQMap(14829) - FHIRRepository;;00:00:02.37
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient14829 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(14829) - FHIRRepository;;00:00:07.42
+Monday, April 1, 2019;;repo.getAllQRsByPatID(15108) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(15108) - FHIRRepository;;00:00:02.18
+Monday, April 1, 2019;;repo.getQMap(15108) - FHIRRepository;;00:00:01.74
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient15108 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(15108) - FHIRRepository;;00:00:05.21
+Monday, April 1, 2019;;repo.getAllQRsByPatID(15261) - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(15261) - FHIRRepository;;00:00:00.64
+Monday, April 1, 2019;;repo.getQMap(15261) - FHIRRepository;;00:00:00.60
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient15261 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(15261) - FHIRRepository;;00:00:01.71
+Monday, April 1, 2019;;repo.getAllQRsByPatID(15463) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(15463) - FHIRRepository;;00:00:04.05
+Monday, April 1, 2019;;repo.getQMap(15463) - FHIRRepository;;00:00:01.55
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient15463 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(15463) - FHIRRepository;;00:00:07.10
+Monday, April 1, 2019;;repo.getAllQRsByPatID(15725) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(15725) - FHIRRepository;;00:00:01.29
+Monday, April 1, 2019;;repo.getQMap(15725) - FHIRRepository;;00:00:01.97
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient15725 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(15725) - FHIRRepository;;00:00:04.43
+Monday, April 1, 2019;;repo.getAllQRsByPatID(15835) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(15835) - FHIRRepository;;00:00:04.02
+Monday, April 1, 2019;;repo.getQMap(15835) - FHIRRepository;;00:00:01.72
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient15835 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(15835) - FHIRRepository;;00:00:07.21
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16090) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(16090) - FHIRRepository;;00:00:01.34
+Monday, April 1, 2019;;repo.getQMap(16090) - FHIRRepository;;00:00:01.79
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient16090 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16090) - FHIRRepository;;00:00:04.27
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16215) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(16215) - FHIRRepository;;00:00:01.33
+Monday, April 1, 2019;;repo.getQMap(16215) - FHIRRepository;;00:00:02.05
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient16215 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16215) - FHIRRepository;;00:00:04.41
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16368) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(16368) - FHIRRepository;;00:00:00.54
+Monday, April 1, 2019;;repo.getQMap(16368) - FHIRRepository;;00:00:01.34
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient16368 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16368) - FHIRRepository;;00:00:02.65
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16417) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(16417) - FHIRRepository;;00:00:01.31
+Monday, April 1, 2019;;repo.getQMap(16417) - FHIRRepository;;00:00:01.32
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient16417 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16417) - FHIRRepository;;00:00:03.49
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16527) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(16527) - FHIRRepository;;00:00:01.30
+Monday, April 1, 2019;;repo.getQMap(16527) - FHIRRepository;;00:00:00.98
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient16527 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16527) - FHIRRepository;;00:00:03.04
+Monday, April 1, 2019;;repo.getAllQRsByPatID(16945) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(16945) - FHIRRepository;;00:00:02.09
+Monday, April 1, 2019;;repo.getQMap(16945) - FHIRRepository;;00:00:00.91
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient16945 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(16945) - FHIRRepository;;00:00:03.80
+Monday, April 1, 2019;;repo.getAllQRsByPatID(17115) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(17115) - FHIRRepository;;00:00:01.47
+Monday, April 1, 2019;;repo.getQMap(17115) - FHIRRepository;;00:00:02.05
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient17115 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(17115) - FHIRRepository;;00:00:04.86
+Monday, April 1, 2019;;repo.getAllQRsByPatID(17235) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(17235) - FHIRRepository;;00:00:00.84
+Monday, April 1, 2019;;repo.getQMap(17235) - FHIRRepository;;00:00:01.32
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient17235 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(17235) - FHIRRepository;;00:00:03.00
+Monday, April 1, 2019;;repo.getAllQRsByPatID(17320) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(17320) - FHIRRepository;;00:00:03.97
+Monday, April 1, 2019;;repo.getQMap(17320) - FHIRRepository;;00:00:01.92
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient17320 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(17320) - FHIRRepository;;00:00:07.56
+Monday, April 1, 2019;;repo.getAllQRsByPatID(17794) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(17794) - FHIRRepository;;00:00:00.64
+Monday, April 1, 2019;;repo.getQMap(17794) - FHIRRepository;;00:00:01.53
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient17794 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(17794) - FHIRRepository;;00:00:02.99
+Monday, April 1, 2019;;repo.getAllQRsByPatID(20313) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(20313) - FHIRRepository;;00:00:00.86
+Monday, April 1, 2019;;repo.getQMap(20313) - FHIRRepository;;00:00:01.48
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient20313 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(20313) - FHIRRepository;;00:00:03.21
+Monday, April 1, 2019;;repo.getAllQRsByPatID(20413) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(20413) - FHIRRepository;;00:00:03.44
+Monday, April 1, 2019;;repo.getQMap(20413) - FHIRRepository;;00:00:01.09
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient20413 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(20413) - FHIRRepository;;00:00:05.85
+Monday, April 1, 2019;;repo.getAllQRsByPatID(20663) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(20663) - FHIRRepository;;00:00:01.30
+Monday, April 1, 2019;;repo.getQMap(20663) - FHIRRepository;;00:00:01.44
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient20663 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(20663) - FHIRRepository;;00:00:03.80
+Monday, April 1, 2019;;repo.getAllQRsByPatID(20789) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(20789) - FHIRRepository;;00:00:00.47
+Monday, April 1, 2019;;repo.getQMap(20789) - FHIRRepository;;00:00:02.13
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient20789 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(20789) - FHIRRepository;;00:00:03.57
+Monday, April 1, 2019;;repo.getAllQRsByPatID(20841) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(20841) - FHIRRepository;;00:00:03.61
+Monday, April 1, 2019;;repo.getQMap(20841) - FHIRRepository;;00:00:01.08
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient20841 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(20841) - FHIRRepository;;00:00:05.98
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21130) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(21130) - FHIRRepository;;00:00:01.50
+Monday, April 1, 2019;;repo.getQMap(21130) - FHIRRepository;;00:00:01.61
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient21130 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21130) - FHIRRepository;;00:00:04.13
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21261) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(21261) - FHIRRepository;;00:00:01.11
+Monday, April 1, 2019;;repo.getQMap(21261) - FHIRRepository;;00:00:01.10
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient21261 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21261) - FHIRRepository;;00:00:03.03
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21344) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(21344) - FHIRRepository;;00:00:00.64
+Monday, April 1, 2019;;repo.getQMap(21344) - FHIRRepository;;00:00:00.72
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient21344 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21344) - FHIRRepository;;00:00:01.89
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21394) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(21394) - FHIRRepository;;00:00:01.06
+Monday, April 1, 2019;;repo.getQMap(21394) - FHIRRepository;;00:00:01.12
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient21394 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21394) - FHIRRepository;;00:00:03.00
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21506) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(21506) - FHIRRepository;;00:00:03.44
+Monday, April 1, 2019;;repo.getQMap(21506) - FHIRRepository;;00:00:01.23
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient21506 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21506) - FHIRRepository;;00:00:05.90
+Monday, April 1, 2019;;repo.getAllQRsByPatID(21734) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(21734) - FHIRRepository;;00:00:04.00
+Monday, April 1, 2019;;repo.getQMap(21734) - FHIRRepository;;00:00:02.19
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient21734 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(21734) - FHIRRepository;;00:00:07.93
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22005) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(22005) - FHIRRepository;;00:00:02.90
+Monday, April 1, 2019;;repo.getQMap(22005) - FHIRRepository;;00:00:02.33
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient22005 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22005) - FHIRRepository;;00:00:06.77
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22210) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(22210) - FHIRRepository;;00:00:01.95
+Monday, April 1, 2019;;repo.getQMap(22210) - FHIRRepository;;00:00:01.38
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient22210 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22210) - FHIRRepository;;00:00:04.31
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22362) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(22362) - FHIRRepository;;00:00:04.08
+Monday, April 1, 2019;;repo.getQMap(22362) - FHIRRepository;;00:00:01.71
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient22362 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22362) - FHIRRepository;;00:00:07.25
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22691) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(22691) - FHIRRepository;;00:00:01.72
+Monday, April 1, 2019;;repo.getQMap(22691) - FHIRRepository;;00:00:01.73
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient22691 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22691) - FHIRRepository;;00:00:04.65
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22858) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(22858) - FHIRRepository;;00:00:00.80
+Monday, April 1, 2019;;repo.getQMap(22858) - FHIRRepository;;00:00:02.23
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient22858 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22858) - FHIRRepository;;00:00:04.13
+Monday, April 1, 2019;;repo.getAllQRsByPatID(22989) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(22989) - FHIRRepository;;00:00:02.28
+Monday, April 1, 2019;;repo.getQMap(22989) - FHIRRepository;;00:00:00.76
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient22989 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(22989) - FHIRRepository;;00:00:03.87
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23225) - FHIRRepository;;00:00:00.09
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(23225) - FHIRRepository;;00:00:03.56
+Monday, April 1, 2019;;repo.getQMap(23225) - FHIRRepository;;00:00:02.69
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient23225 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23225) - FHIRRepository;;00:00:08.05
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23474) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(23474) - FHIRRepository;;00:00:01.51
+Monday, April 1, 2019;;repo.getQMap(23474) - FHIRRepository;;00:00:01.90
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient23474 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23474) - FHIRRepository;;00:00:04.60
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23605) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(23605) - FHIRRepository;;00:00:00.68
+Monday, April 1, 2019;;repo.getQMap(23605) - FHIRRepository;;00:00:01.29
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient23605 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23605) - FHIRRepository;;00:00:02.77
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23686) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(23686) - FHIRRepository;;00:00:00.49
+Monday, April 1, 2019;;repo.getQMap(23686) - FHIRRepository;;00:00:02.26
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient23686 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23686) - FHIRRepository;;00:00:03.69
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23725) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(23725) - FHIRRepository;;00:00:03.29
+Monday, April 1, 2019;;repo.getQMap(23725) - FHIRRepository;;00:00:01.66
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient23725 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23725) - FHIRRepository;;00:00:06.39
+Monday, April 1, 2019;;repo.getAllQRsByPatID(23952) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(23952) - FHIRRepository;;00:00:01.49
+Monday, April 1, 2019;;repo.getQMap(23952) - FHIRRepository;;00:00:01.10
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient23952 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(23952) - FHIRRepository;;00:00:03.50
+Monday, April 1, 2019;;repo.getAllQRsByPatID(24090) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(24090) - FHIRRepository;;00:00:03.69
+Monday, April 1, 2019;;repo.getQMap(24090) - FHIRRepository;;00:00:00.54
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient24090 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(24090) - FHIRRepository;;00:00:05.27
+Monday, April 1, 2019;;repo.getAllQRsByPatID(24313) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(24313) - FHIRRepository;;00:00:02.59
+Monday, April 1, 2019;;repo.getQMap(24313) - FHIRRepository;;00:00:01.10
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient24313 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(24313) - FHIRRepository;;00:00:04.75
+Monday, April 1, 2019;;repo.getAllQRsByPatID(17851) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(17851) - FHIRRepository;;00:00:36.15
+Monday, April 1, 2019;;repo.getQMap(17851) - FHIRRepository;;00:00:01.81
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient17851 - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;updateCachedPatientDataModelById(17851) - FHIRRepository;;00:00:45.28
+Monday, April 1, 2019;;repo.getAllQRsByPatID(24526) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(24526) - FHIRRepository;;00:00:01.53
+Monday, April 1, 2019;;repo.getQMap(24526) - FHIRRepository;;00:00:02.31
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient24526 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(24526) - FHIRRepository;;00:00:05.20
+Monday, April 1, 2019;;repo.getAllQRsByPatID(24669) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(24669) - FHIRRepository;;00:00:01.51
+Monday, April 1, 2019;;repo.getQMap(24669) - FHIRRepository;;00:00:01.33
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient24669 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(24669) - FHIRRepository;;00:00:03.84
+Monday, April 1, 2019;;repo.getAllQRsByPatID(24922) - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(24922) - FHIRRepository;;00:00:01.54
+Monday, April 1, 2019;;repo.getQMap(24922) - FHIRRepository;;00:00:00.57
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient24922 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(24922) - FHIRRepository;;00:00:02.71
+Monday, April 1, 2019;;repo.getAllQRsByPatID(25051) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(25051) - FHIRRepository;;00:00:00.87
+Monday, April 1, 2019;;repo.getQMap(25051) - FHIRRepository;;00:00:01.60
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient25051 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(25051) - FHIRRepository;;00:00:03.43
+Monday, April 1, 2019;;repo.getAllQRsByPatID(25123) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(25123) - FHIRRepository;;00:00:03.99
+Monday, April 1, 2019;;repo.getQMap(25123) - FHIRRepository;;00:00:01.46
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient25123 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(25123) - FHIRRepository;;00:00:06.75
+Monday, April 1, 2019;;repo.getAllQRsByPatID(25371) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(25371) - FHIRRepository;;00:00:01.82
+Monday, April 1, 2019;;repo.getQMap(25371) - FHIRRepository;;00:00:01.54
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient25371 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(25371) - FHIRRepository;;00:00:04.52
+Monday, April 1, 2019;;repo.getAllQRsByPatID(25544) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(25544) - FHIRRepository;;00:00:29.56
+Monday, April 1, 2019;;repo.getQMap(25544) - FHIRRepository;;00:00:01.93
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient25544 - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;updateCachedPatientDataModelById(25544) - FHIRRepository;;00:00:37.62
+Monday, April 1, 2019;;repo.getAllQRsByPatID(27285) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(27285) - FHIRRepository;;00:00:02.04
+Monday, April 1, 2019;;repo.getQMap(27285) - FHIRRepository;;00:00:01.16
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient27285 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(27285) - FHIRRepository;;00:00:04.29
+Monday, April 1, 2019;;repo.getAllQRsByPatID(27733) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(27733) - FHIRRepository;;00:00:01.77
+Monday, April 1, 2019;;repo.getQMap(27733) - FHIRRepository;;00:00:01.57
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient27733 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(27733) - FHIRRepository;;00:00:04.59
+Monday, April 1, 2019;;repo.getAllQRsByPatID(27941) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(27941) - FHIRRepository;;00:00:01.94
+Monday, April 1, 2019;;repo.getQMap(27941) - FHIRRepository;;00:00:01.47
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient27941 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(27941) - FHIRRepository;;00:00:04.57
+Monday, April 1, 2019;;repo.getAllQRsByPatID(28165) - FHIRRepository;;00:00:00.06
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(28165) - FHIRRepository;;00:00:03.55
+Monday, April 1, 2019;;repo.getQMap(28165) - FHIRRepository;;00:00:01.72
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient28165 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(28165) - FHIRRepository;;00:00:06.83
+Monday, April 1, 2019;;repo.getAllQRsByPatID(28409) - FHIRRepository;;00:00:00.03
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(28409) - FHIRRepository;;00:00:01.34
+Monday, April 1, 2019;;repo.getQMap(28409) - FHIRRepository;;00:00:01.45
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient28409 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(28409) - FHIRRepository;;00:00:03.70
+Monday, April 1, 2019;;repo.getAllQRsByPatID(28596) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(28596) - FHIRRepository;;00:00:01.53
+Monday, April 1, 2019;;repo.getQMap(28596) - FHIRRepository;;00:00:01.34
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient28596 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(28596) - FHIRRepository;;00:00:03.86
+Monday, April 1, 2019;;repo.getAllQRsByPatID(28739) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(28739) - FHIRRepository;;00:00:01.75
+Monday, April 1, 2019;;repo.getQMap(28739) - FHIRRepository;;00:00:01.33
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient28739 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(28739) - FHIRRepository;;00:00:04.12
+Monday, April 1, 2019;;repo.getAllQRsByPatID(28908) - FHIRRepository;;00:00:00.07
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(28908) - FHIRRepository;;00:00:02.44
+Monday, April 1, 2019;;repo.getQMap(28908) - FHIRRepository;;00:00:01.87
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient28908 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(28908) - FHIRRepository;;00:00:05.63
+Monday, April 1, 2019;;repo.getAllQRsByPatID(29208) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(29208) - FHIRRepository;;00:00:01.97
+Monday, April 1, 2019;;repo.getQMap(29208) - FHIRRepository;;00:00:00.76
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient29208 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(29208) - FHIRRepository;;00:00:03.49
+Monday, April 1, 2019;;repo.getAllQRsByPatID(29443) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(29443) - FHIRRepository;;00:00:02.00
+Monday, April 1, 2019;;repo.getQMap(29443) - FHIRRepository;;00:00:01.59
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient29443 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(29443) - FHIRRepository;;00:00:04.76
+Monday, April 1, 2019;;repo.getAllQRsByPatID(29627) - FHIRRepository;;00:00:00.02
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(29627) - FHIRRepository;;00:00:00.79
+Monday, April 1, 2019;;repo.getQMap(29627) - FHIRRepository;;00:00:01.09
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient29627 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(29627) - FHIRRepository;;00:00:02.50
+Monday, April 1, 2019;;repo.getAllQRsByPatID(29854) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(29854) - FHIRRepository;;00:00:03.79
+Monday, April 1, 2019;;repo.getQMap(29854) - FHIRRepository;;00:00:01.94
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient29854 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(29854) - FHIRRepository;;00:00:07.43
+Monday, April 1, 2019;;repo.getAllQRsByPatID(30119) - FHIRRepository;;00:00:00.04
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(30119) - FHIRRepository;;00:00:01.80
+Monday, April 1, 2019;;repo.getQMap(30119) - FHIRRepository;;00:00:01.64
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient30119 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(30119) - FHIRRepository;;00:00:04.47
+Monday, April 1, 2019;;repo.getAllQRsByPatID(30370) - FHIRRepository;;00:00:00.08
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(30370) - FHIRRepository;;00:00:00.85
+Monday, April 1, 2019;;repo.getQMap(30370) - FHIRRepository;;00:00:01.90
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient30370 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(30370) - FHIRRepository;;00:00:03.97
+Monday, April 1, 2019;;repo.getAllQRsByPatID(30502) - FHIRRepository;;00:00:00.05
+Monday, April 1, 2019;;repo.getAllObservationsByPatId(30502) - FHIRRepository;;00:00:00.01
+Monday, April 1, 2019;;repo.getQMap(30502) - FHIRRepository;;00:00:01.62
+Monday, April 1, 2019;;cache.cacheFullPatientData for patient30502 - FHIRRepository;;00:00:00.00
+Monday, April 1, 2019;;updateCachedPatientDataModelById(30502) - FHIRRepository;;00:00:02.36
+1554140369;;updateTherapistState runtime;;00:00:00.28
+1554140580;;updateResources - FHIRRepository runtime;;00:03:10.59
+1554140580;;repo.getAllQRsByPatID(2) - FHIRRepository;;00:00:00.05
+1554140590;;repo.getAllObservationsByPatId(2) - FHIRRepository;;00:00:08.99
+1554140591;;repo.getQMap(2) - FHIRRepository;;00:00:00.52
+1554140591;;updateCachedPatientDataModelById(2) - FHIRRepository;;00:00:11.58
+1554140592;;repo.getAllQRsByPatID(68) - FHIRRepository;;00:00:00.05
+1554140600;;repo.getAllObservationsByPatId(68) - FHIRRepository;;00:00:04.59
+1554140601;;repo.getQMap(68) - FHIRRepository;;00:00:00.45
+1554140601;;updateCachedPatientDataModelById(68) - FHIRRepository;;00:00:09.45
+1554140601;;repo.getAllQRsByPatID(325) - FHIRRepository;;00:00:00.04
+1554140603;;repo.getAllObservationsByPatId(325) - FHIRRepository;;00:00:01.34
+1554140604;;repo.getQMap(325) - FHIRRepository;;00:00:00.39
+1554140604;;updateCachedPatientDataModelById(325) - FHIRRepository;;00:00:02.69
+1554140604;;repo.getAllQRsByPatID(441) - FHIRRepository;;00:00:00.02
+1554140605;;repo.getAllObservationsByPatId(441) - FHIRRepository;;00:00:01.13
+1554140606;;repo.getQMap(441) - FHIRRepository;;00:00:00.37
+1554140606;;updateCachedPatientDataModelById(441) - FHIRRepository;;00:00:02.18
+1554140606;;repo.getAllQRsByPatID(708) - FHIRRepository;;00:00:00.05
+1554140608;;repo.getAllObservationsByPatId(708) - FHIRRepository;;00:00:01.49
+1554140609;;repo.getQMap(708) - FHIRRepository;;00:00:00.44
+1554140609;;updateCachedPatientDataModelById(708) - FHIRRepository;;00:00:02.99
+1554140609;;repo.getAllQRsByPatID(828) - FHIRRepository;;00:00:00.12
+1554140611;;repo.getAllObservationsByPatId(828) - FHIRRepository;;00:00:01.59
+1554140612;;repo.getQMap(828) - FHIRRepository;;00:00:00.57
+1554140612;;updateCachedPatientDataModelById(828) - FHIRRepository;;00:00:03.55
+1554140613;;repo.getAllQRsByPatID(967) - FHIRRepository;;00:00:00.08
+1554140617;;repo.getAllObservationsByPatId(967) - FHIRRepository;;00:00:04.02
+1554140619;;repo.getQMap(967) - FHIRRepository;;00:00:00.42
+1554140619;;updateCachedPatientDataModelById(967) - FHIRRepository;;00:00:06.22
+1554140619;;repo.getAllQRsByPatID(1308) - FHIRRepository;;00:00:00.03
+1554140623;;repo.getAllObservationsByPatId(1308) - FHIRRepository;;00:00:03.37
+1554140624;;repo.getQMap(1308) - FHIRRepository;;00:00:00.41
+1554140624;;updateCachedPatientDataModelById(1308) - FHIRRepository;;00:00:04.96
+1554140624;;repo.getAllQRsByPatID(1551) - FHIRRepository;;00:00:00.08
+1554140627;;repo.getAllObservationsByPatId(1551) - FHIRRepository;;00:00:02.46
+1554140628;;repo.getQMap(1551) - FHIRRepository;;00:00:00.83
+1554140628;;updateCachedPatientDataModelById(1551) - FHIRRepository;;00:00:04.81
+1554140629;;repo.getAllQRsByPatID(2098) - FHIRRepository;;00:00:00.06
+1554140631;;repo.getAllObservationsByPatId(2098) - FHIRRepository;;00:00:01.01
+1554140631;;repo.getQMap(2098) - FHIRRepository;;00:00:00.87
+1554140631;;updateCachedPatientDataModelById(2098) - FHIRRepository;;00:00:03.06
+1554140632;;repo.getAllQRsByPatID(2148) - FHIRRepository;;00:00:00.11
+1554140635;;repo.getAllObservationsByPatId(2148) - FHIRRepository;;00:00:02.22
+1554140649;;repo.getQMap(2148) - FHIRRepository;;00:00:04.72
+1554140649;;updateCachedPatientDataModelById(2148) - FHIRRepository;;00:00:17.61
+1554140650;;repo.getAllQRsByPatID(2233) - FHIRRepository;;00:00:00.10
+1554140658;;repo.getAllObservationsByPatId(2233) - FHIRRepository;;00:00:06.00
+1554140659;;repo.getQMap(2233) - FHIRRepository;;00:00:00.69
+1554140659;;updateCachedPatientDataModelById(2233) - FHIRRepository;;00:00:10.32
+1554140660;;repo.getAllQRsByPatID(2382) - FHIRRepository;;00:00:00.10
+1554140662;;repo.getAllObservationsByPatId(2382) - FHIRRepository;;00:00:00.90
+1554140663;;repo.getQMap(2382) - FHIRRepository;;00:00:00.84
+1554140663;;updateCachedPatientDataModelById(2382) - FHIRRepository;;00:00:03.85
+1554140664;;repo.getAllQRsByPatID(2444) - FHIRRepository;;00:00:00.24
+1554140671;;repo.getAllObservationsByPatId(2444) - FHIRRepository;;00:00:05.54
+1554140673;;repo.getQMap(2444) - FHIRRepository;;00:00:00.83
+1554140673;;updateCachedPatientDataModelById(2444) - FHIRRepository;;00:00:09.24
+1554140673;;repo.getAllQRsByPatID(2628) - FHIRRepository;;00:00:00.18
+1554140676;;repo.getAllObservationsByPatId(2628) - FHIRRepository;;00:00:01.52
+1554140677;;repo.getQMap(2628) - FHIRRepository;;00:00:00.62
+1554140677;;updateCachedPatientDataModelById(2628) - FHIRRepository;;00:00:03.95
+1554140677;;repo.getAllQRsByPatID(2977) - FHIRRepository;;00:00:00.03
+1554140678;;repo.getAllObservationsByPatId(2977) - FHIRRepository;;00:00:00.65
+1554140679;;repo.getQMap(2977) - FHIRRepository;;00:00:00.59
+1554140679;;updateCachedPatientDataModelById(2977) - FHIRRepository;;00:00:02.00
+1554140679;;repo.getAllQRsByPatID(3068) - FHIRRepository;;00:00:00.08
+1554140680;;repo.getAllObservationsByPatId(3068) - FHIRRepository;;00:00:00.50
+1554140681;;repo.getQMap(3068) - FHIRRepository;;00:00:00.56
+1554140681;;updateCachedPatientDataModelById(3068) - FHIRRepository;;00:00:02.07
+1554140681;;repo.getAllQRsByPatID(3304) - FHIRRepository;;00:00:00.09
+1554140683;;repo.getAllObservationsByPatId(3304) - FHIRRepository;;00:00:01.19
+1554140684;;repo.getQMap(3304) - FHIRRepository;;00:00:00.51
+1554140684;;updateCachedPatientDataModelById(3304) - FHIRRepository;;00:00:02.89
+1554140684;;repo.getAllQRsByPatID(3378) - FHIRRepository;;00:00:00.01
+1554140685;;repo.getAllObservationsByPatId(3378) - FHIRRepository;;00:00:00.81
+1554140685;;repo.getQMap(3378) - FHIRRepository;;00:00:00.45
+1554140685;;updateCachedPatientDataModelById(3378) - FHIRRepository;;00:00:01.77
+1554140686;;repo.getAllQRsByPatID(3445) - FHIRRepository;;00:00:00.07
+1554140688;;repo.getAllObservationsByPatId(3445) - FHIRRepository;;00:00:01.36
+1554140688;;repo.getQMap(3445) - FHIRRepository;;00:00:00.52
+1554140688;;updateCachedPatientDataModelById(3445) - FHIRRepository;;00:00:03.10
+1554140689;;repo.getAllQRsByPatID(3744) - FHIRRepository;;00:00:00.08
+1554140690;;repo.getAllObservationsByPatId(3744) - FHIRRepository;;00:00:00.94
+1554140691;;repo.getQMap(3744) - FHIRRepository;;00:00:00.47
+1554140691;;updateCachedPatientDataModelById(3744) - FHIRRepository;;00:00:02.50
+1554140691;;repo.getAllQRsByPatID(3957) - FHIRRepository;;00:00:00.02
+1554140694;;repo.getAllObservationsByPatId(3957) - FHIRRepository;;00:00:02.62
+1554140695;;repo.getQMap(3957) - FHIRRepository;;00:00:00.41
+1554140695;;updateCachedPatientDataModelById(3957) - FHIRRepository;;00:00:03.98
+1554140695;;repo.getAllQRsByPatID(4130) - FHIRRepository;;00:00:00.04
+1554140696;;repo.getAllObservationsByPatId(4130) - FHIRRepository;;00:00:00.50
+1554140697;;repo.getQMap(4130) - FHIRRepository;;00:00:00.44
+1554140697;;updateCachedPatientDataModelById(4130) - FHIRRepository;;00:00:01.62
+1554140697;;repo.getAllQRsByPatID(4348) - FHIRRepository;;00:00:00.03
+1554140700;;repo.getAllObservationsByPatId(4348) - FHIRRepository;;00:00:03.27
+1554140701;;repo.getQMap(4348) - FHIRRepository;;00:00:00.41
+1554140701;;updateCachedPatientDataModelById(4348) - FHIRRepository;;00:00:04.87
+1554140702;;repo.getAllQRsByPatID(4587) - FHIRRepository;;00:00:00.06
+1554140706;;repo.getAllObservationsByPatId(4587) - FHIRRepository;;00:00:03.92
+1554140708;;repo.getQMap(4587) - FHIRRepository;;00:00:00.47
+1554140708;;updateCachedPatientDataModelById(4587) - FHIRRepository;;00:00:06.04
+1554140708;;repo.getAllQRsByPatID(4826) - FHIRRepository;;00:00:00.02
+1554140709;;repo.getAllObservationsByPatId(4826) - FHIRRepository;;00:00:01.41
+1554140710;;repo.getQMap(4826) - FHIRRepository;;00:00:00.39
+1554140710;;updateCachedPatientDataModelById(4826) - FHIRRepository;;00:00:02.48
+1554140710;;repo.getAllQRsByPatID(4926) - FHIRRepository;;00:00:00.01
+1554140712;;repo.getAllObservationsByPatId(4926) - FHIRRepository;;00:00:01.37
+1554140712;;repo.getQMap(4926) - FHIRRepository;;00:00:00.39
+1554140712;;updateCachedPatientDataModelById(4926) - FHIRRepository;;00:00:02.38
+1554140713;;repo.getAllQRsByPatID(5061) - FHIRRepository;;00:00:00.06
+1554140714;;repo.getAllObservationsByPatId(5061) - FHIRRepository;;00:00:01.42
+1554140715;;repo.getQMap(5061) - FHIRRepository;;00:00:00.42
+1554140715;;updateCachedPatientDataModelById(5061) - FHIRRepository;;00:00:02.71
+1554140715;;repo.getAllQRsByPatID(5158) - FHIRRepository;;00:00:00.04
+1554140720;;repo.getAllObservationsByPatId(5158) - FHIRRepository;;00:00:03.86
+1554140721;;repo.getQMap(5158) - FHIRRepository;;00:00:00.46
+1554140721;;updateCachedPatientDataModelById(5158) - FHIRRepository;;00:00:05.79
+1554140721;;repo.getAllQRsByPatID(5409) - FHIRRepository;;00:00:00.04
+1554140725;;repo.getAllObservationsByPatId(5409) - FHIRRepository;;00:00:03.65
+1554140726;;repo.getQMap(5409) - FHIRRepository;;00:00:00.40
+1554140726;;updateCachedPatientDataModelById(5409) - FHIRRepository;;00:00:05.36
+1554140727;;repo.getAllQRsByPatID(5643) - FHIRRepository;;00:00:00.03
+1554140731;;repo.getAllObservationsByPatId(5643) - FHIRRepository;;00:00:03.67
+1554140732;;repo.getQMap(5643) - FHIRRepository;;00:00:00.40
+1554140732;;updateCachedPatientDataModelById(5643) - FHIRRepository;;00:00:05.38
+1554140732;;repo.getAllQRsByPatID(5877) - FHIRRepository;;00:00:00.07
+1554140735;;repo.getAllObservationsByPatId(5877) - FHIRRepository;;00:00:01.84
+1554140735;;repo.getQMap(5877) - FHIRRepository;;00:00:00.46
+1554140735;;updateCachedPatientDataModelById(5877) - FHIRRepository;;00:00:03.64
+1554140736;;repo.getAllQRsByPatID(6055) - FHIRRepository;;00:00:00.02
+1554140738;;repo.getAllObservationsByPatId(6055) - FHIRRepository;;00:00:01.65
+1554140738;;repo.getQMap(6055) - FHIRRepository;;00:00:00.40
+1554140738;;updateCachedPatientDataModelById(6055) - FHIRRepository;;00:00:02.89
+1554140739;;repo.getAllQRsByPatID(6191) - FHIRRepository;;00:00:00.02
+1554140742;;repo.getAllObservationsByPatId(6191) - FHIRRepository;;00:00:03.77
+1554140744;;repo.getQMap(6191) - FHIRRepository;;00:00:00.40
+1554140744;;updateCachedPatientDataModelById(6191) - FHIRRepository;;00:00:05.35
+1554140744;;repo.getAllQRsByPatID(6473) - FHIRRepository;;00:00:00.04
+1554140745;;repo.getAllObservationsByPatId(6473) - FHIRRepository;;00:00:01.03
+1554140746;;repo.getQMap(6473) - FHIRRepository;;00:00:00.50
+1554140746;;updateCachedPatientDataModelById(6473) - FHIRRepository;;00:00:02.40
+1554140746;;repo.getAllQRsByPatID(6576) - FHIRRepository;;00:00:00.08
+1554140749;;repo.getAllObservationsByPatId(6576) - FHIRRepository;;00:00:02.10
+1554140750;;repo.getQMap(6576) - FHIRRepository;;00:00:00.71
+1554140750;;updateCachedPatientDataModelById(6576) - FHIRRepository;;00:00:04.17
+1554140751;;repo.getAllQRsByPatID(6919) - FHIRRepository;;00:00:00.12
+1554140754;;repo.getAllObservationsByPatId(6919) - FHIRRepository;;00:00:02.43
+1554140756;;repo.getQMap(6919) - FHIRRepository;;00:00:00.73
+1554140756;;updateCachedPatientDataModelById(6919) - FHIRRepository;;00:00:05.34
+1554140756;;repo.getAllQRsByPatID(7110) - FHIRRepository;;00:00:00.13
+1554140761;;repo.getAllObservationsByPatId(7110) - FHIRRepository;;00:00:04.14
+1554140763;;repo.getQMap(7110) - FHIRRepository;;00:00:01.07
+1554140763;;updateCachedPatientDataModelById(7110) - FHIRRepository;;00:00:07.84
+1554140764;;repo.getAllQRsByPatID(7230) - FHIRRepository;;00:00:00.01
+1554140767;;repo.getAllObservationsByPatId(7230) - FHIRRepository;;00:00:02.55
+1554140767;;repo.getQMap(7230) - FHIRRepository;;00:00:00.54
+1554140767;;updateCachedPatientDataModelById(7230) - FHIRRepository;;00:00:04.00
+1554140768;;repo.getAllQRsByPatID(7381) - FHIRRepository;;00:00:00.06
+1554140775;;repo.getAllObservationsByPatId(7381) - FHIRRepository;;00:00:06.79
+1554140780;;repo.getQMap(7381) - FHIRRepository;;00:00:01.29
+1554140780;;updateCachedPatientDataModelById(7381) - FHIRRepository;;00:00:12.12
+1554140780;;repo.getAllQRsByPatID(7676) - FHIRRepository;;00:00:00.11
+1554140785;;repo.getAllObservationsByPatId(7676) - FHIRRepository;;00:00:01.81
+1554140786;;repo.getQMap(7676) - FHIRRepository;;00:00:00.79
+1554140786;;updateCachedPatientDataModelById(7676) - FHIRRepository;;00:00:06.77
+1554140787;;repo.getAllQRsByPatID(7858) - FHIRRepository;;00:00:00.18
+1554140791;;repo.getAllObservationsByPatId(7858) - FHIRRepository;;00:00:02.48
+1554140792;;repo.getQMap(7858) - FHIRRepository;;00:00:00.61
+1554140792;;updateCachedPatientDataModelById(7858) - FHIRRepository;;00:00:05.62
+1554140792;;repo.getAllQRsByPatID(7998) - FHIRRepository;;00:00:00.05
+1554140795;;repo.getAllObservationsByPatId(7998) - FHIRRepository;;00:00:02.26
+1554140796;;repo.getQMap(7998) - FHIRRepository;;00:00:00.65
+1554140796;;updateCachedPatientDataModelById(7998) - FHIRRepository;;00:00:04.07
+1554140797;;repo.getAllQRsByPatID(8310) - FHIRRepository;;00:00:00.06
+1554140798;;repo.getAllObservationsByPatId(8310) - FHIRRepository;;00:00:01.42
+1554140799;;repo.getQMap(8310) - FHIRRepository;;00:00:00.60
+1554140799;;updateCachedPatientDataModelById(8310) - FHIRRepository;;00:00:03.14
+1554140800;;repo.getAllQRsByPatID(8380) - FHIRRepository;;00:00:00.08
+1554140803;;repo.getAllObservationsByPatId(8380) - FHIRRepository;;00:00:02.85
+1554140804;;repo.getQMap(8380) - FHIRRepository;;00:00:00.72
+1554140804;;updateCachedPatientDataModelById(8380) - FHIRRepository;;00:00:05.14
+1554140805;;repo.getAllQRsByPatID(8713) - FHIRRepository;;00:00:00.15
+1554140810;;repo.getAllObservationsByPatId(8713) - FHIRRepository;;00:00:04.27
+1554140811;;repo.getQMap(8713) - FHIRRepository;;00:00:00.71
+1554140811;;updateCachedPatientDataModelById(8713) - FHIRRepository;;00:00:06.64
+1554140812;;repo.getAllQRsByPatID(8878) - FHIRRepository;;00:00:00.17
+1554140817;;repo.getAllObservationsByPatId(8878) - FHIRRepository;;00:00:03.64
+1554140818;;repo.getQMap(8878) - FHIRRepository;;00:00:00.84
+1554140818;;updateCachedPatientDataModelById(8878) - FHIRRepository;;00:00:06.95
+1554140819;;repo.getAllQRsByPatID(9080) - FHIRRepository;;00:00:00.13
+1554140822;;repo.getAllObservationsByPatId(9080) - FHIRRepository;;00:00:01.87
+1554140823;;repo.getQMap(9080) - FHIRRepository;;00:00:00.95
+1554140823;;updateCachedPatientDataModelById(9080) - FHIRRepository;;00:00:05.43
+1554140824;;repo.getAllQRsByPatID(9301) - FHIRRepository;;00:00:00.18
+1554140829;;repo.getAllObservationsByPatId(9301) - FHIRRepository;;00:00:03.64
+1554140834;;repo.getQMap(9301) - FHIRRepository;;00:00:01.04
+1554140834;;updateCachedPatientDataModelById(9301) - FHIRRepository;;00:00:10.33
+1554140834;;repo.getAllQRsByPatID(9452) - FHIRRepository;;00:00:00.07
+1554140838;;repo.getAllObservationsByPatId(9452) - FHIRRepository;;00:00:02.29
+1554140839;;repo.getQMap(9452) - FHIRRepository;;00:00:00.67
+1554140839;;updateCachedPatientDataModelById(9452) - FHIRRepository;;00:00:05.44
+1554140840;;repo.getAllQRsByPatID(9597) - FHIRRepository;;00:00:00.04
+1554140841;;repo.getAllObservationsByPatId(9597) - FHIRRepository;;00:00:01.04
+1554140842;;repo.getQMap(9597) - FHIRRepository;;00:00:00.65
+1554140842;;updateCachedPatientDataModelById(9597) - FHIRRepository;;00:00:02.76
+1554140842;;repo.getAllQRsByPatID(9767) - FHIRRepository;;00:00:00.11
+1554140845;;repo.getAllObservationsByPatId(9767) - FHIRRepository;;00:00:01.91
+1554140847;;repo.getQMap(9767) - FHIRRepository;;00:00:01.34
+1554140847;;updateCachedPatientDataModelById(9767) - FHIRRepository;;00:00:05.30
+1554140849;;repo.getAllQRsByPatID(9996) - FHIRRepository;;00:00:00.11
+1554140855;;repo.getAllObservationsByPatId(9996) - FHIRRepository;;00:00:04.83
+1554140856;;repo.getQMap(9996) - FHIRRepository;;00:00:00.63
+1554140856;;updateCachedPatientDataModelById(9996) - FHIRRepository;;00:00:08.46
+1554140856;;repo.getAllQRsByPatID(10195) - FHIRRepository;;00:00:00.14
+1554140859;;repo.getAllObservationsByPatId(10195) - FHIRRepository;;00:00:01.41
+1554140859;;repo.getQMap(10195) - FHIRRepository;;00:00:00.40
+1554140859;;updateCachedPatientDataModelById(10195) - FHIRRepository;;00:00:03.33
+1554140860;;repo.getAllQRsByPatID(10335) - FHIRRepository;;00:00:00.09
+1554140862;;repo.getAllObservationsByPatId(10335) - FHIRRepository;;00:00:01.33
+1554140862;;repo.getQMap(10335) - FHIRRepository;;00:00:00.46
+1554140862;;updateCachedPatientDataModelById(10335) - FHIRRepository;;00:00:03.10
+1554140863;;repo.getAllQRsByPatID(10446) - FHIRRepository;;00:00:00.06
+1554140864;;repo.getAllObservationsByPatId(10446) - FHIRRepository;;00:00:00.85
+1554140865;;repo.getQMap(10446) - FHIRRepository;;00:00:00.48
+1554140865;;updateCachedPatientDataModelById(10446) - FHIRRepository;;00:00:02.28
+1554140865;;repo.getAllQRsByPatID(10516) - FHIRRepository;;00:00:00.04
+1554140867;;repo.getAllObservationsByPatId(10516) - FHIRRepository;;00:00:01.85
+1554140868;;repo.getQMap(10516) - FHIRRepository;;00:00:00.47
+1554140868;;updateCachedPatientDataModelById(10516) - FHIRRepository;;00:00:03.33
+1554140868;;repo.getAllQRsByPatID(10641) - FHIRRepository;;00:00:00.07
+1554140871;;repo.getAllObservationsByPatId(10641) - FHIRRepository;;00:00:01.90
+1554140872;;repo.getQMap(10641) - FHIRRepository;;00:00:00.45
+1554140872;;updateCachedPatientDataModelById(10641) - FHIRRepository;;00:00:03.70
+1554140872;;repo.getAllQRsByPatID(10840) - FHIRRepository;;00:00:00.07
+1554140874;;repo.getAllObservationsByPatId(10840) - FHIRRepository;;00:00:01.23
+1554140874;;repo.getQMap(10840) - FHIRRepository;;00:00:00.46
+1554140874;;updateCachedPatientDataModelById(10840) - FHIRRepository;;00:00:02.75
+1554140875;;repo.getAllQRsByPatID(10932) - FHIRRepository;;00:00:00.08
+1554140876;;repo.getAllObservationsByPatId(10932) - FHIRRepository;;00:00:00.72
+1554140877;;repo.getQMap(10932) - FHIRRepository;;00:00:00.50
+1554140877;;updateCachedPatientDataModelById(10932) - FHIRRepository;;00:00:02.30
+1554140877;;repo.getAllQRsByPatID(10997) - FHIRRepository;;00:00:00.06
+1554140879;;repo.getAllObservationsByPatId(10997) - FHIRRepository;;00:00:01.66
+1554140880;;repo.getQMap(10997) - FHIRRepository;;00:00:00.40
+1554140880;;updateCachedPatientDataModelById(10997) - FHIRRepository;;00:00:03.28
+1554140880;;repo.getAllQRsByPatID(11144) - FHIRRepository;;00:00:00.05
+1554140882;;repo.getAllObservationsByPatId(11144) - FHIRRepository;;00:00:01.70
+1554140883;;repo.getQMap(11144) - FHIRRepository;;00:00:00.46
+1554140883;;updateCachedPatientDataModelById(11144) - FHIRRepository;;00:00:03.15
+1554140884;;repo.getAllQRsByPatID(11309) - FHIRRepository;;00:00:00.07
+1554140885;;repo.getAllObservationsByPatId(11309) - FHIRRepository;;00:00:00.74
+1554140885;;repo.getQMap(11309) - FHIRRepository;;00:00:00.46
+1554140885;;updateCachedPatientDataModelById(11309) - FHIRRepository;;00:00:02.19
+1554140886;;repo.getAllQRsByPatID(11418) - FHIRRepository;;00:00:00.04
+1554140888;;repo.getAllObservationsByPatId(11418) - FHIRRepository;;00:00:02.20
+1554140889;;repo.getQMap(11418) - FHIRRepository;;00:00:00.48
+1554140889;;updateCachedPatientDataModelById(11418) - FHIRRepository;;00:00:03.79
+1554140889;;repo.getAllQRsByPatID(11631) - FHIRRepository;;00:00:00.04
+1554140891;;repo.getAllObservationsByPatId(11631) - FHIRRepository;;00:00:01.25
+1554140892;;repo.getQMap(11631) - FHIRRepository;;00:00:00.48
+1554140892;;updateCachedPatientDataModelById(11631) - FHIRRepository;;00:00:02.50
+1554140892;;repo.getAllQRsByPatID(11738) - FHIRRepository;;00:00:00.07
+1554140894;;repo.getAllObservationsByPatId(11738) - FHIRRepository;;00:00:01.44
+1554140895;;repo.getQMap(11738) - FHIRRepository;;00:00:00.42
+1554140895;;updateCachedPatientDataModelById(11738) - FHIRRepository;;00:00:02.97
+1554140895;;repo.getAllQRsByPatID(11838) - FHIRRepository;;00:00:00.07
+1554140898;;repo.getAllObservationsByPatId(11838) - FHIRRepository;;00:00:02.85
+1554140899;;repo.getQMap(11838) - FHIRRepository;;00:00:00.47
+1554140899;;updateCachedPatientDataModelById(11838) - FHIRRepository;;00:00:04.60
+1554140900;;repo.getAllQRsByPatID(12030) - FHIRRepository;;00:00:00.06
+1554140901;;repo.getAllObservationsByPatId(12030) - FHIRRepository;;00:00:00.70
+1554140901;;repo.getQMap(12030) - FHIRRepository;;00:00:00.46
+1554140901;;updateCachedPatientDataModelById(12030) - FHIRRepository;;00:00:02.10
+1554140902;;repo.getAllQRsByPatID(12090) - FHIRRepository;;00:00:00.08
+1554140905;;repo.getAllObservationsByPatId(12090) - FHIRRepository;;00:00:02.21
+1554140906;;repo.getQMap(12090) - FHIRRepository;;00:00:00.47
+1554140906;;updateCachedPatientDataModelById(12090) - FHIRRepository;;00:00:04.11
+1554140906;;repo.getAllQRsByPatID(12253) - FHIRRepository;;00:00:00.02
+1554140908;;repo.getAllObservationsByPatId(12253) - FHIRRepository;;00:00:01.98
+1554140909;;repo.getQMap(12253) - FHIRRepository;;00:00:00.43
+1554140909;;updateCachedPatientDataModelById(12253) - FHIRRepository;;00:00:03.33
+1554140909;;repo.getAllQRsByPatID(12409) - FHIRRepository;;00:00:00.07
+1554140911;;repo.getAllObservationsByPatId(12409) - FHIRRepository;;00:00:01.64
+1554140912;;repo.getQMap(12409) - FHIRRepository;;00:00:00.46
+1554140912;;updateCachedPatientDataModelById(12409) - FHIRRepository;;00:00:03.24
+1554140912;;repo.getAllQRsByPatID(12642) - FHIRRepository;;00:00:00.02
+1554140914;;repo.getAllObservationsByPatId(12642) - FHIRRepository;;00:00:01.30
+1554140915;;repo.getQMap(12642) - FHIRRepository;;00:00:00.40
+1554140915;;updateCachedPatientDataModelById(12642) - FHIRRepository;;00:00:02.43
+1554140915;;repo.getAllQRsByPatID(12756) - FHIRRepository;;00:00:00.02
+1554140916;;repo.getAllObservationsByPatId(12756) - FHIRRepository;;00:00:00.95
+1554140917;;repo.getQMap(12756) - FHIRRepository;;00:00:00.41
+1554140917;;updateCachedPatientDataModelById(12756) - FHIRRepository;;00:00:01.94
+1554140917;;repo.getAllQRsByPatID(12959) - FHIRRepository;;00:00:00.08
+1554140923;;repo.getAllObservationsByPatId(12959) - FHIRRepository;;00:00:04.97
+1554140924;;repo.getQMap(12959) - FHIRRepository;;00:00:00.48
+1554140924;;updateCachedPatientDataModelById(12959) - FHIRRepository;;00:00:07.31
+1554140924;;repo.getAllQRsByPatID(13290) - FHIRRepository;;00:00:00.07
+1554140925;;repo.getAllObservationsByPatId(13290) - FHIRRepository;;00:00:00.77
+1554140926;;repo.getQMap(13290) - FHIRRepository;;00:00:00.50
+1554140926;;updateCachedPatientDataModelById(13290) - FHIRRepository;;00:00:02.24
+1554140926;;repo.getAllQRsByPatID(13382) - FHIRRepository;;00:00:00.05
+1554140929;;repo.getAllObservationsByPatId(13382) - FHIRRepository;;00:00:02.49
+1554140930;;repo.getQMap(13382) - FHIRRepository;;00:00:00.43
+1554140930;;updateCachedPatientDataModelById(13382) - FHIRRepository;;00:00:04.05
+1554140930;;repo.getAllQRsByPatID(13544) - FHIRRepository;;00:00:00.06
+1554140932;;repo.getAllObservationsByPatId(13544) - FHIRRepository;;00:00:00.69
+1554140932;;repo.getQMap(13544) - FHIRRepository;;00:00:00.47
+1554140932;;updateCachedPatientDataModelById(13544) - FHIRRepository;;00:00:01.97
+1554140932;;repo.getAllQRsByPatID(13620) - FHIRRepository;;00:00:00.03
+1554140937;;repo.getAllObservationsByPatId(13620) - FHIRRepository;;00:00:04.46
+1554140938;;repo.getQMap(13620) - FHIRRepository;;00:00:00.52
+1554140939;;updateCachedPatientDataModelById(13620) - FHIRRepository;;00:00:06.33
+1554140939;;repo.getAllQRsByPatID(13904) - FHIRRepository;;00:00:00.05
+1554140941;;repo.getAllObservationsByPatId(13904) - FHIRRepository;;00:00:01.18
+1554140941;;repo.getQMap(13904) - FHIRRepository;;00:00:00.50
+1554140941;;updateCachedPatientDataModelById(13904) - FHIRRepository;;00:00:02.68
+1554140941;;repo.getAllQRsByPatID(14003) - FHIRRepository;;00:00:00.05
+1554140946;;repo.getAllObservationsByPatId(14003) - FHIRRepository;;00:00:03.90
+1554140947;;repo.getQMap(14003) - FHIRRepository;;00:00:00.46
+1554140947;;updateCachedPatientDataModelById(14003) - FHIRRepository;;00:00:05.79
+1554140947;;repo.getAllQRsByPatID(14265) - FHIRRepository;;00:00:00.07
+1554140950;;repo.getAllObservationsByPatId(14265) - FHIRRepository;;00:00:01.71
+1554140950;;repo.getQMap(14265) - FHIRRepository;;00:00:00.44
+1554140950;;updateCachedPatientDataModelById(14265) - FHIRRepository;;00:00:03.32
+1554140951;;repo.getAllQRsByPatID(14406) - FHIRRepository;;00:00:00.09
+1554140954;;repo.getAllObservationsByPatId(14406) - FHIRRepository;;00:00:02.37
+1554140955;;repo.getQMap(14406) - FHIRRepository;;00:00:00.49
+1554140955;;updateCachedPatientDataModelById(14406) - FHIRRepository;;00:00:04.26
+1554140955;;repo.getAllQRsByPatID(14565) - FHIRRepository;;00:00:00.08
+1554140960;;repo.getAllObservationsByPatId(14565) - FHIRRepository;;00:00:04.41
+1554140961;;repo.getQMap(14565) - FHIRRepository;;00:00:00.44
+1554140961;;updateCachedPatientDataModelById(14565) - FHIRRepository;;00:00:06.53
+1554140962;;repo.getAllQRsByPatID(14829) - FHIRRepository;;00:00:00.07
+1554140966;;repo.getAllObservationsByPatId(14829) - FHIRRepository;;00:00:03.90
+1554140967;;repo.getQMap(14829) - FHIRRepository;;00:00:00.48
+1554140967;;updateCachedPatientDataModelById(14829) - FHIRRepository;;00:00:06.09
+1554140968;;repo.getAllQRsByPatID(15108) - FHIRRepository;;00:00:00.08
+1554140971;;repo.getAllObservationsByPatId(15108) - FHIRRepository;;00:00:02.44
+1554140971;;repo.getQMap(15108) - FHIRRepository;;00:00:00.45
+1554140971;;updateCachedPatientDataModelById(15108) - FHIRRepository;;00:00:04.18
+1554140972;;repo.getAllQRsByPatID(15261) - FHIRRepository;;00:00:00.01
+1554140973;;repo.getAllObservationsByPatId(15261) - FHIRRepository;;00:00:00.71
+1554140973;;repo.getQMap(15261) - FHIRRepository;;00:00:00.42
+1554140973;;updateCachedPatientDataModelById(15261) - FHIRRepository;;00:00:01.59
+1554140973;;repo.getAllQRsByPatID(15463) - FHIRRepository;;00:00:00.05
+1554140978;;repo.getAllObservationsByPatId(15463) - FHIRRepository;;00:00:04.07
+1554140979;;repo.getQMap(15463) - FHIRRepository;;00:00:00.46
+1554140979;;updateCachedPatientDataModelById(15463) - FHIRRepository;;00:00:05.98
+1554140979;;repo.getAllQRsByPatID(15725) - FHIRRepository;;00:00:00.07
+1554140982;;repo.getAllObservationsByPatId(15725) - FHIRRepository;;00:00:01.56
+1554140982;;repo.getQMap(15725) - FHIRRepository;;00:00:00.44
+1554140982;;updateCachedPatientDataModelById(15725) - FHIRRepository;;00:00:03.14
+1554140982;;repo.getAllQRsByPatID(15835) - FHIRRepository;;00:00:00.06
+1554140987;;repo.getAllObservationsByPatId(15835) - FHIRRepository;;00:00:04.14
+1554140988;;repo.getQMap(15835) - FHIRRepository;;00:00:00.45
+1554140988;;updateCachedPatientDataModelById(15835) - FHIRRepository;;00:00:06.12
+1554140989;;repo.getAllQRsByPatID(16090) - FHIRRepository;;00:00:00.06
+1554140991;;repo.getAllObservationsByPatId(16090) - FHIRRepository;;00:00:01.40
+1554140991;;repo.getQMap(16090) - FHIRRepository;;00:00:00.42
+1554140991;;updateCachedPatientDataModelById(16090) - FHIRRepository;;00:00:02.95
+1554140992;;repo.getAllQRsByPatID(16215) - FHIRRepository;;00:00:00.07
+1554140994;;repo.getAllObservationsByPatId(16215) - FHIRRepository;;00:00:01.46
+1554140995;;repo.getQMap(16215) - FHIRRepository;;00:00:00.57
+1554140995;;updateCachedPatientDataModelById(16215) - FHIRRepository;;00:00:03.59
+1554140995;;repo.getAllQRsByPatID(16368) - FHIRRepository;;00:00:00.05
+1554140996;;repo.getAllObservationsByPatId(16368) - FHIRRepository;;00:00:00.55
+1554140997;;repo.getQMap(16368) - FHIRRepository;;00:00:00.50
+1554140997;;updateCachedPatientDataModelById(16368) - FHIRRepository;;00:00:01.90
+1554140997;;repo.getAllQRsByPatID(16417) - FHIRRepository;;00:00:00.05
+1554140999;;repo.getAllObservationsByPatId(16417) - FHIRRepository;;00:00:01.51
+1554141000;;repo.getQMap(16417) - FHIRRepository;;00:00:00.50
+1554141000;;updateCachedPatientDataModelById(16417) - FHIRRepository;;00:00:03.01
+1554141000;;repo.getAllQRsByPatID(16527) - FHIRRepository;;00:00:00.02
+1554141002;;repo.getAllObservationsByPatId(16527) - FHIRRepository;;00:00:01.34
+1554141002;;repo.getQMap(16527) - FHIRRepository;;00:00:00.38
+1554141002;;updateCachedPatientDataModelById(16527) - FHIRRepository;;00:00:02.44
+1554141002;;repo.getAllQRsByPatID(16945) - FHIRRepository;;00:00:00.01
+1554141005;;repo.getAllObservationsByPatId(16945) - FHIRRepository;;00:00:01.82
+1554141005;;repo.getQMap(16945) - FHIRRepository;;00:00:00.39
+1554141005;;updateCachedPatientDataModelById(16945) - FHIRRepository;;00:00:03.01
+1554141006;;repo.getAllQRsByPatID(17115) - FHIRRepository;;00:00:00.09
+1554141008;;repo.getAllObservationsByPatId(17115) - FHIRRepository;;00:00:01.52
+1554141009;;repo.getQMap(17115) - FHIRRepository;;00:00:00.43
+1554141009;;updateCachedPatientDataModelById(17115) - FHIRRepository;;00:00:03.25
+1554141009;;repo.getAllQRsByPatID(17235) - FHIRRepository;;00:00:00.04
+1554141010;;repo.getAllObservationsByPatId(17235) - FHIRRepository;;00:00:00.82
+1554141011;;repo.getQMap(17235) - FHIRRepository;;00:00:00.44
+1554141011;;updateCachedPatientDataModelById(17235) - FHIRRepository;;00:00:02.11
+1554141011;;repo.getAllQRsByPatID(17320) - FHIRRepository;;00:00:00.07
+1554141015;;repo.getAllObservationsByPatId(17320) - FHIRRepository;;00:00:03.78
+1554141016;;repo.getQMap(17320) - FHIRRepository;;00:00:00.41
+1554141016;;updateCachedPatientDataModelById(17320) - FHIRRepository;;00:00:05.80
+1554141017;;repo.getAllQRsByPatID(17794) - FHIRRepository;;00:00:00.04
+1554141018;;repo.getAllObservationsByPatId(17794) - FHIRRepository;;00:00:00.71
+1554141018;;repo.getQMap(17794) - FHIRRepository;;00:00:00.44
+1554141018;;updateCachedPatientDataModelById(17794) - FHIRRepository;;00:00:01.95
+1554141019;;repo.getAllQRsByPatID(20313) - FHIRRepository;;00:00:00.04
+1554141020;;repo.getAllObservationsByPatId(20313) - FHIRRepository;;00:00:00.90
+1554141021;;repo.getQMap(20313) - FHIRRepository;;00:00:00.40
+1554141021;;updateCachedPatientDataModelById(20313) - FHIRRepository;;00:00:02.12
+1554141021;;repo.getAllQRsByPatID(20413) - FHIRRepository;;00:00:00.03
+1554141025;;repo.getAllObservationsByPatId(20413) - FHIRRepository;;00:00:03.47
+1554141026;;repo.getQMap(20413) - FHIRRepository;;00:00:00.37
+1554141026;;updateCachedPatientDataModelById(20413) - FHIRRepository;;00:00:05.11
+1554141026;;repo.getAllQRsByPatID(20663) - FHIRRepository;;00:00:00.05
+1554141028;;repo.getAllObservationsByPatId(20663) - FHIRRepository;;00:00:01.28
+1554141028;;repo.getQMap(20663) - FHIRRepository;;00:00:00.44
+1554141028;;updateCachedPatientDataModelById(20663) - FHIRRepository;;00:00:02.77
+1554141029;;repo.getAllQRsByPatID(20789) - FHIRRepository;;00:00:00.07
+1554141030;;repo.getAllObservationsByPatId(20789) - FHIRRepository;;00:00:00.42
+1554141030;;repo.getQMap(20789) - FHIRRepository;;00:00:00.46
+1554141030;;updateCachedPatientDataModelById(20789) - FHIRRepository;;00:00:01.84
+1554141031;;repo.getAllQRsByPatID(20841) - FHIRRepository;;00:00:00.03
+1554141035;;repo.getAllObservationsByPatId(20841) - FHIRRepository;;00:00:03.71
+1554141036;;repo.getQMap(20841) - FHIRRepository;;00:00:00.38
+1554141036;;updateCachedPatientDataModelById(20841) - FHIRRepository;;00:00:05.34
+1554141036;;repo.getAllQRsByPatID(21130) - FHIRRepository;;00:00:00.04
+1554141038;;repo.getAllObservationsByPatId(21130) - FHIRRepository;;00:00:01.57
+1554141039;;repo.getQMap(21130) - FHIRRepository;;00:00:00.42
+1554141039;;updateCachedPatientDataModelById(21130) - FHIRRepository;;00:00:03.01
+1554141039;;repo.getAllQRsByPatID(21261) - FHIRRepository;;00:00:00.03
+1554141040;;repo.getAllObservationsByPatId(21261) - FHIRRepository;;00:00:00.92
+1554141041;;repo.getQMap(21261) - FHIRRepository;;00:00:00.38
+1554141041;;updateCachedPatientDataModelById(21261) - FHIRRepository;;00:00:02.03
+1554141041;;repo.getAllQRsByPatID(21344) - FHIRRepository;;00:00:00.02
+1554141042;;repo.getAllObservationsByPatId(21344) - FHIRRepository;;00:00:00.66
+1554141042;;repo.getQMap(21344) - FHIRRepository;;00:00:00.38
+1554141042;;updateCachedPatientDataModelById(21344) - FHIRRepository;;00:00:01.54
+1554141043;;repo.getAllQRsByPatID(21394) - FHIRRepository;;00:00:00.04
+1554141044;;repo.getAllObservationsByPatId(21394) - FHIRRepository;;00:00:01.06
+1554141045;;repo.getQMap(21394) - FHIRRepository;;00:00:00.46
+1554141045;;updateCachedPatientDataModelById(21394) - FHIRRepository;;00:00:02.31
+1554141045;;repo.getAllQRsByPatID(21506) - FHIRRepository;;00:00:00.03
+1554141048;;repo.getAllObservationsByPatId(21506) - FHIRRepository;;00:00:03.34
+1554141049;;repo.getQMap(21506) - FHIRRepository;;00:00:00.39
+1554141050;;updateCachedPatientDataModelById(21506) - FHIRRepository;;00:00:04.85
+1554141050;;repo.getAllQRsByPatID(21734) - FHIRRepository;;00:00:00.08
+1554141054;;repo.getAllObservationsByPatId(21734) - FHIRRepository;;00:00:03.69
+1554141055;;repo.getQMap(21734) - FHIRRepository;;00:00:00.46
+1554141055;;updateCachedPatientDataModelById(21734) - FHIRRepository;;00:00:05.85
+1554141056;;repo.getAllQRsByPatID(22005) - FHIRRepository;;00:00:00.08
+1554141059;;repo.getAllObservationsByPatId(22005) - FHIRRepository;;00:00:02.61
+1554141060;;repo.getQMap(22005) - FHIRRepository;;00:00:00.45
+1554141060;;updateCachedPatientDataModelById(22005) - FHIRRepository;;00:00:04.57
+1554141060;;repo.getAllQRsByPatID(22210) - FHIRRepository;;00:00:00.04
+1554141063;;repo.getAllObservationsByPatId(22210) - FHIRRepository;;00:00:02.01
+1554141063;;repo.getQMap(22210) - FHIRRepository;;00:00:00.41
+1554141063;;updateCachedPatientDataModelById(22210) - FHIRRepository;;00:00:03.42
+1554141064;;repo.getAllQRsByPatID(22362) - FHIRRepository;;00:00:00.06
+1554141068;;repo.getAllObservationsByPatId(22362) - FHIRRepository;;00:00:03.94
+1554141069;;repo.getQMap(22362) - FHIRRepository;;00:00:00.41
+1554141069;;updateCachedPatientDataModelById(22362) - FHIRRepository;;00:00:05.82
+1554141070;;repo.getAllQRsByPatID(22691) - FHIRRepository;;00:00:00.06
+1554141072;;repo.getAllObservationsByPatId(22691) - FHIRRepository;;00:00:01.85
+1554141073;;repo.getQMap(22691) - FHIRRepository;;00:00:00.41
+1554141073;;updateCachedPatientDataModelById(22691) - FHIRRepository;;00:00:03.46
+1554141073;;repo.getAllQRsByPatID(22858) - FHIRRepository;;00:00:00.08
+1554141074;;repo.getAllObservationsByPatId(22858) - FHIRRepository;;00:00:00.65
+1554141075;;repo.getQMap(22858) - FHIRRepository;;00:00:00.42
+1554141075;;updateCachedPatientDataModelById(22858) - FHIRRepository;;00:00:02.21
+1554141075;;repo.getAllQRsByPatID(22989) - FHIRRepository;;00:00:00.01
+1554141077;;repo.getAllObservationsByPatId(22989) - FHIRRepository;;00:00:02.18
+1554141078;;repo.getQMap(22989) - FHIRRepository;;00:00:00.37
+1554141078;;updateCachedPatientDataModelById(22989) - FHIRRepository;;00:00:03.35
+1554141079;;repo.getAllQRsByPatID(23225) - FHIRRepository;;00:00:00.08
+1554141083;;repo.getAllObservationsByPatId(23225) - FHIRRepository;;00:00:03.49
+1554141084;;repo.getQMap(23225) - FHIRRepository;;00:00:00.43
+1554141084;;updateCachedPatientDataModelById(23225) - FHIRRepository;;00:00:05.66
+1554141084;;repo.getAllQRsByPatID(23474) - FHIRRepository;;00:00:00.06
+1554141086;;repo.getAllObservationsByPatId(23474) - FHIRRepository;;00:00:01.53
+1554141087;;repo.getQMap(23474) - FHIRRepository;;00:00:00.41
+1554141087;;updateCachedPatientDataModelById(23474) - FHIRRepository;;00:00:03.14
+1554141087;;repo.getAllQRsByPatID(23605) - FHIRRepository;;00:00:00.04
+1554141088;;repo.getAllObservationsByPatId(23605) - FHIRRepository;;00:00:00.72
+1554141089;;repo.getQMap(23605) - FHIRRepository;;00:00:00.50
+1554141089;;updateCachedPatientDataModelById(23605) - FHIRRepository;;00:00:02.03
+1554141089;;repo.getAllQRsByPatID(23686) - FHIRRepository;;00:00:00.05
+1554141090;;repo.getAllObservationsByPatId(23686) - FHIRRepository;;00:00:00.42
+1554141091;;repo.getQMap(23686) - FHIRRepository;;00:00:00.42
+1554141091;;updateCachedPatientDataModelById(23686) - FHIRRepository;;00:00:01.70
+1554141091;;repo.getAllQRsByPatID(23725) - FHIRRepository;;00:00:00.05
+1554141095;;repo.getAllObservationsByPatId(23725) - FHIRRepository;;00:00:03.34
+1554141096;;repo.getQMap(23725) - FHIRRepository;;00:00:00.41
+1554141096;;updateCachedPatientDataModelById(23725) - FHIRRepository;;00:00:05.11
+1554141096;;repo.getAllQRsByPatID(23952) - FHIRRepository;;00:00:00.03
+1554141098;;repo.getAllObservationsByPatId(23952) - FHIRRepository;;00:00:01.58
+1554141099;;repo.getQMap(23952) - FHIRRepository;;00:00:00.40
+1554141099;;updateCachedPatientDataModelById(23952) - FHIRRepository;;00:00:02.88
+1554141099;;repo.getAllQRsByPatID(24090) - FHIRRepository;;00:00:00.00
+1554141103;;repo.getAllObservationsByPatId(24090) - FHIRRepository;;00:00:03.56
+1554141104;;repo.getQMap(24090) - FHIRRepository;;00:00:00.35
+1554141104;;updateCachedPatientDataModelById(24090) - FHIRRepository;;00:00:04.85
+1554141104;;repo.getAllQRsByPatID(24313) - FHIRRepository;;00:00:00.03
+1554141107;;repo.getAllObservationsByPatId(24313) - FHIRRepository;;00:00:02.65
+1554141108;;repo.getQMap(24313) - FHIRRepository;;00:00:00.38
+1554141108;;updateCachedPatientDataModelById(24313) - FHIRRepository;;00:00:04.04
+1554141108;;repo.getAllQRsByPatID(17851) - FHIRRepository;;00:00:00.06
+1554141146;;repo.getAllObservationsByPatId(17851) - FHIRRepository;;00:00:37.07
+1554141152;;repo.getQMap(17851) - FHIRRepository;;00:00:00.40
+1554141152;;updateCachedPatientDataModelById(17851) - FHIRRepository;;00:00:44.40
+1554141153;;repo.getAllQRsByPatID(24526) - FHIRRepository;;00:00:00.09
+1554141155;;repo.getAllObservationsByPatId(24526) - FHIRRepository;;00:00:01.74
+1554141156;;repo.getQMap(24526) - FHIRRepository;;00:00:00.44
+1554141156;;updateCachedPatientDataModelById(24526) - FHIRRepository;;00:00:03.54
+1554141156;;repo.getAllQRsByPatID(24669) - FHIRRepository;;00:00:00.04
+1554141158;;repo.getAllObservationsByPatId(24669) - FHIRRepository;;00:00:01.61
+1554141159;;repo.getQMap(24669) - FHIRRepository;;00:00:00.41
+1554141159;;updateCachedPatientDataModelById(24669) - FHIRRepository;;00:00:02.93
+1554141159;;repo.getAllQRsByPatID(24922) - FHIRRepository;;00:00:00.00
+1554141160;;repo.getAllObservationsByPatId(24922) - FHIRRepository;;00:00:01.48
+1554141161;;repo.getQMap(24922) - FHIRRepository;;00:00:00.36
+1554141161;;updateCachedPatientDataModelById(24922) - FHIRRepository;;00:00:02.43
+1554141161;;repo.getAllQRsByPatID(25051) - FHIRRepository;;00:00:00.05
+1554141163;;repo.getAllObservationsByPatId(25051) - FHIRRepository;;00:00:00.90
+1554141163;;repo.getQMap(25051) - FHIRRepository;;00:00:00.39
+1554141163;;updateCachedPatientDataModelById(25051) - FHIRRepository;;00:00:02.23
+1554141164;;repo.getAllQRsByPatID(25123) - FHIRRepository;;00:00:00.03
+1554141168;;repo.getAllObservationsByPatId(25123) - FHIRRepository;;00:00:03.75
+1554141169;;repo.getQMap(25123) - FHIRRepository;;00:00:00.44
+1554141169;;updateCachedPatientDataModelById(25123) - FHIRRepository;;00:00:05.47
+1554141169;;repo.getAllQRsByPatID(25371) - FHIRRepository;;00:00:00.06
+1554141172;;repo.getAllObservationsByPatId(25371) - FHIRRepository;;00:00:02.18
+1554141173;;repo.getQMap(25371) - FHIRRepository;;00:00:00.62
+1554141173;;updateCachedPatientDataModelById(25371) - FHIRRepository;;00:00:04.15
+1554141173;;repo.getAllQRsByPatID(25544) - FHIRRepository;;00:00:00.07
+1554141215;;repo.getAllObservationsByPatId(25544) - FHIRRepository;;00:00:40.86
+1554141222;;repo.getQMap(25544) - FHIRRepository;;00:00:00.55
+1554141222;;updateCachedPatientDataModelById(25544) - FHIRRepository;;00:00:48.56
+1554141222;;repo.getAllQRsByPatID(27285) - FHIRRepository;;00:00:00.04
+1554141225;;repo.getAllObservationsByPatId(27285) - FHIRRepository;;00:00:02.32
+1554141226;;repo.getQMap(27285) - FHIRRepository;;00:00:00.59
+1554141226;;updateCachedPatientDataModelById(27285) - FHIRRepository;;00:00:03.98
+1554141226;;repo.getAllQRsByPatID(27733) - FHIRRepository;;00:00:00.08
+1554141229;;repo.getAllObservationsByPatId(27733) - FHIRRepository;;00:00:02.08
+1554141229;;repo.getQMap(27733) - FHIRRepository;;00:00:00.47
+1554141229;;updateCachedPatientDataModelById(27733) - FHIRRepository;;00:00:03.90
+1554141230;;repo.getAllQRsByPatID(27941) - FHIRRepository;;00:00:00.07
+1554141232;;repo.getAllObservationsByPatId(27941) - FHIRRepository;;00:00:01.98
+1554141233;;repo.getQMap(27941) - FHIRRepository;;00:00:00.48
+1554141233;;updateCachedPatientDataModelById(27941) - FHIRRepository;;00:00:03.62
+1554141233;;repo.getAllQRsByPatID(28165) - FHIRRepository;;00:00:00.11
+1554141238;;repo.getAllObservationsByPatId(28165) - FHIRRepository;;00:00:04.05
+1554141239;;repo.getQMap(28165) - FHIRRepository;;00:00:00.48
+1554141239;;updateCachedPatientDataModelById(28165) - FHIRRepository;;00:00:06.11
+1554141240;;repo.getAllQRsByPatID(28409) - FHIRRepository;;00:00:00.05
+1554141241;;repo.getAllObservationsByPatId(28409) - FHIRRepository;;00:00:01.49
+1554141242;;repo.getQMap(28409) - FHIRRepository;;00:00:00.47
+1554141242;;updateCachedPatientDataModelById(28409) - FHIRRepository;;00:00:02.85
+1554141242;;repo.getAllQRsByPatID(28596) - FHIRRepository;;00:00:00.04
+1554141245;;repo.getAllObservationsByPatId(28596) - FHIRRepository;;00:00:01.81
+1554141245;;repo.getQMap(28596) - FHIRRepository;;00:00:00.45
+1554141245;;updateCachedPatientDataModelById(28596) - FHIRRepository;;00:00:03.28
+1554141246;;repo.getAllQRsByPatID(28739) - FHIRRepository;;00:00:00.04
+1554141248;;repo.getAllObservationsByPatId(28739) - FHIRRepository;;00:00:02.08
+1554141249;;repo.getQMap(28739) - FHIRRepository;;00:00:00.46
+1554141249;;updateCachedPatientDataModelById(28739) - FHIRRepository;;00:00:03.59
+1554141249;;repo.getAllQRsByPatID(28908) - FHIRRepository;;00:00:00.07
+1554141252;;repo.getAllObservationsByPatId(28908) - FHIRRepository;;00:00:02.57
+1554141253;;repo.getQMap(28908) - FHIRRepository;;00:00:00.51
+1554141253;;updateCachedPatientDataModelById(28908) - FHIRRepository;;00:00:04.42
+1554141254;;repo.getAllQRsByPatID(29208) - FHIRRepository;;00:00:00.01
+1554141256;;repo.getAllObservationsByPatId(29208) - FHIRRepository;;00:00:02.25
+1554141257;;repo.getQMap(29208) - FHIRRepository;;00:00:00.43
+1554141257;;updateCachedPatientDataModelById(29208) - FHIRRepository;;00:00:03.47
+1554141257;;repo.getAllQRsByPatID(29443) - FHIRRepository;;00:00:00.09
+1554141260;;repo.getAllObservationsByPatId(29443) - FHIRRepository;;00:00:02.18
+1554141261;;repo.getQMap(29443) - FHIRRepository;;00:00:00.44
+1554141261;;updateCachedPatientDataModelById(29443) - FHIRRepository;;00:00:03.92
+1554141261;;repo.getAllQRsByPatID(29627) - FHIRRepository;;00:00:00.02
+1554141262;;repo.getAllObservationsByPatId(29627) - FHIRRepository;;00:00:00.75
+1554141263;;repo.getQMap(29627) - FHIRRepository;;00:00:00.52
+1554141263;;updateCachedPatientDataModelById(29627) - FHIRRepository;;00:00:01.94
+1554141263;;repo.getAllQRsByPatID(29854) - FHIRRepository;;00:00:00.08
+1554141268;;repo.getAllObservationsByPatId(29854) - FHIRRepository;;00:00:04.33
+1554141269;;repo.getQMap(29854) - FHIRRepository;;00:00:00.49
+1554141269;;updateCachedPatientDataModelById(29854) - FHIRRepository;;00:00:06.59
+1554141270;;repo.getAllQRsByPatID(30119) - FHIRRepository;;00:00:00.04
+1554141272;;repo.getAllObservationsByPatId(30119) - FHIRRepository;;00:00:02.15
+1554141273;;repo.getQMap(30119) - FHIRRepository;;00:00:00.44
+1554141273;;updateCachedPatientDataModelById(30119) - FHIRRepository;;00:00:03.64
+1554141273;;repo.getAllQRsByPatID(30370) - FHIRRepository;;00:00:00.08
+1554141275;;repo.getAllObservationsByPatId(30370) - FHIRRepository;;00:00:00.97
+1554141276;;repo.getQMap(30370) - FHIRRepository;;00:00:00.51
+1554141276;;updateCachedPatientDataModelById(30370) - FHIRRepository;;00:00:02.67
+1554141276;;repo.getAllQRsByPatID(30502) - FHIRRepository;;00:00:00.07
+1554141276;;repo.getAllObservationsByPatId(30502) - FHIRRepository;;00:00:00.01
+1554141277;;repo.getQMap(30502) - FHIRRepository;;00:00:00.47
+1554141277;;updateCachedPatientDataModelById(30502) - FHIRRepository;;00:00:01.22
+1554141277;;updateGlobalState(true);;00:14:52.92
+1554143566;;updateTherapistState runtime;;00:00:00.37
+1554143692;;updateTherapistState runtime;;00:00:00.36
+1554144187;;updateTherapistState runtime;;00:00:00.33
+1554144477;;updateTherapistState runtime;;00:00:00.31
+1554144694;;updateTherapistState runtime;;00:00:00.36
+1554144951;;updateTherapistState runtime;;00:00:00.36
+1554145093;;updateTherapistState runtime;;00:00:00.32
+1554146348;;updateTherapistState runtime;;00:00:00.00
+1554146367;;updateTherapistState runtime;;00:00:00.00

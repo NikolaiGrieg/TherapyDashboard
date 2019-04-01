@@ -78,6 +78,10 @@ function createSpiderChart(resources, name){
 	container.hidden = false
 	container.style.display = "block";
 
+	var background = document.getElementById('modalBackground');
+	background.hidden = false;
+	background.style.display = "block";
+
 	spiderchart = new SpiderChart("#spiderChart", this, resources, "",
 	 height=400, width=400, selectedDiv = '#line');
 
@@ -94,7 +98,7 @@ function createSpiderChart(resources, name){
 }
 function hideSpiderChart(){
 	document.getElementById('modalContainer').style.display = "none";
-
+	document.getElementById('modalBackground').style.display = "none";
 }
 
 function parseJsonFromStringArray(strings){

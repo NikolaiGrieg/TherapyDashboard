@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace TherapyDashboard.Services.AggregationFunctions
 {
+    public enum SummaryRepresentation{ improving, steady, declining, error };
+
     public interface IAggregationFunction
     {
-        string aggregate(List<QuestionnaireResponse> QRs);
+        SummaryRepresentation aggregate(List<QuestionnaireResponse> QRs);
     }
 }

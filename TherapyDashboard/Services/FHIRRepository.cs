@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using Hl7.Fhir.Model;
@@ -22,6 +23,7 @@ namespace TherapyDashboard.Services
         Dictionary<long, List<QuestionnaireResponse>> patientData; //TODO consider other ways to handle this
         FHIRObservationHandler obsHandler;
         ChartSelectionRepository chartSelectionRepo;
+        Logger log;
 
         FHIRQRHandler QRHandler;
 
@@ -33,6 +35,7 @@ namespace TherapyDashboard.Services
             obsHandler = new FHIRObservationHandler(client, cache, calc);
             QRHandler = new FHIRQRHandler(client, cache);
             chartSelectionRepo = new ChartSelectionRepository();
+            log = new Logger();
         }
 
         public List<Observation> getCachedObservationsForPatient(long patId)
@@ -90,7 +93,12 @@ namespace TherapyDashboard.Services
             }
 
             //add QRs
-            List<QuestionnaireResponse> QRs = repo.getAllQRsByPatId(id);
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            List<QuestionnaireResponse> QRs = repo.getAllQRsByPatId(id); //< 1 sec
+            stopwatch.Stop();
+            log.logTimeSpan("repo.getAllQRsByPatID(" + id.ToString() +") - FHIRRepository", stopwatch.Elapsed);
+            
             if (QRs != null)
             {
                 List<string> QRJsonList = new List<string>();
@@ -103,7 +111,11 @@ namespace TherapyDashboard.Services
             }
 
             //observations
-            List<Observation> observations = repo.getAllObservationsByPatId(id);
+            stopwatch.Restart();
+            List<Observation> observations = repo.getAllObservationsByPatId(id); // ~2 sec
+            stopwatch.Stop();
+            log.logTimeSpan("repo.getAllObservationsByPatId(" + id.ToString() + ") - FHIRRepository", stopwatch.Elapsed);
+            
             if (observations != null)
             {
                 List<string> observationList = new List<string>();
@@ -116,11 +128,16 @@ namespace TherapyDashboard.Services
             }
 
             //questionnaireMap - <name, id>
-            Dictionary<string, string> qMap = repo.getQMap(id);
+            stopwatch.Restart();
+            Dictionary<string, string> qMap = repo.getQMap(id); //~2 sec
+            stopwatch.Stop();
+            log.logTimeSpan("repo.getQMap(" + id.ToString() + ") - FHIRRepository", stopwatch.Elapsed);
+            
             model.questionnaireMap = qMap;
-
             model.patientID = id;
-            cache.cacheFullPatientData(model); //update charts independently
+
+            cache.cacheFullPatientData(model); //update charts independently //runs in < 0.01 sec
+            
         }
 
         /// <summary>
@@ -147,16 +164,20 @@ namespace TherapyDashboard.Services
         /// Operates independent of logged in therapist.
         /// Should preferably be called by a task scheduler on the server as this is a long running process.
         /// </summary>
-        public void updateGlobalState()
+        public void updateGlobalState(bool patientViews)
         {
             List<Patient> patients = getAllPatients();
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            updateResources(patients); //3m 09 sec
+            stopwatch.Stop();
+            log.logTimeSpan("updateResources - FHIRRepository runtime", stopwatch.Elapsed);
 
-            updateResources(patients); 
 
             //declare calculation functions
             IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "42220");
             IFlagFunction flagFunc = new MaxDeltaFlagFunc();
-            IWarningFunction warningFunc = new DeltaThresholdWarningFunc(2);
+            IWarningFunction warningFunc = new AbsSuicidalMADRSWarningFunc(4, "42220");
 
             Dictionary<long, string> summaries = getSummaries(aggFunc);
             Dictionary<long, List<string>> flags = getFlags(flagFunc); //todo handle multiple flags
@@ -201,13 +222,21 @@ namespace TherapyDashboard.Services
 
             cache.cacheMasterViewModel(model);
 
-            
+
             //Detail views
-            foreach (var pat in patients)
+            if (patientViews)
             {
-                long patID = Int32.Parse(pat.Id);
-                updateCachedPatientDataModelById(patID);
+                foreach (var pat in patients)
+                {
+                    long patID = Int32.Parse(pat.Id);
+                    stopwatch.Restart();
+                    updateCachedPatientDataModelById(patID);
+                    stopwatch.Stop();
+                    log.logTimeSpan("updateCachedPatientDataModelById(" + patID.ToString() + ") - FHIRRepository", stopwatch.Elapsed);
+                    
+                }
             }
+            
         }
 
         public List<Observation> getAllObservationsByPatId(long id)
@@ -270,7 +299,7 @@ namespace TherapyDashboard.Services
         public Dictionary<string, string> getQMap(long patID)
         {
             //get QRs
-            var QRs = QRHandler.getQRByPatientId(patID); //TODO see if we can not call this twice
+            var QRs = QRHandler.getCachedQRsForPatient(patID); 
 
             //get unique QIDs
             List<string> uniqueQIDs = new List<string>();

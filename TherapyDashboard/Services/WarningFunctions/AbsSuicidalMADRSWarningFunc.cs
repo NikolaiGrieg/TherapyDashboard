@@ -6,7 +6,7 @@ using System.Web;
 
 namespace TherapyDashboard.Services.WarningFunctions
 {
-    public class AbsSuicidalMADRSWarningFunc
+    public class AbsSuicidalMADRSWarningFunc :IWarningFunction
     {
         private int threshold;
         private string qid;
@@ -48,7 +48,7 @@ namespace TherapyDashboard.Services.WarningFunctions
                     float value = (float)Int32.Parse(item.Answer[0].Value.ToString());
                     if (value >= threshold)
                     {
-                        triggeredCategories.Add("Suicidaltanker");
+                        triggeredCategories.Add("Suicidaltanker " + value.ToString());
                         return triggeredCategories;
                     }
                 }

@@ -17,7 +17,7 @@ namespace TherapyDashboard.Services.AggregationFunctions
             this.qid = "Questionnaire/" + _questionnaireID; //fhir canonical uri
         }
 
-        public string aggregate(List<QuestionnaireResponse> QRs)
+        public SummaryRepresentation aggregate(List<QuestionnaireResponse> QRs)
         {
             //find QRs matching "qid" string
             List<QuestionnaireResponse> matchingQRs = new List<QuestionnaireResponse>();
@@ -66,17 +66,17 @@ namespace TherapyDashboard.Services.AggregationFunctions
             if (delta < -threshold)
             {
                 //sum going up => condition declining
-                return "declining";
+                return SummaryRepresentation.declining;
             }
             else if ((delta >= -threshold) && (delta <= threshold))
             {
-                return "steady";
+                return SummaryRepresentation.steady;
             }
             else if (delta > threshold)
             {
-                return "improving";
+                return SummaryRepresentation.improving;
             }
-            return "error"; // error checking
+            return SummaryRepresentation.error;
         }
     }
 }

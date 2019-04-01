@@ -256,6 +256,7 @@
     <Compile Include="Services\FlagFunctions\IFlagFunction.cs" />
     <Compile Include="Services\FlagFunctions\MaxDeltaFlagFunc.cs" />
     <Compile Include="Services\LastCheckedHandler.cs" />
+    <Compile Include="Services\Logger.cs" />
     <Compile Include="Services\PatientAnalytics.cs" />
     <Compile Include="Services\WarningFunctions\AbsSuicidalMADRSWarningFunc.cs" />
     <Compile Include="Services\WarningFunctions\DeltaThresholdWarningFunc.cs" />
@@ -347,6 +348,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Data\" />
     <Folder Include="Views\SinglePatient\" />
   </ItemGroup>
   <ItemGroup>

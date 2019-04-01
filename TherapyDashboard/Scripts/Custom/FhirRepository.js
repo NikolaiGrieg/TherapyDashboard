@@ -89,6 +89,7 @@ function initPersistedCharts(chartNames){
     Object.entries(chartNames).forEach(kvp=> {
         let name = kvp[0];
         let type = kvp[1];
+
         if (type === 'observation'){
             lineChart(name, false);
         }

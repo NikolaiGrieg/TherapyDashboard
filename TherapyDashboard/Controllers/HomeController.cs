@@ -21,13 +21,26 @@ namespace TherapyDashboard.Controllers
         //[Authorize]
         public ActionResult Index()
         {
+            Logger log = new Logger();
+            Stopwatch stopwatch = new Stopwatch();
+           
             FHIRRepository repo = new FHIRRepository();
+            stopwatch.Start();
             repo.updateTherapistState(0); //using 0 as default therapistID
+            stopwatch.Stop();
+            TimeSpan ts = stopwatch.Elapsed;
+            log.logTimeSpan("updateTherapistState runtime", ts);
 
             var model = repo.loadCache(); //TODO also do this for detailView
             if (model == null)
             {
-                repo.updateGlobalState(); //expensive operation
+                stopwatch.Reset();
+                stopwatch.Start();
+                repo.updateGlobalState(false); //expensive operation
+                stopwatch.Stop();
+                ts = stopwatch.Elapsed;
+                log.logTimeSpan("updateGlobalState(false) runtime", ts);
+
                 repo.updateTherapistState(0); //workaround for this function requiring the global state to update first if model is null
 
                 model = repo.loadCache();
@@ -38,13 +51,16 @@ namespace TherapyDashboard.Controllers
         public ActionResult updateCache()
         {
             FHIRRepository repo = new FHIRRepository();
+            Logger log = new Logger();
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
 
-            repo.updateGlobalState();
+            repo.updateGlobalState(true);
 
             stopwatch.Stop();
             var ts = stopwatch.Elapsed;
+            log.logTimeSpan("updateGlobalState(true)", ts);
+
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
             ts.Hours, ts.Minutes, ts.Seconds,
             ts.Milliseconds / 10);
