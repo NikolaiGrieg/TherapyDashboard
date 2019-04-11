@@ -169,7 +169,7 @@ namespace TherapyDashboard.Services
             List<Patient> patients = getAllPatients();
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            updateResources(patients); //3m 09 sec
+            updateAllQRs(patients); //3m 09 sec
             stopwatch.Stop();
             log.logTimeSpan("updateResources - FHIRRepository runtime", stopwatch.Elapsed);
 
@@ -252,6 +252,9 @@ namespace TherapyDashboard.Services
 
         public List<Patient> getAllPatients()
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            
             List<Patient> patients = new List<Patient>();
 
             Bundle results = client.Search<Patient>(); //todo error handling 
@@ -264,6 +267,10 @@ namespace TherapyDashboard.Services
                 }
                 results = client.Continue(results);
             }
+
+            stopwatch.Stop();
+            var ts = stopwatch.Elapsed;
+            log.logTimeSpan("getAllPatients()", ts);
 
             return patients;
         }
@@ -348,9 +355,13 @@ namespace TherapyDashboard.Services
             return null;
         }
 
-        //TODO update observation resources
-        public void updateResources(List<Patient> patients)
+        public void updateAllQRs(List<Patient> patients)
         {
+
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+
             //get all patient IDs
             List<long> oldIds = new List<long>();
             foreach (var pat in patients)
@@ -371,6 +382,10 @@ namespace TherapyDashboard.Services
 
             //insert new elements in cache
             cache.insertNewQRs(newQRs);
+
+            stopwatch.Stop();
+            var ts = stopwatch.Elapsed;
+            log.logTimeSpan("updateAllQRs()", ts);
         }
 
         /// <summary>

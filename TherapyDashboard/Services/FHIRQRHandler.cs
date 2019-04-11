@@ -2,6 +2,7 @@
 using Hl7.Fhir.Rest;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using TherapyDashboard.DataBase;
@@ -13,11 +14,13 @@ namespace TherapyDashboard.Services
     {
         FhirClient client;
         MongoRepository cache;
+        Logger log;
 
         public FHIRQRHandler(FhirClient client, MongoRepository cache)
         {
             this.client = client;
             this.cache = cache;
+            log = new Logger();
         }
 
         /*
@@ -68,10 +71,6 @@ namespace TherapyDashboard.Services
                 return null;
             }
 
-            //get newest QR, currently assuming order holds, TODO test this
-            //QuestionnaireResponse lastQR = oldQRs[oldQRs.Count - 1];
-            //DateTime lastDate = DateTime.Parse(lastQR.Authored);
-
             List<QuestionnaireResponse> newQRs = getQRByPatientId(patId);
 
             return newQRs;
@@ -80,6 +79,10 @@ namespace TherapyDashboard.Services
 
         public List<QuestionnaireResponse> getQRByPatientId(long id)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+
             List<QuestionnaireResponse> QRs = new List<QuestionnaireResponse>();
 
             Bundle results = client.Search<QuestionnaireResponse>(new string[] { "subject=Patient/" + id });
@@ -94,6 +97,10 @@ namespace TherapyDashboard.Services
 
                 results = client.Continue(results);
             }
+            stopwatch.Stop();
+            var ts = stopwatch.Elapsed;
+            log.logTimeSpan("getQRByPatientId()", ts);
+
             return QRs;
         }
 
