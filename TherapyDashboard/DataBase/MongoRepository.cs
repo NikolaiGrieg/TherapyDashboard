@@ -85,20 +85,51 @@ namespace TherapyDashboard.DataBase
             return md;
         }
 
+        //TODO consider serializing before persisting, could take less space?
         private void insertSinglePatientQRs(long id, List<QuestionnaireResponse> QRs)
         {
             registerCMs();
 
-            //TODO check if id exists before inserting
-            PatientData data = new PatientData(id, QRs, null);
-            collection.InsertOne(data);
+            var filter = Builders<PatientData>.Filter.Eq(x => x.fhirID, id);
+            PatientData pd;
+
+            try
+            {
+                pd = collection.Find(filter).FirstOrDefault();
+                if (pd.QRs == null)
+                {
+                    pd.QRs = QRs;
+                }
+                else
+                {
+                    List<QuestionnaireResponse> oldQRs = pd.QRs;
+                    List<QuestionnaireResponse> newQRs = new List<QuestionnaireResponse>();
+                    foreach (var QR in QRs)
+                    {
+                        if (!oldQRs.Any(x => x.Id == QR.Id))
+                        {
+                            newQRs.Add(QR);
+                        }
+                    }
+                    pd.QRs = oldQRs.Concat(newQRs).ToList();
+                }
+
+                collection.ReplaceOne(filter, pd);
+            }
+            catch (Exception e)
+            {
+                //no patient with that Id
+                pd = new PatientData(id, QRs, null);
+                collection.InsertOne(pd);
+            }
+
         }
 
         private void insertSinglePatientObservations(long id, List<Observation> observations)
         {
             registerCMs();
 
-            //TODO check if id exists before inserting
+
             var filter = Builders<PatientData>.Filter.Eq(x => x.fhirID, id);
             PatientData pd;
             //PatientData toInsert = new PatientData(id, null, observations);
