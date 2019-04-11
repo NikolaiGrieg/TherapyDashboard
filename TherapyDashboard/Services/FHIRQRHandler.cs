@@ -99,7 +99,7 @@ namespace TherapyDashboard.Services
             }
             stopwatch.Stop();
             var ts = stopwatch.Elapsed;
-            log.logTimeSpan("getQRByPatientId()", ts);
+            log.logTimeSpan("getQRByPatientId("+ id.ToString() + ")", ts);
 
             return QRs;
         }

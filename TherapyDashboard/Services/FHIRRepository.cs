@@ -319,6 +319,10 @@ namespace TherapyDashboard.Services
                 }
             }
 
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            
+
             //get Qs for each ID
             List<Questionnaire> questionnaires = new List<Questionnaire>();
             foreach(var qid in uniqueQIDs)
@@ -330,8 +334,10 @@ namespace TherapyDashboard.Services
                     Questionnaire questionnaire  = (Questionnaire)entry.Resource;
                     questionnaires.Add(questionnaire);
                 }
-                
             }
+
+            stopwatch.Stop();
+            log.logTimeSpan("get_questionnaires_for_patient(" + patID.ToString() + ")", stopwatch.Elapsed);
 
             //assemble map
             Dictionary<string, string> qMap = new Dictionary<string, string>();
