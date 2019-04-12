@@ -14,7 +14,7 @@ namespace TherapyDashboard.Services
             this.path = HttpContext.Current.Server.MapPath("~/Data/Log.txt");
         }
 
-        public void logString(string description, string content)
+        public void logString(string description, string content, string count)
         {
 
             Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
@@ -24,11 +24,11 @@ namespace TherapyDashboard.Services
             {
                 try
                 {
-                    writer.WriteLine(datestr + ";;" + description + ";;" + content);
+                    writer.WriteLine(datestr + ";;" + description + ";;" + content + ";;" + count);
                 }
                 catch (Exception e)
                 {
-                    writer.WriteLine(datestr + ";;" + "error" + ";;" + e);
+                    writer.WriteLine(datestr + ";;" + "error" + ";;" + e + ";;" );
                 }
                 
             }
@@ -39,7 +39,15 @@ namespace TherapyDashboard.Services
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
             ts.Hours, ts.Minutes, ts.Seconds,
             ts.Milliseconds / 10);
-            logString(description, elapsedTime);
+            logString(description, elapsedTime, "N/A");
+        }
+
+        public void logTimeSpan(string description, TimeSpan ts, int numResources)
+        {
+            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+            ts.Hours, ts.Minutes, ts.Seconds,
+            ts.Milliseconds / 10);
+            logString(description, elapsedTime, numResources.ToString());
         }
     }
 }

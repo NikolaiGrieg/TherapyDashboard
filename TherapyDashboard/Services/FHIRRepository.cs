@@ -97,7 +97,7 @@ namespace TherapyDashboard.Services
             stopwatch.Start();
             List<QuestionnaireResponse> QRs = repo.getAllQRsByPatId(id); //< 1 sec
             stopwatch.Stop();
-            log.logTimeSpan("repo.getAllQRsByPatID(" + id.ToString() +") - FHIRRepository", stopwatch.Elapsed);
+            log.logTimeSpan("getAllQRsByPatID(" + id.ToString() +")_from_cache", stopwatch.Elapsed, QRs.Count);
             
             if (QRs != null)
             {
@@ -114,7 +114,7 @@ namespace TherapyDashboard.Services
             stopwatch.Restart();
             List<Observation> observations = repo.getAllObservationsByPatId(id); // ~2 sec
             stopwatch.Stop();
-            log.logTimeSpan("repo.getAllObservationsByPatId(" + id.ToString() + ") - FHIRRepository", stopwatch.Elapsed);
+            log.logTimeSpan("getAllObservationsByPatId(" + id.ToString() + ")_from_server", stopwatch.Elapsed, observations.Count);
             
             if (observations != null)
             {
@@ -131,7 +131,7 @@ namespace TherapyDashboard.Services
             stopwatch.Restart();
             Dictionary<string, string> qMap = repo.getQMap(id); //~2 sec
             stopwatch.Stop();
-            log.logTimeSpan("repo.getQMap(" + id.ToString() + ") - FHIRRepository", stopwatch.Elapsed);
+            log.logTimeSpan("getQMap(" + id.ToString() + ")", stopwatch.Elapsed);
             
             model.questionnaireMap = qMap;
             model.patientID = id;
@@ -167,11 +167,11 @@ namespace TherapyDashboard.Services
         public void updateGlobalState(bool patientViews)
         {
             List<Patient> patients = getAllPatients();
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
+            Stopwatch stopwatchUpdate = new Stopwatch();
+            stopwatchUpdate.Start();
             updateAllQRs(patients); //3m 09 sec
-            stopwatch.Stop();
-            log.logTimeSpan("updateResources - FHIRRepository runtime", stopwatch.Elapsed);
+            stopwatchUpdate.Stop();
+            log.logTimeSpan("updateAllQRs()", stopwatchUpdate.Elapsed);
 
 
             //declare calculation functions
@@ -179,10 +179,17 @@ namespace TherapyDashboard.Services
             IFlagFunction flagFunc = new MaxDeltaFlagFunc();
             IWarningFunction warningFunc = new AbsSuicidalMADRSWarningFunc(4, "42220");
 
+            Stopwatch stopwatchCalc = new Stopwatch();
+            stopwatchCalc.Start();
+
             Dictionary<long, string> summaries = getSummaries(aggFunc);
             Dictionary<long, List<string>> flags = getFlags(flagFunc); //todo handle multiple flags
             Dictionary<long, List<string>> warnings = getWarnings(warningFunc);
             Dictionary<long, DateTime> earliestDates = getEarliestDates();
+
+
+            stopwatchCalc.Stop();
+            log.logTimeSpan("calculate_generic_functions", stopwatchCalc.Elapsed);
 
             //convert dictionaries to strings, and add to model, TODO extract this to method
             MasterViewModel model = new MasterViewModel();
@@ -229,10 +236,11 @@ namespace TherapyDashboard.Services
                 foreach (var pat in patients)
                 {
                     long patID = Int32.Parse(pat.Id);
-                    stopwatch.Restart();
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
                     updateCachedPatientDataModelById(patID);
                     stopwatch.Stop();
-                    log.logTimeSpan("updateCachedPatientDataModelById(" + patID.ToString() + ") - FHIRRepository", stopwatch.Elapsed);
+                    log.logTimeSpan("updateCachedPatientDataModelById(" + patID.ToString() + ")", stopwatch.Elapsed);
                     
                 }
             }
@@ -270,7 +278,7 @@ namespace TherapyDashboard.Services
 
             stopwatch.Stop();
             var ts = stopwatch.Elapsed;
-            log.logTimeSpan("getAllPatients()", ts);
+            log.logTimeSpan("getAllPatients()_from_server", ts, patients.Count);
 
             return patients;
         }
@@ -337,7 +345,7 @@ namespace TherapyDashboard.Services
             }
 
             stopwatch.Stop();
-            log.logTimeSpan("get_questionnaires_for_patient(" + patID.ToString() + ")", stopwatch.Elapsed);
+            log.logTimeSpan("get_questionnaires_for_patient(" + patID.ToString() + ")_from_server", stopwatch.Elapsed, questionnaires.Count);
 
             //assemble map
             Dictionary<string, string> qMap = new Dictionary<string, string>();
@@ -363,11 +371,6 @@ namespace TherapyDashboard.Services
 
         public void updateAllQRs(List<Patient> patients)
         {
-
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-
-
             //get all patient IDs
             List<long> oldIds = new List<long>();
             foreach (var pat in patients)
@@ -383,15 +386,19 @@ namespace TherapyDashboard.Services
             {
                 newIds.Add(id);
             }
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
 
-            Dictionary<long, List<QuestionnaireResponse>> newQRs = updateAllQRs(patients, newIds);
+            Dictionary<long, List<QuestionnaireResponse>> newQRs = assembleQRDict(patients, newIds);
+
+            stopwatch.Stop();
+            var ts = stopwatch.Elapsed;
+            log.logTimeSpan("assembleQRDict()_all_patients", ts);
 
             //insert new elements in cache
             cache.insertNewQRs(newQRs);
 
-            stopwatch.Stop();
-            var ts = stopwatch.Elapsed;
-            log.logTimeSpan("updateAllQRs()", ts);
+            
         }
 
         /// <summary>
@@ -401,7 +408,7 @@ namespace TherapyDashboard.Services
         /// <param name="patients">List of FHIR Patient objects</param>
         /// <param name="newIds">List of IDs of patients with no QRs cached</param>
         /// <returns>Dict mapping patientID to their list of QuestionnaireResponses</returns>
-        private Dictionary<long, List<QuestionnaireResponse>> updateAllQRs(List<Patient> patients, List<long> newIds)
+        private Dictionary<long, List<QuestionnaireResponse>> assembleQRDict(List<Patient> patients, List<long> newIds)
         {
             //get all QRs for new patients
             List<Patient> newPats = new List<Patient>();
