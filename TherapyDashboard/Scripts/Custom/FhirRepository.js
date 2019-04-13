@@ -29,7 +29,9 @@ function initDetailView(){
         //console.log(name)
         //if name not already key
         if (Object.keys(groupedQRList) === undefined || !Object.keys(groupedQRList).includes(name)){
-            groupedQRList[name] = [QR]
+            if (name){
+                groupedQRList[name] = [QR]
+            }
         }
         else{
             let bucket = groupedQRList[name];

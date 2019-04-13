@@ -281,6 +281,10 @@ function buildTable(patNames, summaries, flags, patIDs, lastChecked, earliestQRD
         if(Object.keys(lastChecked).includes(patIDs[i])){
             lastCheckedCurrent = lastChecked[patIDs[i]];
         }
+        let sumStr = "";
+        if (["improving", "steady", "declining"].indexOf(summaries[i]) >=0){
+            sumStr = summaries[i];
+        }
 
         var currentHTML = `
             <tr class="table-active">
@@ -296,7 +300,7 @@ function buildTable(patNames, summaries, flags, patIDs, lastChecked, earliestQRD
                     <span class="normalText">${flags[i]}</span>
                 </td>
                 <td scope="row">
-                    <span class="normalText">${summaries[i]}</span>
+                    <span class="normalText">${sumStr}</span>
                 </td>
                 <td scope="row">
                     <span class="normalText">${lastCheckedCurrent}</span>

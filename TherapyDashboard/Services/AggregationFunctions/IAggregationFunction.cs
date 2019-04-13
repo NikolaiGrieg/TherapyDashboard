@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TherapyDashboard.Services.AggregationFunctions
 {
-    public enum SummaryRepresentation{ improving, steady, declining, error };
+    public enum SummaryRepresentation{ improving, steady, declining, blank, error };
 
     public interface IAggregationFunction
     {

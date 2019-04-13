@@ -175,9 +175,9 @@ namespace TherapyDashboard.Services
 
 
             //declare calculation functions
-            IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "42220");
-            IFlagFunction flagFunc = new MaxDeltaFlagFunc();
-            IWarningFunction warningFunc = new AbsSuicidalMADRSWarningFunc(4, "42220");
+            IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "83153");
+            IFlagFunction flagFunc = new MaxDeltaFlagFunc(2, "83153");
+            IWarningFunction warningFunc = new AbsSuicidalMADRSWarningFunc(4, "83153");
 
             Stopwatch stopwatchCalc = new Stopwatch();
             stopwatchCalc.Start();

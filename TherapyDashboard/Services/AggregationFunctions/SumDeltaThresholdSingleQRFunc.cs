@@ -47,36 +47,44 @@ namespace TherapyDashboard.Services.AggregationFunctions
             int sumLatest = 0;
             int sumSecondLatest = 0;
 
-            foreach (var item in lastQR.Item)
+            if (lastQR != null && secondLastQR != null)
             {
-                var valueElement = item.Answer[0].Value;
-                int value = Int32.Parse(valueElement.ToString()); // getting the Value property from the Element class was problematic
-                sumLatest += value;
-            }
+                foreach (var item in lastQR.Item)
+                {
+                    var valueElement = item.Answer[0].Value;
+                    int value = Int32.Parse(valueElement.ToString()); // getting the Value property from the Element class was problematic
+                    sumLatest += value;
+                }
 
-            foreach (var item in secondLastQR.Item)
-            {
-                var valueElement = item.Answer[0].Value;
-                int value = Int32.Parse(valueElement.ToString()); // getting the Value property from the Element class was problematic
-                sumSecondLatest += value;
-            }
+                foreach (var item in secondLastQR.Item)
+                {
+                    var valueElement = item.Answer[0].Value;
+                    int value = Int32.Parse(valueElement.ToString()); // getting the Value property from the Element class was problematic
+                    sumSecondLatest += value;
+                }
 
-            //compare 
-            float delta = sumSecondLatest - sumLatest;
-            if (delta < -threshold)
-            {
-                //sum going up => condition declining
-                return SummaryRepresentation.declining;
+                //compare 
+                float delta = sumSecondLatest - sumLatest;
+                if (delta < -threshold)
+                {
+                    //sum going up => condition declining
+                    return SummaryRepresentation.declining;
+                }
+                else if ((delta >= -threshold) && (delta <= threshold))
+                {
+                    return SummaryRepresentation.steady;
+                }
+                else if (delta > threshold)
+                {
+                    return SummaryRepresentation.improving;
+                }
+                return SummaryRepresentation.error;
             }
-            else if ((delta >= -threshold) && (delta <= threshold))
+            else
             {
-                return SummaryRepresentation.steady;
+                return SummaryRepresentation.blank;
             }
-            else if (delta > threshold)
-            {
-                return SummaryRepresentation.improving;
-            }
-            return SummaryRepresentation.error;
+            
         }
     }
 }

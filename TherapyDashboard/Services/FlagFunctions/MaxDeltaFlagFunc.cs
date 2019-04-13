@@ -8,29 +8,62 @@ namespace TherapyDashboard.Services.FlagFunctions
 {
     public class MaxDeltaFlagFunc : IFlagFunction
     {
+        private int threshold;
+        private string qid;
+
+        public MaxDeltaFlagFunc(int threshold, string qid)
+        {
+            this.threshold = threshold;
+            this.qid = qid;
+        }
         public List<string> calculateFlag(List<QuestionnaireResponse> QRs)
         {
-            //TODO current assumption is that last element will be latest, check if this is the case
-            QuestionnaireResponse lastQR = QRs[QRs.Count - 1];
-            QuestionnaireResponse secondLastQR = QRs[QRs.Count - 2];
-
-            KeyValuePair<string, float> highestDelta = new KeyValuePair<string, float>("", int.MinValue);
-            foreach (var item in secondLastQR.Item)
+            //find QRs matching "qid" string
+            List<QuestionnaireResponse> matchingQRs = new List<QuestionnaireResponse>();
+            foreach (var QR in QRs)
             {
-                float valuePrev = (float) Int32.Parse(item.Answer[0].Value.ToString()); //read float??
-                string keyPrev = item.Text;
-
-                var correspondingItem = lastQR.Item.Where(x => x.Text == keyPrev).First();
-                float valueLast = (float)Int32.Parse(correspondingItem.Answer[0].Value.ToString());
-
-                float delta = valueLast - valuePrev; //higher is worse
-
-                if (delta > highestDelta.Value)
+                if (QR.Questionnaire.Reference == qid)
                 {
-                    highestDelta = new KeyValuePair<string, float>(keyPrev, delta);
+                    matchingQRs.Add(QR);
                 }
             }
-            return new List<string>(new string[] { highestDelta.Key });
+
+            //find latest and second latest of matched QRs
+            QuestionnaireResponse lastQR = null;
+            QuestionnaireResponse secondLastQR = null;
+
+            foreach (var QR in matchingQRs)
+            {
+                DateTime date = DateTime.Parse(QR.Authored);
+                if (lastQR == null || DateTime.Parse(lastQR.Authored) < date)
+                {
+                    secondLastQR = lastQR;
+                    lastQR = QR;
+                }
+            }
+
+            if(lastQR != null && secondLastQR != null)
+            {
+                KeyValuePair<string, float> highestDelta = new KeyValuePair<string, float>("", int.MinValue);
+                foreach (var item in secondLastQR.Item)
+                {
+                    float valuePrev = (float)Int32.Parse(item.Answer[0].Value.ToString()); 
+                    string keyPrev = item.Text;
+
+                    var correspondingItem = lastQR.Item.Where(x => x.Text == keyPrev).First();
+                    float valueLast = (float)Int32.Parse(correspondingItem.Answer[0].Value.ToString());
+
+                    float delta = valueLast - valuePrev; //higher is worse
+
+                    if (delta > highestDelta.Value)
+                    {
+                        highestDelta = new KeyValuePair<string, float>(keyPrev, delta);
+                    }
+                }
+                return new List<string>(new string[] { highestDelta.Key });
+            }
+
+            return new List<string>(new string[] { "" });
         }
     }
 }
