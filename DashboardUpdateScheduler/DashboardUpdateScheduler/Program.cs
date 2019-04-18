@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,10 @@ namespace DashboardUpdateScheduler
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("aaa");
+            var client = new RestClient("localhost");
+            var request = new RestRequest("home/updateCache", Method.POST);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.ToString());
         }
     }
 }
