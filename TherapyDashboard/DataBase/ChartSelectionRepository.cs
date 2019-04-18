@@ -98,29 +98,34 @@ namespace TherapyDashboard.DataBase
             var filter = Builders<ChartSelection>.Filter.Eq(x => x.therapistID, therapistID);
             var charts = collection.Find(filter).FirstOrDefault();
 
-            Dictionary<string, string> toFormat = new Dictionary<string, string>();
-            foreach(var idxKey in charts.chartMap.Keys)
+            if (charts != null && charts.chartMap != null)
             {
-                var entry = charts.chartMap[idxKey];
-                foreach(var key in entry.Keys)
-                {
-                    if (key.Contains("*"))
-                    {
-                        toFormat[idxKey] = key;
-                    }
-                }
-                
-            }
-            foreach( var kvp in toFormat)
-            {
-                var key = kvp.Value;
-                var idxKey = kvp.Key;
+                Dictionary<string, string> toFormat = new Dictionary<string, string>();
 
-                string formattedName = key.Replace("*", "."); //can't have dots in db
-                var tempdata = charts.chartMap[idxKey][key];
-                charts.chartMap[idxKey].Remove(key);
-                charts.chartMap[idxKey][formattedName] = tempdata;
+                foreach (var idxKey in charts.chartMap.Keys)
+                {
+                    var entry = charts.chartMap[idxKey];
+                    foreach (var key in entry.Keys)
+                    {
+                        if (key.Contains("*"))
+                        {
+                            toFormat[idxKey] = key;
+                        }
+                    }
+
+                }
+                foreach (var kvp in toFormat)
+                {
+                    var key = kvp.Value;
+                    var idxKey = kvp.Key;
+
+                    string formattedName = key.Replace("*", "."); //can't have dots in db
+                    var tempdata = charts.chartMap[idxKey][key];
+                    charts.chartMap[idxKey].Remove(key);
+                    charts.chartMap[idxKey][formattedName] = tempdata;
+                }
             }
+            
             
 
             return charts;

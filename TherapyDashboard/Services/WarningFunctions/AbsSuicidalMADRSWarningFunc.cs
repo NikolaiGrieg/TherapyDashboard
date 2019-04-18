@@ -20,36 +20,48 @@ namespace TherapyDashboard.Services.WarningFunctions
         {
             //find QRs matching "qid" string
             List<QuestionnaireResponse> matchingQRs = new List<QuestionnaireResponse>();
-            foreach (var QR in QRs)
+            if(QRs != null)
             {
-                if (QR.Questionnaire.Reference == qid)
+                foreach (var QR in QRs)
                 {
-                    matchingQRs.Add(QR);
+                    if (QR.Questionnaire.Reference == qid)
+                    {
+                        matchingQRs.Add(QR);
+                    }
                 }
             }
+            
 
             //find latest and second latest of matched QRs
             QuestionnaireResponse lastQR = null;
             
-
-            foreach (var QR in matchingQRs)
+            if(matchingQRs.Count > 0)
             {
-                DateTime date = DateTime.Parse(QR.Authored);
-                if (lastQR == null || DateTime.Parse(lastQR.Authored) < date)
+                foreach (var QR in matchingQRs)
                 {
-                    lastQR = QR;
-                }
-            }
-            List<string> triggeredCategories = new List<string>();
-            foreach (var item in lastQR.Item)
-            {
-                if (item.Text == "Suicidaltanker")
-                {
-                    float value = (float)Int32.Parse(item.Answer[0].Value.ToString());
-                    if (value >= threshold)
+                    DateTime date = DateTime.Parse(QR.Authored);
+                    if (lastQR == null || DateTime.Parse(lastQR.Authored) < date)
                     {
-                        triggeredCategories.Add("Suicidaltanker " + value.ToString());
-                        return triggeredCategories;
+                        lastQR = QR;
+                    }
+                }
+
+            }
+
+            List<string> triggeredCategories = new List<string>();
+            if (lastQR != null)
+            {
+                
+                foreach (var item in lastQR.Item)
+                {
+                    if (item.Text == "Suicidal thoughts")
+                    {
+                        float value = (float)Int32.Parse(item.Answer[0].Value.ToString());
+                        if (value >= threshold)
+                        {
+                            triggeredCategories.Add("Suicidal thoughts " + value.ToString());
+                            return triggeredCategories;
+                        }
                     }
                 }
             }

@@ -29,7 +29,7 @@ namespace TherapyDashboard.Services
 
         public FHIRRepository()
         {
-            client = new FhirClient("http://localhost:8080/hapi/baseDstu3");
+            client = new FhirClient("http://localhost:8080/hapi-fhir-jpaserver-example/baseDstu3"); // "http://localhost:8080/hapi/baseDstu3");
             cache = new MongoRepository();
             calc = new PatientAnalytics();
             obsHandler = new FHIRObservationHandler(client, cache, calc);
@@ -152,8 +152,16 @@ namespace TherapyDashboard.Services
             {
                 var LCHandler = new LastCheckedHandler();
                 var lastCheckedMap = LCHandler.readPatientMap(therapistID); //0 is therapistID, replace with ID when authentication is impl
-                model.lastCheckedMap = lastCheckedMap.patientMap;
+                if(lastCheckedMap != null)
+                {
+                    model.lastCheckedMap = lastCheckedMap.patientMap;
+                }
+                else
+                {
+                    model.lastCheckedMap = new Dictionary<string, DateTime>();
+                }
                 cache.cacheMasterViewModel(model);
+
             }
             
         }
@@ -175,9 +183,9 @@ namespace TherapyDashboard.Services
 
 
             //declare calculation functions
-            IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "83153");
-            IFlagFunction flagFunc = new MaxDeltaFlagFunc(2, "83153");
-            IWarningFunction warningFunc = new AbsSuicidalMADRSWarningFunc(4, "83153");
+            IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "2443");
+            IFlagFunction flagFunc = new MaxDeltaFlagFunc(2, "2443");
+            IWarningFunction warningFunc = new AbsSuicidalMADRSWarningFunc(4, "2443");
 
             Stopwatch stopwatchCalc = new Stopwatch();
             stopwatchCalc.Start();
