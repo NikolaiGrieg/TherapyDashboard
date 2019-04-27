@@ -11,6 +11,13 @@ namespace TherapyDashboard.Services.AggregationFunctions
         public float threshold { get; set; }
         public string qid { get; set; }
 
+        /// <summary>
+        /// Calculates the patient state by Summing the values of the latest and second
+        /// latest questionnaires of a specific questionnaire, and comparing the delta to a threshold.
+        /// </summary>
+        /// <param name="_deltaThreshold">Threshold for comparison. Eg. threshold 2 gives "declining" if
+        /// the delta is less than -2, and "improving" if delta is higher than 2</param>
+        /// <param name="_questionnaireID">The FHIR id of the questionnaire to use for comparison</param>
         public SumDeltaThresholdSingleQRFunc(float _deltaThreshold, string _questionnaireID)
         {
             this.threshold = _deltaThreshold;

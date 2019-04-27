@@ -14,7 +14,7 @@ namespace TherapyDashboard.Services.FlagFunctions
         public MaxDeltaFlagFunc(int threshold, string qid)
         {
             this.threshold = threshold;
-            this.qid = qid;
+            this.qid = "Questionnaire/" + qid;
         }
         public List<string> calculateFlag(List<QuestionnaireResponse> QRs)
         {

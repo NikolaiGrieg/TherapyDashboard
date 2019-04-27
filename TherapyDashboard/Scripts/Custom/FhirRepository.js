@@ -44,8 +44,10 @@ function initDetailView(){
         let qName = kvp[0]
         let QRs = kvp[1]
         
-        let processedQRResources = wrangleFhirQRToTimeSeries(QRs); //this overwrites if time already exists, TODO handle
-        initQRLineChart(processedQRResources, qName);
+        if(QRs.length > 1){
+            let processedQRResources = wrangleFhirQRToTimeSeries(QRs); //this overwrites if time already exists, TODO handle
+            initQRLineChart(processedQRResources, qName);
+        }
     })
     
 
