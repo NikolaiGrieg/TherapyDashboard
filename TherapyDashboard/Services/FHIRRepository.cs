@@ -29,7 +29,7 @@ namespace TherapyDashboard.Services
 
         public FHIRRepository()
         {
-            client = new FhirClient("http://localhost:8080/hapi-fhir-jpaserver-example/baseDstu3"); // "http://localhost:8080/hapi/baseDstu3");
+            client = new FhirClient("http://localhost:8080/hapi-fhir-jpaserver-example/baseDstu3");//"http://localhost:8080/hapi/baseDstu3");//
             cache = new MongoRepository();
             calc = new PatientAnalytics();
             obsHandler = new FHIRObservationHandler(client, cache, calc);
@@ -161,16 +161,14 @@ namespace TherapyDashboard.Services
                     model.lastCheckedMap = new Dictionary<string, DateTime>();
                 }
                 cache.cacheMasterViewModel(model);
-
             }
-            
         }
 
         /// <summary>
         /// Refreshes Resources from FHIR server and preforms all necessary calculations for master view. 
         /// Result is stored as MasterViewModel in db. 
         /// Operates independent of logged in therapist.
-        /// Should preferably be called by a task scheduler on the server as this is a long running process.
+        /// Should prefferably be called by a task scheduler on the server as this is a long running process.
         /// </summary>
         public void updateGlobalState(bool patientViews)
         {
@@ -185,13 +183,13 @@ namespace TherapyDashboard.Services
             //declare calculation functions
             IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "2443");
             IFlagFunction flagFunc = new MaxDeltaFlagFunc(2, "2443");
-            IWarningFunction warningFunc = new AbsSuicidalMADRSWarningFunc(4, "2443");
+            IWarningFunction warningFunc = new AbsSuicidalMADRSWarningFunc(4, "2443"); //85153
 
             Stopwatch stopwatchCalc = new Stopwatch();
             stopwatchCalc.Start();
 
             Dictionary<long, string> summaries = getSummaries(aggFunc);
-            Dictionary<long, List<string>> flags = getFlags(flagFunc); //todo handle multiple flags
+            Dictionary<long, List<string>> flags = getFlags(flagFunc); 
             Dictionary<long, List<string>> warnings = getWarnings(warningFunc);
             Dictionary<long, DateTime> earliestDates = getEarliestDates();
 
@@ -232,7 +230,7 @@ namespace TherapyDashboard.Services
             model.earliestQRDate = new Dictionary<string, DateTime>();
             foreach (var kvp in earliestDates)
             {
-                model.earliestQRDate[kvp.Key.ToString()] = kvp.Value; //TODO check if format is fine
+                model.earliestQRDate[kvp.Key.ToString()] = kvp.Value; 
             }
 
             cache.cacheMasterViewModel(model);
