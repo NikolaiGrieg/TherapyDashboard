@@ -15,6 +15,5 @@ namespace TherapyDashboard.ViewModels
         public string patient { get; set; }
         public Dictionary<string, string> questionnaireMap { get; set; }
         public Dictionary<string, string> selectedCharts { get; set; }
-
     }
 }

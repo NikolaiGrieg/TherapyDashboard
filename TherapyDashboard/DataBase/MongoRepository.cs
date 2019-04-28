@@ -42,7 +42,7 @@ namespace TherapyDashboard.DataBase
 
         public MasterViewModel loadViewModel()
         {
-            return masterViewModels.Find(x => true).FirstOrDefault();//TODO therapistID here
+            return masterViewModels.Find(x => true).FirstOrDefault(); //TODO therapistID here when auth is implemented
         }
 
         public FullPatientData loadPatientDataModel(long id) //TODO in theory this should take a therapistID too... maybe revisit this idea

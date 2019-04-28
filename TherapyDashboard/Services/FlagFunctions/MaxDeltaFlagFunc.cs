@@ -55,9 +55,12 @@ namespace TherapyDashboard.Services.FlagFunctions
 
                     float delta = valueLast - valuePrev; //higher is worse
 
-                    if (delta > highestDelta.Value)
+                    if (Math.Abs(delta) >= threshold)
                     {
-                        highestDelta = new KeyValuePair<string, float>(keyPrev, delta);
+                        if (delta > highestDelta.Value)
+                        {
+                            highestDelta = new KeyValuePair<string, float>(keyPrev, delta);
+                        }
                     }
                 }
                 return new List<string>(new string[] { highestDelta.Key });
