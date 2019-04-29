@@ -107,7 +107,7 @@ function getDiffDays(date){
     return diffDays;
 }
 
-//TODO 
+
 function dateToHumanReadable(date){
     var diffDays = getDiffDays(date);
 
@@ -115,13 +115,15 @@ function dateToHumanReadable(date){
     if(diffDays == 0){
         daysStr = "Today"
     }
-    else if (diffDays < 7){
+    else if (diffDays < 30){
         daysStr = diffDays + " days";
     }
+    /*
     else if ((diffDays / 7) < 4) {
         diffWeeks = Math.floor(diffDays / 7)
         daysStr = diffWeeks + " weeks";
     }
+    */
     else if ((diffDays / 30) < 12){ //months are approximated to 30 days
         diffMonths = Math.floor((diffDays / 7.5) / 4)
         daysStr = diffMonths + " months";
