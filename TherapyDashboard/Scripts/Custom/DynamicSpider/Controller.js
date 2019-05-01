@@ -19,6 +19,13 @@ function renderPatient(patient){
 	//console.log(patient)
 	let name = patient.name[0].given[0] + " " + patient.name[0].family;
 	h3.innerHTML = name;
+
+	let gender = patient.gender; //switch on this if placeholder image available for female
+	let imageHTML = `<img src="../Images/Default_male.png" alt="Person picture" class="responsive">`
+
+	let imgContainer = document.getElementById("image");
+	imgContainer.innerHTML = imageHTML;
+	
 }
 
 //called from SpiderChart
