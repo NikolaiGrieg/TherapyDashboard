@@ -11,7 +11,7 @@ function initFHIRData(){
     let flagStrings = Object.values(_flags);
     let patNames = Object.values(_patientNames);
     let lastChecked = wrangleLastChecked(_lastChecked);
-
+    let urgencyScores = Object.values(_urgencyScores);
     //cap length
     flagStrings = capFlagLengths(flagStrings)
     
@@ -19,7 +19,7 @@ function initFHIRData(){
     let earliestQRDates = Object.values(_earliestQRDates);
     let timeInProgramme = wrangleEarliestDate(earliestQRDates);
 
-    buildTable(patNames, summaryStrings, flagStrings, patIDs, lastChecked, timeInProgramme);
+    buildTable(patNames, summaryStrings, flagStrings, patIDs, lastChecked, timeInProgramme, urgencyScores);
 
     let warningIDs = Object.keys(_warnings);
     let warningParams = Object.values(_warnings);
@@ -271,7 +271,7 @@ function sortTableByCategory(category){
     sortedTrs.forEach(tr => table.tBodies[0].appendChild(tr));
 }
 
-function buildTable(patNames, summaries, flags, patIDs, lastChecked, earliestQRDate){
+function buildTable(patNames, summaries, flags, patIDs, lastChecked, earliestQRDate, urgencyScores){
     const table = document.getElementById("masterTableBody");
     table.innerHTML = ""
     let listItems = "";
@@ -306,6 +306,9 @@ function buildTable(patNames, summaries, flags, patIDs, lastChecked, earliestQRD
                 </td>
                 <td scope="row">
                     <span class="normalText">${lastCheckedCurrent}</span>
+                </td>
+                <td scope="row">
+                    <span class="normalText">${urgencyScores[i]}</span>
                 </td>
             </tr>
         `

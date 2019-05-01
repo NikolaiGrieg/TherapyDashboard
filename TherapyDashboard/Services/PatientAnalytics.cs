@@ -49,5 +49,16 @@ namespace TherapyDashboard.Services
             List<string> warning = func.calculateWarning(QRs);
             return warning;
         }
+
+        internal int calculateUrgency(KeyValuePair<long, List<QuestionnaireResponse>> kvp, IUrgencyScore func)
+        {
+            var QRs = kvp.Value;
+            if (QRs == null || !QRs.Any())
+            {
+                return -1;
+            }
+            int urgency = func.calculateUrgency(QRs);
+            return urgency;
+        }
     }
 }

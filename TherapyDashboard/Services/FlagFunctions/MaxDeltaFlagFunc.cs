@@ -59,7 +59,7 @@ namespace TherapyDashboard.Services.FlagFunctions
                     {
                         if (delta > highestDelta.Value)
                         {
-                            highestDelta = new KeyValuePair<string, float>(keyPrev + " +" + delta, delta);
+                            highestDelta = new KeyValuePair<string, float>(keyPrev + " +" + delta + " (" + valueLast + ")", delta);
                         }
                     }
                 }
