@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TherapyDashboard.Services
 {
-    interface IUrgencyScore
+    public interface IUrgencyScoreFunction
     {
         int calculateUrgency(List<QuestionnaireResponse> QRs);
     }

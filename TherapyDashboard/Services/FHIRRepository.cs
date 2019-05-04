@@ -10,6 +10,7 @@ using TherapyDashboard.DataBase;
 using TherapyDashboard.Models;
 using TherapyDashboard.Services.AggregationFunctions;
 using TherapyDashboard.Services.FlagFunctions;
+using TherapyDashboard.Services.UrgencyFunctions;
 using TherapyDashboard.Services.WarningFunctions;
 using TherapyDashboard.ViewModels;
 
@@ -29,7 +30,7 @@ namespace TherapyDashboard.Services
 
         public FHIRRepository()
         {
-            client = new FhirClient("http://localhost:8080/hapi-fhir-jpaserver-example/baseDstu3");//"http://localhost:8080/hapi/baseDstu3");//
+            client = new FhirClient("http://localhost:8080/hapi/baseDstu3");//http://localhost:8080/hapi-fhir-jpaserver-example/baseDstu3");
             cache = new MongoRepository();
             calc = new PatientAnalytics();
             obsHandler = new FHIRObservationHandler(client, cache, calc);
@@ -181,9 +182,10 @@ namespace TherapyDashboard.Services
 
 
             //declare calculation functions
-            IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "2443");
-            IFlagFunction flagFunc = new MaxDeltaFlagFunc(2, "2443");
-            IWarningFunction warningFunc = new AbsSuicidalMADRSWarningFunc(4, "2443"); //85153
+            IAggregationFunction aggFunc = new SumDeltaThresholdSingleQRFunc(1, "83153");
+            IFlagFunction flagFunc = new MaxDeltaFlagFunc(2, "83153");
+            IWarningFunction warningFunc = new AbsSuicidalMADRSWarningFunc(5, "83153"); //83153
+            IUrgencyScoreFunction urgencyFunc = new MadrsSumUrgencyScore("83153");
 
             Stopwatch stopwatchCalc = new Stopwatch();
             stopwatchCalc.Start();
@@ -192,6 +194,7 @@ namespace TherapyDashboard.Services
             Dictionary<long, List<string>> flags = getFlags(flagFunc); 
             Dictionary<long, List<string>> warnings = getWarnings(warningFunc);
             Dictionary<long, DateTime> earliestDates = getEarliestDates();
+            Dictionary<long, int> urgencyScores = getUrgencyScores(urgencyFunc);
 
 
             stopwatchCalc.Stop();
@@ -232,6 +235,13 @@ namespace TherapyDashboard.Services
             {
                 model.earliestQRDate[kvp.Key.ToString()] = kvp.Value; 
             }
+
+            model.urgencyScores = new Dictionary<string, int>();
+            foreach (var kvp in urgencyScores)
+            {
+                model.urgencyScores[kvp.Key.ToString()] = kvp.Value;
+            }
+
 
             cache.cacheMasterViewModel(model);
 
@@ -492,7 +502,17 @@ namespace TherapyDashboard.Services
             return summaries;
         }
 
-        
+        private Dictionary<long, int> getUrgencyScores(IUrgencyScoreFunction urgencyFunc)
+        {
+            Dictionary<long, int> scores = new Dictionary<long, int>();
+            foreach (var kvp in patientData)
+            {
+                scores[kvp.Key] = calc.calculateUrgency(kvp, urgencyFunc);
+            }
+            return scores;
+        }
+
+
 
     }
 }

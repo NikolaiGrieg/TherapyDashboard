@@ -50,7 +50,7 @@ namespace TherapyDashboard.Services
             return warning;
         }
 
-        internal int calculateUrgency(KeyValuePair<long, List<QuestionnaireResponse>> kvp, IUrgencyScore func)
+        internal int calculateUrgency(KeyValuePair<long, List<QuestionnaireResponse>> kvp, IUrgencyScoreFunction func)
         {
             var QRs = kvp.Value;
             if (QRs == null || !QRs.Any())

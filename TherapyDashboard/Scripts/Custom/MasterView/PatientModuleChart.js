@@ -93,7 +93,18 @@ function plotPatientDuration(QRdates){
         },
         series: [{
             name: 'Patients',
-            data: values
+            data: values,
+            point:{
+              events:{
+                  click: function (event) {
+                        let monthList = Array.from(new Array(maxMonth), (x,i) => i + minMonth);
+                        let diffDays = monthList[this.x]*30;
+                        let filter = dateToHumanReadable(undefined, diffDays); //from tableController
+
+                        sortTableByCategory(filter); //from tableController
+                  }
+              }
+            }
 
         }]
     });

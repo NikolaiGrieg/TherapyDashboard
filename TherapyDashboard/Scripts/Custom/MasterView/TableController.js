@@ -108,8 +108,14 @@ function getDiffDays(date){
 }
 
 
-function dateToHumanReadable(date){
-    var diffDays = getDiffDays(date);
+function dateToHumanReadable(date, diffDaysOverride=undefined){
+    var diffDays;
+    if (diffDaysOverride){
+        diffDays = diffDaysOverride;
+    }
+    else{
+        diffDays = getDiffDays(date);
+    }
 
     let daysStr;
     if(diffDays == 0){

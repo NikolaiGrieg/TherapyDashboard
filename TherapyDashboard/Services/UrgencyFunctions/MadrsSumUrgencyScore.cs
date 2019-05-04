@@ -6,7 +6,7 @@ using Hl7.Fhir.Model;
 
 namespace TherapyDashboard.Services.UrgencyFunctions
 {
-    public class MadrsSumUrgencyScore : IUrgencyScore
+    public class MadrsSumUrgencyScore : IUrgencyScoreFunction
     {
 
         private string qid;
