@@ -30,9 +30,14 @@ function renderPatient(patient){
 
 //called from SpiderChart
 function selectAxis(parent, axis, data, updatePersist=true){
-	var height = 200;
-	var selectedCategoryLine = new LineChart(parent, this, axis, axis, data, height=height)
-	initRemovalFunctionality(axis, updatePersist, 'QRAxis')
+	let chartId = "lineChart" + axis.replace(/[^\w\s]/gi, '').replace(" ", "");
+	let chartExists = document.getElementById(chartId);
+
+	if(!chartExists){
+		var height = 200;
+		var selectedCategoryLine = new LineChart(parent, this, axis, axis, data, height=height)
+		initRemovalFunctionality(axis, updatePersist, 'QRAxis')
+	}
 }
 
 function initRemovalFunctionality(name, updatePersist=true, chartType=undefined){
