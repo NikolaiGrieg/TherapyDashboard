@@ -20,6 +20,8 @@ function initFHIRData(){
     let timeInProgramme = wrangleEarliestDate(earliestQRDates);
 
     buildTable(patNames, summaryStrings, flagStrings, patIDs, lastChecked, timeInProgramme, urgencyScores);
+    initTableheadCursor();
+
 
     let warningIDs = Object.keys(_warnings);
     let warningParams = Object.values(_warnings);
@@ -37,6 +39,17 @@ function initFHIRData(){
     //TODO fix compare on month here
     plotPatientDuration(wrangleEarliestDate(earliestQRDates, false));
 }
+
+function initTableheadCursor(){
+    const table = document.getElementById("masterTableHead");
+    let ths = Array.from(table.children[0].children);
+    
+    ths.forEach(th => {
+        th.style.cursor = "pointer";
+    })
+    
+}
+
 
 //TODO reconsider if this is a good idea, should maybe let the backend functions handle this
 function capFlagLengths(flagStrings, numWords=4){
@@ -321,6 +334,7 @@ function buildTable(patNames, summaries, flags, patIDs, lastChecked, earliestQRD
         listItems += currentHTML;
     }
     table.innerHTML = listItems
+
 }
 
 //TODO clean this up
