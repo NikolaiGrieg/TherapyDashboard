@@ -30,3 +30,6 @@ Author = Reference to Patient resource - ex: "Patient/{patient id}"
 
 ### Observation: 
 valueQuantity.value must be int or float  
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
