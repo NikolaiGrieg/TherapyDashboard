@@ -1,13 +1,21 @@
-# TherapyDashboard
+# Therapy Dashboard
+This application is the Design Science artifact made by Nikolai Alexander Grieg for a Master Thesis in Software Engineering at the Western Norway University of Applied Sciences and the University of Bergen.  
 
 ## Application description:
+The application is intended to provide Visual Analytics and Decision Support for therapists in Internet-based Cognitive Behavioral Therapy. One overview page over all the patients (Master View) and one page for each patient (Detail View) is presented. The data for this dashboard can be retrieved from any FHIR server conforming to [DSTU3](https://www.hl7.org/fhir/STU3/index.html).
 
 ### Master View:  
+This page shows some status variables for each patient, and two graphs describing the entire patient population.  
 ![Picture of master view](https://github.com/NikolaiGrieg/TherapyDashboard/blob/master/Pictures/Dashboard_master_14_5.png)
 
 
 ### Detail view:  
-![Picture of detail view](https://github.com/NikolaiGrieg/TherapyDashboard/blob/master/Pictures/DetailView_14_5.png)
+This page shows detailed information about a single patient. The line chart shows the sum over all questions in a series of [FHIR QuestionnaireResponse Resources](https://www.hl7.org/fhir/questionnaireresponse.html), or the values of a serie of [FHIR Observation Resources](https://www.hl7.org/fhir/observation.html), as selected by the user.
+![Picture of detail view](https://github.com/NikolaiGrieg/TherapyDashboard/blob/master/Pictures/DetailView_14_5.png)  
+
+#### Interactive spider chart displaying one patients [MADRS scores](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1600-0447.1978.tb02357.x)  
+This figure is a part of the Detail View, and is presented on user click. The blue trace is the latest QuestionnaireResponse resource for this questionnaire, and the orange trace can be selected by the user by hovering the line chart.
+![Picture of interactive spider chart](https://github.com/NikolaiGrieg/TherapyDashboard/blob/master/Pictures/interactive_spiderchart_madrs_english.png)
 
 
 ## For development:
