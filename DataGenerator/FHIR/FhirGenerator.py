@@ -217,7 +217,6 @@ def extract_resources(entry):
         return None
 
 
-#createQuestionnaire("MADRS")
+createQuestionnaire("MADRS")
 populate_all_patients()
-
-#create_sleep_observations(2)
+create_sleep_observations(2)
