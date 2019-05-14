@@ -12,17 +12,27 @@
 
 ## For development:
 ### To start the program (current iteration):
-1: Start mongoDB on default port (27017)  
-2: Start FHIR server and set URL of the FHIR base endpoint in /Services/FHIRRepository.cs  
-2.5: Seed FHIR server with data.  
-3: Set parameters for default functions for the updateGlobalState method in /Services/FHIRRepository.cs  
-3(cont): The string parameter for default function takes a resource ID of a questionnaire on the resource server.  
-3.5 Alternatively to 3: Set custom calculation functions in updateGlobalState method in /Services/FHIRRepository.cs
-4: Launch application (VS or IIS)
+1: Start [MongoDB](https://www.mongodb.com/download-center/community) on default port (27017)  
+2: Start a FHIR server and set URL of the FHIR base endpoint in /Services/FHIRRepository.cs  
+2.5: (Optional) Seed FHIR server with data. See below for generating data.  
+3: Set parameters for default functions for the updateGlobalState method in /Services/FHIRRepository.cs The string parameter for default function takes a resource ID of a questionnaire on the resource server.  
+3.5 Alternatively to 3: Set custom calculation functions in updateGlobalState method in /Services/FHIRRepository.cs  
+4: Launch application (Visual Studio or IIS)  
+5: (Optional) Schedule updates: In order to keep the data in the view up to date with respect to the resource server, a scheduler like windows scheduler can be used. Build the application (TherapyDashboard) after updating , and then point the scheduler to run the file /DashboardUpdateScheduler/DashboardUpdateScheduler/bin/Debug/DashboardUpdateScheduler.exe. 
+
+### Generating data:
+#### Patient resources:
+To generate patient resources in FHIR format, the [Synthea](https://github.com/synthetichealth/synthea) library can be used.  
+After cloning the Synthea repository, edit the [bundle configurations](https://github.com/synthetichealth/synthea/wiki/HL7-FHIR) to "exporter.fhir.transaction_bundle = true".  The produced json files can then be uploaded to the base endpoint of the resource server.
+
+#### QuestionnaireResponses, Questionnaires and Observations:
+Patient resources are required before these resources can be generated. First set the endpoint to the FHIR server in /DataGenerator/FHIR/FhirGenerator.py in the api_base field. Run the following in a command line in the folder with the requirements.txt file: "pip install -r requirements txt". Then run /DataGenerator/FHIR/FhirGenerator.py, this process will run for a long time depending on how many patients you generated.  
+
+### Setting up a FHIR server:
+There are multiple ways to do this, the easiest is probably to use the [HAPI JPA server](https://github.com/hapifhir/hapi-fhir-jpaserver-starter).
 
 ### To set up IIS on windows server:
-See sections "Install IIS" and "Publish to IIS" at  
-https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-iis
+See sections "Install IIS" and "Publish to IIS" in [the microsoft docs](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/visual-studio-web-deployment/deploying-to-iis).  
 
 ### To replace calculation functions:
 Implement any of the given interfaces in the /Services folder: IAggregationFunction, IFlagFunction, IWarningFunction.  
@@ -41,7 +51,7 @@ Authored = Date or DateTime
 Author = Reference to Patient resource - ex: "Patient/{patient id}"
 
 #### Observation: 
-valueQuantity.value must be int or float  
+valueQuantity.value = int or float  
 
 # License
 [MIT](https://choosealicense.com/licenses/mit/)
