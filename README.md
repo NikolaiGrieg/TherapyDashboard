@@ -19,7 +19,7 @@ This figure is a part of the Detail View, and is presented on user click. The bl
 
 
 ## For development:
-### To start the program (current iteration):
+### To start the program:
 1: Start [MongoDB](https://www.mongodb.com/download-center/community) on default port (27017)  
 2: Start a FHIR server and set URL of the FHIR base endpoint in /Services/FHIRRepository.cs  
 2.5: (Optional) Seed FHIR server with data. See below for generating data.  
