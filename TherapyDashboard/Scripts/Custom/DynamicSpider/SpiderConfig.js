@@ -32,7 +32,7 @@ var mycfg = {
     maxValue: 0.6,
     levels: 6,
     ExtraWidthX: 150
-}
+};
 
 //Call function to draw the Radar chart
 //Will expect that data is in %'s
@@ -46,7 +46,7 @@ var svg = d3.select('#body')
     .selectAll('svg')
     .append('svg')
     .attr("width", w + 300)
-    .attr("height", h)
+    .attr("height", h);
 
 //Create the title for the legend
 var text = svg.append("text")

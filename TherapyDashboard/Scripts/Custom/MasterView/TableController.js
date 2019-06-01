@@ -12,9 +12,9 @@ function initFHIRData(){
     let patNames = Object.values(_patientNames);
     let lastChecked = wrangleLastChecked(_lastChecked);
     let urgencyScores = Object.values(_urgencyScores);
+
     //cap length
-    flagStrings = capFlagLengths(flagStrings)
-    
+    flagStrings = capFlagLengths(flagStrings);
 
     let earliestQRDates = Object.values(_earliestQRDates);
     let timeInProgramme = wrangleEarliestDate(earliestQRDates);
@@ -25,18 +25,17 @@ function initFHIRData(){
 
     let warningIDs = Object.keys(_warnings);
     let warningParams = Object.values(_warnings);
-    let warningNames = []
+    let warningNames = [];
 
-    //TODO is this safe? potential desync between which patient has which params
-    warningIDs.forEach(id =>{
-        warningNames.push(_patientNames[id])
-    })
+    
+    warningIDs.forEach(id => {
+        warningNames.push(_patientNames[id]);
+    });
     renderWarnings(warningNames, warningIDs, warningParams);
 
     let pieChartData = calculatePieChartData(summaryStrings);
     plotSummariesPieChart(pieChartData);
 
-    //TODO fix compare on month here
     plotPatientDuration(wrangleEarliestDate(earliestQRDates, false));
 }
 
@@ -46,18 +45,17 @@ function initTableheadCursor(){
     
     ths.forEach(th => {
         th.style.cursor = "pointer";
-    })
+    });
     
 }
 
 
-//TODO reconsider if this is a good idea, should maybe let the backend functions handle this
 function capFlagLengths(flagStrings, numWords=4){
-    res = []
+    res = [];
     flagStrings.forEach(flags => {
-        res.push(flags.map(x => getFirstWords(x, numWords)))
-    })
-    return res
+        res.push(flags.map(x => getFirstWords(x, numWords)));
+    });
+    return res;
 }
 
 function getFirstWords(str, numWords){
@@ -67,29 +65,29 @@ function getFirstWords(str, numWords){
 }
 
 function wrangleEarliestDate(earliestQRDate, humanReadable=true){
-    let dateMap = {}
+    let dateMap = {};
     Object.entries(earliestQRDate).forEach(kvp => {
-        
+
         let patID = kvp[0];
         let dateStr = kvp[1]
-                .replace(/\D/g,''); //remove non numerical symbols
+            .replace(/\D/g, ''); //remove non numerical symbols
 
         let date = new Date(parseInt(dateStr));
-        if(humanReadable){
+        if (humanReadable) {
             let readableDate = dateToHumanReadable(date);
             dateMap[patID] = readableDate;
         }
-        else{
+        else {
             dateMap[patID] = date;
         }
-        
-    })
+
+    });
     
     return dateMap;
 }
 
 function wrangleLastChecked(_lastChecked, humanReadable=true){
-    let dateMap = {}
+    let dateMap = {};
     Object.entries(_lastChecked).forEach(kvp => {
         
         let patID = kvp[0];
@@ -131,8 +129,8 @@ function dateToHumanReadable(date, diffDaysOverride=undefined){
     }
 
     let daysStr;
-    if(diffDays == 0){
-        daysStr = "Today"
+    if(diffDays === 0){
+        daysStr = "Today";
     }
     else if (diffDays < 30){
         daysStr = diffDays + " days";
@@ -144,7 +142,7 @@ function dateToHumanReadable(date, diffDaysOverride=undefined){
     }
     */
     else if ((diffDays / 30) < 12){ //months are approximated to 30 days
-        diffMonths = Math.floor((diffDays / 7.5) / 4)
+        diffMonths = Math.floor((diffDays / 7.5) / 4);
         daysStr = diffMonths + " months";
     }
     else {
@@ -158,15 +156,13 @@ function dateToHumanReadable(date, diffDaysOverride=undefined){
     return daysStr;
 }
 
-//TODO: sort depending on severity (highest number?)
-//TODO make this generic to work with flags as well
-//TODO fix tooltips in the wrong spots when scrolling
+//this function is not used currently, and has some placement problems
+//should theoretically support multiple warnings for one patient on hover
 function renderWarnings(patNames, patIDs, parameters){
     const table = document.getElementById("warningTable");
-    table.innerHTML = ""
+    table.innerHTML = "";
     let listItems = "";
 
-    //TODO some matching between IDs, and not use index
     for (let i = 0; i < patIDs.length; i++){
         var currPatNameHTML = `
             <tr class="table-active">
@@ -175,7 +171,7 @@ function renderWarnings(patNames, patIDs, parameters){
                         <span class="normalText">${patNames[i]}</span>
                     </a>
                 </td>
-                `
+                `;
         var currPatWarningParamsHTML = "";
         if (parameters[i].length === 1){
             currPatWarningParamsHTML = `
@@ -183,7 +179,7 @@ function renderWarnings(patNames, patIDs, parameters){
                     <span class="normalText">${parameters[i]}</span>
                 </td>
             </tr>
-        `
+        `;
         }
         else {
             //create list item for each parameter
@@ -195,9 +191,9 @@ function renderWarnings(patNames, patIDs, parameters){
                         <span class="normalText">${param}</span>
                     </td>
                 </tr>
-                `
+                `;
                 currParamsListHTML += paramHTML;
-            })
+            });
 
             // integrate list in popup box
             currPatWarningParamsHTML = `
@@ -237,17 +233,16 @@ function calculatePieChartData(summaries){
     let declining = 0;
 
     summaries.forEach(str => {
-        //switch?
-        if (str === "declining"){
+        if (str === "declining") {
             declining++;
         }
-        else if (str === "improving"){
+        else if (str === "improving") {
             improving++;
         }
-        else if (str === "steady"){
+        else if (str === "steady") {
             steady++;
         }
-    })
+    });
 
     let data = [{
         name: 'Steady',
@@ -260,9 +255,9 @@ function calculatePieChartData(summaries){
     }, {
         name: 'Declining',
         y: declining
-    }]
+    }];
     
-    return data
+    return data;
     
 }
 
@@ -270,21 +265,21 @@ function sortTableByCategory(category){
     const table = document.getElementById("masterTable");
 
     //add matching rows
-    let sortedTrs = []
-    let tdQuery = Array.from($("td:contains(" + category + ")"))
+    let sortedTrs = [];
+    let tdQuery = Array.from($("td:contains(" + category + ")"));
     tdQuery.forEach(listElement => {
-        if (listElement.parentNode.parentNode.id === "masterTableBody"){
+        if (listElement.parentNode.parentNode.id === "masterTableBody") {
             sortedTrs.push(listElement.parentNode);
         }
-    })
+    });
     
     //add remaining rows
     let allTrs = Array.from(table.tBodies[0].querySelectorAll('tr:nth-child(n+1)'));
     allTrs.forEach(listElement => {
-        if(!sortedTrs.includes(listElement)){
+        if (!sortedTrs.includes(listElement)) {
             sortedTrs.push(listElement);
         }
-    })
+    });
     
     //build table
     sortedTrs.forEach(tr => table.tBodies[0].appendChild(tr));
@@ -292,13 +287,12 @@ function sortTableByCategory(category){
 
 function buildTable(patNames, summaries, flags, patIDs, lastChecked, earliestQRDate, urgencyScores){
     const table = document.getElementById("masterTableBody");
-    table.innerHTML = ""
+    table.innerHTML = "";
     let listItems = "";
 
-    //TODO some matching between IDs, and not use index
     for (let i = 0; i < patIDs.length; i++){
 
-        let lastCheckedCurrent = "Never"
+        let lastCheckedCurrent = "Never";
         if(Object.keys(lastChecked).includes(patIDs[i])){
             lastCheckedCurrent = lastChecked[patIDs[i]];
         }
@@ -330,16 +324,15 @@ function buildTable(patNames, summaries, flags, patIDs, lastChecked, earliestQRD
                     <span class="normalText">${urgencyScores[i]}</span>
                 </td>
             </tr>
-        `
+        `;
         listItems += currentHTML;
     }
-    table.innerHTML = listItems
+    table.innerHTML = listItems;
 
 }
 
-//TODO clean this up
+//(heavily adapted) from https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
 function enableTableSort() {
-    //(heavily adapted) from https://stackoverflow.com/questions/14267781/sorting-html-table-with-javascript
     const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
 
     const comparer = (idx, asc) => (a, b) => ((v1, v2) => v1 !== '' && v2 !== '' && 
@@ -348,16 +341,16 @@ function enableTableSort() {
 
     let ths = document.querySelectorAll('th');
     
-    let alphaNumSorted = []
+    let alphaNumSorted = [];
     let dateSorted = [];
     ths.forEach(th => {
-        if (th.innerHTML != "Last checked" && th.innerHTML != "Time spent in program"){
+        if (th.innerHTML !== "Last checked" && th.innerHTML !== "Time spent in program") {
             alphaNumSorted.push(th)
         }
-        else{
+        else {
             dateSorted.push(th);
         }
-    })
+    });
 
     //apply alphaNumerical sorting
     alphaNumSorted.forEach(th => th.addEventListener('click', (() => {
@@ -365,20 +358,20 @@ function enableTableSort() {
         let sortedTrs;
 
         //Hack to fix bug where name column refused to sort correctly
-        if (th.innerHTML == "Name"){
+        if (th.innerHTML === "Name"){
             let nameSortedPatNames = Object.values(_patientNames).sort();
             sortedTrs = [];
-            nameSortedPatNames.forEach(name =>{
-                let tdQuery = Array.from($("td:contains(" + name + ")"))
+            nameSortedPatNames.forEach(name => {
+                let tdQuery = Array.from($("td:contains(" + name + ")"));
                 let td;
                 tdQuery.forEach(listElement => {
-                    if (listElement.parentNode.parentNode.id == "masterTableBody"){
+                    if (listElement.parentNode.parentNode.id === "masterTableBody") {
                         sortedTrs.push(listElement.parentNode);
                     }
-                })
-            })
+                });
+            });
             if (this.asc){
-                sortedTrs.reverse()
+                sortedTrs.reverse();
             }
             this.asc = !this.asc;
         }
@@ -394,34 +387,34 @@ function enableTableSort() {
     //apply date sorting
     dateSorted.forEach(th => {
         let dateSortedPatNames;
-        if(th.innerHTML === "Last checked"){
+        if (th.innerHTML === "Last checked") {
             dateSortedPatNames = getDateSortedPatNameArray("last");
         }
-        else{
+        else {
             dateSortedPatNames = getDateSortedPatNameArray("first");
         }
-        
+
 
         //assemble list of patNames in order of sorted date
         let trs = [];
-        dateSortedPatNames.forEach(name =>{
-            let tdQuery = Array.from($("td:contains(" + name + ")"))
+        dateSortedPatNames.forEach(name => {
+            let tdQuery = Array.from($("td:contains(" + name + ")"));
             let td;
-             //if duplicate names, one of the names will have wrong position in list
+            //note: if duplicate names, one of the names will have wrong position in list
             tdQuery.forEach(listElement => {
-                if (listElement.parentNode.parentNode.id == "masterTableBody"){
+                if (listElement.parentNode.parentNode.id === "masterTableBody") {
                     trs.push(listElement.parentNode);
                 }
-            })
-        })
+            });
+        });
 
         //add eventlistener
         th.addEventListener('click', (() => {
             const table = document.getElementById("masterTable");
             trs.forEach(tr => table.tBodies[0].appendChild(tr));
             trs.reverse();
-        }))
-    }) 
+        }));
+    });
     
 }
 
@@ -430,7 +423,7 @@ function initSearch(){
       $("#patientFilter").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#masterTableBody tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
         });
       });
     });
@@ -449,22 +442,22 @@ function getDateSortedPatNameArray(dateSelector='last'){
         dateSorted = Object.keys(firstQR).sort(function(a,b){return firstQR[b]-firstQR[a]})
         let names = []
         dateSorted.forEach(id => {
-            names.push(_patientNames[id])
-        })
+            names.push(_patientNames[id]);
+        });
         return names;
     }
 
     //patients without exsiting checked
     let allPatIds = Object.keys(_summaries);
-    allPatIds.forEach(id =>{
-        if (!dateSorted.includes(id)){
-            dateSorted.push(id)
+    allPatIds.forEach(id => {
+        if (!dateSorted.includes(id)) {
+            dateSorted.push(id);
         }
-    })
-    let names = []
+    });
+    let names = [];
     dateSorted.forEach(id => {
         names.push(_patientNames[id])
-    })
+    });
 
     return names;
 }
@@ -484,15 +477,15 @@ function applyDateFilter(isDone){
 
     //get list of lastChecked within 7 days
     let filteredPatients = [];
-    Object.entries(lastChecked).forEach(kvp =>{
+    Object.entries(lastChecked).forEach(kvp => {
         let patID = kvp[0];
         let date = kvp[1];
         let diffDays = getDiffDays(date);
-        if (diffDays < threshold){
-            let patName = _patientNames[patID]; //global variable.. 
+        if (diffDays < threshold) {
+            let patName = _patientNames[patID];
             filteredPatients.push(patName);
         }
-    })
+    });
 
     //update gui
     $(function(){

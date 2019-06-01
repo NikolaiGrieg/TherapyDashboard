@@ -1,33 +1,31 @@
-﻿//TODO rename file
-
-function calculateDurationBins(data){
+﻿function calculateDurationBins(data){
     //get highest month
-    let calcs = {}
+    let calcs = {};
     let maxMonth = 0;
     let minMonth = Infinity;
-    let monthDict = {}
+    let monthDict = {};
     Object.values(data).forEach(date => {
         let diffDays = getDiffDays(date);
-        let diffMonths = Math.floor(diffDays/30) //approximate month
-        if (diffMonths > maxMonth){
+        let diffMonths = Math.floor(diffDays / 30); //approximate month
+        if (diffMonths > maxMonth) {
             maxMonth = diffMonths;
         }
-        if (diffMonths < minMonth){
+        if (diffMonths < minMonth) {
             minMonth = diffMonths;
         }
 
-        if(monthDict[diffMonths]){
-            monthDict[diffMonths] += 1
+        if (monthDict[diffMonths]) {
+            monthDict[diffMonths] += 1;
         }
-        else{
-            monthDict[diffMonths] = 1
+        else {
+            monthDict[diffMonths] = 1;
         }
-    })
+    });
 
     let months = [];
     for (let i = minMonth; i < maxMonth+1; i++){ //months are 0 indexed
         if (monthDict[i]){
-            months.push(monthDict[i])
+            months.push(monthDict[i]);
         }
         else{
             months.push(0);
@@ -40,13 +38,12 @@ function calculateDurationBins(data){
     return calcs;
 }
 
-//TODO fix duplicate function between here and tablecontroller
 function getDiffDays(date){
     var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
     var firstDate = date;
     var secondDate = new Date();
 
-    var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneDay)));
+    var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/oneDay));
     return diffDays;
 }
 

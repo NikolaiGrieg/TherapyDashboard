@@ -42,7 +42,6 @@
 
 </head>
 
-<!-- TODO bootstrap grid this -->
 <div style="height: 700px">
     <div style="height: 10px;"></div>
     <div style="height: 300px">
@@ -98,18 +97,12 @@
 </div>
 <script>
     var _summaries = @Html.Raw(Json.Encode(@Model.summaries));
-    //console.log(summaries);
     var _patientNames = @Html.Raw(Json.Encode(@Model.patientNames));
-    //console.log(_patientNames);
     var _flags = @Html.Raw(Json.Encode(@Model.flags));
     var _warnings = @Html.Raw(Json.Encode(@Model.warnings));
-    //console.log(_warnings);
     var _lastChecked = @Html.Raw(Json.Encode(@Model.lastCheckedMap));
-    //console.log(_lastChecked);
     var _earliestQRDates = @Html.Raw(Json.Encode(@Model.earliestQRDate));
-
     var _urgencyScores = @Html.Raw(Json.Encode(@Model.urgencyScores));
-    
 </script>
 <script src="~/Scripts/Custom/FhirRepository.js"></script>
 <script src="~/Scripts/Custom/MasterView/TableController.js"></script>

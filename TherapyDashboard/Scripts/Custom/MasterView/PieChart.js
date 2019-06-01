@@ -1,13 +1,13 @@
 ﻿var pieColors = (function () {
     //0: steady, 1: improving, 2: declining
     //blue, green, red
-    var colors = ['#058DC7', '#50B432', '#ED561B']
+    var colors = ['#058DC7', '#50B432', '#ED561B'];
 
     return colors;
 }());
 
 function plotSummariesPieChart(data){
-    let categories = ['steady', 'improving', 'declining']
+    let categories = ['steady', 'improving', 'declining'];
     Highcharts.chart('piechart', {
         chart: {
             plotBackgroundColor: null,
@@ -19,8 +19,7 @@ function plotSummariesPieChart(data){
             text: null
         },
         tooltip: {
-            pointFormat: '{series.name}: <b>{point.y}</b> - <b>{point.percentage:.1f}%</b> ',
-            
+            pointFormat: '{series.name}: <b>{point.y}</b> - <b>{point.percentage:.1f}%</b> '
         },
 
         credits: {

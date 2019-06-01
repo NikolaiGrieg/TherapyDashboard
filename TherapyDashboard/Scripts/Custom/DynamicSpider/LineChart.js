@@ -16,16 +16,16 @@ LineChart = function(_parentElement, controller, name, elements,
 };
 
 LineChart.prototype.initVis = function(){
-  var vis = this
+    var vis = this;
 
   //hack to solve width in spider
   if (vis.parentElement === "#aggregateSpiderController"){
-      vis.initWidt = document.getElementById("aggregateSpiderController").clientWidth; //todo not hardcode this
+      vis.initWidt = document.getElementById("aggregateSpiderController").clientWidth; 
   }
 
   // set the dimensions and margins of the graph
   vis.margin = {top: 40, right: 50, bottom: 30, left: 50};
-  vis.width = vis.initWidt - vis.margin.left - vis.margin.right; //TODO inject these
+  vis.width = vis.initWidt - vis.margin.left - vis.margin.right; 
   vis.height = vis.initHeight - vis.margin.top - vis.margin.bottom;
 
 
@@ -55,32 +55,22 @@ LineChart.prototype.wrangleData = function(){
 
     // parse the date / time
     var parseTime = d3.timeParse("%Y-%m-%d"); // possibly some precision loss
-    /*
-    if (vis.fhir){
-      //2008-05-15T06:28:55-04:00
-      parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
-    }
-    else{
-      parseTime = d3.timeParse("%Y-%m-%d");//"%d-%b-%y");
-    }
-    */
 
     var data = [];
 
     //wrangle data 
-    for (var key in vis.data) { //TODO rename vis.data
+    for (var key in vis.data) { 
        if (vis.data.hasOwnProperty(key)) {
-          //console.log(key, vis.data[key]);
           var entry = vis.data[key];
           if (typeof entry === 'object'){
             entry['date'] = key;
           }
           else{
             let val = entry;
-            entry = {
-              value : val,
-              date : key
-            }
+              entry = {
+                  value: val,
+                  date: key
+              };
           }
           
           data.push(entry);
@@ -94,41 +84,40 @@ LineChart.prototype.wrangleData = function(){
           let sum = 0;
           for (var key in d) {
             if (d.hasOwnProperty(key)) {
-                if(key != 'date' && key != '$oid'){
-                  //console.log(key + " -> " + d[key]);
-                  sum += +d[key]
+                if(key !== 'date' && key !== '$oid'){
+                    sum += +d[key];
                 }
             }
           }
-          d.close = sum;//todo rename
+          d.close = sum;
       });
     }
     else{
-      data.forEach(function(d) {
-        d.date = parseTime(d.date);
-        let sum = 0;
-        if (d.close != null){ //??
-          delete d.close;
-        }
-        for (var key in d) {
-          if (d.hasOwnProperty(key)) {
-              if(key !== 'date'){
-                if (key.startsWith(vis.elements)) {
-                  d.close = +d[key];
-                  vis.name = key; //hack to solve wrong naming of axes with names > 30 chars
+        data.forEach(function (d) {
+            d.date = parseTime(d.date);
+            let sum = 0;
+            if (d.close !== null) {
+                delete d.close;
+            }
+            for (var key in d) {
+                if (d.hasOwnProperty(key)) {
+                    if (key !== 'date') {
+                        if (key.startsWith(vis.elements)) {
+                            d.close = +d[key];
+                            vis.name = key; //hack to solve wrong naming of axes with names > 30 chars
+                        }
+                        else {
+                            delete d[key];
+                        }
+                    }
                 }
-                else{
-                  delete d[key]
-                }
-              }
-          }
-        }
-      })
+            }
+        });
     }
 
-    data.sort(function(x, y){
+      data.sort(function (x, y) {
           return d3.ascending(x.date, y.date);
-    })
+      });
 
     vis.data = data;
 
@@ -138,8 +127,8 @@ LineChart.prototype.wrangleData = function(){
     //replace with this for absolute range:
     //[0, d3.max(vis.data, function(d) { return d.close; })]; 
 
-    vis.xScale.domain(vis.xDomain)
-    vis.yScale.domain(vis.yDomain)
+    vis.xScale.domain(vis.xDomain);
+    vis.yScale.domain(vis.yDomain);
 
     // Add the X Axis
     vis.svg.append("g")
@@ -193,24 +182,24 @@ LineChart.prototype.wrangleData = function(){
     }).left;
 
     /* Add circles in the line */
-    if (vis.data.length < 80){ //TODO extract magic number
+    if (vis.data.length < 80){ 
       var circleOpacity = '0.85';
       var circleRadius = 3;
     
 
-      g.selectAll("circle-group")
-        .data(vis.data).enter()
-        .append("g")
-        .style("fill", (d, i) => d3.hcl(-97, 32, 52))//steelblue
-        .selectAll("circle")
-        .data(vis.data).enter()
-        .append("g")
-        .attr("class", "circle")
-        .append("circle")
-        .attr("cx", d => vis.xScale(d.date))
-        .attr("cy", d => vis.yScale(d.close))
-        .attr("r", circleRadius)
-        .style('opacity', circleOpacity)
+        g.selectAll("circle-group")
+            .data(vis.data).enter()
+            .append("g")
+            .style("fill", (d, i) => d3.hcl(-97, 32, 52))//steelblue
+            .selectAll("circle")
+            .data(vis.data).enter()
+            .append("g")
+            .attr("class", "circle")
+            .append("circle")
+            .attr("cx", d => vis.xScale(d.date))
+            .attr("cy", d => vis.yScale(d.close))
+            .attr("r", circleRadius)
+            .style('opacity', circleOpacity);
     }
 
     //overlay focus selector
@@ -223,19 +212,18 @@ LineChart.prototype.wrangleData = function(){
         .on('mousemove', function() { 
             var mouse = d3.mouse(this);
             var mouseDate = vis.xScale.invert(mouse[0]);
-            const dates = vis.data.map(d => d.date)
+            const dates = vis.data.map(d => d.date);
             var i = bisectDate(vis.data, mouseDate); // returns the index to the current data item
-            var j = d3.bisectLeft(dates, mouseDate)
+            var j = d3.bisectLeft(dates, mouseDate);
 
-            var d0 = vis.data[i - 1]
+            var d0 = vis.data[i - 1];
             var d1 = vis.data[i];
+
             // work out which date value is closest to the mouse
             var d = mouseDate - d0[0] > d1[0] - mouseDate ? d1 : d0;
 
             var x = vis.xScale(d.date);
             var y = vis.yScale(d.close);
-
-            //console.log("x: " + x + " y: " + y);
 
             focus.select('#focusLineX')
                 .attr('x1', x).attr('y1', vis.yScale(vis.yDomain[0]))
@@ -248,7 +236,7 @@ LineChart.prototype.wrangleData = function(){
 
             //send event to controller
             if (vis.parentElement === "#aggregateSpiderController"){
-                vis.controller.update(i-1); //Seems to fix some indexing problems from another place
+                vis.controller.update(i-1); //Hack to fix some indexing problems from another place
             }
         });
 
