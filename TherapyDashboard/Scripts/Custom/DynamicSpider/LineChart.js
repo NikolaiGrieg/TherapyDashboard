@@ -164,9 +164,18 @@ LineChart.prototype.wrangleData = function(){
 
     var focus = g.append('g').style('display', 'none');
 
-    focus.append('line')
+
+    if (vis.parentElement === "#line"){ 
+      focus.append('line')
         .attr('id', 'focusLineX')
         .attr('class', 'focusLine');
+        
+    }
+    else{
+      focus.append('line')
+        .attr('id', 'focusLineX')
+        .attr('class', 'focusLineOrange');
+    }
 
     //horizontal blue line
     if (vis.parentElement === "#line"){     

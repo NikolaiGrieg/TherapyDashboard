@@ -38,6 +38,13 @@
     stroke-width: 0.5px;
 }
 
+.focusLineOrange {
+    fill: none;
+    stroke: darkorange;
+    stroke-width: 0.5px;
+}
+
+
 #modalContainer {
     position: fixed;
     display: none;
